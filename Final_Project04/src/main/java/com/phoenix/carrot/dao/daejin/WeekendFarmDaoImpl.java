@@ -1,4 +1,4 @@
-package com.phoenix.carrot.model.dao;
+package com.phoenix.carrot.dao.daejin;
 
 import org.springframework.stereotype.Repository;
 

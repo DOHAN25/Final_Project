@@ -1,4 +1,4 @@
-package com.phoenix.carrot.model.biz;
+package com.phoenix.carrot.biz.daejin;
 
 import org.springframework.stereotype.Service;
 
