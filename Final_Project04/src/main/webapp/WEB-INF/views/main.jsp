@@ -8,9 +8,7 @@
 </head>
 <body>
 
-	<a href="home.do">home...</a>
-	<br/>
-	<a href="main.do">대진이메인</a>
+	<h1>메인 작업창</h1>
 
 </body>
 </html>
