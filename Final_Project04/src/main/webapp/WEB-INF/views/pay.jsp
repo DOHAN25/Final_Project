@@ -8,11 +8,7 @@
 </head>
 <body>
 
-	<a href="home.do">home...</a>
-	<br/>
-	<a href="main.do">대진이메인</a>
-	<br/>
-	<a href="pay.do">재희</a>
+<h1>결제 작업창 입니다.</h1>
 
 </body>
 </html>
