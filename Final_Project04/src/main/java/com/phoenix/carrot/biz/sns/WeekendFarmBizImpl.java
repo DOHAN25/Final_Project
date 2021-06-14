@@ -1,4 +1,4 @@
-package com.phoenix.carrot.biz.daejin;
+package com.phoenix.carrot.biz.sns;
 
 import org.springframework.stereotype.Service;
 
