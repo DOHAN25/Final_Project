@@ -25,7 +25,6 @@ CREATE SEQUENCE entireBoardSeq;
 
 CREATE TABLE entireBoard(
 	entireBoardSeq NUMBER PRIMARY KEY NOT NULL,
-	eachBoardNum NUMBER NOT NULL,
 	boardKind VARCHAR2(20) NOT NULL,
 	boardDate DATE NOT NULL,
 	boardTitle VARCHAR2(200),
@@ -36,20 +35,12 @@ CREATE TABLE entireBoard(
 	likeCount NUMBER
 );
 
---1. 시퀀스를 여러개 두는 방법(이건 안될듯)
-DROP SEQUENCE snsSeq;
-DROP SEQUENCE knowhowSeq;
-DROP SEQUENCE noticeSeq;
-
-CREATE SEQUENCE snsSeq;
-CREATE SEQUENCE knowhowSeq;
-CREATE SEQUENCE noticeSeq;
 
 INSERT INTO entireBoard
-VALUES (entireBoardSeq.NEXTVAL, snsSeq.NEXTVAL, );
+VALUES (entireBoardSeq.NEXTVAL, 'SNS', SYSDATE, '테스트글입니다.', '테스트내용입니다.', 'TEST', 1, NULL, NULL);
 
-
---2. row_number를 이용해서 순차적 번호를 부여하는 방법...
+SELECT * FROM ENTIREBOARD;
+----------------------------------------------------
 
 
 
