@@ -2,6 +2,9 @@ package com.phoenix.carrot.model.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RestController;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.InputStreamReader;
@@ -11,11 +14,6 @@ import java.net.URL;
 import java.util.HashMap;
 
 import org.json.JSONObject;
-
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -28,7 +26,7 @@ public class WeatherController {
 			
 			@RestController
 			@RequestMapping("/api")
-			 @GetMapping("/weather")
+			@GetMapping("/weather")
 			    public String restApiGetWeather() throws Exception 
 			    {
 			        /* 
