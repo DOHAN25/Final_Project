@@ -8,7 +8,7 @@
 	<bean name="logAop" class="com.phoenix.carrot.common.aop.LogAop"/>
 	
 		<aop:config>
-		<aop:pointcut expression="execution(public * com.phoenix.carrot.model.dao.*Dao*.*(..))" id="daoPoint"/>
+		<aop:pointcut expression="execution(public * com.phoenix.carrot.dao.*.*Dao*.*(..))" id="daoPoint"/>
 		<aop:aspect id="logAop" ref="logAop">
 			<aop:before method="before" pointcut-ref="daoPoint"/>
 			<aop:after method="after" pointcut-ref="daoPoint"/>
