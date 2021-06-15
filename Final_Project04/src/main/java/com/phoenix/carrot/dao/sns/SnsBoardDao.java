@@ -6,7 +6,7 @@ import com.phoenix.carrot.dto.sns.EntireBoardDto;
 
 public interface SnsBoardDao {
 	
-	String NAMESPACE = "snsboard";
+	String NAMESPACE = "snsboard.";
 	
 	public List<EntireBoardDto> snsBoardList();
 	public EntireBoardDto snsBoardOne(int entireBoardSeq);
