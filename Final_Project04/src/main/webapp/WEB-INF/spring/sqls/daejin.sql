@@ -25,7 +25,7 @@ CREATE SEQUENCE entireBoardSeq;
 
 CREATE TABLE entireBoard(
 	entireBoardSeq NUMBER PRIMARY KEY NOT NULL,
-	boardKind VARCHAR2(20) NOT NULL,
+	boardKind NUMBER NOT NULL,
 	boardDate DATE NOT NULL,
 	boardTitle VARCHAR2(200),
 	boardContents VARCHAR2(4000),
@@ -35,15 +35,16 @@ CREATE TABLE entireBoard(
 	likeCount NUMBER
 );
 
+---sns:1, knowhow:2, notice:3
 
 INSERT INTO entireBoard
-VALUES (entireBoardSeq.NEXTVAL, 'SNS', SYSDATE, '테스트글입니다.', '테스트내용입니다.', 'TEST', 1, NULL, NULL);
+VALUES (entireBoardSeq.NEXTVAL, 1, SYSDATE, '테스트글입니다.', '테스트내용입니다.', 'TEST', 1, NULL, NULL);
 
 SELECT * FROM ENTIREBOARD;
 
 SELECT *
 FROM entireBoard
-WHERE boardKind = 'SNS'
+WHERE boardKind = 1
 ORDER BY boardDate ASC;
 ----------------------------------------------------
 
