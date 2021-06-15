@@ -3,11 +3,9 @@
 <configuration>
 	<typeAliases>
 		<typeAlias type="com.phoenix.carrot.dto.sns.WeekendFarmDto" alias="weekendFarmDto"/>
-		<typeAlias type="com.phoenix.carrot.dto.sns.EntireBoardDto" alias="entireBoardDto"/>
 	</typeAliases>
 	
 	<mappers>
 		<mapper resource="/mybatis/weekendfarm-mapper.xml"/>
-		<mapper resource="/mybatis/snsboard-mapper.xml"/>
 	</mappers>
 </configuration>
