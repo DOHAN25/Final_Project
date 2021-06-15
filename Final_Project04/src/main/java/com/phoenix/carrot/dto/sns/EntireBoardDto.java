@@ -20,7 +20,6 @@ public class EntireBoardDto {
 
 	public EntireBoardDto(int entireBoardSeq, String boardKind, Date boardDate, String boardTitle, String boardContents,
 			String userId, int userSeq, String snsImg, int likeCount) {
-		super();
 		this.entireBoardSeq = entireBoardSeq;
 		this.boardKind = boardKind;
 		this.boardDate = boardDate;
