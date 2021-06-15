@@ -5,7 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
- <script async src="./weather.do"></script>
+ <script src="./weather.do"></script>
 </head>
 <body>
 function weather() 
