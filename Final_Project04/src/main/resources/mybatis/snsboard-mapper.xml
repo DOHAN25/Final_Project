@@ -17,8 +17,8 @@
 	<select id="snsBoardList" resultType="entireBoardDto">
 		SELECT *
 		FROM entireBoard
-		WHERE boardKind = SNS
-		ORDER BY ASC
+		WHERE boardKind = 'SNS'
+		ORDER BY boardDate ASC
 	</select>
 
 </mapper>

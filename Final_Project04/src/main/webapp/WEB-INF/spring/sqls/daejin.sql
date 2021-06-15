@@ -40,6 +40,11 @@ INSERT INTO entireBoard
 VALUES (entireBoardSeq.NEXTVAL, 'SNS', SYSDATE, '테스트글입니다.', '테스트내용입니다.', 'TEST', 1, NULL, NULL);
 
 SELECT * FROM ENTIREBOARD;
+
+SELECT *
+FROM entireBoard
+WHERE boardKind = 'SNS'
+ORDER BY boardDate ASC;
 ----------------------------------------------------
 
 

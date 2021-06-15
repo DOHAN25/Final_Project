@@ -20,12 +20,13 @@ public class SnsBoardDaoImpl implements SnsBoardDao {
 		
 		List<EntireBoardDto> snsBoardList = new ArrayList<EntireBoardDto>();
 		
+		
 		try {
 			snsBoardList = sqlSession.selectList(NAMESPACE + "snsBoardList");
 		} catch (Exception e) {
 			e.printStackTrace();
 		} 
-			
+		
 		return snsBoardList;
 	}
 
