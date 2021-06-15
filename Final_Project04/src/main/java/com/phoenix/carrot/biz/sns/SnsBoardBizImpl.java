@@ -17,7 +17,7 @@ public class SnsBoardBizImpl implements SnsBoardBiz {
 	@Override
 	public List<EntireBoardDto> snsBoardList() {
 		
-		return null;
+		return dao.snsBoardList();
 	}
 
 	@Override
