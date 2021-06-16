@@ -42,7 +42,9 @@
                 <li class="nav-item">
                     <a class="nav-link" href="#">주말농장</a>
                 </li>
-                <a class="d-none d-lg-block" href="#"><img src="${pageContext.request.contextPath}/resources/bootstrap-5.0.1-dist/assets/img/당근팜 로고.png"></a>
+                <li>
+	                <a class="d-none d-lg-block" href="#"><img src="${pageContext.request.contextPath}/resources/bootstrap-5.0.1-dist/assets/img/당근팜 로고.png"></a>
+                </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#">꿀팁</a>
                 </li>
@@ -82,21 +84,21 @@
                 </div>
                 <div class=" col-md-4">
                     <h4 class="text-uppercase mb-4">Developer</h4>
-                    <div class="dropdown">
-                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1"
+                    <div class="dropdown d-inline-block">
+                        <button class="btn mb-2 mr-2 dropdown-toggle btn btn-outline-secondary dropdown-toggle" type="button" id="dropdownMenuButton1"
                             data-bs-toggle="dropdown" aria-expanded="false">
                             Developer
                         </button>
                         <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                            <li><a class="dropdown-item" href="#">김도한</a></li>
-                            <li><a class="dropdown-item" href="#">김대진</a></li>
-                            <li><a class="dropdown-item" href="#">김태린</a></li>
+                            <li><a class="dropdown-item" href="https://github.com/DOHAN25">김도한</a></li>
+                            <li><a class="dropdown-item" href="https://github.com/dd-jiny">김대진</a></li>
+                            <li><a class="dropdown-item" href="https://github.com/Taerin-Kim">김태린</a></li>
                             <li><a class="dropdown-item" href="#">박찬종</a></li>
-                            <li><a class="dropdown-item" href="#">이재희</a></li>
+                            <li><a class="dropdown-item" href="https://github.com/jaehee-9638">이재희</a></li>
                             <li><a class="dropdown-item" href="https://github.com/1251024">장보옥</a></li>
                         </ul>
                     </div>
-                </div>
+            	</div>
             </div>
         </div>
 
