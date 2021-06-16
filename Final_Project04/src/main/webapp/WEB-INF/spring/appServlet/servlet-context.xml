@@ -36,5 +36,7 @@
 	<!-- transaction -->
 	<tx:annotation-driven/>
 	
-	
+	<beans:bean id="uploadPath" class="java.lang.String">
+		<beans:constructor-arg value="C:\Git\Final_Project\Final_Project04\src\main\webapp\resources\images"/>
+	</beans:bean>
 </beans:beans>

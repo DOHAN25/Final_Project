@@ -13,7 +13,7 @@
 <body>
 
 	<h1>대진이 메인 작업창</h1>
-	<h2>대진이 두번째 작업창 :<a href="map.do"> 지도 </a></h2>
+	<h2>대진이 두번째 작업창 :<a href="weekendfarmmap.do"> 지도 </a></h2>
 	<h2>대진이 세번째 작업창 : <a href="snsBoardInsertForm.do">글 작성</a></h2>
 	<div id="page-content-wrapper">
 		<div class="search-window">

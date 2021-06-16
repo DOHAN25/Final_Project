@@ -1,7 +1,10 @@
 DROP TABLE USERS;
 
+CREATE SEQUENCE userSeq;
+
 CREATE TABLE USERS(
-	userId VARCHAR2(100) PRIMARY KEY,
+	userSeq NUMBER PRIMARY KEY,
+	userId VARCHAR2(100) NOT NULL,
 	password VARCHAR2(100) NOT NULL,
 	userEmail VARCHAR2(1000) NOT NULL,
 	userPhone NUMBER NOT NULL,
@@ -13,13 +16,17 @@ CREATE TABLE USERS(
 
 
 INSERT INTO USERS
-VALUES('dj', '1234', 'jd@naver.com', 01012311231, 'ÇÔ°æºÏµµ ¿ÍºÎÀ¾', 
-'user', '±è´ëÁø', '930812');
+VALUES(userSeq.NEXTVAL, 'test01', '1234', 'jd@naver.com', 01012311231, 'ê²½ê¸°ë„ ê³ ì–‘ì‹œ', 
+'admin', 'ê¹€ëŒ€ì§„', '931031');
 
 
 INSERT INTO USERS
-VALUES('dh', '3333', 'dh@naver.com', 010123423112, '¼­¿ïÆ¯º°½Ã ³²´ë¹®', 
-'user', '±èµµÇÑ', '950511');
+VALUES(userSeq.NEXTVAL, 'dh', '3333', 'dh@naver.com', 010123423112, 'ê²½ê¸°ë„ ë‚¨ì–‘ì£¼ì‹œ', 
+'admin', 'ê¹€ë„í•œ', '950511');
+
+INSERT INTO USERS
+VALUES(userSeq.NEXTVAL, 'taerin', '1234', 'tr@naver.com', 010123423112, 'ì„œìš¸ ê±´ëŒ€ê·¼ì²˜', 
+'user', 'ê¹€íƒœë¦°', '941211');
 
 
 select * from users;
