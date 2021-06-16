@@ -13,7 +13,8 @@
 <body>
 
 	<h1>대진이 메인 작업창</h1>
-	<h2>대진이 두번째 작업창 :<a href="map.do"> 지도 </a></h2>
+	<h2>대진이 두번째 작업창 :<a href="weekendfarmmap.do"> 지도 </a></h2>
+	<h2>대진이 세번째 작업창 : <a href="snsBoardInsertForm.do">글 작성</a></h2>
 	<div id="page-content-wrapper">
 		<div class="search-window">
 			<input type="search" placeholder="검색어를 입력하세요."/>
@@ -21,7 +22,7 @@
 		</div>
 
         <!-- 글작성 -->
-        <form action="snsBoardInsertRes.do" method="post">
+        
 		<div class="content-container">
 			<div class="timeline-insert-head">타임라인 글작성</div>
                 <div class="timeline-insert-body">
@@ -37,7 +38,7 @@
                     </div>         
             </div>
 		</div>
-		</form>
+		
         <!-- 뉴스피드 -->
         <div class="newsfeed">
             <div class="newsfeed-one">
@@ -71,12 +72,12 @@
         </div>
 	</div>
 
+  
 	<table border="1">
 	<col width="20">
 	<col width="100">
 	<col width="100">
 	<col width="200">
-
 
 
 	<tr>
@@ -108,7 +109,7 @@
 		<td colspan="4" align="right"><input type="button" value="글작성" onclick=""></td>
 	</tr>
 	
-	
+
 </table>
 </body>
 </html>

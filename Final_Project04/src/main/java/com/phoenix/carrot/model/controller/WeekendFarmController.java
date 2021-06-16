@@ -6,8 +6,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class WeekendFarmController {
 	
-	@RequestMapping("/map.do")
+	@RequestMapping("/weekendfarmmap.do")
 	public String mapForm() {
-			return "map";
+			return "weekendfarmmap";
 	}
 }

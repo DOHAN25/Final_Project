@@ -27,14 +27,20 @@ public class SnsController {
 		return "main";
 	}
 	
+	@RequestMapping("/snsBoardInsertForm.do")
+	public String snsBoardInsertForm() {
+		
+		return "snsboardinsert";
+	}
+	
 	@RequestMapping("/snsBoardInsertRes.do")
 	public String snsBoardInsertRes(EntireBoardDto dto) {
 		logger.info("[Controller] : snsBoardInsertRes.do");
 		if(biz.snsBoardInsert(dto) > 0) {
-			return "main";
+			return "redirect:main.do";
 		}
 		
-		return "main";
+		return "redirect:snsBoardInsertForm.do";
 	}
 	
 }
