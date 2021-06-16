@@ -9,6 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.phoenix.carrot.biz.sns.SnsBoardBiz;
+import com.phoenix.carrot.dto.sns.EntireBoardDto;
 
 @Controller
 public class SnsController {
@@ -22,6 +23,16 @@ public class SnsController {
 	public String mainForm(Model model) {
 		logger.info("[Controller] : main.do");
 		model.addAttribute("snsBoardList", biz.snsBoardList());
+		
+		return "main";
+	}
+	
+	@RequestMapping("/snsBoardInsertRes.do")
+	public String snsBoardInsertRes(EntireBoardDto dto) {
+		logger.info("[Controller] : snsBoardInsertRes.do");
+		if(biz.snsBoardInsert(dto) > 0) {
+			return "main";
+		}
 		
 		return "main";
 	}

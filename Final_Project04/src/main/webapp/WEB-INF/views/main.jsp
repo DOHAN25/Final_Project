@@ -13,6 +13,7 @@
 <body>
 
 	<h1>대진이 메인 작업창</h1>
+	<h2>대진이 두번째 작업창 :<a href="map.do"> 지도 </a></h2>
 	<div id="page-content-wrapper">
 		<div class="search-window">
 			<input type="search" placeholder="검색어를 입력하세요."/>
@@ -20,11 +21,15 @@
 		</div>
 
         <!-- 글작성 -->
+        <form action="snsBoardInsertRes.do" method="post">
 		<div class="content-container">
 			<div class="timeline-insert-head">타임라인 글작성</div>
                 <div class="timeline-insert-body">
-                    <div class="insert-form">
-                        <textarea class="form-control" cols="30" rows="10"></textarea>
+                    <div class="insert-userId-form">
+                    	유저아이디:<textarea type="text" class="user-id-form" name="userId" cols="30" rows="1"></textarea>
+                    </div>
+                    <div class="insert-content-form">
+                        글내용:<br/><textarea type="text" class="sns-contents-form" name="boardContents" cols="30" rows="10"></textarea>
                     </div>
                     <div class="insert-btn-group" role="group">
                         <button type="button" class="insert-btn">미디어</button>
@@ -32,6 +37,7 @@
                     </div>         
             </div>
 		</div>
+		</form>
         <!-- 뉴스피드 -->
         <div class="newsfeed">
             <div class="newsfeed-one">
