@@ -12,6 +12,50 @@ CREATE TABLE weekendFarm(
 );
 
 INSERT INTO weekendFarm
-VALUES (farmSeq.NEXTVAL, '´ëÁøÀÌ³× ³óÀå', '°æ±âµµ °í¾ç½Ã', '01097954578');
+VALUES (farmSeq.NEXTVAL, 'ëŒ€ì§„ì´ë„¤ ë†ì¥', 'ê²½ê¸°ë„ ê³ ì–‘ì‹œ', '01097954578');
 
 SELECT * FROM WEEKENDFARM;
+
+----------------------boardtable--------------------------------
+
+DROP SEQUENCE entireBoardSeq;
+DROP TABLE entireBoard;
+
+CREATE SEQUENCE entireBoardSeq;
+
+CREATE TABLE entireBoard(
+	entireBoardSeq NUMBER PRIMARY KEY NOT NULL,
+	boardKind VARCHAR2(20) NOT NULL,
+	boardDate DATE NOT NULL,
+	boardTitle VARCHAR2(200),
+	boardContents VARCHAR2(4000),
+	userId VARCHAR2(30) NOT NULL,
+	userSeq NUMBER NOT NULL,
+	snsImg VARCHAR2(4000),
+	likeCount NUMBER
+);
+
+
+INSERT INTO entireBoard
+VALUES (entireBoardSeq.NEXTVAL, 'SNS', SYSDATE, 'í…ŒìŠ¤íŠ¸ê¸€ì…ë‹ˆë‹¤.', 'í…ŒìŠ¤íŠ¸ë‚´ìš©ì…ë‹ˆë‹¤.', 'TEST', 1, NULL, NULL);
+
+SELECT * FROM ENTIREBOARD;
+----------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
