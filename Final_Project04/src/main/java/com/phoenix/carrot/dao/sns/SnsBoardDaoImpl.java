@@ -41,7 +41,7 @@ public class SnsBoardDaoImpl implements SnsBoardDao {
 		int res = 0;
 		
 		try {
-			res = sqlSession.insert(NAMESPACE + "snsBoardInsert");
+			res = sqlSession.insert(NAMESPACE + "snsBoardInsert", dto);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

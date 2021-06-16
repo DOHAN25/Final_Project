@@ -3,15 +3,15 @@
 <mapper namespace="snsboard">
 
   	<resultMap type="entireBoardDto" id="entireBoardMap">
-  		<result property="entireBoardSeq" column="ENTIREBOARDSEQ"/>
-  		<result property="boardKind" column="BOARDKIND"/>
-  		<result property="boardDate" column="BOARDDATE"/>
-  		<result property="boardTitle" column="BOARDTITLE"/>
-  		<result property="boardContents" column="BOARDCONTENTS"/>
-  		<result property="userId" column="USERID"/>
-  		<result property="userSeq" column="USERSEQ"/>
-  		<result property="snsImg" column="SNSIMG"/>
-  		<result property="likeCount" column="LIKECOUNT"/>
+  		<result property="entireBoardSeq" column="entireBoardSeq"/>
+  		<result property="boardKind" column="boardKind"/>
+  		<result property="boardDate" column="boardDate"/>
+  		<result property="boardTitle" column="boardTitle"/>
+  		<result property="boardContents" column="boardContents"/>
+  		<result property="userId" column="userId"/>
+  		<result property="userSeq" column="userSeq"/>
+  		<result property="snsImg" column="snsImg"/>
+  		<result property="likeCount" column="likeCount"/>
   	</resultMap>
 
 	<select id="snsBoardList" resultType="entireBoardDto">
@@ -23,7 +23,7 @@
 	
 	<insert id="snsBoardInsert" parameterType="entireBoardDto">
 		INSERT INTO entireBoard
-		VALUES(entireBoardSeq.NEXTVAL, 1, SYSDATE, 'sns글테스트입니다.', #{boardContents}, #{userId}, 1, NULL, NULL)
+		VALUES(entireBoardSeq.NEXTVAL, 1, SYSDATE, 'sns글테스트입니다.', #{boardContents}, 'test01', 1, NULL, NULL)
 	</insert>
 
 </mapper>
