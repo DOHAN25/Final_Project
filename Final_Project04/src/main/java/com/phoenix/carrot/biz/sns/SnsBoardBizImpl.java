@@ -28,8 +28,8 @@ public class SnsBoardBizImpl implements SnsBoardBiz {
 
 	@Override
 	public int snsBoardInsert(EntireBoardDto dto) {
-		// TODO Auto-generated method stub
-		return 0;
+		
+		return dao.snsBoardInsert(dto);
 	}
 
 	@Override

@@ -20,5 +20,10 @@
 		WHERE boardKind = 1
 		ORDER BY boardDate ASC
 	</select>
+	
+	<insert id="snsBoardInsert" parameterType="entireBoardDto">
+		INSERT INTO entireBoard
+		VALUES(entireBoardSeq.NEXTVAL, 1, SYSDATE, 'sns글테스트입니다.', #{boardContents}, #{userId}, 1, NULL, NULL)
+	</insert>
 
 </mapper>
