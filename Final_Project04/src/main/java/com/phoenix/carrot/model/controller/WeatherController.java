@@ -26,7 +26,7 @@ public class WeatherController {
 			
 			@RestController
 			@RequestMapping("/api")
-			@GetMapping("/weather")
+			 @GetMapping("/weather")
 			    public String restApiGetWeather() throws Exception 
 			    {
 			        /* 
@@ -42,7 +42,7 @@ public class WeatherController {
 			            + "&dataType=JSON"            // JSON, XML
 			            + "&numOfRows=10"             // 페이지 ROWS
 			            + "&pageNo=1"                 // 페이지 번호
-			            + "&base_date=20210517"       // 발표일자
+			            + "&base_date=20210616"       // 발표일자
 			            + "&base_time=0800"           // 발표시각
 			            + "&nx=60"                    // 예보지점 X 좌표
 			            + "&ny=127";                  // 예보지점 Y 좌표
