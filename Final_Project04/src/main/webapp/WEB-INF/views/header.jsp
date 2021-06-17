@@ -26,7 +26,7 @@
         </div>
     </nav>
     <nav class="navbar navbar-expand-lg navbar-light" style="background-color:white;">
-        <a class="navbar-brand d-lg-none" href="#"><img src="assets/img/당근팜 로고.png"></a>
+        <a class="navbar-brand d-lg-none" href="#"><img src="${pageContext.request.contextPath}/resources/img/당근팜_로고_2.png"></a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#myNavbarToggler7"
             aria-controls="myNavbarToggler7" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -43,7 +43,7 @@
                     <a class="nav-link" href="#">주말농장</a>
                 </li>
                 <li>
-	                <a class="d-none d-lg-block" href="#"><img src="${pageContext.request.contextPath}/resources/bootstrap-5.0.1-dist/assets/img/당근팜 로고.png"></a>
+	                <a class="d-none d-lg-block" href="#"><img src="${pageContext.request.contextPath}/resources/img/당근팜_로고_2.png"></a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#">꿀팁</a>
