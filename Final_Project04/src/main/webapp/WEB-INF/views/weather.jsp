@@ -12,12 +12,10 @@
 <body>
 	<script type="text/javascript"></script>
 	
-		<script src="https://code.jquery.com/jquery-3.6.0.min.js"
-		integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
-		crossorigin="anonymous"></script>
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 		
 	<script>
-		$.getJSON('api.openweathermap.org/data/2.5/weather?q=Seoul&appid=eee038bcc405e706ccb79c12e89fbd81&units=metric',
+		$.getJSON('https://api.openweathermap.org/data/2.5/weather?q=Seoul&appid=eee038bcc405e706ccb79c12e89fbd81&units=metric',
 			function(result) {
 
 		$('.ctemp').append(result.main.temp);
@@ -30,22 +28,52 @@
 			var ct = result.dt;
 
 			function convertTime(t) {
-				var ot = new Date(t * 1000);
+				var date = new Date(t * 1000);
+                //Tue Apr 06 2021 15:28:58 GMT+0900 (대한민국 표준시)
+                var year = date.getFullYear();
+                var month = "0" + (date.getUTCMonth() + 1);
+                var day = "0" + date.getDate();
+                var hour = "0" + date.getHours();
+                var minute = "0" + date.getMinutes();
+                var second = "0" + date.getSeconds();
 
-				var hr = ot.getHours();
-				var m = ot.getMinutes();
-				var s = ot.getSeconds();
 
-				return ot;
+                return year + '/' + month.substr(-2) + '/' + day.substr(-2) + ' ' + hour.substr(-2) + ':' +
+                    minute.substr(-2) + ':' + second.substr(-2);
+            }
+            var currentTime = convertTime(ct); //커런트타임은 컨버트타임으로 바꿔준다.파라미터는 웨더데이트
+            $('.time').append(currentTime); //thistime을 convertTime으로 형변환한 weatherdate을 붙여준다.
 
-				//return hr + ':' + m + ':'+ s
-				//1623893431 dt
-							}
 
-				var currentTime = convertTime(ct);
-		$('.time').append(currentTime);
 
-						});
+        });
+		//년 월 일 시 로 바꾸기 
+		
+	/*
+	
+	  function Unix_timestamp(t) {
+                    var date = new Date(t * 1000);
+                    //Tue Apr 06 2021 15:28:58 GMT+0900 (대한민국 표준시)
+                    var year = date.getFullYear();
+                    var month = "0" + (date.getUTCMonth() + 1);
+                    var day = "0" + date.getDate();
+                    var hour = "0" + date.getHours();
+                    var minute = "0" + date.getMinutes();
+                    var second = "0" + date.getSeconds();
+
+
+                    return year + '/' + month.substr(-2) + '/' + day.substr(-2) + ' ' + hour.substr(-2) + ':' +
+                        minute.substr(-2) + ':' + second.substr(-2);
+                }
+                var currentTime = Unix_timestamp(ct); //커런트타임은 컨버트타임으로 바꿔준다.파라미터는 웨더데이트
+                $('.thistime').append(currentTime); //thistime을 convertTime으로 형변환한 weatherdate을 붙여준다.
+
+
+
+            });
+	
+	*/
+		
 	</script>
 	<h2>날씨 미세먼지</h2>
 
@@ -54,10 +82,10 @@
 		<img alt="" src="http://openweathermap.org/img/wn/10d.png">
 	</h5>
 	
-	<h5 class="time">현재 시간 :</h5>
-	<h5 class="ctemp">현재 온도 (℃):</h5>
-	<h5 class="lowtemp">최저 온도 (℃):</h5>
-	<h5 class="hightemp">최고 온도 (℃):</h5>
+	<h5 class="time">현재 시간 : </h5>
+	<h5 class="ctemp">현재 온도 (℃): </h5>
+	<h5 class="lowtemp">최저 온도 (℃): </h5>
+	<h5 class="hightemp">최고 온도 (℃): </h5>
 	
 
 
