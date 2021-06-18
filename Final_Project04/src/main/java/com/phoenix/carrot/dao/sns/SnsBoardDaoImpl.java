@@ -32,7 +32,15 @@ public class SnsBoardDaoImpl implements SnsBoardDao {
 
 	@Override
 	public EntireBoardDto snsBoardOne(int entireBoardSeq) {
-		return null;
+		
+		EntireBoardDto dto = null;
+		
+		try {
+			dto = sqlSession.selectOne(NAMESPACE + "snsBoardOne", entireBoardSeq);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return dto;
 	}
 
 
@@ -50,12 +58,29 @@ public class SnsBoardDaoImpl implements SnsBoardDao {
 
 	@Override
 	public int snsBoardUpdate(EntireBoardDto dto) {
-		return 0;
+		
+		int res = 0;
+		
+		try {
+			res = sqlSession.update(NAMESPACE + "snsBoardUpdate", dto);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return res;
 	}
 
 	@Override
 	public int snsBoardDelete(int entireBoardSeq) {
-		return 0;
+		
+		int res = 0;
+		
+		try {
+			res = sqlSession.delete(NAMESPACE + "snsBoardDelete", entireBoardSeq);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return res;
 	}
 
 }

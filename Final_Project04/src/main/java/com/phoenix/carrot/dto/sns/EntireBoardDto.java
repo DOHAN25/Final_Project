@@ -2,6 +2,8 @@ package com.phoenix.carrot.dto.sns;
 
 import java.util.Date;
 
+import org.springframework.web.multipart.MultipartFile;
+
 public class EntireBoardDto {
 	
 	private int entireBoardSeq;
