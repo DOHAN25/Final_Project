@@ -18,7 +18,7 @@ public class FileValidator implements Validator {
 
 	@Override
 	public void validate(Object target, Errors errors) {
-		
+		/*
 		EntireBoardDto file = (EntireBoardDto) target;
 		
 		if (file.getSnsImg().getSize() == 0) {
@@ -26,6 +26,8 @@ public class FileValidator implements Validator {
 			
 			errors.rejectValue("snsImg", "fileNPE", "Please select a file");
 		}
+		*/
+
 	}
 
 }
