@@ -10,5 +10,7 @@ public class JaeheeController {
 	public String payForm() {
 			return "pay";
 	}
+	
+	
 
 }
