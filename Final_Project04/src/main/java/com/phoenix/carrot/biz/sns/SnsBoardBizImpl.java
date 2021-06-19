@@ -22,8 +22,8 @@ public class SnsBoardBizImpl implements SnsBoardBiz {
 
 	@Override
 	public EntireBoardDto snsBoardOne(int entireBoardSeq) {
-		// TODO Auto-generated method stub
-		return null;
+		
+		return dao.snsBoardOne(entireBoardSeq);
 	}
 
 	@Override
@@ -34,14 +34,14 @@ public class SnsBoardBizImpl implements SnsBoardBiz {
 
 	@Override
 	public int snsBoardUpdate(EntireBoardDto dto) {
-		// TODO Auto-generated method stub
-		return 0;
+		
+		return dao.snsBoardUpdate(dto);
 	}
 
 	@Override
 	public int snsBoardDelete(int entireBoardSeq) {
-		// TODO Auto-generated method stub
-		return 0;
+	
+		return dao.snsBoardDelete(entireBoardSeq);
 	}
 
 }

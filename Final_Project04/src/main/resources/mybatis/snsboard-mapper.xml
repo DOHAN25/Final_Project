@@ -23,7 +23,24 @@
 	
 	<insert id="snsBoardInsert" parameterType="entireBoardDto">
 		INSERT INTO entireBoard
-		VALUES(entireBoardSeq.NEXTVAL, 1, SYSDATE, 'sns글테스트입니다.', #{boardContents}, 'test01', 1, NULL, NULL)
+		VALUES(entireBoardSeq.NEXTVAL, 1, SYSDATE, 'sns글테스트입니다.', #{boardContents}, 'test01', 1, #{snsImg}, NULL)
 	</insert>
+	
+	<select id="snsBoardOne" resultMap="entireBoardMap">
+		SELECT *
+		FROM entireBoard
+		WHERE entireBoardSeq = #{entireBoardSeq}
+	</select>
+	
+	<update id="snsBoardUpdate" parameterType="entireBoardDto">
+		UPDATE entireBoard
+		SET boardContents = #{boardContents}
+		WHERE entireBoardSeq = #{entireBoardSeq}
+	</update>
+	
+	<delete id="snsBoardDelete" parameterType="int">
+		DELETE FROM entireBoard
+		WHERE entireBoardSeq = #{entireBoardSeq}
+	</delete>
 
 </mapper>

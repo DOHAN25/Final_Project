@@ -50,13 +50,32 @@ VALUES (entireBoardSeq.NEXTVAL, 1, SYSDATE, '테스트글입니다.', '테스트
 INSERT INTO entireBoard
 VALUES (entireBoardSeq.NEXTVAL, 1, SYSDATE, '테스트글입니다2.', '테스트내용입니다2.', 'dh', 2, NULL, NULL);
 
-SELECT * FROM ENTIREBOARD;
+SELECT * FROM entireBoard;
 
 SELECT *
 FROM entireBoard
 WHERE boardKind = 1
 ORDER BY boardDate ASC;
 ----------------------------------------------------
+--첨부파일을 위한 테이블 
+DROP SEQUENCE boardFileSeq;
+DROP TABLE boardFile;
+
+CREATE SEQUENCE boardFileSeq;
+
+CREATE TABLE boardFile(
+	boardFileSeq NUMBER PRIMARY KEY,
+	boardFileName VARCHAR2(1000) NOT NULL,
+	entireBoardSeq NUMBER NOT NULL,
+	boardFileDate DATE,
+	boardFileCnt NUMBER DEFAULT 0
+);
+
+-- 게시글 첨부파일 테이블 참조키 설정
+ALTER TABLE boardFile ADD CONSTRAINT FK_board_file
+FOREIGN KEY (entireBoardSeq) REFERENCES entireBoard (entireBoardSeq);
+
+
 
 
 
