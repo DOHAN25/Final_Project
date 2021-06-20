@@ -99,7 +99,7 @@
 				<tr>
 					<td>${dto.entireBoardSeq }</td>
 					<td>${dto.userId }</td>
-					<td>${dto.boardTitle }</td>
+					<td><a href="snsBoardOne.do?entireBoardSeq=${dto.entireBoardSeq }">${dto.boardTitle }</a></td>
 					<td>${dto.boardDate }</td>
 				</tr>
 			</c:forEach>

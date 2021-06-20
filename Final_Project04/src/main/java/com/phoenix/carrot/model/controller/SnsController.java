@@ -1,13 +1,18 @@
 package com.phoenix.carrot.model.controller;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.multipart.MultipartFile;
 
+import com.phoenix.carrot.biz.sns.FileValidator;
 import com.phoenix.carrot.biz.sns.SnsBoardBiz;
 import com.phoenix.carrot.dto.sns.EntireBoardDto;
 
@@ -15,6 +20,9 @@ import com.phoenix.carrot.dto.sns.EntireBoardDto;
 public class SnsController {
 	
 	private Logger logger = LoggerFactory.getLogger(SnsController.class);
+	
+	@Autowired
+	private FileValidator fileValidator;
 	
 	@Autowired
 	private SnsBoardBiz biz;
@@ -36,11 +44,51 @@ public class SnsController {
 	@RequestMapping("/snsBoardInsertRes.do")
 	public String snsBoardInsertRes(EntireBoardDto dto) {
 		logger.info("[Controller] : snsBoardInsertRes.do");
+		
 		if(biz.snsBoardInsert(dto) > 0) {
+			
 			return "redirect:main.do";
 		}
 		
 		return "redirect:snsBoardInsertForm.do";
+	}
+	
+	@RequestMapping("/snsBoardOne.do")
+	public String snsBoardOne(Model model, int entireBoardSeq) {
+		logger.info("[Controller] : snsBoardOne.do");
+		
+		model.addAttribute("dto", biz.snsBoardOne(entireBoardSeq));
+		return "snsboarddetail";
+	}
+	
+	@RequestMapping("/snsBoardUpdateForm.do")
+	public String snsBoardUpdateForm(Model model, int entireBoardSeq) {
+		logger.info("[Controller] : snsBoardUpdateForm.do");
+		
+		model.addAttribute("dto", biz.snsBoardOne(entireBoardSeq));
+		return "snsboardupdate";
+	}
+	
+	@RequestMapping("/snsBoardUpdateRes.do")
+	public String snsBoardUpdateRes(EntireBoardDto dto) {
+		logger.info("[Controller] : snsBoardUpdateRes.do");
+		
+		if (biz.snsBoardUpdate(dto) > 0) {
+			return "redirect:snsBoardOne.do?entireBoardSeq="+dto.getEntireBoardSeq();
+		}
+		
+		return "redirect:snsBoardUpdateForm.do";
+	}
+	
+	@RequestMapping("/snsBoardDelete.do")
+	public String snsBoardDelete(int entireBoardSeq) {
+		logger.info("[Controller] : snsBoardDelete.do");
+		
+		if(biz.snsBoardDelete(entireBoardSeq) > 0) {
+			return "redirect:main.do";
+		}
+		
+		return "redirect:snsBoardDetail.do?entireBoardSeq="+entireBoardSeq;
 	}
 	
 }

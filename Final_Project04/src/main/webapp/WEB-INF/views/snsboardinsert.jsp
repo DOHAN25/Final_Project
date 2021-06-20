@@ -12,6 +12,7 @@
 
 	<h1>글 작성</h1>
 	<!-- 업로드 페이지 -->
+	<form action="snsBoardInsertRes.do" method="post">
 		<main class="snsContainer">
 			<!-- 사진업로드 박스 -->
 			<section class="upload">
@@ -28,8 +29,10 @@
 					<input type="text" name="tags" placeholder="태그"><br>
 					<button type="submit">등록</button>
 				</div>
+			</form>
 				
-			</form> 
+	</form> 
+	
 			<form class="hashtag-insert-form" action="" method="post"/>
 				<!-- 해쉬태그 등록 -->
 				<div class="insert-hash-tag">
@@ -38,6 +41,7 @@
 			</form>
 			</section>
 		</main>
+		
 		
 		<h2>INSERT</h2>
 	<form action="snsBoardInsertRes.do" method="post">

@@ -2,8 +2,11 @@ package com.phoenix.carrot.dto.sns;
 
 import java.util.Date;
 
+import org.springframework.web.multipart.MultipartFile;
+
 public class EntireBoardDto {
 	
+	//기본필드
 	private int entireBoardSeq;
 	private String boardKind;
 	private Date boardDate;
@@ -14,12 +17,17 @@ public class EntireBoardDto {
 	private String snsImg;
 	private int likeCount;
 	
+	/* 파일업로드 관련 추가 
+	priavet String[] files;
+	private int boardFileCnt;
+	*/
 	public EntireBoardDto() {
 
 	}
 
 	public EntireBoardDto(int entireBoardSeq, String boardKind, Date boardDate, String boardTitle, String boardContents,
 			String userId, int userSeq, String snsImg, int likeCount) {
+		//기본
 		this.entireBoardSeq = entireBoardSeq;
 		this.boardKind = boardKind;
 		this.boardDate = boardDate;
@@ -29,7 +37,10 @@ public class EntireBoardDto {
 		this.userSeq = userSeq;
 		this.snsImg = snsImg;
 		this.likeCount = likeCount;
+
 	}
+
+
 
 	public int getEntireBoardSeq() {
 		return entireBoardSeq;
@@ -102,8 +113,5 @@ public class EntireBoardDto {
 	public void setLikeCount(int likeCount) {
 		this.likeCount = likeCount;
 	}
-	
-	
-	
 	
 }
