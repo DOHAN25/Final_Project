@@ -3,13 +3,13 @@ package com.phoenix.carrot.user.dao;
 import com.phoenix.carrot.user.dto.UserDto;
 
 public interface UserDao {
+	
+	String NAMESPACE = "userMapper.";
 
-	public UserDto selectOne(String userId);
-	public int join(UserDto dto);
-	public int update(UserDto dto);
-	public String duplicateCheckId(String userId);
-	public String passwordCheck(String password);
-	
-	
-	
+	public UserDto login(UserDto dto);
+
+	public int regist(UserDto dto);
+
+	public int userUpdate(UserDto dto);
+
 }
