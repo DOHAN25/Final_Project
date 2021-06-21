@@ -17,5 +17,7 @@
 	<a href="weather.do">태린 날씨</a>
 	<br/>
 	<a href="header.do">보옥 헤더</a>
+	<br/>
+	<a href="loginform.do">로그인</a>
 </body>
 </html>
