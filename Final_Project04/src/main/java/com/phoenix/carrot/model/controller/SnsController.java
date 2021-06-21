@@ -27,6 +27,7 @@ public class SnsController {
 	@Autowired
 	private SnsBoardBiz biz;
 	
+	
 	@RequestMapping("/main.do")
 	public String mainForm(Model model) {
 		logger.info("[Controller] : main.do");
@@ -42,7 +43,7 @@ public class SnsController {
 	}
 	
 	@RequestMapping("/snsBoardInsertRes.do")
-	public String snsBoardInsertRes(EntireBoardDto dto) {
+	public String snsBoardInsertRes(EntireBoardDto dto) throws Exception {
 		logger.info("[Controller] : snsBoardInsertRes.do");
 		
 		if(biz.snsBoardInsert(dto) > 0) {

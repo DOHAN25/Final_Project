@@ -2,8 +2,9 @@ package com.phoenix.carrot.dao.sns;
 
 import java.util.List;
 
-public interface boardFileDao {
+public interface BoardFileDao {
 	//일단 boardFileName으로 줘보고 성공시에 int boardFileSeq로도 해보자
+	//dto 를 선언해줄 방법도 고려해보자 
 	String NAMESPACE = "boardfile.";
 	
 	//게시글 첨부파일 추가
