@@ -17,10 +17,11 @@ public class EntireBoardDto {
 	private String snsImg;
 	private int likeCount;
 	
-	/* 파일업로드 관련 추가 
-	priavet String[] files;
-	private int boardFileCnt;
-	*/
+	//파일 업로드 관련 추가
+	//private String[] files;
+	
+	//private int boardFileCnt; 쓸지 안쓸지 고민해보자 
+	
 	public EntireBoardDto() {
 
 	}
@@ -113,5 +114,15 @@ public class EntireBoardDto {
 	public void setLikeCount(int likeCount) {
 		this.likeCount = likeCount;
 	}
+	
+	/*
+	public String[] getFiles() {
+		return files;
+	}
+
+	public void setFiles(String[] files) {
+		this.files = files;
+	}
+	*/
 	
 }

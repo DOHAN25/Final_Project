@@ -7,6 +7,20 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<style>
+	.fileDrop {
+		width: 100%;
+		height: 200px;
+		border: 2px dotted #0b58a2;
+	}
+</style>
+
+<!-- 잘되면 js파일에 새로 만들어 주기  -->
+<script type="text/javascript" src="${path}/resources/dist/js/upload.js">
+<!-- 업로드 JS -->
+<!-- 파일 정보 가공-->
+function getFileInfo(boardFileName) {}
+</script>
 </head>
 <body>
 
@@ -30,7 +44,41 @@
 					<button type="submit">등록</button>
 				</div>
 			</form>
-				
+			<!-- 첨부파일 영역 추가 -->
+			<div class="form-group">
+				<div class="fileDrop">
+					<br/>
+					<br/>
+					<br/>
+					<br/>
+					<p class="text-center"><i class="fa fa-paperclip"></i>첨부파일을 드래그해주세요.<p>
+				</div>
+			</div>
+			<!-- 첨부파일 영역 추가 -->
+			<div class="card-footer">
+				<ul class="mailbox-attachments clearfix uploadedList"></ul>
+			</div>
+			<!-- 첨부파일 영역 추가 -->
+			<!--이미지-->
+			<script id="templatePhotoAttach" type="text/x-handlebars-template">
+				<li>
+    				<span class="mailbox-attachment-icon has-img"><img src="{{imgsrc}}" alt="Attachment"></span>
+    				<div class="mailbox-attachment-info">
+        				<a href="{{getLink}}" class="mailbox-attachment-name" data-lightbox="uploadImages"><i class="fas fa-camera"></i>{{boardFileName}}</a>
+        				<a href="{{fullName}}" class="btn btn-default btn-xs float-right delBtn"><i class="far fa-trash-alt"></i></a> </div>
+    				</div>
+				<li>
+			</script>
+				<!-- 일반파일 -->
+			<script id="templateFileAttach" type="text/x-handlebars-template">
+			<li>
+				<span class="mailbox-attachment-icon has-img"><img src="{{imgsrc}}" alt="Attachment"></span>
+				<div class="mailbox-attachment-info">
+					<a href="{{getLink}}" class="mailbox-attachment-name"><i class="fas fa-paperclip"></i>{{boardFileName}}</a>
+					<a href="{{fullName}}" class="btn btn-default btn-xs float-right delBtn"><i class="far fa-trash-alt"></i></a>
+				</div>
+			</li>
+			</script>		
 	</form> 
 	
 			<form class="hashtag-insert-form" action="" method="post"/>
