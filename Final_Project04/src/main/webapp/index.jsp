@@ -18,6 +18,6 @@
 	<br/>
 	<a href="header.do">보옥 헤더</a>
 	<br/>
-	<a href="/login/loginform.do">로그인</a>
+	<a href="loginform.do">로그인</a>
 </body>
 </html>

@@ -1,9 +1,12 @@
+
+DROP SEQUENCE USERSEQ;
 DROP TABLE USERS;
 
-CREATE SEQUENCE userSeq;
+
+CREATE SEQUENCE USERSEQ;
 
 CREATE TABLE USERS(
-	userSeq NUMBER PRIMARY KEY,
+	USERSEQ NUMBER PRIMARY KEY,
 	userId VARCHAR2(100) NOT NULL,
 	password VARCHAR2(100) NOT NULL,
 	userEmail VARCHAR2(1000) NOT NULL,
@@ -16,17 +19,17 @@ CREATE TABLE USERS(
 
 
 INSERT INTO USERS
-VALUES(userSeq.NEXTVAL, 'test01', '1234', 'jd@naver.com', 01012311231, 'Í≤ΩÍ∏∞ÎèÑ Í≥†ÏñëÏãú', 
-'admin', 'ÍπÄÎåÄÏßÑ', '931031');
+VALUES(USERSEQ.NEXTVAL, 'test01', '1234', 'jd@naver.com', 01012311231, '∞Ê±‚µµ ∞ÌæÁΩ√', 
+'admin', '±Ë¥Î¡¯', '931031');
 
 
 INSERT INTO USERS
-VALUES(userSeq.NEXTVAL, 'dh', '3333', 'dh@naver.com', 010123423112, 'Í≤ΩÍ∏∞ÎèÑ ÎÇ®ÏñëÏ£ºÏãú', 
-'admin', 'ÍπÄÎèÑÌïú', '950511');
+VALUES(USERSEQ.NEXTVAL, 'dh', '3333', 'dh@naver.com', 010123423112, '∞Ê±‚µµ ≥≤æÁ¡÷Ω√', 
+'admin', '±Ëµµ«—', '950511');
 
 INSERT INTO USERS
-VALUES(userSeq.NEXTVAL, 'taerin', '1234', 'tr@naver.com', 010123423112, 'ÏÑúÏö∏ Í±¥ÎåÄÍ∑ºÏ≤ò', 
-'user', 'ÍπÄÌÉúÎ¶∞', '941211');
+VALUES(USERSEQ.NEXTVAL, 'taerin', '1234', 'tr@naver.com', 010123423112, 'º≠øÔ ∞«¥Î±Ÿ√≥', 
+'user', '±Ë≈¬∏∞', '941211');
 
 
 select * from users;
