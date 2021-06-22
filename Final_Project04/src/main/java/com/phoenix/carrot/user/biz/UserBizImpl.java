@@ -9,8 +9,10 @@ import com.phoenix.carrot.user.dto.UserDto;
 @Service
 public class UserBizImpl implements UserBiz {
 
+
 	@Autowired
 	private UserDao dao;
+	
 	
 	@Override
 	public UserDto login(UserDto dto) {
@@ -18,16 +20,18 @@ public class UserBizImpl implements UserBiz {
 		return dao.login(dto);
 	}
 
+
 	@Override
 	public int regist(UserDto dto) {
 		// TODO Auto-generated method stub
 		return dao.regist(dto);
 	}
 
+
 	@Override
-	public int userUpdate(UserDto dto) {
+	public String idcheck(String userid) {
 		// TODO Auto-generated method stub
-		return dao.userUpdate(dto);
+		return dao.idcheck(userid);
 	}
 
 }

@@ -4,12 +4,13 @@ import com.phoenix.carrot.user.dto.UserDto;
 
 public interface UserDao {
 	
-	String NAMESPACE = "userMapper.";
 
+	String NAMESPACE = "usermapper.";
+	
 	public UserDto login(UserDto dto);
-
+	
 	public int regist(UserDto dto);
-
-	public int userUpdate(UserDto dto);
+	
+	public String idcheck(String userid);
 
 }
