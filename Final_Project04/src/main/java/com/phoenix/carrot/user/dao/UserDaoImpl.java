@@ -13,10 +13,9 @@ public class UserDaoImpl implements UserDao {
 	@Autowired
 	private SqlSessionTemplate sqlSession;
 	
+
 	@Override
 	public UserDto login(UserDto dto) {
-		// TODO Auto-generated method stub
-		
 		UserDto res = null;
 		
 		try {
@@ -26,29 +25,37 @@ public class UserDaoImpl implements UserDao {
 			e.printStackTrace();
 			
 		}
-		
 		return res;
 	}
 
 	@Override
 	public int regist(UserDto dto) {
 		// TODO Auto-generated method stub
-		
 		int res = 0;
 		
 		try {
-			res = sqlSession.update(NAMESPACE+"regist", dto);
+			res = sqlSession.insert(NAMESPACE+"regist", dto);
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
+		
+		return res;
+	}
+
+	@Override
+	public String idcheck(String userid) {
+		// TODO Auto-generated method stub
+		
+		String res = null;
+		
+		try {
+			res = sqlSession.selectOne(NAMESPACE+"idcheck", userid);
 		} catch (Exception e) {
 			// TODO: handle exception
 			e.printStackTrace();
 		}
 		return res;
-	}
-
-	@Override
-	public int userUpdate(UserDto dto) {
-		// TODO Auto-generated method stub
-		return 0;
 	}
 
 }

@@ -40,38 +40,40 @@ var mailJ = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a
 // 휴대폰 번호 정규식 
 var phoneJ = /^01([0|1|6|7|8|9]?)?([0-9]{3,4})?([0-9]{4})$/; /^[가-힣]{2,4}|[a-zA-Z]{2,10}\s[a-zA-Z]{2,10}$/ 
 var birthJ = false; 
-var address = $('#mem_detailaddress'); 
+var address = $('#userdetailaddress'); 
 $(document).ready(function() { 
-	var address = $('#mem_detailaddress'); 
+	var address = $('#userdetailaddress'); 
 	//아이디 중복확인 
-	$("#mem_id").blur(function() { 
-		if($('#mem_id').val()==''){ 
+	$("#userid").blur(function() { 
+		if($('#userid').val()==''){ 
 			$('#id_check').text('아이디를 입력하세요.'); 
 			$('#id_check').css('color', 'red'); 
-		} else if(idJ.test($('#mem_id').val())!=true){ 
+		} else if(idJ.test($('#userid').val())!=true){ 
 			$('#id_check').text('4~12자의 영문, 숫자만 사용 가능합니다.'); 
 			$('#id_check').css('color', 'red'); 
-		} else if($('#mem_id').val()!=''){ 
-			var mem_id=$('#mem_id').val();
+		} else if($('#userid').val()!=''){ 
+			var userid=$('#userid').val();
+			var data = {
+					"userid" : userid
+			}
+			
 			$.ajax({
-				async : true,
-				type : 'POST',
-				data : mem_id,
-				//mem_id라는 이름으로 mem_id라는 데이터를 @WebServlet("/idsearch.do")에 보내겠다 
-				url : 'idcheck.do', 
+				type : "post",
+				data : JSON.stringify(data), 
+				url : "idcheck.do", 
 				dateType: 'json', 
-				contentType: "application/json; charset=UTF-8", 
+				contentType: "application/json", 
 				success : function(data) { 
-					if(data.cnt > 0){ 
+					if(data.res > 0){ 
 						$('#id_check').text('중복된 아이디 입니다.'); 
 						$('#id_check').css('color', 'red'); 
 						$("#usercheck").attr("disabled", true); 
 					}else{ 
-						if(idJ.test(mem_id)){ 
+						if(idJ.test(userid)){ 
 							$('#id_check').text('사용가능한 아이디 입니다.'); 
 							$('#id_check').css('color', 'blue');
 							$("#usercheck").attr("disabled", false); 
-						} else if(mem_id==''){
+						} else if(userid==''){
 							$('#id_check').text('아이디를 입력해주세요.'); 
 							$('#id_check').css('color', 'red'); 
 							$("#usercheck").attr("disabled", true);
@@ -87,8 +89,8 @@ $(document).ready(function() {
 		});//blur 
 		
 		$('form').on('submit',function(){ 
-			var inval_Arr = new Array(8).fill(false);
-			if (idJ.test($('#mem_id').val())) {
+			var inval_Arr = new Array(7).fill(false);
+			if (idJ.test($('#userid').val())) {
 				inval_Arr[0] = true; 
 			} else { 
 				inval_Arr[0] = false;
@@ -96,7 +98,7 @@ $(document).ready(function() {
 				return false; 
 			} 
 			// 비밀번호가 같은 경우 && 비밀번호 정규식
-			if (($('#mem_pw').val() == ($('#mem_pw2').val())) && pwJ.test($('#mem_pw').val())) {
+			if (($('#password').val() == ($('#password2').val())) && pwJ.test($('#password').val())) {
 				inval_Arr[1] = true;
 			} else {
 				inval_Arr[1] = false;
@@ -104,7 +106,7 @@ $(document).ready(function() {
 				return false; 
 			} 
 			// 이름 정규식 
-			if (nameJ.test($('#mem_name').val())) { 
+			if (nameJ.test($('#username').val())) { 
 				inval_Arr[2] = true; 
 			} else { 
 				inval_Arr[2] = false;
@@ -121,8 +123,8 @@ $(document).ready(function() {
 				return false; 
 			} 
 			// 이메일 정규식
-			if (mailJ.test($('#mem_email').val())){
-				console.log(phoneJ.test($('#mem_email').val())); 
+			if (mailJ.test($('#useremail').val())){
+				console.log(phoneJ.test($('#useremail').val())); 
 				inval_Arr[4] = true;
 			} else { 
 				inval_Arr[4] = false;
@@ -130,47 +132,41 @@ $(document).ready(function() {
 				return false;
 			} 
 			// 휴대폰번호 정규식
-			if (phoneJ.test($('#mem_phone').val())) { 
-				console.log(phoneJ.test($('#mem_phone').val())); 
+			if (phoneJ.test($('#userphone').val())) { 
+				console.log(phoneJ.test($('#userphone').val())); 
 				inval_Arr[5] = true;
 			} else {
 				inval_Arr[5] = false;
 				alert('휴대폰 번호를 확인하세요.'); 
 				return false;
 			} 
-			/* 
-			if(member.mem_gender[0].checked==false&&member.mem_gender[1].checked==false){
-				inval_Arr[6] = false;
-				alert('성별을 확인하세요.');
-				return false; 
-			} else{ 
-				inval_Arr[6] = true; 
-			} 
-			*/
+			
 			//주소확인 
 			if(address.val() == ''){ 
-				inval_Arr[7] = false; 
+				inval_Arr[6] = false; 
 				alert('주소를 확인하세요.'); 
 				return false;
 			} else {
-				inval_Arr[7] = true;
+				inval_Arr[6] = true;
 			}
 			//전체 유효성 검사 
 			var validAll = true;
 			for(var i = 0; i < inval_Arr.length; i++){ 
 				if(inval_Arr[i] == false){ 
 					validAll = false;
-					}
-				} if(validAll == true){ 
-					// 유효성 모두 통과
-					alert('NANALAND 가족이 되어주셔 감사합니다.'); 
-				} else{ 
-					alert('정보를 다시 확인하세요.')
-					} 
-				}); 
+				}
+			} 
+			if(validAll == true){ 
+				// 유효성 모두 통과
+				alert('당근팜 회원이 되어 주셔서 감사합니다.'); 
+				location.href="login.do"
+			} else{ 
+				alert('정보를 다시 확인하세요.')
+			} 
+		}); 
 		
-		$('#mem_id').blur(function() {
-			if (idJ.test($('#mem_id').val())) { 
+		$('#userid').blur(function() {
+			if (idJ.test($('#userid').val())) { 
 				console.log('true');
 				$('#id_check').text(''); 
 			} else { 
@@ -180,8 +176,8 @@ $(document).ready(function() {
 				}
 			}); 
 		
-		$('#mem_pw').blur(function() { 
-			if (pwJ.test($('#mem_pw').val())) { 
+		$('#password').blur(function() { 
+			if (pwJ.test($('#password').val())) { 
 				console.log('true'); 
 				$('#pw_check').text(''); 
 			} else { 
@@ -192,8 +188,8 @@ $(document).ready(function() {
 			});
 		
 		//1~2 패스워드 일치 확인 
-		$('#mem_pw2').blur(function() { 
-			if ($('#mem_pw').val() != $(this).val()) { 
+		$('#password2').blur(function() { 
+			if ($('#password').val() != $(this).val()) { 
 				$('#pw2_check').text('비밀번호가 일치하지 않습니다.'); 
 				$('#pw2_check').css('color', 'red'); 
 			} else { 
@@ -201,7 +197,7 @@ $(document).ready(function() {
 				} 
 			}); 
 		//이름에 특수문자 들어가지 않도록 설정
-		$("#mem_name").blur(function() { 
+		$("#username").blur(function() { 
 			if (nameJ.test($(this).val())) {
 				console.log(nameJ.test($(this).val())); 
 				$("#name_check").text(''); 
@@ -211,7 +207,7 @@ $(document).ready(function() {
 				} 
 			});
 		
-		$("#mem_email").blur(function() { 
+		$("#useremail").blur(function() { 
 			if (mailJ.test($(this).val())) {
 				$("#email_check").text('');
 			} else { 
@@ -224,7 +220,7 @@ $(document).ready(function() {
 		var birthJ = false;
 		 
 		// 생년월일 birthJ 유효성 검사
-		$('#mem_birth').blur(function(){
+		$('#userbirthday').blur(function(){
 			var dateStr = $(this).val(); 
 			var year = Number(dateStr.substr(0,4)); 
 			// 입력한 값의 0~4자리까지 (연) 
@@ -260,7 +256,8 @@ $(document).ready(function() {
 						birthJ = true; 
 					} 
 				} else {
-					$('#birth_check').text(''); birthJ = true;
+					$('#birth_check').text('');
+					birthJ = true;
 				} //end of if 
 			} else { 
 				//1.입력된 생년월일이 8자 초과할때 : auth:false
@@ -270,7 +267,7 @@ $(document).ready(function() {
 			}); //End of method /* 
 			
 		// 휴대전화 
-		$('#mem_phone').blur(function(){ 
+		$('#userphone').blur(function(){ 
 			if(phoneJ.test($(this).val())){ 
 				console.log(nameJ.test($(this).val())); 
 				$("#phone_check").text(''); 
@@ -312,18 +309,12 @@ $(document).ready(function() {
 			console.log(data.zonecode); 
 			console.log(fullRoadAddr); 
 			
-			/* var a = console.log(data.zonecode); 
-			var b = console.log(fullRoadAddr); 
-			if(a == null || b = null){ 
-				alert("주소를 확인하세요."); 
-				return false; 
-			} */ 
-			
-			$("[name=mem_oaddress]").val(data.zonecode); 
-			$("[name=mem_address]").val(fullRoadAddr);
-			document.getElementById('mem_oaddress').value = data.zonecode; //5자리 새우편번호 사용 
-			document.getElementById('mem_address').value = fullRoadAddr;
-			//document.getElementById('mem_detailaddress').value = data.jibunAddress; 
+		
+			$("[name=useroaddress]").val(data.zonecode); 
+			$("[name=useraddress]").val(fullRoadAddr);
+			document.getElementById('useroaddress').value = data.zonecode; //5자리 새우편번호 사용 
+			document.getElementById('useraddress').value = fullRoadAddr;
+			document.getElementById('userdetailaddress').value = data.jibunAddress; 
 			}
 		}).open();
 		} 
@@ -337,59 +328,52 @@ $(document).ready(function() {
 			</div>
 		</div>
 		<div class="col-sm-6 col-md-offset-3">
-			<form action="registConfirm.do" method="post" role="form"
+			<form action="registPost.do" method="post" role="form"
 				id="usercheck" name="member">
 				<div class="form-group">
 					<label for="id">아이디</label> <input type="text" class="form-control"
-						id="mem_id" name="mem_id" placeholder="ID">
+						id="userid" name="userid" placeholder="ID">
 					<div class="eheck_font" id="id_check"></div>
 				</div>
 				<div class="form-group">
 					<label for="pw">비밀번호</label> <input type="password"
-						class="form-control" id="mem_pw" name="mem_pw"
+						class="form-control" id="password" name="password"
 						placeholder="PASSWORD">
 					<div class="eheck_font" id="pw_check"></div>
 				</div>
 				<div class="form-group">
 					<label for="pw2">비밀번호 확인</label> <input type="password"
-						class="form-control" id="mem_pw2" name="mem_pw2"
+						class="form-control" id="password2" name="password2"
 						placeholder="Confirm Password">
 					<div class="eheck_font" id="pw2_check"></div>
 				</div>
 				<div class="form-group">
 					<label for="mem_name">이름</label> <input type="text"
-						class="form-control" id="mem_name" name="mem_name"
+						class="form-control" id="username" name="username"
 						placeholder="Name">
 					<div class="eheck_font" id="name_check"></div>
 				</div>
 				<div class="form-group">
 					<label for="mem_birth">생년월일</label> <input type="tel"
-						class="form-control" id="mem_birth" name="mem_birth"
+						class="form-control" id="userbirthday" name="userbirthday"
 						placeholder="ex) 19990101">
 					<div class="eheck_font" id="birth_check"></div>
 				</div>
 				<div class="form-group">
 					<label for="mem_email">이메일 주소</label> <input type="email"
-						class="form-control" id="mem_email" name="mem_email"
+						class="form-control" id="useremail" name="useremail"
 						placeholder="E-mail">
 					<div class="eheck_font" id="email_check"></div>
 				</div>
 				<div class="form-group">
 					<label for="mem_phone">휴대폰 번호('-'없이 번호만 입력해주세요)</label> <input
-						type="tel" class="form-control" id="mem_phone" name="mem_phone"
+						type="tel" class="form-control" id="userphone" name="userphone"
 						placeholder="Phone Number">
 					<div class="eheck_font" id="phone_check"></div>
 				</div>
-				<!--  
-				<div class="form-group">
-					<label for="mem_gender">성별 </label> <input type="checkbox"
-						id="mem_gender" name="mem_gender" value="남">남 <input
-						type="checkbox" id="mem_gender" name="mem_gender" value="여">여
-				</div>
-				-->
 				<div class="form-group">
 					<input class="form-control" style="width: 40%; display: inline;"
-						placeholder="우편번호" name="mem_oaddress" id="mem_oaddress"
+						placeholder="우편번호" name="useroaddress" id="useroaddress"
 						type="text" readonly="readonly">
 					<button type="button" class="btn btn-default"
 						onclick="execPostCode();">
@@ -398,12 +382,12 @@ $(document).ready(function() {
 				</div>
 				<div class="form-group">
 					<input class="form-control" style="top: 5px;" placeholder="도로명 주소"
-						name="mem_address" id="mem_address" type="text"
+						name="useraddress" id="useraddress" type="text"
 						readonly="readonly" />
 				</div>
 				<div class="form-group">
 					<input class="form-control" placeholder="상세주소"
-						name="mem_detailaddress" id="mem_detailaddress" type="text" />
+						name="userdetailaddress" id="userdetailaddress" type="text" />
 				</div>
 				<div class="form-group text-center">
 					<button type="submit" class="btn btn-primary">회원가입</button>
@@ -411,3 +395,4 @@ $(document).ready(function() {
 			</form>
 		</div>
 	</article>
+	</body>

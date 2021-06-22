@@ -1,5 +1,8 @@
 package com.phoenix.carrot.model.controller;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
@@ -9,8 +12,10 @@ import org.springframework.security.crypto.bcrypt.BCrypt;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.phoenix.carrot.user.biz.UserBiz;
@@ -27,50 +32,80 @@ public class UserController {
 	@Autowired
 	private UserBiz biz;
 	
-	@RequestMapping("/login.do")
+	@RequestMapping("/loginform.do")
 	public String goLoginForm() {
 		
-		logger.info("[Controller] login.do");
+		logger.info("[Controller] loginform.do");
 		
 		return "login";
 	}
 	
-	@RequestMapping(value="/loginPost.do", method=RequestMethod.POST)
-	public void  loginPost(UserDto dto, HttpSession session, Model model) {
+	@RequestMapping(value="/ajaxlogin.do", method=RequestMethod.POST)
+	@ResponseBody
+	public Map<String, Boolean> ajaxLogin(HttpSession session, @RequestBody UserDto dto) {
+		logger.info("[Controller] : ajaxlogin.do");
 		
 		UserDto res = biz.login(dto);
-		if(res == null || !passwordEncoder.matches(dto.getPassword(), res.getPassword())) {
-			return;
-		} 
+
+		boolean check = false;
+		if(res != null) {
+			//matches : 넘어온 값과 저장되어있는 값을 비교
+			if(passwordEncoder.matches(dto.getPassword(), res.getPassword())) {
+				session.setAttribute("login", res);
+				check = true;
+			} else {
+				logger.info("[Controller] : password failed");
+			}
+		}
 		
-		model.addAttribute("user", res);
+		Map<String, Boolean> map = new HashMap<String, Boolean>();
+		map.put("check", check);
 		
+		return map;
 	}
 	
 	@RequestMapping(value="/logout.do", method=RequestMethod.GET)
 	public String logout(HttpSession session) {
+		logger.info("[Controller] : logout.do");
 		
 		session.invalidate();
 		
 		return "redirect:index";
 	}
 	
-	@RequestMapping("/regist.do")
+	@RequestMapping("/registform.do")
 	public String registForm() {
-		return "registform";
+		logger.info("[Controller] : registform.do");
+		
+		return "regist";
 	}
 	
 	@RequestMapping(value="/registPost.do", method=RequestMethod.POST)
-	public String registPost(UserDto dto, RedirectAttributes redirectAttributes) throws Exception {
+	public String registPost(UserDto dto) {
+		logger.info("[Controller] : regist.do");
 		
-		String hashedPw = BCrypt.hashpw(dto.getPassword(), BCrypt.gensalt());
-		dto.setPassword(hashedPw);
-		biz.regist(dto);
-		redirectAttributes.addFlashAttribute("msg", "REGISTERED");
+		dto.setPassword(passwordEncoder.encode(dto.getPassword()));
 		
+		int res = biz.regist(dto);
 		
-		return "redirect:/login.do";
+		if(res > 0) {
+			return "redirect:loginform.do";
+		}
+		return "redirect:registform.do";
 	}
 	
+	@RequestMapping(value="/idcheck.do", method=RequestMethod.POST)
+	@ResponseBody
+	public int idcheck(@RequestBody String userid) {
+		 String id = userid.trim();
+		 System.out.println(id);
+		 String res = biz.idcheck(id);
+		 
+		 if(res != null) {
+			 return 1;
+		 }
+		 
+		 return -1;
+	}
 	
 }
