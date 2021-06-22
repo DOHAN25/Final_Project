@@ -2,6 +2,7 @@ package com.phoenix.carrot.model.controller;
 
 import javax.servlet.http.HttpSession;
 
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,10 +21,11 @@ import com.phoenix.carrot.user.dto.UserDto;
 public class UserController {
 	
 	private Logger logger = LoggerFactory.getLogger(UserController.class);
-
+	
+	/*
 	@Autowired
 	BCryptPasswordEncoder passwordEncoder;
-	
+	*/
 	@Autowired
 	private UserBiz biz;
 	
@@ -35,10 +37,12 @@ public class UserController {
 		return "login";
 	}
 	
+	/*
 	@RequestMapping(value="/loginPost.do", method=RequestMethod.POST)
 	public void  loginPost(UserDto dto, HttpSession session, Model model) {
 		
 		UserDto res = biz.login(dto);
+		
 		if(res == null || !passwordEncoder.matches(dto.getPassword(), res.getPassword())) {
 			return;
 		} 
@@ -46,7 +50,7 @@ public class UserController {
 		model.addAttribute("user", res);
 		
 	}
-	
+	*/
 	@RequestMapping(value="/logout.do", method=RequestMethod.GET)
 	public String logout(HttpSession session) {
 		

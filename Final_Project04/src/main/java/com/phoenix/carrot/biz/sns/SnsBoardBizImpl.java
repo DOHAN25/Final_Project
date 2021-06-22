@@ -35,20 +35,21 @@ public class SnsBoardBizImpl implements SnsBoardBiz {
 		return dao.snsBoardOne(entireBoardSeq);
 	}
 	
-	//@Transactional
+	@Transactional
 	@Override
-	public int snsBoardInsert(EntireBoardDto dto) {
+	public void snsBoardInsert(EntireBoardDto dto) throws Exception{
 		/*
 		게시글 입력처리와 게시금 첨부파일 입력처리가 동시에 이루어지기 때문에 
 		트랜잭션 처리를 반드시 해주어야 한다.
-		
+		*/
 		//임플리먼트 파일을 예외처리 해주면 비즈도 해줘야한다.. 일단 지켜보자..
+		
 		String[] files = dto.getFiles();
 		
 		if (files == null) {
 			//파일이 없다면 저장이 안되어야 한다.. 무엇을 리턴할지 고려해보자
-			
-			return dao.snsBoardInsert(dto); 
+			dao.snsBoardInsert(dto);
+			return;  
 		}
 		//dto.setFileCnt(files.length); 조금만 더 고려해보자
 		dao.snsBoardInsert(dto);
@@ -57,9 +58,8 @@ public class SnsBoardBizImpl implements SnsBoardBiz {
 		for(String boardFileName : files) {
 			fileDao.addAttach(boardFileName, entireBoardSeq);
 		}
-		return dao.snsBoardInsert(dto); 
-		*/
-		return dao.snsBoardInsert(dto);
+		 
+		
 	}
 
 	@Override

@@ -8,7 +8,7 @@ public interface SnsBoardBiz {
 	
 	public List<EntireBoardDto> snsBoardList();
 	public EntireBoardDto snsBoardOne(int entireBoardSeq);
-	public int snsBoardInsert(EntireBoardDto dto);
+	public void snsBoardInsert(EntireBoardDto dto) throws Exception;
 	public int snsBoardUpdate(EntireBoardDto dto);
 	public int snsBoardDelete(int entireBoardSeq);
 

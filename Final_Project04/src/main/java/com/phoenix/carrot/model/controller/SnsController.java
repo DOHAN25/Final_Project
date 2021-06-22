@@ -11,6 +11,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.phoenix.carrot.biz.sns.FileValidator;
 import com.phoenix.carrot.biz.sns.SnsBoardBiz;
@@ -43,15 +44,21 @@ public class SnsController {
 	}
 	
 	@RequestMapping("/snsBoardInsertRes.do")
-	public String snsBoardInsertRes(EntireBoardDto dto) throws Exception {
+	public String snsBoardInsertRes(EntireBoardDto dto,
+			RedirectAttributes redirectAttributes) throws Exception {
 		logger.info("[Controller] : snsBoardInsertRes.do");
 		
+		biz.snsBoardInsert(dto);
+		redirectAttributes.addFlashAttribute("msg", "regSuccess");
+		return "redirect:main.do";
+		/*
 		if(biz.snsBoardInsert(dto) > 0) {
 			
 			return "redirect:main.do";
 		}
 		
 		return "redirect:snsBoardInsertForm.do";
+		*/
 	}
 	
 	@RequestMapping("/snsBoardOne.do")
