@@ -27,10 +27,10 @@ public class UserController {
 	
 	private Logger logger = LoggerFactory.getLogger(UserController.class);
 	
-	/*
+	
 	@Autowired
 	BCryptPasswordEncoder passwordEncoder;
-	*/
+	
 	@Autowired
 	private UserBiz biz;
 	
@@ -42,7 +42,7 @@ public class UserController {
 		return "login";
 	}
 	
-<<<<<<< HEAD
+
 	@RequestMapping(value="/ajaxlogin.do", method=RequestMethod.POST)
 	@ResponseBody
 	public Map<String, Boolean> ajaxLogin(HttpSession session, @RequestBody UserDto dto) {
@@ -60,24 +60,13 @@ public class UserController {
 				logger.info("[Controller] : password failed");
 			}
 		}
-=======
-	/*
-	@RequestMapping(value="/loginPost.do", method=RequestMethod.POST)
-	public void  loginPost(UserDto dto, HttpSession session, Model model) {
-		
-		UserDto res = biz.login(dto);
-		
-		if(res == null || !passwordEncoder.matches(dto.getPassword(), res.getPassword())) {
-			return;
-		} 
->>>>>>> 643f460592ff53e0cadcc68bc6ab7654d5ae5c36
 		
 		Map<String, Boolean> map = new HashMap<String, Boolean>();
 		map.put("check", check);
 		
 		return map;
 	}
-	*/
+	
 	@RequestMapping(value="/logout.do", method=RequestMethod.GET)
 	public String logout(HttpSession session) {
 		logger.info("[Controller] : logout.do");
