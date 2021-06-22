@@ -36,6 +36,8 @@ CREATE TABLE entireBoard(
 	likeCount NUMBER
 );
 
+
+
 ALTER TABLE entireBoard
 ADD CONSTRAINT BOARD_USER_FK
 FOREIGN KEY (userSeq)

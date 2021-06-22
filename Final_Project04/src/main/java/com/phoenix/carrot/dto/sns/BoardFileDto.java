@@ -2,7 +2,7 @@ package com.phoenix.carrot.dto.sns;
 
 import java.sql.Date;
 
-public class boardFileDto {
+public class BoardFileDto {
 	//파일 Dto는 필드생성자를 생성하지 않지만 상황에 따라서 생성해주자
 	//또한 toString 을 일단 같이 만들어보되, 필요없으면 삭제하자
 	private int boardFileSeq;

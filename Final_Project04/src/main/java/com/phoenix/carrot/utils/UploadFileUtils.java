@@ -53,7 +53,8 @@ public class UploadFileUtils {
 			//파일 아이콘 생성
 			uploadFileName = makeIcon(uploadPath, savedPath, savedName);
 		}
-		return null;
+		//업로드 파일명 반환.
+		return uploadFileName;
 	}
 	
 	//1. 날짜별 경로 추출
