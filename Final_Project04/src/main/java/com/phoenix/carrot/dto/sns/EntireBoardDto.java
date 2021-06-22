@@ -18,7 +18,7 @@ public class EntireBoardDto {
 	private int likeCount;
 	
 	//파일 업로드 관련 추가
-	//private String[] files;
+	private String[] files;
 	
 	//private int boardFileCnt; 쓸지 안쓸지 고민해보자 
 	
@@ -115,14 +115,14 @@ public class EntireBoardDto {
 		this.likeCount = likeCount;
 	}
 	
-	/*
+	
 	public String[] getFiles() {
 		return files;
 	}
-
+	
 	public void setFiles(String[] files) {
 		this.files = files;
 	}
-	*/
+	
 	
 }
