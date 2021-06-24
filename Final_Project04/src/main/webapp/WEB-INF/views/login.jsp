@@ -78,37 +78,16 @@
 				<td colspan="2" align="center" id="loginChk" style="color: red;"></td>
 			</tr>
 		</table>
-		<a id="kakao-login-btn"></a>
-	<script type="text/javascript" src="http://developers.kakao.com/sdk/js/kakao.min.js"></script>
-	<script type="text/javascript">
-	
-		Kakao.init('1e4c72d72b9614055f4d89bb5623539d');
-		
-		Kakao.Auth.createLoginButton({
-			container: '#kakao-login-btn',
-			success: function(authObj) {
-				Kakao.API.request({
-					url:'/v2/user/me',
-					success: function(res){
-						console.log(res);
-						var id = res.id;
-						var email = res.kakao_account.email;
-						var name = res.properties.nickname;
-						var html = '<BR>' + email + '<BR>' + name;
-						$('body').append(html);
-						
-						//location.href='kakaoRedirectForm.jsp?emial=' + email + '&nmae=' + name;
-					}
-				})
-				
-				console.log(authObj);
-				var token = authObj.access_token;
-			},
-			fail : function(err) {
-				alert(JSON.stringify(err));
-			}
-		});
-	</script>
+		<a href="findid.do" style="color: black; text-decoration: none;">아이디찾기</a>
+		<a href="findpw.do" style="color: black; text-decoration: none;">비밀번호찾기</a>
+		<br>
+		<a href="kakaologin.do">
+		<img src="//mud-kage.kakao.com/14/dn/btqbjxsO6vP/KPiGpdnsubSq3a0PHEGUK1/o.jpg" width="200"/>
+		</a>
+		<br>
+		<a href="${url}">
+			<img width="200" src="https://developers.naver.com/doc/review_201802/CK_bEFnWMeEBjXpQ5o8N_20180202_7aot50.png"/>
+		</a>
 </c:if>
 <c:if test="${login != null}">
 
