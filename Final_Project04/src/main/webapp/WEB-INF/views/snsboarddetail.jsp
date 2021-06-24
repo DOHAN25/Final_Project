@@ -20,10 +20,6 @@
 			<td>${dto.boardDate }</td>
 		</tr>
 		<tr>
-			<td>snsImg</td>
-			<td>${dto.snsImg }</td>
-		</tr>
-		<tr>
 			<th>내용</th>
 			<td><textarea rows="10" cols="60" readonly="readonly">${dto.boardContents }</textarea></td>
 		</tr>

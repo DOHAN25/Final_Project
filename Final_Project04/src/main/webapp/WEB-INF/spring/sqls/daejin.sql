@@ -32,11 +32,8 @@ CREATE TABLE entireBoard(
 	boardContents VARCHAR2(4000), 
 	userId VARCHAR2(30) NOT NULL,
 	userSeq NUMBER NOT NULL,
-	snsImg VARCHAR2(4000),
 	likeCount NUMBER
 );
-
-
 
 ALTER TABLE entireBoard
 ADD CONSTRAINT BOARD_USER_FK
@@ -47,10 +44,13 @@ ON DELETE CASCADE;
 ---sns:1, knowhow:2, notice:3
 
 INSERT INTO entireBoard
-VALUES (entireBoardSeq.NEXTVAL, 1, SYSDATE, '테스트글입니다.', '테스트내용입니다.', 'test01', 1, NULL, NULL);
+VALUES (entireBoardSeq.NEXTVAL, 1, SYSDATE, '테스트글입니다.', '테스트내용입니다.', 'test01', 1, NULL);
 
 INSERT INTO entireBoard
-VALUES (entireBoardSeq.NEXTVAL, 1, SYSDATE, '테스트글입니다2.', '테스트내용입니다2.', 'dh', 2, NULL, NULL);
+VALUES (entireBoardSeq.NEXTVAL, 1, SYSDATE, '테스트글입니다2.', '테스트내용입니다2.', 'dh', 2, NULL);
+
+INSERT INTO entireBoard
+VALUES (entireBoardSeq.NEXTVAL, 1, SYSDATE, '테스트글입니다3.', '테스트내용입니다3.', 'dh', 2, NULL);
 
 SELECT * FROM entireBoard;
 
@@ -68,14 +68,17 @@ CREATE SEQUENCE boardFileSeq;
 CREATE TABLE boardFile(
 	boardFileSeq NUMBER PRIMARY KEY,
 	boardFileName VARCHAR2(1000) NOT NULL,
-	entireBoardSeq NUMBER NOT NULL,
-	boardFileDate DATE,
-	boardFileCnt NUMBER DEFAULT 0
+	imgPath VARCHAR2(4000),
+	entireBoardSeq NUMBER,
+	regdate DATE
 );
 
 -- 게시글 첨부파일 테이블 참조키 설정
 ALTER TABLE boardFile ADD CONSTRAINT FK_board_file
-FOREIGN KEY (entireBoardSeq) REFERENCES entireBoard (entireBoardSeq);
+FOREIGN KEY (entireBoardSeq) REFERENCES entireBoard (entireBoardSeq)
+ON DELETE CASCADE;
+
+SELECT * FROM boardFile;
 
 
 

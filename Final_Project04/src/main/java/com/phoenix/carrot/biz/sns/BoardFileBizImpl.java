@@ -12,41 +12,12 @@ public class BoardFileBizImpl implements BoardFileBiz {
 	
 	@Autowired
 	private BoardFileDao dao;
-
-	@Override
-	public void addAttach(String boardFileName, int entireBoardSeq) throws Exception {
-		dao.addAttach(boardFileName, entireBoardSeq);
-
-	}
-
+	
+	//첨부파일 목록
 	@Override
 	public List<String> getAttach(int entireBoardSeq) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
-	@Override
-	public void updateAttach(String boardFileName, int entireBoardSeq) throws Exception {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void deleteAttach(String boardFileName) throws Exception {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void deleteAllAttach(int entireBoardSeq) throws Exception {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void updateAttachCnt(int entireBoardSeq) throws Exception {
-		// TODO Auto-generated method stub
-
+		return dao.getAttach(entireBoardSeq);
 	}
 
 }
