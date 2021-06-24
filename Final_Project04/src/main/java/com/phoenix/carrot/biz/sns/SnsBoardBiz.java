@@ -10,6 +10,6 @@ public interface SnsBoardBiz {
 	public EntireBoardDto snsBoardOne(int entireBoardSeq);
 	public void snsBoardInsert(EntireBoardDto dto) throws Exception;
 	public int snsBoardUpdate(EntireBoardDto dto);
-	public int snsBoardDelete(int entireBoardSeq);
+	public void snsBoardDelete(int entireBoardSeq) throws Exception;
 
 }

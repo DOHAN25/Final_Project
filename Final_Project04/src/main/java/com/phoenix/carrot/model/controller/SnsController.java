@@ -28,7 +28,6 @@ public class SnsController {
 	@Autowired
 	private SnsBoardBiz biz;
 	
-	
 	@RequestMapping("/main.do")
 	public String mainForm(Model model) {
 		logger.info("[Controller] : main.do");
@@ -44,21 +43,14 @@ public class SnsController {
 	}
 	
 	@RequestMapping("/snsBoardInsertRes.do")
-	public String snsBoardInsertRes(EntireBoardDto dto,
-			RedirectAttributes redirectAttributes) throws Exception {
+	public String snsBoardInsertRes(EntireBoardDto dto, RedirectAttributes redirectAttributes) throws Exception {
 		logger.info("[Controller] : snsBoardInsertRes.do");
-		
+
 		biz.snsBoardInsert(dto);
 		redirectAttributes.addFlashAttribute("msg", "regSuccess");
-		return "redirect:main.do";
-		/*
-		if(biz.snsBoardInsert(dto) > 0) {
-			
-			return "redirect:main.do";
-		}
 		
-		return "redirect:snsBoardInsertForm.do";
-		*/
+		return "redirect:main.do";
+		
 	}
 	
 	@RequestMapping("/snsBoardOne.do")
@@ -89,14 +81,14 @@ public class SnsController {
 	}
 	
 	@RequestMapping("/snsBoardDelete.do")
-	public String snsBoardDelete(int entireBoardSeq) {
+	public String snsBoardDelete(int entireBoardSeq, RedirectAttributes redirectAttributes) throws Exception {
 		logger.info("[Controller] : snsBoardDelete.do");
 		
-		if(biz.snsBoardDelete(entireBoardSeq) > 0) {
-			return "redirect:main.do";
-		}
+		biz.snsBoardDelete(entireBoardSeq);
 		
-		return "redirect:snsBoardDetail.do?entireBoardSeq="+entireBoardSeq;
+		redirectAttributes.addFlashAttribute("msg", "delSuccess");
+				
+		return "redirect:main.do";
 	}
 	
 }

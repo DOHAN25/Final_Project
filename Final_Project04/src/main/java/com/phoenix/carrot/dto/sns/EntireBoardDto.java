@@ -1,7 +1,9 @@
 package com.phoenix.carrot.dto.sns;
 
 import java.util.Date;
+import java.util.List;
 
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.multipart.MultipartFile;
 
 public class EntireBoardDto {
@@ -9,25 +11,22 @@ public class EntireBoardDto {
 	//기본필드
 	private int entireBoardSeq;
 	private String boardKind;
+	@DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
 	private Date boardDate;
 	private String boardTitle;
 	private String boardContents;
 	private String userId;
 	private int userSeq;
-	private String snsImg;
 	private int likeCount;
 	
-	//파일 업로드 관련 추가
 	private String[] files;
-	
-	//private int boardFileCnt; 쓸지 안쓸지 고민해보자 
 	
 	public EntireBoardDto() {
 
 	}
 
 	public EntireBoardDto(int entireBoardSeq, String boardKind, Date boardDate, String boardTitle, String boardContents,
-			String userId, int userSeq, String snsImg, int likeCount) {
+			String userId, int userSeq, int likeCount) {
 		//기본
 		this.entireBoardSeq = entireBoardSeq;
 		this.boardKind = boardKind;
@@ -36,9 +35,9 @@ public class EntireBoardDto {
 		this.boardContents = boardContents;
 		this.userId = userId;
 		this.userSeq = userSeq;
-		this.snsImg = snsImg;
 		this.likeCount = likeCount;
-
+		//파일
+		//파일생성자는 생각해보고 만들자..
 	}
 
 
@@ -99,14 +98,6 @@ public class EntireBoardDto {
 		this.userSeq = userSeq;
 	}
 
-	public String getSnsImg() {
-		return snsImg;
-	}
-
-	public void setSnsImg(String snsImg) {
-		this.snsImg = snsImg;
-	}
-
 	public int getLikeCount() {
 		return likeCount;
 	}
@@ -114,15 +105,15 @@ public class EntireBoardDto {
 	public void setLikeCount(int likeCount) {
 		this.likeCount = likeCount;
 	}
-	
-	
+
 	public String[] getFiles() {
 		return files;
 	}
-	
+
 	public void setFiles(String[] files) {
 		this.files = files;
 	}
 	
 	
+
 }

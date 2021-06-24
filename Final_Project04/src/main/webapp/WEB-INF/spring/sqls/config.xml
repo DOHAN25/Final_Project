@@ -6,11 +6,13 @@
 		<typeAlias type="com.phoenix.carrot.dto.sns.WeekendFarmDto" alias="weekendFarmDto"/>
 		<typeAlias type="com.phoenix.carrot.dto.sns.EntireBoardDto" alias="entireBoardDto"/>
 		<typeAlias type="com.phoenix.carrot.user.dto.UserDto" alias="userDto"/>
+		<typeAlias type="com.phoenix.carrot.dto.sns.BoardFileDto" alias="boardFileDto"/>
 	</typeAliases>
 	
 	<mappers>
 		<mapper resource="/mybatis/weekendfarm-mapper.xml"/>
 		<mapper resource="/mybatis/snsboard-mapper.xml"/>
 		<mapper resource="/mybatis/user-mapper.xml"/>
+		<mapper resource="/mybatis/boardfile-mapper.xml"/>
 	</mappers>
 </configuration>

@@ -35,31 +35,24 @@ public class SnsBoardBizImpl implements SnsBoardBiz {
 		return dao.snsBoardOne(entireBoardSeq);
 	}
 	
+	
 	@Transactional
 	@Override
 	public void snsBoardInsert(EntireBoardDto dto) throws Exception{
-		/*
-		게시글 입력처리와 게시금 첨부파일 입력처리가 동시에 이루어지기 때문에 
-		트랜잭션 처리를 반드시 해주어야 한다.
-		*/
-		//임플리먼트 파일을 예외처리 해주면 비즈도 해줘야한다.. 일단 지켜보자..
 		
-		String[] files = dto.getFiles();
-		
-		if (files == null) {
-			//파일이 없다면 저장이 안되어야 한다.. 무엇을 리턴할지 고려해보자
-			dao.snsBoardInsert(dto);
-			return;  
-		}
-		//dto.setFileCnt(files.length); 조금만 더 고려해보자
-		dao.snsBoardInsert(dto);
-		logger.info("[snsBoardInsert]"+dto.toString());
-		int entireBoardSeq = dto.getEntireBoardSeq();
-		for(String boardFileName : files) {
-			fileDao.addAttach(boardFileName, entireBoardSeq);
-		}
-		 
-		
+	    // 게시글 입력처리
+	    dao.snsBoardInsert(dto);
+	    String[] files = dto.getFiles();
+
+	    if (files == null) {
+	        return;
+	    }
+        
+        logger.info("snsboardinsert = " + dto.toString());
+        int entireBoardSeq = dto.getEntireBoardSeq();
+        for (String fileName : files) {
+        	fileDao.addAttach(fileName, entireBoardSeq);
+        }
 	}
 
 	@Override
@@ -67,11 +60,13 @@ public class SnsBoardBizImpl implements SnsBoardBiz {
 		
 		return dao.snsBoardUpdate(dto);
 	}
-
-	@Override
-	public int snsBoardDelete(int entireBoardSeq) {
 	
-		return dao.snsBoardDelete(entireBoardSeq);
+	@Transactional
+	@Override
+	public void snsBoardDelete(int entireBoardSeq) throws Exception {
+	
+    	fileDao.deleteAllAttach(entireBoardSeq);
+        dao.snsBoardDelete(entireBoardSeq);
 	}
 
 }

@@ -1,31 +1,28 @@
 package com.phoenix.carrot.dto.sns;
 
-import java.sql.Date;
+import java.util.Date;
 
 public class BoardFileDto {
-	//파일 Dto는 필드생성자를 생성하지 않지만 상황에 따라서 생성해주자
-	//또한 toString 을 일단 같이 만들어보되, 필요없으면 삭제하자
+	
 	private int boardFileSeq;
 	private String boardFileName;
+	private String imgPath;
 	private int entireBoardSeq;
-	private Date boardFileDate;
-	private int boardFileCnt;
+	private Date regdate;
 	
 	/*
-	public boardFileDto() {
+	 생성자 필요시에 만들어주기 
+	public BoardFileDto() {
 
 	}
-	
-	
-
-	public boardFileDto(int boardFileSeq, String boardFileName, int entireBoardSeq, Date boardFileDate,
-			int boardFileCnt) {
+		
+	public BoardFileDto(int boardFileSeq, String boardFileName, String imgPath, int entireBoardSeq, Date regdate) {
 
 		this.boardFileSeq = boardFileSeq;
 		this.boardFileName = boardFileName;
+		this.imgPath = imgPath;
 		this.entireBoardSeq = entireBoardSeq;
-		this.boardFileDate = boardFileDate;
-		this.boardFileCnt = boardFileCnt;
+		this.regdate = regdate;
 	}
 	*/
 
@@ -46,6 +43,14 @@ public class BoardFileDto {
 		this.boardFileName = boardFileName;
 	}
 	
+	public String getImgPath() {
+		return imgPath;
+	}
+	
+	public void setImgPath(String imgPath) {
+		this.imgPath = imgPath;
+	}
+	
 	public int getEntireBoardSeq() {
 		return entireBoardSeq;
 	}
@@ -54,28 +59,12 @@ public class BoardFileDto {
 		this.entireBoardSeq = entireBoardSeq;
 	}
 	
-	public Date getBoardFileDate() {
-		return boardFileDate;
+	public Date getRegdate() {
+		return regdate;
 	}
 	
-	public void setBoardFileDate(Date boardFileDate) {
-		this.boardFileDate = boardFileDate;
+	public void setRegdate(Date regdate) {
+		this.regdate = regdate;
 	}
 	
-	public int getBoardFileCnt() {
-		return boardFileCnt;
-	}
-	
-	public void setBoardFileCnt(int boardFileCnt) {
-		this.boardFileCnt = boardFileCnt;
-	}
-	
-	@Override
-	public String toString() {
-		return "boardFileDto [boardFileSeq=" + boardFileSeq + ", boardFileName=" + boardFileName + ", entireBoardSeq="
-				+ entireBoardSeq + ", boardFileDate=" + boardFileDate + ", boardFileCnt=" + boardFileCnt + "]";
-	}
-	
-	
-
 }
