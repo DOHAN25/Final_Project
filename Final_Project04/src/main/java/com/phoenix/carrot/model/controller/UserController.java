@@ -3,6 +3,7 @@ package com.phoenix.carrot.model.controller;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 
@@ -21,6 +22,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.phoenix.carrot.user.biz.UserBiz;
 import com.phoenix.carrot.user.dto.UserDto;
+import com.phoenix.carrot.recaptcha.VerifyRecaptcha;
 
 @Controller
 public class UserController {
@@ -110,6 +112,33 @@ public class UserController {
 		 
 		 return -1;
 	}
+	
+	@ResponseBody
+	@RequestMapping(value="/VerifyRecaptcha.do", method=RequestMethod.POST)
+	public int VerifyRecaptcha(HttpServletRequest request) {
+		
+		VerifyRecaptcha.setSecretKey("6LfJBFIbAAAAAKqCWrQ2EgrLHaSnt3bsOccH1_G1");
+		
+		String gRecaptchaResponse = request.getParameter("recaptcha");
+		
+		try {
+			if(VerifyRecaptcha.verify(gRecaptchaResponse)) {
+				return 0; // 성공했을때
+			} else {
+				return 1; // 실패했을때
+			}
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+			return -1; // 에러나면 -1
+		}
+	}
+	
+	
+	
+	
+	
+	
 	@RequestMapping("/findidform.do")
 	public String findid() {
 		logger.info("[Controller] : findid.do");

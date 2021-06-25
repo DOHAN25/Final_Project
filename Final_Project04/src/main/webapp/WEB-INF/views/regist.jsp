@@ -15,6 +15,8 @@
 <!-- daum 도로명주소 찾기 api -->
 <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
 
+<!-- 리캡차 api -->
+<script src="https://www.google.com/recaptcha/api.js"></script>
 
 <style type="text/css">
 td {
@@ -43,6 +45,43 @@ var birthJ = false;
 var address = $('#userdetailaddress'); 
 $(document).ready(function() { 
 	var address = $('#userdetailaddress'); 
+	
+	$("#recaptcha-anchor").click(function(){
+		var captcha = 1;
+		
+		$.ajax({
+            url: 'VerifyRecaptcha.do',
+            type: 'post',
+            data: {
+                recaptcha: $("#g-recaptcha-response").val()
+            },
+            success: function(data) {
+                switch (data) {
+                    case 0:
+                        console.log("자동 가입 방지 봇 통과");
+                        captcha = 0;
+                		break;
+                    case 1:
+                        alert("자동 가입 방지 봇을 확인 한뒤 진행 해 주세요.");
+           				captcha = 1;
+                        break;
+                    default:
+                        alert("자동 가입 방지 봇을 실행 하던 중 오류가 발생 했습니다. [Error bot Code : " + Number(data) + "]");
+                    	captcha = 1;
+                   		break;
+                }
+            }
+        });
+		
+		  if(captcha != 0) { 
+            	return false;
+            } else {
+            	return captcha;
+            }
+		});
+	
+	
+	
 	//아이디 중복확인 
 	$("#userid").blur(function() { 
 		if($('#userid').val()==''){ 
@@ -388,6 +427,9 @@ $(document).ready(function() {
 				<div class="form-group">
 					<input class="form-control" placeholder="상세주소"
 						name="userdetailaddress" id="userdetailaddress" type="text" />
+				</div>
+				<div class="g-recaptcha" id="recaptcha"
+					data-sitekey="6LfJBFIbAAAAAPyFCgWwMz3xEFvaBdABdZtEdjMD">
 				</div>
 				<div class="form-group text-center">
 					<button type="submit" class="btn btn-primary">회원가입</button>
