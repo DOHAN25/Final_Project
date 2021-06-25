@@ -1,14 +1,16 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 <body>
 
-	<h1>snsboarddetail</h1>
+	<h1>SnsBoardDetail</h1>
 	
 	<table border="1">
 		<tr>
@@ -18,6 +20,15 @@
 		<tr>
 			<td>boardDate</td>
 			<td>${dto.boardDate }</td>
+		</tr>
+		<tr>
+			<td>이미지</td>
+			<td><img src="${dto.boardImg }"></td>
+		</tr>
+		<tr>
+			<td>썸네일 이미지</td>
+			<td></td>
+			
 		</tr>
 		<tr>
 			<th>내용</th>
@@ -31,6 +42,17 @@
 			</td>
 		</tr>
 	</table>
+	<img src="<c:url value ='C:\Git\Final_Project\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\Final_Project04\resources${dto.boardThumbImg }' />">
+	<script>
+		//첨부파일 출력
+		function printFiles(data) {
+			//파일 정보 처리 
+			var fileInfo = getFileInfo(data);
+			
+		}
+	</script>
+	
+	
 
 </body>
 </html>

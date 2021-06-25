@@ -4,8 +4,8 @@
  
  	<!-- 첨부파일 업로드 -->
  	<insert id="addAttach">
- 		INSERT INTO boardFile(boardFileSeq, boardFileName, imgPath, entireBoardSeq, regdate)
- 		VALUES(#{boardFileSeq.NEXTVAL}, #{boardFileName}, #{imgPath}, #{entireBoardSeq.NEXTVAL}, SYSDATE)
+ 		INSERT INTO boardFile(boardFileName, entireBoardSeq, regdate)
+ 		VALUES(#{boardFileName}, #{entireBoardSeq.NEXTVAL}, SYSDATE)
  	</insert>
  	
  	<!-- 게시글 첨부파일 조회 -->

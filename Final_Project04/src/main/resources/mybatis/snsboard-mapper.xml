@@ -10,6 +10,8 @@
   		<result property="boardContents" column="boardContents"/>
   		<result property="userId" column="userId"/>
   		<result property="userSeq" column="userSeq"/>
+  		<result property="boardImg" column="boardImg"/>
+  		<result property="boardThumbImg" column="boardThumbImg"/>
   		<result property="likeCount" column="likeCount"/>
   	</resultMap>
 
@@ -22,7 +24,7 @@
 	
 	<insert id="snsBoardInsert" parameterType="entireBoardDto">
 		INSERT INTO entireBoard
-		VALUES(entireBoardSeq.NEXTVAL, 1, SYSDATE, 'sns글테스트입니다.', #{boardContents}, 'test01', 1, NULL)
+		VALUES(entireBoardSeq.NEXTVAL, 1, SYSDATE, 'sns글테스트입니다.', #{boardContents}, 'test01', 1, #{boardImg}, #{boardThumbImg}, NULL)
 	</insert>
 	
 	<select id="snsBoardOne" resultMap="entireBoardMap">

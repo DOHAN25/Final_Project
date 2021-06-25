@@ -21,6 +21,8 @@ import org.springframework.http.MediaType;
 import org.springframework.util.FileCopyUtils;
 import org.springframework.web.multipart.MultipartFile;
 
+import net.coobird.thumbnailator.Thumbnails;
+
 /*
   #서버에 파일을 저장할 때 고려사항
   -동일한 파일명을 저장할 경우 : UUID를 이용하여 고유 값을 생성, 원본파일명 앞에 붙여 중복 분제 해결
@@ -38,8 +40,59 @@ import org.springframework.web.multipart.MultipartFile;
  */
 
 public class UploadFileUtils {
+	
 	private static final Logger logger = LoggerFactory.getLogger(UploadFileUtils.class);
+	
+	static final int THUMB_WIDTH = 300;
+	static final int THUMB_HEIGHT = 300;
+	
+	public static String fileUpload(String uploadPath, String fileName, byte[] fileData, String ymdPath) throws Exception {
 
+	  UUID uid = UUID.randomUUID();
+	  
+	  String newFileName = uid + "_" + fileName;
+	  String imgPath = uploadPath + ymdPath;
+
+	  File target = new File(imgPath, newFileName);
+	  FileCopyUtils.copy(fileData, target);
+	  
+	  String thumbFileName = "s_" + newFileName;
+	  File image = new File(imgPath + File.separator + newFileName);
+
+	  File thumbnail = new File(imgPath + File.separator + "s" + File.separator + thumbFileName);
+
+	  if (image.exists()) {
+	   thumbnail.getParentFile().mkdirs();
+	   Thumbnails.of(image).size(THUMB_WIDTH, THUMB_HEIGHT).toFile(thumbnail);
+	  }
+	  return newFileName;
+	 }
+
+	 public static String calcPath(String uploadPath) {
+	  Calendar cal = Calendar.getInstance();
+	  String yearPath = File.separator + cal.get(Calendar.YEAR);
+	  String monthPath = yearPath + File.separator + new DecimalFormat("00").format(cal.get(Calendar.MONTH) + 1);
+	  String datePath = monthPath + File.separator + new DecimalFormat("00").format(cal.get(Calendar.DATE));
+
+	  makeDir(uploadPath, yearPath, monthPath, datePath);
+	  makeDir(uploadPath, yearPath, monthPath, datePath + "\\s");
+
+	  return datePath;
+	 }
+
+	 private static void makeDir(String uploadPath, String... paths) {
+
+	  if (new File(paths[paths.length - 1]).exists()) { return; }
+
+	  for (String path : paths) {
+	   File dirPath = new File(uploadPath + path);
+
+	   if (!dirPath.exists()) {
+	    dirPath.mkdir();
+	   }
+	  }
+	 }
+	/*
     // 파일 업로드 처리
     public static String uploadFile(String uploadPath, String originalName, byte[] fileData) throws Exception {
         // 중복된 이름의 파일을 저장하지 않기 위해 UUID 키값 생성
@@ -50,6 +103,7 @@ public class UploadFileUtils {
         String savedPath = calcPath(uploadPath);
         // 파일 객체 생성 = 기본 저장경로 + 날짜경로 + UUID_파일명
         File target = new File(uploadPath + savedPath, savedName);
+        System.out.println("target : " + target);
         // fileData를 파일객체에 복사
         FileCopyUtils.copy(fileData, target);
         // 파일 확장자 추출
@@ -69,7 +123,7 @@ public class UploadFileUtils {
     }
 
     // 1. 날짜별 경로 추출
-    private static String calcPath(String uploadPath) {
+    public static String calcPath(String uploadPath) {
         Calendar calendar = Calendar.getInstance();
         // 년
         String yearPath = File.separator + calendar.get(Calendar.YEAR);
@@ -145,4 +199,5 @@ public class UploadFileUtils {
         // 파일 삭제(일반 파일 or 썸네일 이미지 파일 삭제)
         new File(uploadPath + fileName.replace('/', File.separatorChar)).delete();
     }
+    */
 }

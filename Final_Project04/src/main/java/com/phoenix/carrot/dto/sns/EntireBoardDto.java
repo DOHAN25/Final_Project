@@ -17,17 +17,18 @@ public class EntireBoardDto {
 	private String boardContents;
 	private String userId;
 	private int userSeq;
+	private String boardImg;
+	private String boardThumbImg;
 	private int likeCount;
 	
-	private String[] files;
+	//private String[] files;
 	
 	public EntireBoardDto() {
 
 	}
 
 	public EntireBoardDto(int entireBoardSeq, String boardKind, Date boardDate, String boardTitle, String boardContents,
-			String userId, int userSeq, int likeCount) {
-		//기본
+			String userId, int userSeq, String boardImg, String boardThumbImg, int likeCount) {
 		this.entireBoardSeq = entireBoardSeq;
 		this.boardKind = boardKind;
 		this.boardDate = boardDate;
@@ -35,12 +36,10 @@ public class EntireBoardDto {
 		this.boardContents = boardContents;
 		this.userId = userId;
 		this.userSeq = userSeq;
+		this.boardImg = boardImg;
+		this.boardThumbImg = boardThumbImg;
 		this.likeCount = likeCount;
-		//파일
-		//파일생성자는 생각해보고 만들자..
 	}
-
-
 
 	public int getEntireBoardSeq() {
 		return entireBoardSeq;
@@ -98,6 +97,22 @@ public class EntireBoardDto {
 		this.userSeq = userSeq;
 	}
 
+	public String getBoardImg() {
+		return boardImg;
+	}
+
+	public void setBoardImg(String boardImg) {
+		this.boardImg = boardImg;
+	}
+
+	public String getBoardThumbImg() {
+		return boardThumbImg;
+	}
+
+	public void setBoardThumbImg(String boardThumbImg) {
+		this.boardThumbImg = boardThumbImg;
+	}
+
 	public int getLikeCount() {
 		return likeCount;
 	}
@@ -105,14 +120,8 @@ public class EntireBoardDto {
 	public void setLikeCount(int likeCount) {
 		this.likeCount = likeCount;
 	}
-
-	public String[] getFiles() {
-		return files;
-	}
-
-	public void setFiles(String[] files) {
-		this.files = files;
-	}
+	
+	
 	
 	
 

@@ -32,6 +32,8 @@ CREATE TABLE entireBoard(
 	boardContents VARCHAR2(4000), 
 	userId VARCHAR2(30) NOT NULL,
 	userSeq NUMBER NOT NULL,
+	boardImg VARCHAR2(4000),
+	boardThumbImg VARCHAR2(4000),
 	likeCount NUMBER
 );
 
@@ -44,13 +46,13 @@ ON DELETE CASCADE;
 ---sns:1, knowhow:2, notice:3
 
 INSERT INTO entireBoard
-VALUES (entireBoardSeq.NEXTVAL, 1, SYSDATE, '테스트글입니다.', '테스트내용입니다.', 'test01', 1, NULL);
+VALUES (entireBoardSeq.NEXTVAL, 1, SYSDATE, '테스트글입니다.', '테스트내용입니다.', 'test01', 1, NULL, NULL, NULL);
 
 INSERT INTO entireBoard
-VALUES (entireBoardSeq.NEXTVAL, 1, SYSDATE, '테스트글입니다2.', '테스트내용입니다2.', 'dh', 2, NULL);
+VALUES (entireBoardSeq.NEXTVAL, 1, SYSDATE, '테스트글입니다2.', '테스트내용입니다2.', 'dh', 2, NULL, NULL, NULL);
 
 INSERT INTO entireBoard
-VALUES (entireBoardSeq.NEXTVAL, 1, SYSDATE, '테스트글입니다3.', '테스트내용입니다3.', 'dh', 2, NULL);
+VALUES (entireBoardSeq.NEXTVAL, 1, SYSDATE, '테스트글입니다3.', '테스트내용입니다3.', 'dh', 2, NULL, NULL, NULL);
 
 SELECT * FROM entireBoard;
 
@@ -66,9 +68,7 @@ DROP TABLE boardFile;
 CREATE SEQUENCE boardFileSeq;
 
 CREATE TABLE boardFile(
-	boardFileSeq NUMBER PRIMARY KEY,
 	boardFileName VARCHAR2(1000) NOT NULL,
-	imgPath VARCHAR2(4000),
 	entireBoardSeq NUMBER,
 	regdate DATE
 );
@@ -79,6 +79,51 @@ FOREIGN KEY (entireBoardSeq) REFERENCES entireBoard (entireBoardSeq)
 ON DELETE CASCADE;
 
 SELECT * FROM boardFile;
+
+
+-------------------------상품 --------------------------------------
+DROP SEQUENCE productSeq;
+DROP TABLE Product;
+
+CREATE SEQUENCE productSeq;
+
+CREATE TABLE Product (
+	productSeq NUMBER PRIMARY KEY NOT NULL,
+	productName VARCHAR2(100) NOT NULL,
+	productPrice NUMBER(30) NOT NULL,
+	sellerAddress VARCHAR2(30),
+	productInfo VARCHAR2(4000),
+	productImg VARCHAR2(4000),
+	productThumb VARCHAR2(4000),
+	userRole VARCHAR2(10) NOT NULL,
+	userSeq NUMBER NOT NULL,
+	userId VARCHAR2(30),
+	userLatitude VARCHAR2(1000),
+	userLongitude VARCHAR2(1000) 
+);
+
+ALTER TABLE Product ADD CONSTRAINT FK_Product
+FOREIGN KEY (userSeq) REFERENCES Users (userSeq)
+ON DELETE CASCADE;
+
+INSERT INTO Product 
+VALUES (productSeq.NEXTVAL, '1인용 텃밭 세트', 12800, '운영자판매', NULL, NULL, NULL, 'ADMIN', 1, '운영자', NULL, NULL);
+
+INSERT INTO Product 
+VALUES (productSeq.NEXTVAL, '가정용 호미 세트', 9800, '운영자판매', NULL, NULL, NULL, 'ADMIN', 1, '운영자', NULL, NULL);
+
+INSERT INTO Product 
+VALUES (productSeq.NEXTVAL, '친환경 물뿌리개', 6800, '운영자판매', NULL, NULL, NULL, 'ADMIN', 1, '운영자', NULL, NULL);
+
+SELECT * FROM Product;
+
+SELECT * FROM Product
+WHERE userRole = 'ADMIN'
+ORDER BY productPrice DESC;
+
+
+
+
 
 
 

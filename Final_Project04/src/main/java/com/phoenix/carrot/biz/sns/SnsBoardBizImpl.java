@@ -17,9 +17,10 @@ public class SnsBoardBizImpl implements SnsBoardBiz {
 	
 	private Logger logger = LoggerFactory.getLogger(SnsBoardBizImpl.class);
 	
+	/*
 	@Autowired
 	private BoardFileDao fileDao;
-	
+	*/
 	@Autowired
 	private SnsBoardDao dao;
 	
@@ -36,23 +37,10 @@ public class SnsBoardBizImpl implements SnsBoardBiz {
 	}
 	
 	
-	@Transactional
 	@Override
-	public void snsBoardInsert(EntireBoardDto dto) throws Exception{
+	public int snsBoardInsert(EntireBoardDto dto) throws Exception{
 		
-	    // 게시글 입력처리
-	    dao.snsBoardInsert(dto);
-	    String[] files = dto.getFiles();
-
-	    if (files == null) {
-	        return;
-	    }
-        
-        logger.info("snsboardinsert = " + dto.toString());
-        int entireBoardSeq = dto.getEntireBoardSeq();
-        for (String fileName : files) {
-        	fileDao.addAttach(fileName, entireBoardSeq);
-        }
+		return dao.snsBoardInsert(dto);
 	}
 
 	@Override
@@ -61,11 +49,9 @@ public class SnsBoardBizImpl implements SnsBoardBiz {
 		return dao.snsBoardUpdate(dto);
 	}
 	
-	@Transactional
 	@Override
 	public void snsBoardDelete(int entireBoardSeq) throws Exception {
 	
-    	fileDao.deleteAllAttach(entireBoardSeq);
         dao.snsBoardDelete(entireBoardSeq);
 	}
 

@@ -1,5 +1,8 @@
 package com.phoenix.carrot.model.controller;
 
+import java.io.File;
+
+import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
 import org.slf4j.Logger;
@@ -16,6 +19,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.phoenix.carrot.biz.sns.FileValidator;
 import com.phoenix.carrot.biz.sns.SnsBoardBiz;
 import com.phoenix.carrot.dto.sns.EntireBoardDto;
+import com.phoenix.carrot.utils.UploadFileUtils;
 
 @Controller
 public class SnsController {
@@ -27,6 +31,9 @@ public class SnsController {
 	
 	@Autowired
 	private SnsBoardBiz biz;
+	
+	@Resource(name="uploadPath")
+	private String uploadPath;
 	
 	@RequestMapping("/main.do")
 	public String mainForm(Model model) {
@@ -43,14 +50,33 @@ public class SnsController {
 	}
 	
 	@RequestMapping("/snsBoardInsertRes.do")
-	public String snsBoardInsertRes(EntireBoardDto dto, RedirectAttributes redirectAttributes) throws Exception {
+	public String snsBoardInsertRes(EntireBoardDto dto, MultipartFile file) throws Exception {
 		logger.info("[Controller] : snsBoardInsertRes.do");
-
+		
+		String imgUploadPath = uploadPath + File.separator + "upload";
+		String ymdPath = UploadFileUtils.calcPath(imgUploadPath);
+		String fileName = null;
+		
+		if (file != null) {
+			fileName = UploadFileUtils.fileUpload(imgUploadPath, file.getOriginalFilename(), file.getBytes(), ymdPath);
+		} else {
+			fileName = uploadPath + File.separator + "image" + File.separator +"none.png";
+		}
+		
+		dto.setBoardImg(File.separator + "upload" + ymdPath + File.separator + fileName);
+		dto.setBoardThumbImg(File.separator + "upload" + ymdPath + File.separator + "s" + File.separator + "s_" + fileName);
+		
+		biz.snsBoardInsert(dto);
+		
+		return "redirect:main.do";
+		
+		/*
+		 RedirectAttributes redirectAttributes파라미터 추가! 
 		biz.snsBoardInsert(dto);
 		redirectAttributes.addFlashAttribute("msg", "regSuccess");
 		
 		return "redirect:main.do";
-		
+		*/
 	}
 	
 	@RequestMapping("/snsBoardOne.do")
