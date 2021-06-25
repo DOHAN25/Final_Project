@@ -30,10 +30,10 @@ import com.phoenix.carrot.utils.MediaUtils;
 import com.phoenix.carrot.utils.UploadFileUtils;
 
 @Controller
-@RequestMapping(value="/board/file")
+//@RequestMapping(value="/board/file")
 public class BoardFileController {
 	
-	
+	/*
 	private static final Logger logger = LoggerFactory.getLogger(BoardFileController.class);
 	
 	@Autowired
@@ -42,7 +42,7 @@ public class BoardFileController {
 	// 파일 저장 기본 경로 bean 등록
     @Resource(name = "uploadPath")
     private String uploadPath;
-	
+    
 	
     // 업로드 파일
     @RequestMapping(value = "/upload", method = RequestMethod.POST, produces = "text/plain;charset=UTF-8")
@@ -108,7 +108,7 @@ public class BoardFileController {
         return entity;
     }
     
-    /*
+    
     // 단일 파일 데이터 삭제1 : 게시글 작성화면
     @ResponseBody
     @RequestMapping(value = "/delete", method = RequestMethod.POST)
@@ -133,7 +133,7 @@ public class BoardFileController {
         UploadFileUtils.removeFile(uploadPath, fileName);
         return new ResponseEntity<String>("DELETED", HttpStatus.OK);
     }
-	*/
+	
     
     // 전체 파일 삭제 : 게시글 삭제 처리시
     @ResponseBody
@@ -150,7 +150,7 @@ public class BoardFileController {
         }
         return new ResponseEntity<String>("DELETED", HttpStatus.OK);
     }
-    
+    */
     }
 	
 

@@ -54,43 +54,38 @@
 	<h1>글 작성 Upload with Ajax</h1>
 	
 	<!-- 업로드 페이지 -->
-	<form action="snsBoardInsertRes.do" method="post">
+	
 			<!-- 사진업로드 박스 -->
-				<div>
-					<p>사진 업로드</p>
-				</div>
-			<!-- 사진업로드 form -->
-			<div class='uploadFileDiv'>
-				<input type="file" name="uploadFile" accept="image/*1" id="input_img" onchange="setThumbnail(event);"><br>
+			<div>
+				<p>사진 업로드</p>
 			</div>
+			<form action="snsBoardInsertRes.do" method="post" enctype="multipart/form-data">
+			<!-- 사진업로드 form -->
+				<div class='uploadFileDiv'>
+					<input type="file" name="file" accept="image/*1" id="boardImg" onchange="setThumbnail(event);"><br>
+				</div>
+			
 				<!-- 이미지 미리보기 출력 -->	
 				<div id="image_container"></div>
-				
-				<!-- 여기서부터는 가져다 쓴것 -->
-				<!-- 이건뭐지 -->
-				<div class= 'uploadResult'>
-					<ul>
-					</ul>
-				</div>
-								
-				<button id='uploadBtn'>Upload</button>
-	
+											
+				<!--  <button id='uploadBtn'>Upload</button> -->
+				<%=request.getRealPath("/") %>
 				<!-- end -->
 				
 				<!-- 게시글 + 업로드 버튼 -->
 				<div class="upload-form-detail">
 					<input type="text" name="boardContents" placeholder="게시글" /><br>
-					<input type="text" name="tags" placeholder="태그"><br>
 					<button type="submit">등록</button>
 				</div>
-											
-	</form> 
-	<!-- 해쉬태그 등록 -->
+				
+			</form> 							
+	
+			<!-- 해쉬태그 등록 -->
 			<form class="hashtag-insert-form" action="" method="post">			
 				<div class="insert-hash-tag">
 					<input type="text" name="hashtags" placeholder="해쉬태그 입력"> 
 				</div>
-				<button type="submit">등록</button>
+					<button type="submit">등록</button>
 			</form>
 
 		
@@ -111,11 +106,25 @@
 			//리더에서 input 태그에서 선택한 파일을 읽어오도록 설정 
 			reader.readAsDataURL(event.target.files[0]);
 		} 
-		//end setTumbnail 
 	
+	
+		//end setTumbnail 
+		/*
 		//첨부파일 영역 선택자 
-		var uploadDiv = $("div.uploadFileDiv");
+		var uploadFileDiv = $(".uploadFileDiv").clone();
 		
+		//첨부파일 이벤트 처리 : 파일 업로드 처리 -> 파일 출력
+		$("#uploadBtn").on("click", function(e){
+			var formData = new FormData();
+			var inputFile = $("input[name=uploadFile]");
+			var files = inputFile[0].files;
+			
+			formData.append("uploadFile", files);
+			
+			ajaxUploadFile(formData);			
+		});
+		*/
+		/* 
 		//첨부파일 이벤트 처리 : 파일 업로드 처리 -> 파일 출력	
 		uploadDiv.on("drop", function (event){
 			//click 이벤트 발생시 전달된 파일 데이터 
@@ -130,13 +139,30 @@
 			//파일 업로드 AJAX 통신 메서드 호출 
 			uploadFile(formData);
 		});
+		*/
 		
-		function uploadFile(formData) {
+		/*
+		function ajaxUploadFile(formData) {
 			$.ajax({
+				url:"upload",
+				data: formData,
+				dataType: "text",
+		        // processData : 데이터를 일반적인 query string으로 변환처리할 것인지 결정
+		        // 기본값은 true, application/x-www-form-urlencoded 타입
+		        // 자동변환 처리하지 않기 위해 false
+		        processData: false,
+		     	// contentType : 기본값은 true, application/x-www-form-urlencoded 타입
+		        // multipart/form-data 방식으로 전송하기 위해 false
+		        contentType: false,
+		        type: "POST",
+		        success: function (data) {
+		        	printFiles(data); //첨부파일 출력 메서드 호출
+		        	$(".noAttach").remove();
+		        }
 				
 			});
 		}
-		
+		*/
 		
 	</script>
 
