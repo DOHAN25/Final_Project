@@ -9,5 +9,7 @@ public interface UserBiz {
 	public int regist(UserDto dto);
 
 	public String idcheck(String userid);
+	
+	public String find_id(String useremail);
 
 }

@@ -33,5 +33,11 @@ public class UserBizImpl implements UserBiz {
 		// TODO Auto-generated method stub
 		return dao.idcheck(userid);
 	}
+	
+	@Override
+	public String find_id(String useremail) {
+		// TODO Auto-generated method stub
+		return dao.find_id(useremail);
+	}
 
 }
