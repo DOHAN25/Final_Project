@@ -110,5 +110,31 @@ public class UserController {
 		 
 		 return -1;
 	}
+	@RequestMapping("/findidform.do")
+	public String findid() {
+		logger.info("[Controller] : findid.do");
+		
+		return "findidform";
+	}
+	
+	@RequestMapping(value="/ajaxfindid.do", method=RequestMethod.POST)
+	@ResponseBody
+	public Map<String, String> ajaxFindid(@RequestBody Map<String, String> usermap) {
+		logger.info("[Controller] : ajaxfindid.do");
+		
+		String email = usermap.get("useremail");
+		System.out.println(email);
+		String res = biz.find_id(email);
+		System.out.println(res);
+		Map<String, String> map = new HashMap<String, String>();
+		if(res != null) {
+			map.put("userid", res);
+		} else {
+			logger.info("[Controller] : findid error");
+			map.put("userid", null);
+		}
+		
+		return map;
+	}
 	
 }

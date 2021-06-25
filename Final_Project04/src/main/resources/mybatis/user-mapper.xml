@@ -15,7 +15,7 @@
   </insert>
   
   <!-- 아이디중복확인 -->
-  <select id="idcheck" parameterType="String" resultType="String">
+  <select id="idcheck" parameterType="String" resultType="userDto">
   	SELECT USERID FROM USERS WHERE USERID = #{userid}
   
   </select>

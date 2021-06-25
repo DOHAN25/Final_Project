@@ -57,5 +57,22 @@ public class UserDaoImpl implements UserDao {
 		}
 		return res;
 	}
+	
+	@Override
+	public String find_id(String useremail) {
+		// TODO Auto-generated method stub
+		
+		String res = null;
+		
+		try {
+			res = sqlSession.selectOne(NAMESPACE+"find_id", useremail);
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
+		
+
+		return res;
+	}
 
 }
