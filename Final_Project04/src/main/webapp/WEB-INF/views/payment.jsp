@@ -14,11 +14,25 @@
 	margin: 1px;
 }
 
-#image{
-width: 350px;
-height: 2500px;
+header{
+width: 100%;
+height: 20%;
 align-content: center;
+}
 
+#image{
+object-fit: cover;
+}
+
+nav{
+
+}
+
+section{
+}
+
+
+footer{
 }
 
 </style>
@@ -39,7 +53,7 @@ align-content: center;
 	</nav>
 
 	<!-- 메인섹션 -->
-	<section class=main.wrap>
+	<section class=main_wrap>
 		<div class=produc_1>
 			<div id=image><a><img src="resources/image/seeding.jpg"></a></div>
 			<div id=text>
@@ -76,7 +90,18 @@ align-content: center;
 
 
 	<!-- 푸터 -->
-	<footer class=footer></footer>
+	<footer class=footer>
+	  <div class="container">
+            <small>Copyright &copy;
+                Phoenix
+                <a href="https://github.com/DOHAN25/Final_Project.git">@github</a>
+            </small>
+        </div>
+        <p>
+            <a href="#">Back to top</a>
+        </p>
+	
+	</footer>
 
 
 

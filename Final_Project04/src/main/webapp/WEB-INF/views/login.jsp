@@ -7,6 +7,21 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 
+<style type="text/css">
+
+*{
+padding: 1px;
+margin: 1px;
+width: auto;
+align-content: center;
+}
+
+header{
+height: 30%
+}
+
+</style>
+
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
 
@@ -54,6 +69,13 @@
 </head>
 <body>
 
+<!-- 헤더  로고 넣고-->
+
+<header><a><img src="resources/image/logo2.png" href="#"></a></header>
+
+
+<!-- 메인 -->
+<main>
 <c:if test="${login == null}">
 	<table>
 			<tr>
@@ -65,9 +87,10 @@
 				<td><input type="password" id="memberpw"></td>
 			</tr>
 			<tr>
-				<td colspan="2">
+				<td colspan="2" align="center">
 					<input type="button" value="login" onclick="login();">
-					<input type="button" value="regist" onclick="location.href='registform.do'">
+					<a> / </a>
+					<input type="button" value="sign in" onclick="location.href='registform.do'">
 				
 				</td>
 				
@@ -77,6 +100,7 @@
 			</tr>
 		</table>
 		<a href="findid.do" style="color: black; text-decoration: none;" id="find_id_btn">아이디찾기</a>
+		<a> / </a>
 		<a href="findpw.do" style="color: black; text-decoration: none;">비밀번호찾기</a>
 		<br>
 		<a href="kakaologin.do">
@@ -92,8 +116,24 @@
 	<div>${login.userId}님 환영합니다.</div>
 
 </c:if>
-	
 
+</main>
+
+<!-- 푸터 -->	
+
+<footer class=footer>
+	  <div class="container">
+            <small>Copyright &copy;
+                Phoenix
+                <a href="https://github.com/DOHAN25/Final_Project.git">@github</a>
+            </small>
+        </div>
+        <p>
+            <a href="#">Back to top</a>
+        </p>
+	
+	</footer>
+	
 </body>
 </html>
 
