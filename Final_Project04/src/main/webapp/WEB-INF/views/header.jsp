@@ -37,7 +37,7 @@
                     <a class="nav-link" href="#">로컬마켓</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="payment.jsp">씨앗도구구매</a>
+                    <a class="nav-link" href="payment.do">씨앗도구구매</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#">주말농장</a>
@@ -49,7 +49,7 @@
                     <a class="nav-link" href="#">꿀팁</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="weather.jsp">날씨</a>
+                    <a class="nav-link" location.href="weather.do">날씨</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#">자유게시판</a>
