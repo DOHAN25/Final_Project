@@ -8,4 +8,15 @@
 		WHERE userRole = 'USER'
 		ORDER BY productRegDate DESC
 	</select>
+	
+	<select id="userProductOne" resultType="productDto">
+		SELECT *
+		FROM Product
+		WHERE productSeq = #{productSeq}
+	</select>
+	
+	<insert id="userProductInsert" parameterType="productDto">
+		INSERT INTO Product
+		VALUES (productSeq.NEXTVAL, #{productName}, #{productPrice}, #{sellerAddress}, SYSDATE, #{productInfo}, NULL, NULL, 'Y', 'USER', 1, 'test', #{userLatitude}, #{userLongitude})
+	</insert>
 </mapper>

@@ -12,6 +12,7 @@ public class ProductDto {
 	private String productInfo;
 	private String productImg; 
 	private String productThumb;
+	private String saleStatus;
 	private String userRole;
 	private int userSeq;
 	private String userId;
@@ -23,8 +24,8 @@ public class ProductDto {
 	}
 
 	public ProductDto(int productSeq, String productName, int productPrice, String sellerAddress, Date productRegDate,
-			String productInfo, String productImg, String productThumb, String userRole, int userSeq, String userId,
-			String userLatitude, String userLongitude) {
+			String productInfo, String productImg, String productThumb, String saleStatus, String userRole, int userSeq,
+			String userId, String userLatitude, String userLongitude) {
 
 		this.productSeq = productSeq;
 		this.productName = productName;
@@ -34,6 +35,7 @@ public class ProductDto {
 		this.productInfo = productInfo;
 		this.productImg = productImg;
 		this.productThumb = productThumb;
+		this.saleStatus = saleStatus;
 		this.userRole = userRole;
 		this.userSeq = userSeq;
 		this.userId = userId;
@@ -105,6 +107,14 @@ public class ProductDto {
 		this.productThumb = productThumb;
 	}
 
+	public String getSaleStatus() {
+		return saleStatus;
+	}
+
+	public void setSaleStatus(String saleStatus) {
+		this.saleStatus = saleStatus;
+	}
+
 	public String getUserRole() {
 		return userRole;
 	}
@@ -144,7 +154,6 @@ public class ProductDto {
 	public void setUserLongitude(String userLongitude) {
 		this.userLongitude = userLongitude;
 	}
-	
 	
 	
 	

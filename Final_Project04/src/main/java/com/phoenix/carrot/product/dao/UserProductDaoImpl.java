@@ -32,14 +32,27 @@ public class UserProductDaoImpl implements UserProductDao {
 
 	@Override
 	public ProductDto userProductOne(int productSeq) {
-		// TODO Auto-generated method stub
-		return null;
+		ProductDto dto = null;
+		
+		try {
+			dto = sqlSession.selectOne(NAMESPACE + "userProductOne", productSeq);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return dto;
 	}
 
 	@Override
 	public int userProductInsert(ProductDto dto) {
-		// TODO Auto-generated method stub
-		return 0;
+		int res = 0;
+		
+		try {
+			res = sqlSession.insert(NAMESPACE + "userProductInsert", dto);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return res;
 	}
 
 	@Override
