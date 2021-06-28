@@ -42,7 +42,9 @@
 			</td>
 		</tr>
 	</table>
+	 <img src="${pageContext.request.contextPath}${dto.boardThumbImg }" />
 	<img src="<c:url value ='C:\Git\Final_Project\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\Final_Project04\resources${dto.boardThumbImg }' />">
+	<img src="C:\Git\Final_Project\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\Final_Project04\resources${dto.boardThumbImg }">
 	<script>
 		//첨부파일 출력
 		function printFiles(data) {
