@@ -27,14 +27,14 @@ public class UserProductBizImpl implements UserProductBiz {
 
 	@Override
 	public ProductDto userProductOne(int productSeq) {
-		// TODO Auto-generated method stub
-		return null;
+
+		return dao.userProductOne(productSeq);
 	}
 
 	@Override
 	public int userProductInsert(ProductDto dto) {
-		// TODO Auto-generated method stub
-		return 0;
+
+		return dao.userProductInsert(dto);
 	}
 
 	@Override

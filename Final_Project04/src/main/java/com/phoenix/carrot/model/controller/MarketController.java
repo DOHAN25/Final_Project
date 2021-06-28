@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.phoenix.carrot.product.biz.UserProductBiz;
+import com.phoenix.carrot.product.dto.ProductDto;
 
 @Controller
 public class MarketController {
@@ -17,16 +18,43 @@ public class MarketController {
 	@Autowired
 	private UserProductBiz biz;
 	
+	@RequestMapping("/jusoPopup.do")
+    public String jusoPopup(){
+
+        return "jusoPopup";
+
+    }
+	
 	@RequestMapping("/marketplace.do")
 	public String userProductList(Model model) {
 		logger.info("[Controller] : marketplace.do");
 		model.addAttribute("userProductList", biz.userProductList());
-		return "usermarket";
+		return "productmarket";
 	}
 	
-	@RequestMapping("/insertproduct.do")
+	@RequestMapping("/productinsert.do")
 	public String productInsertForm() {
-		return "insertproduct";
+		return "productinsert";
+	}
+	
+	@RequestMapping("/productinsertres.do")
+	public String productInsertRes(ProductDto dto) {
+		
+		logger.info("[Controller] : productinsertres.do");
+		
+		if (biz.userProductInsert(dto) > 0) {
+			return "redirect:marketplace.do";
+		}
+		
+		return "redirect:productinsert.do";
+	}
+	
+	@RequestMapping("/productdetail.do")
+	public String productDetail(Model model, int productSeq) {
+		logger.info("[Controller] : productdetail.do");
+		
+		model.addAttribute("dto", biz.userProductOne(productSeq));
+		return "productdetail";
 	}
 
 }

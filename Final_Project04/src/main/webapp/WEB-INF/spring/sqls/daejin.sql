@@ -96,6 +96,7 @@ CREATE TABLE Product (
 	productInfo VARCHAR2(4000),
 	productImg VARCHAR2(4000),
 	productThumb VARCHAR2(4000),
+	saleStatus VARCHAR2(20),
 	userRole VARCHAR2(10) NOT NULL,
 	userSeq NUMBER NOT NULL,
 	userId VARCHAR2(30),
@@ -109,20 +110,20 @@ FOREIGN KEY (userSeq) REFERENCES Users (userSeq)
 ON DELETE CASCADE;
 
 INSERT INTO Product 
-VALUES (productSeq.NEXTVAL, '1인용 텃밭 세트', 12800, '운영자판매', NULL, NULL, NULL, NULL, 'ADMIN', 1, '운영자', NULL, NULL);
+VALUES (productSeq.NEXTVAL, '1인용 텃밭 세트', 12800, '운영자판매', NULL, NULL, NULL, NULL, 'Y', 'ADMIN', 1, '운영자', NULL, NULL);
 
 INSERT INTO Product 
-VALUES (productSeq.NEXTVAL, '가정용 호미 세트', 9800, '운영자판매', NULL, NULL, NULL, NULL, 'ADMIN', 1, '운영자', NULL, NULL);
+VALUES (productSeq.NEXTVAL, '가정용 호미 세트', 9800, '운영자판매', NULL, NULL, NULL, NULL, 'Y', 'ADMIN', 1, '운영자', NULL, NULL);
 
 INSERT INTO Product 
-VALUES (productSeq.NEXTVAL, '친환경 물뿌리개', 6800, '운영자판매', NULL, NULL, NULL, NULL, 'ADMIN', 1, '운영자', NULL, NULL);
+VALUES (productSeq.NEXTVAL, '친환경 물뿌리개', 6800, '운영자판매', NULL, NULL, NULL, NULL, 'Y', 'ADMIN', 1, '운영자', NULL, NULL);
 
 
 INSERT INTO Product 
-VALUES (productSeq.NEXTVAL, '대진이가 심은 상추', 8000, '유저판매', SYSDATE, NULL, NULL, NULL, 'USER', 1, '운영자', NULL, NULL);
+VALUES (productSeq.NEXTVAL, '대진이가 심은 상추', 8000, '유저판매', SYSDATE, NULL, NULL, NULL, 'N', 'USER', 1, 'test', NULL, NULL);
 
 INSERT INTO Product 
-VALUES (productSeq.NEXTVAL, '태린이가 심은 고구마', 8800, '유저판매', SYSDATE, NULL, NULL, NULL, 'USER', 1, '운영자', NULL, NULL);
+VALUES (productSeq.NEXTVAL, '태린이가 심은 고구마', 8800, '유저판매', SYSDATE, NULL, NULL, NULL, 'N','USER', 1, 'test', NULL, NULL);
 
 
 SELECT * FROM Product;
@@ -136,6 +137,59 @@ WHERE userRole = 'USER'
 ORDER BY productRegDate DESC;
 
 ----------------------댓글/대댓글------------------------
+DROP SEQUENCE commentNoSeq;
+DROP TABLE commentBoard;
+
+CREATE SEQUENCE commentNoSeq;
+
+CREATE TABLE commentBoard(
+	commentNoSeq NUMBER PRIMARY KEY,    --댓글번호
+	userSeq NUMBER NOT NULL,
+	userId VARCHAR2(30) NOT NULL,
+	reContent VARCHAR2(2000) NOT NULL,
+	reRegDate DATE NOT NULL,
+	entireBoardSeq NUMBER NOT NULL,
+	groupNo NUMBER NOT NULL,   --댓글그룹번호
+	reRepSeq NUMBER NOT NULL  --대댓글 번호 
+);
+ALTER TABLE commentBoard ADD CONSTRAINT FK_CommentBoard_ID
+FOREIGN KEY (userSeq) REFERENCES Users (userSeq)
+ON DELETE CASCADE;
+
+ALTER TABLE commentBoard ADD CONSTRAINT FK_commentBoard_Ogigin
+FOREIGN KEY (entireBoardSeq) REFERENCES entireBoard (entireBoardSeq)
+ON DELETE CASCADE;
+
+SELECT * FROM commentBoard;
+
+--1번째 댓글 
+INSERT INTO commentBoard
+VALUES(commentNoSeq.NEXTVAL, 1, 'test', '댓글테스트입니다.', SYSDATE, 2, 1, 0);
+
+--2번째 댓글
+INSERT INTO commentBoard
+VALUES(
+	commentNoSeq.NEXTVAL, 1, 'test', '두번째댓글테스트입니다.', SYSDATE, 2,
+	(SELECT groupNo FROM commentBoard WHERE commentNoSeq = 1) + 1,
+	(SELECT reRepSeq FROM commentBoard WHERE commentNoSeq = 1) + 1
+);
+
+--1번째 댓글의 1번째 대댓글
+INSERT INTO commentBoard
+VALUES(
+	commentNoSeq.NEXTVAL, 1, 'test', '1번째 대댓글 테스트입니다.', SYSDATE, 2, 1, 1
+);
+
+--1번째 댓글의 2번째 대댓글
+INSERT INTO commentBoard
+VALUES(
+	commentNoSeq.NEXTVAL, 1, 'test', '1번째 대댓글 테스트입니다.', SYSDATE, 2, 1, 2
+);
+--2번째 댓글의 대댓글
+INSERT INTO commentBoard
+VALUES(
+	commentNoSeq.NEXTVAL, 1, 'test', '1번째 대댓글 테스트입니다.', SYSDATE, 2, 2, 1
+);
 ---------------------팔로우-----------------------------
 --------------------좋아요------------------------------
 --------------------해시태그----------------------------

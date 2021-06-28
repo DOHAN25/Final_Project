@@ -11,7 +11,7 @@
 <body>
 	<h1>당근마켓 상품 리스트</h1>
 
-	<a href="insertproduct.do">상품등록</a>
+	<a href="productinsert.do">상품등록</a>
 	
 	<table border="1">
 	<col width="200">
@@ -39,7 +39,7 @@
 					<tr>
 						<td>${dto.productRegDate }</td>
 						<td>${dto.userId }</td>
-						<td>${dto.productName }</td>
+						<td><a href="productdetail.do?productSeq=${dto.productSeq }">${dto.productName }</a></td>
 						<td>${dto.productPrice }</td>
 						<td>${dto.sellerAddress }</td>
 					</tr>
@@ -47,7 +47,7 @@
 			</c:otherwise>
 		</c:choose>
 		<tr>
-			<td colspan="4" align="right"><input type="button" value="글작성" onclick="location.href='insertproduct.do'"></td>
+			<td colspan="4" align="right"><input type="button" value="글작성" onclick="location.href='productinsert.do'"></td>
 		</tr>
 	</table>
 
