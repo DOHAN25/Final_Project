@@ -23,7 +23,7 @@
 		</tr>
 		<tr>
 			<td>이미지</td>
-			<td><img src="${dto.boardImg }"></td>
+			<td></td>
 		</tr>
 		<tr>
 			<td>썸네일 이미지</td>
@@ -42,17 +42,12 @@
 			</td>
 		</tr>
 	</table>
-	 <img src="${pageContext.request.contextPath}${dto.boardThumbImg }" />
 	<img src="<c:url value ='C:\Git\Final_Project\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\Final_Project04\resources${dto.boardThumbImg }' />">
-	<img src="C:\Git\Final_Project\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\Final_Project04\resources${dto.boardThumbImg }">
-	<script>
-		//첨부파일 출력
-		function printFiles(data) {
-			//파일 정보 처리 
-			var fileInfo = getFileInfo(data);
-			
-		}
-	</script>
+	<img src="C:\Git\Final_Project\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\Final_Project04\resources${dto.boardImg }">
+
+	
+
+
 	
 	
 
