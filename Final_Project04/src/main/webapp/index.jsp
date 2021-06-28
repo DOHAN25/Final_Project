@@ -20,6 +20,8 @@
 	<a href="header.do">보옥 헤더</a>
 	<br/>
 	<a href="loginform.do">로그인</a>
+	<br/>
+	<a href="marketplace.do">중고시장</a>
 	
 <c:if test="${login != null}">
 

@@ -1,11 +1,14 @@
 package com.phoenix.carrot.product.dto;
 
+import java.util.Date;
+
 public class ProductDto {
 	
 	private int productSeq;
 	private String productName;
 	private int productPrice;
 	private String sellerAddress;
+	private Date productRegDate;
 	private String productInfo;
 	private String productImg; 
 	private String productThumb;
@@ -19,14 +22,15 @@ public class ProductDto {
 
 	}
 
-	public ProductDto(int productSeq, String productName, int productPrice, String sellerAddress, String productInfo,
-			String productImg, String productThumb, String userRole, int userSeq, String userId, String userLatitude,
-			String userLongitude) {
+	public ProductDto(int productSeq, String productName, int productPrice, String sellerAddress, Date productRegDate,
+			String productInfo, String productImg, String productThumb, String userRole, int userSeq, String userId,
+			String userLatitude, String userLongitude) {
 
 		this.productSeq = productSeq;
 		this.productName = productName;
 		this.productPrice = productPrice;
 		this.sellerAddress = sellerAddress;
+		this.productRegDate = productRegDate;
 		this.productInfo = productInfo;
 		this.productImg = productImg;
 		this.productThumb = productThumb;
@@ -67,6 +71,14 @@ public class ProductDto {
 
 	public void setSellerAddress(String sellerAddress) {
 		this.sellerAddress = sellerAddress;
+	}
+
+	public Date getProductRegDate() {
+		return productRegDate;
+	}
+
+	public void setProductRegDate(Date productRegDate) {
+		this.productRegDate = productRegDate;
 	}
 
 	public String getProductInfo() {
@@ -137,6 +149,4 @@ public class ProductDto {
 	
 	
 	
-	
-
 }

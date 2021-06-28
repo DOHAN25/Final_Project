@@ -14,5 +14,6 @@
 		<mapper resource="/mybatis/snsboard-mapper.xml"/>
 		<mapper resource="/mybatis/user-mapper.xml"/>
 		<mapper resource="/mybatis/admproduct-mapper.xml"/>
+		<mapper resource="/mybatis/userproduct-mapper.xml"/>
 	</mappers>
 </configuration>
