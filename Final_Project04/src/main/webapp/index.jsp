@@ -25,7 +25,7 @@
 	
 <c:if test="${login != null}">
 
-	<div>${login.userId}님 환영합니다.</div>
+	<div>${login.userid}님 환영합니다.</div>
 
 </c:if>
 </body>
