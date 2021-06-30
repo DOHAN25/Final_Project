@@ -22,6 +22,8 @@
 	<a href="loginform.do">로그인</a>
 	<br/>
 	<a href="marketplace.do">중고시장</a>
+	<br/>
+	<a href="noticeboardlist.do">공지사항</a>
 	
 <c:if test="${login != null}">
 

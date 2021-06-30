@@ -8,6 +8,8 @@
 		<typeAlias type="com.phoenix.carrot.user.dto.UserDto" alias="userDto"/>
 		<typeAlias type="com.phoenix.carrot.product.dto.ProductDto" alias="productDto"/>
 		<typeAlias type="com.phoenix.carrot.dto.sns.CommentDto" alias="commentDto"/>
+		<typeAlias type="com.phoenix.carrot.notice.dto.NoticeDto" alias="NoticeDto"/>
+		
 	</typeAliases>
 	
 	<mappers>
@@ -17,5 +19,6 @@
 		<mapper resource="/mybatis/admproduct-mapper.xml"/>
 		<mapper resource="/mybatis/userproduct-mapper.xml"/>
 		<mapper resource="/mybatis/comment-mapper.xml"/>
+		<mapper resource="/mybatis/noticeboard-mapper.xml"/>
 	</mappers>
 </configuration>
