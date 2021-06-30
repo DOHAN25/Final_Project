@@ -6,7 +6,9 @@ public class UserDto {
 	private String password;
 	private String useremail;
 	private String userphone;
-	private String useraddress;
+	private String useroaddress; // 快祈锅龋
+	private String useraddress;  // 林家
+	private String userdetailaddress; // 惑技林家
 	private String userrole;
 	private String username;
 	private String userbirthday;
@@ -16,7 +18,7 @@ public class UserDto {
 	
 	}
 	
-		public UserDto(int userseq, String userid, String password, String useremail, String userphone, String useraddress,
+		public UserDto(int userseq, String userid, String password, String useremail, String userphone, String useroaddress, String useraddress, String userdetailaddress,
 			String userrole, String username, String userbirthday) {
 		super();
 		this.userseq = userseq;
@@ -24,7 +26,9 @@ public class UserDto {
 		this.password = password;
 		this.useremail = useremail;
 		this.userphone = userphone;
+		this.useroaddress = useroaddress;
 		this.useraddress = useraddress;
+		this.userdetailaddress = userdetailaddress;
 		this.userrole = userrole;
 		this.username = username;
 		this.userbirthday = userbirthday;
@@ -61,6 +65,18 @@ public class UserDto {
 	}
 	public String getUseraddress() {
 		return useraddress;
+	}
+	public String getUseroaddress() {
+		return useroaddress;
+	}
+	public void setUseroaddress(String useroaddress) {
+		this.useroaddress = useroaddress;
+	}
+	public String getUserdetailaddress() {
+		return userdetailaddress;
+	}
+	public void setUserdetailaddress(String userdetailaddress) {
+		this.userdetailaddress = userdetailaddress;
 	}
 	public void setUseraddress(String useraddress) {
 		this.useraddress = useraddress;
