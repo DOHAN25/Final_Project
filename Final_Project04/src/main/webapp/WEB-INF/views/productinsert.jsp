@@ -5,8 +5,15 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<!-- 썸머노트 경로 -->
+  <script src="${pageContext.request.contextPath}/resources/js/summernote/summernote-lite.js"></script>
+  <script src="${pageContext.request.contextPath}/resources/js/summernote/lang/summernote-ko-KR.js"></script>
+  <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/summernote/summernote-lite.css">
 
-	<script>
+
+	<script type="text/javascript">
+	//주소팝업
 		function goPopup() {
 			//주소 검색을 수행할 팝업 페이지를 호출
 			//호출된 페이지 (jusopopup.jsp) 에서 실제 주소검색 URL(https://www.juso.go.kr/addrlink/addrLinkUrl.do)를 호출하게 됩니다.
@@ -18,6 +25,48 @@
 	           document.getElementById("sellerAddress").value = roadFullAddr; 
 	           self.close();
 		}
+			
+		//써머노트 웹 에디터 로딩
+		$(document).ready(function(){
+			var toolbar = [
+			    // 글꼴 설정
+			    ['fontname', ['fontname']],
+			    // 글자 크기 설정
+			    ['fontsize', ['fontsize']],
+			    // 굵기, 기울임꼴, 밑줄,취소 선, 서식지우기
+			    ['style', ['bold', 'italic', 'underline','strikethrough', 'clear']],
+			    // 글자색
+			    ['color', ['forecolor','color']],
+			    // 표만들기
+			    ['table', ['table']],
+			    // 글머리 기호, 번호매기기, 문단정렬
+			    ['para', ['ul', 'ol', 'paragraph']],
+			    // 줄간격
+			    ['height', ['height']],
+			    // 그림첨부, 링크만들기, 동영상첨부
+			    ['insert',['picture','link','video']],
+			    // 코드보기, 확대해서보기, 도움말
+			    ['view', ['codeview','fullscreen', 'help']]
+			  ];
+
+		var setting = {
+	            height : 300,
+	            minHeight : null,
+	            maxHeight : null,
+	            focus : true,
+	            lang : 'ko-KR',
+	            toolbar : toolbar,
+	            callbacks : { //여기 부분이 이미지를 첨부하는 부분
+	            onImageUpload : function(files, editor, welEditable) {
+					sendFile(files[0], this);
+	            	}
+	            }
+	         };
+
+	        $('#summernote').summernote(setting);
+	        
+		});
+				
 	</script>
 </head>
 <body>
@@ -46,8 +95,13 @@
 				<td>경도</td><td><input type="text" name="userLongitude"></td>
 			</tr>
 			<tr>
+				<!-- div에 에디터를 사용하는경우 -->
+				<!-- <div id="summernote">Hello Summernote</div> --> 
+				<!-- summernote : form 안에 에디터를 사용하는 경우 -->
 				<td>상품정보</td>
-				<td><input type="text" name="productInfo"></td>
+				<td>
+					<textarea id="summernote" name="productInfo"></textarea>
+				</td>
 			</tr>
 			<tr>
 				<td colspan="2" align="right">
