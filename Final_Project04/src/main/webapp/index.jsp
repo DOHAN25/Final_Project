@@ -10,8 +10,6 @@
 <body>
 <%@include file ="/WEB-INF/views/header.jsp" %>
 
-
-
 	<a href="home.do">home...</a>
 	<br/>
 	<a href="main.do">대진이메인</a>
@@ -20,7 +18,6 @@
 	<br/>
 	<a href="weather.do">태린 날씨</a>
 	<br/>
-<<<<<<< HEAD
 	<a href="header.do">보옥 헤더</a>
 	<br/>
 	<a href="loginform.do">로그인</a>
@@ -33,17 +30,6 @@
 	<br/>
 	<a href="adminproduct.jsp">씨앗, 도구 판매</a>
 
-
-	
-<c:if test="${login != null}">
-
-	<div>${login.userid}님 환영합니다.</div>
-=======
-
-
-	<a href="noticeboardlist.do">공지사항</a>
-	<br/>
->>>>>>> main
 
 <%@include file ="/WEB-INF/views/footer.jsp" %>
 </body>
