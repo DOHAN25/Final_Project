@@ -7,6 +7,32 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<script type="text/javascript">
+	//로그인 한 상태에서 하트를 클릭했을 때 (로그인한 상태인 하트의 <a></a> class명: heart-click)
+	$(".heart-click").click(function(){
+		
+		//게시물 번호(entireBoardSeq)를 idx로 전달 받아 저장
+		let entireBoardSeq = $(this).attr('idx');
+		console.log("heart-click");
+		
+		//빈하트를 눌렀을때 
+		if($(this).children('svg').attr('class') == "bi bi-suit-heart"){
+			console.log("빈하트 클릭" + entireBoardSeq);
+			
+			$.ajax({
+				url : 'saveHeart.do',
+				type : 'get',
+				data : {
+					entireBoardSeq : entireBoardSeq
+				},
+				success : function(entireBoardSeq) {
+					
+				}
+			})
+		}
+	});
+</script>
 </head>
 <body>
 
