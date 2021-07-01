@@ -286,20 +286,17 @@ function kakaoLogin() {
 									class="btn btn-link">아이디 찾기</button></a> <a href="findpwform.do"><button
 									type="button" class="btn btn-link">비밀번호 찾기</button></a> <br>
 							<br>
+							<div class="loginform" style="align-content: center;">
 							<a href="javascript:kakaoLogin();"><img
 								src="resources/image/kakaolog.png" alt="Kakao image"
-								style="height:80%; width:80%; margin-right: 10px;"></a> <br>
+								style="height:inherit; width:inherit; margin-right: 10px;"></a> <br>
 							<form class="form-horizontal" action="naverlogin.do">
 								<a href="${naverUrl }"><img
 									src="resources/image/naverlog.png" alt="Naver image"
-									style="height:80%; width:80%; margin-right: 10px;"></a>
-							</form>
-							<form class="form-horizontal" action="#">
-								<a href="${naverUrl }"><img
-									src="resources/image/googlelog.png" alt="Google image"
-									style="height:80%; width:81%; margin-right: 10px;"></a>
+									style="height:35%; width:30%; margin-right: 10px;"></a>
 							</form>
 							<div id="googleBtn" class="g-signin2" data-onsuccess="onSignIn"></div>
+							</div>
 						</div>
 
 					</div>

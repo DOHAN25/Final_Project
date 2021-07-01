@@ -1,3 +1,5 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -39,7 +41,7 @@
                       <span class="icon-bar"></span>
                       <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="#"><img src="img/logo.jpg" alt=""  ></a>
+                    <a class="navbar-brand" href="#"><img src="resources/image/logo-banner.png" alt="logo"  ></a>
                   </div>
               
                   <!-- Collect the nav links, forms, and other content for toggling -->
