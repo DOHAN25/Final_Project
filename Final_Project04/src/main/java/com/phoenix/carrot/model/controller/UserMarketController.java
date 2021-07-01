@@ -1,6 +1,6 @@
 package com.phoenix.carrot.model.controller;
 
-<<<<<<< HEAD
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -8,9 +8,7 @@ import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
-=======
-<<<<<<< HEAD
->>>>>>> 78b0528cee0bb51592cfebace60a9260c6cbfcd7
+
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
@@ -20,9 +18,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletRequestWrapper;
 
 import org.apache.commons.io.FileUtils;
-<<<<<<< HEAD
-=======
-=======
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -30,8 +26,7 @@ import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
->>>>>>> b8200372a43a328406dca01a592b483e967168a0
->>>>>>> 78b0528cee0bb51592cfebace60a9260c6cbfcd7
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,22 +34,17 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-<<<<<<< HEAD
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
-=======
-<<<<<<< HEAD
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
-=======
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
->>>>>>> b8200372a43a328406dca01a592b483e967168a0
->>>>>>> 78b0528cee0bb51592cfebace60a9260c6cbfcd7
+
 
 import com.google.gson.JsonObject;
 import com.phoenix.carrot.product.biz.UserProductBiz;
