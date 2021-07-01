@@ -19,7 +19,7 @@
 		SELECT *
 		FROM entireBoard
 		WHERE boardKind = 1
-		ORDER BY boardDate ASC
+		ORDER BY boardDate DESC
 	</select>
 	
 	<insert id="snsBoardInsert" parameterType="entireBoardDto">
@@ -43,5 +43,13 @@
 		DELETE FROM entireBoard
 		WHERE entireBoardSeq = #{entireBoardSeq}
 	</delete>
+	
+	<!-- 유저개인피드보기 -->
+	<select id="snsBoardUserFeed" resultType="entireBoardDto">
+		SELECT *
+		FROM entireBoard
+		WHERE boardKind = 1 AND userSeq = #{userSeq}
+		ORDER BY boardDate DESC
+	</select>
 
 </mapper>

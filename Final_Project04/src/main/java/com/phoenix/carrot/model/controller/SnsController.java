@@ -51,6 +51,12 @@ public class SnsController {
 		return "main";
 	}
 	
+	@RequestMapping("snsBoardUserFeed.do")
+	public String snsUserFeed(Model model) {
+		logger.info("[Controller] : snsBoardUserFeed.do");
+		return "snsuserfeed";
+	}
+	
 	@RequestMapping("/snsBoardInsertForm.do")
 	public String snsBoardInsertForm() {
 		
@@ -160,6 +166,7 @@ public class SnsController {
 		EntireBoardDto dto = likeDao.pictureRemoveHeart(likeDto);
 		return dto;
 	}
+	
 	
 }
 

@@ -53,5 +53,12 @@ public class SnsBoardBizImpl implements SnsBoardBiz {
 	
         dao.snsBoardDelete(entireBoardSeq);
 	}
+	
+	//유저개인피드
+	@Override
+	public List<EntireBoardDto> snsUserFeedList() {
+		// TODO Auto-generated method stub
+		return dao.snsUserFeedList();
+	}
 
 }

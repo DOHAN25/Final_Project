@@ -11,5 +11,8 @@ public interface SnsBoardBiz {
 	public int snsBoardInsert(EntireBoardDto dto) throws Exception;
 	public int snsBoardUpdate(EntireBoardDto dto);
 	public void snsBoardDelete(int entireBoardSeq) throws Exception;
+	
+	//유저개인피드
+	public List<EntireBoardDto> snsUserFeedList();
 
 }

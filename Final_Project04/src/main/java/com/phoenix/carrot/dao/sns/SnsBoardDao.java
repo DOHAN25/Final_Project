@@ -13,5 +13,8 @@ public interface SnsBoardDao {
 	public int snsBoardInsert(EntireBoardDto dto);
 	public int snsBoardUpdate(EntireBoardDto dto);
 	public int snsBoardDelete(int entireBoardSeq);
+	
+	//유저 개인피드
+	public List<EntireBoardDto> snsUserFeedList();
 
 }
