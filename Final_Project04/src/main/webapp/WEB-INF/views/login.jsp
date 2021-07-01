@@ -80,14 +80,13 @@ function login() {
 		$.ajax({
 			type : "post",
 			url : "ajaxlogin.do",
-			data : JSON.stringify(loginVal), // ajax로 보내준다. 자바에는 JSON이라는 타입이 없다. 
-			// 그런데 requestbody가 넘어가는 json형태의 값을 자바 오브젝트 형태로 바꿔준다
-			contentType : "application/json", // 이거 없으면 415 에러뜬다. unsupported media type : 넘어오는 값이 잘못되었다.
-			// 원래 String 타입으로 넘어가는데 contentType을 쓰면 json 타입이라고 알려주는 것. requestBody랑 세트라고 생각해도 무방하다.
+			data : JSON.stringify(loginVal), 
+			contentType : "application/json",
 			dataType : "json",
 			success : function(msg) {
 				if (msg.check == true) {
 					alert("반갑습니다.");
+					location.href="index.jsp";
 				} else {
 					$("#loginChk").show();
 					$("#loginChk").html("ID 혹은 PW가 잘못되었습니다.");
@@ -215,10 +214,12 @@ function kakaoLogin() {
 	        				location.href="index.jsp";
 	        			} else {
 	        				alert("로그인에 실패하였습니다.");
+	        				return false;
 	        			}
 	        		},
 	        		error : function() {
 	        			alert("통신 실패");
+	        			return false;
 	        		}
 	        	  });
 	        	 }
