@@ -11,7 +11,11 @@
 <!-- 부트스트랩 css 사용 -->
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
-
+<!-- 부가적인 테마 -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+    <!-- 합쳐지고 최소화된 최신 자바스크립트 -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+    
 <!-- daum 도로명주소 찾기 api -->
 <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
 
@@ -29,6 +33,10 @@ td {
 
 
 <script type="text/javascript"> 
+
+
+
+	
 //모든 공백 체크 정규식 
 var empJ = /\s/g; 
 //아이디 정규식 
@@ -336,15 +344,104 @@ $(document).ready(function() {
 	</script>
 </head>
 <body>
-	<article class="container">
+		<!-- 페이지 상단  -->
+		<div class="container" style="width: 100%;">
+			<div class="row" >
+		            <div class="col-md-12" >
+		                <nav class="navbar navbar-default navbar-fixed-top">
+		                    <div class="container-fluid">
+		                      <!-- Brand and toggle get grouped for better mobile display -->
+		                      <div class="navbar-header">
+		                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+		                          <span class="sr-only">Toggle navigation</span>
+		                          <span class="icon-bar"></span>
+		                          <span class="icon-bar"></span>
+		                          <span class="icon-bar"></span>
+		                        </button>
+		                        <a class="navbar-brand" href="#" style="margin:0px 0px 0px 0px; padding:0px 0px 0px 0px"><img src="resources/image/당근팜_로고_2.png" alt="logo" style="width: 100px; height:50px; "></a>
+		                      </div>
+		                  
+		                      <!-- Collect the nav links, forms, and other content for toggling -->
+		                      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+		                       
+		                        <ul class="nav navbar-nav navbar-right">
+		                            <li><a href="#"title="로그인 페이지 이동"><span class="glyphicon glyphicon-log-in" aria-hidden="true"></span></span></a></li>
+		                            <li><a href="#" title="메인 페이지 이동"><span class="glyphicon glyphicon-home" aria-hidden="true"></span></a></li>
+		                        </ul>
+		                      </div><!-- /.navbar-collapse -->
+		                    </div><!-- /.container-fluid -->
+		                  </nav>
+		            </div>
+		        </div>
+	       	</div>
+        
+        <article class="container">
 		<div class="page-header">
 			<div class="col-md-6 col-md-offset-3">
 				<h3>회원가입</h3>
 			</div>
 		</div>
 		<div class="col-sm-6 col-md-offset-3">
+<<<<<<< HEAD
+			<form action="registPost.do" method="post" role="form"
+				id="usercheck" name="member">
+				<div class="form-group ">
+					<h5 style="margin:0px 0px"><b>이용약관 동의</b>
+					<!-- Button trigger modal -->
+					<button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#myModal">
+					 	<span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+					</button>
+					
+					<!-- Modal -->
+					<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+					  <div class="modal-dialog">
+					    <div class="modal-content">
+					      <div class="modal-header">
+					        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+					        <h3 class="modal-title" id="myModalLabel">약관 동의</h3>
+					        
+					      </div>
+					      <div class="modal-body">
+					        <h4>당근팜 이용약관 동의(필수)</h4>
+					        <p>여러분을 환영합니다.당근팜 서비스 및 제품(이하 ‘서비스’)을 이용해 주셔서 감사합니다. 본 약관은 다양한 당근팜 서비스의 이용과 관련하여 당근팜 서비스를 제공하는 당근팜 주식회사(이하 ‘당근팜’)와 이를 이용하는 당근팜 서비스 회원(이하 ‘회원’) 또는 비회원과의 관계를 설명하며, 아울러 여러분의 당근팜 서비스 이용에 도움이 될 수 있는 유익한 정보를 포함하고 있습니다.</p>
+					        <hr>
+					        <h4>개인정보 수집 및 이용 동의(필수)</h4>
+					        <p>개인정보보호법에 따라 당근팜에 회원가입 신청하시는 분께 수집하는 개인정보의 항목, 개인정보의 수집 및 이용목적, 개인정보의 보유 및 이용기간, 동의 거부권 및 동의 거부 시 불이익에 관한 사항을 안내 드리오니 자세히 읽은 후 동의하여 주시기 바랍니다.</p>
+					        <hr>
+					        <h4>위치정보 이용약관 동의(선택)</h4>
+					        <p>위치정보 이용약관에 동의하시면, 위치를 활용한 광고 정보 수신 등을 포함하는 당근팜 위치기반 서비스를 이용할 수 있습니다.</p>
+					        <hr>
+					        <h4>프로모션 정보 수신 동의(선택)</h4>
+					        <p>당근팜에서 제공하는 이벤트/혜택 등 다양한 정보를 휴대전화, 이메일로 받아보실 수 있습니다. 일부 서비스(별도 회원 체계로 운영하거나 당근팜 가입 이후 추가 가입하여 이용하는 서비스 등)의 경우, 개별 서비스에 대해 별도 수신 동의를 받을 수 있으며, 이때에도 수신 동의에 대해 별도로 안내하고 동의를 받습니다.</p>
+					        
+					      </div>
+					      <div class="modal-footer">
+					        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+					        <button type="button" class="btn btn-primary">Save changes</button>
+					      </div>
+					    </div>
+					  </div>
+					</div>
+					</h5>
+					
+					<label class="checkbox-inline" >
+					  <input type="checkbox" id="inlineCheckbox1" value="option1" style="margin:40 0 0 0"> 당근팜 이용 약관 동의(필수)
+					  	
+					</label>
+					<label class="checkbox-inline" >
+					  <input type="checkbox" id="inlineCheckbox2" value="option2"> 개인정보 수집 및 이용 동의(필수)
+					</label>
+					<label class="checkbox-inline" style="margin:0px 0px 0px 0px">
+					  <input type="checkbox" id="inlineCheckbox3" value="option3"> 위치정보 이용약관 동의(선택)
+					</label>
+					<label class="checkbox-inline" style="margin:0px 0px 0px 0px">
+					  <input type="checkbox" id="inlineCheckbox3" value="option3"> 프로모션 정보 수신 동의(선택)
+					</label>
+				</div>
+=======
 			<form action="registPost.do" method="post" role="form" id="usercheck"
 				name="member">
+>>>>>>> a7c5596a0879ee88c291ad53bf4c5ccaff3b349d
 				<div class="form-group">
 					<label for="id">아이디</label> <input type="text" class="form-control"
 						id="userid" name="userid" placeholder="ID">
@@ -405,11 +502,12 @@ $(document).ready(function() {
 						name="userdetailaddress" id="userdetailaddress" type="text" />
 				</div>
 				<div class="g-recaptcha" id="recaptcha"
-					data-sitekey="6LfJBFIbAAAAAPyFCgWwMz3xEFvaBdABdZtEdjMD">
+					data-sitekey="6LfJBFIbAAAAAPyFCgWwMz3xEFvaBdABdZtEdjMD" style="padding:0px 0px 0px 100px" >
 				</div>
 				<div class="form-group text-center">
 					<button type="submit" class="btn btn-primary">회원가입</button>
 				</div>
+				
 			</form>
 		</div>
 	</article>
