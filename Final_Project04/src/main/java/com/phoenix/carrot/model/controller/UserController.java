@@ -64,7 +64,6 @@ public class UserController {
 		logger.info("[Controller] loginform.do");
 		logger.info("[Controller] : naverlogin.do");
 		logger.info("[Controller] : googlelogin.do");
-		// ���̹����̵�� ���� URL�� �����ϱ� ���Ͽ� naverLoginBOŬ������ getAuthorizationURL �޼ҵ� ȣ��
 		String naverAuthUrl = naverLoginBO.getAuthorizationUrl(session);
 
 		System.out.println("���̹� : " + naverAuthUrl);
@@ -80,14 +79,17 @@ public class UserController {
 	@ResponseBody
 	public Map<String, Boolean> ajaxLogin(HttpSession session, @RequestBody UserDto dto) {
 		logger.info("[Controller] : ajaxlogin.do");
-		
+		System.out.println(dto);
 		
 		UserDto res = biz.login(dto);
-
+		
+		System.out.println(res);
+		
 		boolean check = false;
+		
 		if(res != null) {
-			//matches : �Ѿ�� ���� ����Ǿ��ִ� ���� ��
 			if(passwordEncoder.matches(dto.getPassword(), res.getPassword())) {
+				logger.info("[Controller] : password correct!!");
 				session.setAttribute("login", res);
 				check = true;
 			} else {
@@ -246,8 +248,10 @@ public class UserController {
 	@ResponseBody
 	public Map<String, String> googleLogin(HttpSession session, @RequestBody UserDto dto) {
 		logger.info("[Controller] : googlelogin.do");
-		String username = null;
+		
 		UserDto res = biz.login(dto);
+		
+		String username = "";
 		dto.setPassword("null");
 		dto.setUseraddress("null");
 		dto.setUserbirthday("null");
@@ -284,7 +288,7 @@ public class UserController {
 	@ResponseBody
 	public Map<String, String> kakaoLogincallback(HttpSession session, @RequestBody UserDto dto) {
 		logger.info("[Controller] : kakaologincallback.do");
-
+		
 		UserDto res = biz.login(dto);
 		String username = null;
 		dto.setPassword("null");
