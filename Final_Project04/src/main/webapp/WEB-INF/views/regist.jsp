@@ -20,7 +20,7 @@
 <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
 
 <!-- 리캡차 api -->
-<script src="https://www.google.com/recaptcha/api.js"></script>
+<script src="https://www.google.com/recaptcha/api.js" async defer></script>
 
 <style type="text/css">
 td {
@@ -52,43 +52,9 @@ var phoneJ = /^01([0|1|6|7|8|9]?)?([0-9]{3,4})?([0-9]{4})$/; /^[가-힣]{2,4}|[a
 var birthJ = false; 
 var address = $('#userdetailaddress'); 
 $(document).ready(function() { 
+	
+
 	var address = $('#userdetailaddress'); 
-	
-	$("#recaptcha-anchor").click(function(){
-		var captcha = 1;
-		
-		$.ajax({
-            url: 'VerifyRecaptcha.do',
-            type: 'post',
-            data: {
-                recaptcha: $("#g-recaptcha-response").val()
-            },
-            success: function(data) {
-                switch (data) {
-                    case 0:
-                        console.log("자동 가입 방지 봇 통과");
-                        captcha = 0;
-                		break;
-                    case 1:
-                        alert("자동 가입 방지 봇을 확인 한뒤 진행 해 주세요.");
-           				captcha = 1;
-                        break;
-                    default:
-                        alert("자동 가입 방지 봇을 실행 하던 중 오류가 발생 했습니다. [Error bot Code : " + Number(data) + "]");
-                    	captcha = 1;
-                   		break;
-                }
-            }
-        });
-		
-		  if(captcha != 0) { 
-            	return false;
-            } else {
-            	return captcha;
-            }
-		});
-	
-	
 	
 	//아이디 중복확인 
 	$("#userid").blur(function() { 
@@ -135,7 +101,9 @@ $(document).ready(function() {
 				}//else if
 		});//blur 
 		
-		$('form').on('submit',function(){ 
+		$('form').on('submit',function(){
+			
+			// 유효성 검사 배열 생성
 			var inval_Arr = new Array(7).fill(false);
 			if (idJ.test($('#userid').val())) {
 				inval_Arr[0] = true; 
@@ -196,6 +164,7 @@ $(document).ready(function() {
 			} else {
 				inval_Arr[6] = true;
 			}
+			
 			//전체 유효성 검사 
 			var validAll = true;
 			for(var i = 0; i < inval_Arr.length; i++){ 
@@ -203,14 +172,20 @@ $(document).ready(function() {
 					validAll = false;
 				}
 			} 
-			if(validAll == true){ 
+			
+			if(validAll == true && grecaptcha.getResponse()!=""){ 
 				// 유효성 모두 통과
-				alert('당근팜 회원이 되어 주셔서 감사합니다.'); 
-				location.href="login.do"
-			} else{ 
-				alert('정보를 다시 확인하세요.')
-			} 
-		}); 
+				alert('당근팜 회원이 되어 주셔서 감사합니다. 아이디로 로그인 해주세요'); 
+				location.href="login.jsp";
+			} else if(grecaptcha.getResponse() == null) { 
+				alert('로봇인지 아닌지 확인해 주세요.');
+				return false;
+			} else {
+				alert("입력한 정보를 확인해 주세요.");
+				return false;
+			}
+		});
+			
 		
 		$('#userid').blur(function() {
 			if (idJ.test($('#userid').val())) { 
@@ -262,7 +237,7 @@ $(document).ready(function() {
 				$('#email_check').css('color', 'red'); 
 				} 
 			}); 
-		
+			
 		// 생일 유효성 검사 
 		var birthJ = false;
 		 
@@ -323,6 +298,7 @@ $(document).ready(function() {
 				$('#phone_check').css('color', 'red'); 
 			} 
 		}); 
+			
 	}); 
 	
 	//우편번호 찾기 버튼 클릭시 발생 이벤트
@@ -406,6 +382,7 @@ $(document).ready(function() {
 			</div>
 		</div>
 		<div class="col-sm-6 col-md-offset-3">
+<<<<<<< HEAD
 			<form action="registPost.do" method="post" role="form"
 				id="usercheck" name="member">
 				<div class="form-group ">
@@ -461,6 +438,10 @@ $(document).ready(function() {
 					  <input type="checkbox" id="inlineCheckbox3" value="option3"> 프로모션 정보 수신 동의(선택)
 					</label>
 				</div>
+=======
+			<form action="registPost.do" method="post" role="form" id="usercheck"
+				name="member">
+>>>>>>> a7c5596a0879ee88c291ad53bf4c5ccaff3b349d
 				<div class="form-group">
 					<label for="id">아이디</label> <input type="text" class="form-control"
 						id="userid" name="userid" placeholder="ID">
@@ -530,4 +511,4 @@ $(document).ready(function() {
 			</form>
 		</div>
 	</article>
-	</body>
+</body>

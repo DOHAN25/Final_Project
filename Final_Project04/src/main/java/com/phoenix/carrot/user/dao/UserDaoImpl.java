@@ -13,7 +13,9 @@ public class UserDaoImpl implements UserDao {
 	@Autowired
 	private SqlSessionTemplate sqlSession;
 	
-
+	
+	
+	
 	@Override
 	public UserDto login(UserDto dto) {
 		UserDto res = null;
@@ -27,6 +29,9 @@ public class UserDaoImpl implements UserDao {
 		}
 		return res;
 	}
+
+
+
 
 	@Override
 	public int regist(UserDto dto) {
@@ -43,11 +48,14 @@ public class UserDaoImpl implements UserDao {
 		return res;
 	}
 
+
+
+
 	@Override
-	public String idcheck(String userid) {
+	public UserDto idcheck(String userid) {
 		// TODO Auto-generated method stub
 		
-		String res = null;
+		UserDto res = null;
 		
 		try {
 			res = sqlSession.selectOne(NAMESPACE+"idcheck", userid);
@@ -57,7 +65,10 @@ public class UserDaoImpl implements UserDao {
 		}
 		return res;
 	}
-	
+
+
+
+
 	@Override
 	public String find_id(String useremail) {
 		// TODO Auto-generated method stub
@@ -72,6 +83,58 @@ public class UserDaoImpl implements UserDao {
 		}
 		
 
+		return res;
+	}
+
+
+
+
+	@Override
+	public int updatePw(UserDto dto) {
+		int res = 0;
+		
+		try {
+			res = sqlSession.update(NAMESPACE+"updatePw", dto);
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
+		
+		return res;
+	}
+
+
+
+
+	@Override
+	public UserDto selectOneById(String userid) {
+		// TODO Auto-generated method stub
+		
+		UserDto res = null;
+		
+		
+		try {
+			res = sqlSession.selectOne(NAMESPACE+"selectOneById", userid);
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
+		return res;
+	}
+
+	@Override
+	public UserDto selectOneByEmail(String useremail) {
+		// TODO Auto-generated method stub
+		
+		UserDto res = null;
+		
+		try {
+			res = sqlSession.selectOne(NAMESPACE+"selectOneByEmail", useremail);
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
+		
 		return res;
 	}
 

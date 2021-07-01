@@ -11,7 +11,12 @@
 <body>
 	<h1>당근마켓 상품 리스트</h1>
 
-	<a href="productinsert.do">상품등록</a>
+	<a href="userproductinsert.do">상품등록</a>
+	<br>
+	<select id="">
+		<option value="">지역</option>
+		<option value="">상품명</option>
+	</select>
 	
 	<table border="1">
 	<col width="200">
@@ -39,7 +44,7 @@
 					<tr>
 						<td>${dto.productRegDate }</td>
 						<td>${dto.userId }</td>
-						<td><a href="productdetail.do?productSeq=${dto.productSeq }">${dto.productName }</a></td>
+						<td><a href="userproductdetail.do?productSeq=${dto.productSeq }">${dto.productName }</a></td>
 						<td>${dto.productPrice }</td>
 						<td>${dto.sellerAddress }</td>
 					</tr>
