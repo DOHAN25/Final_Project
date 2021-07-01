@@ -73,7 +73,6 @@ public class UserController {
 
 		return "login";
 	}
-	
 
 	@RequestMapping(value="/ajaxlogin.do", method=RequestMethod.POST)
 	@ResponseBody
@@ -90,7 +89,9 @@ public class UserController {
 		if(res != null) {
 			if(passwordEncoder.matches(dto.getPassword(), res.getPassword())) {
 				logger.info("[Controller] : password correct!!");
+				
 				session.setAttribute("login", res);
+				
 				check = true;
 			} else {
 				logger.info("[Controller] : password failed");
