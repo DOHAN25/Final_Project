@@ -3,7 +3,7 @@
 <mapper namespace="usermapper">
   
   <select id="login" parameterType="userDto" resultType="userDto">
-  	SELECT USERSEQ, USERID, USERNAME, USEREMAIL, USERADDRESS
+  	SELECT USERSEQ, USERID, USERNAME, USEREMAIL, USERADDRESS, USERROLE
   	FROM USERS 
   	WHERE USERID = #{userid}
   </select>
