@@ -19,6 +19,9 @@ public interface UserProductBiz {
 	public int userProductDelete(int productSeq);
 	
 	// 주소로 상품 검색
-	public List<ProductDto> selectByaddr(String addr);
+	public List<ProductDto> selectByaddr(String sellerAddress);
+	
+	// 상품명으로 검색
+	public List<ProductDto> selectByproName(String productName);
 
 }

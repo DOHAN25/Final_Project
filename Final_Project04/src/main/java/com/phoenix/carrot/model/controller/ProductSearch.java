@@ -14,6 +14,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.phoenix.carrot.product.biz.UserProductBiz;
@@ -32,13 +33,23 @@ public class ProductSearch {
 	@RequestMapping(value="/searchProduct.do", method=RequestMethod.POST)
 	@ResponseBody
 	public Map<String, Object> searchProduct(HttpSession session,@RequestBody ProductDto dto) {
+		System.out.println("값 넘어왔어요");
+		System.out.println(dto.getSellerAddress());
+		System.out.println(dto.getProductName());
 		
+		String sellerAddress = dto.getSellerAddress();
+		String productName = dto.getProductName();
 		List<ProductDto> list = new ArrayList<ProductDto>();
 		
 		Map<String, Object> result = new HashMap<String, Object>();
 		
-		if(dto.getSellerAddress() != "" || dto.getSellerAddress() != null) {
-			list = biz.selectByaddr(dto.getSellerAddress());
+		if(sellerAddress != null) {
+			list = biz.selectByaddr(sellerAddress);
+			if(list != null) {
+			result.put("list", list);
+			} 
+		} else if(productName != null) {
+			list = biz.selectByproName(productName);
 			result.put("list", list);
 		}
 		

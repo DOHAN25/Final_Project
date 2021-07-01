@@ -87,7 +87,7 @@ function login() {
 			dataType : "json",
 			success : function(msg) {
 				if (msg.check == true) {
-					alert("반갑습니다.")
+					alert("반갑습니다.");
 				} else {
 					$("#loginChk").show();
 					$("#loginChk").html("ID 혹은 PW가 잘못되었습니다.");

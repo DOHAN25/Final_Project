@@ -69,18 +69,35 @@ public class UserProductDaoImpl implements UserProductDao {
 	}
 
 	@Override
-	public List<ProductDto> selectByaddr(String addr) {
+	public List<ProductDto> selectByaddr(String sellerAddress) {
 		// TODO Auto-generated method stub
 		
 		List<ProductDto> productListByaddr = new ArrayList<ProductDto>();
 		
 		try {
-			productListByaddr = sqlSession.selectList(NAMESPACE+"selectByaddr", addr);
+			productListByaddr = sqlSession.selectList(NAMESPACE+"selectByaddr", sellerAddress);
 		} catch (Exception e) {
 			// TODO: handle exception
 			e.printStackTrace();
 		}
 		return productListByaddr;
 	}
+
+	@Override
+	public List<ProductDto> selectByproName(String productName) {
+		// TODO Auto-generated method stub
+		
+		List<ProductDto> productListByproName = new ArrayList<ProductDto>();
+		
+		try {
+			productListByproName = sqlSession.selectList(NAMESPACE+"selectByproName", productName);
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
+		
+		return productListByproName;
+	}
+	
 
 }
