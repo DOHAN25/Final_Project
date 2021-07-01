@@ -101,7 +101,9 @@ $(document).ready(function() {
 		$('form').on('submit',function(){
 			
 			// 유효성 검사 배열 생성
-			var inval_Arr = new Array(7).fill(false);
+			var inval_Arr = new Array(8).fill(false);
+			
+			
 			if (idJ.test($('#userid').val())) {
 				inval_Arr[0] = true; 
 			} else { 
@@ -162,6 +164,20 @@ $(document).ready(function() {
 				inval_Arr[6] = true;
 			}
 			
+			
+			// 모달 체크여부 확이하기
+			var inlineCheckbox1 = $("#inlineCheckbox1").is(":checked");
+			var inlineCheckbox2 = $("#inlineCheckbox2").is(":checked");
+			
+			if(inlineCheckbox1 === true && inlineCheckbox2 === true) {
+				inval_Arr[7] = true
+			} else {
+				inval_Arr[7] = false;
+				alert("필수 선택항목을 체크해 주세요.");
+				return false;
+			}
+			console.log(inlineCheckbox1);
+			
 			//전체 유효성 검사 
 			var validAll = true;
 			for(var i = 0; i < inval_Arr.length; i++){ 
@@ -169,6 +185,8 @@ $(document).ready(function() {
 					validAll = false;
 				}
 			} 
+			
+			
 			
 			if(validAll == true && grecaptcha.getResponse()!=""){ 
 				// 유효성 모두 통과
@@ -178,7 +196,7 @@ $(document).ready(function() {
 				alert('로봇인지 아닌지 확인해 주세요.');
 				return false;
 			} else {
-				alert("입력한 정보를 확인해 주세요.");
+				alert("입력하지 않은 정보가 있는지 확인해 주세요.");
 				return false;
 			}
 		});
