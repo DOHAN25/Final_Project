@@ -51,9 +51,15 @@ public class UserProductBizImpl implements UserProductBiz {
 	}
 
 	@Override
-	public List<ProductDto> selectByaddr(String addr) {
+	public List<ProductDto> selectByaddr(String sellerAddress) {
 		// TODO Auto-generated method stub
-		return dao.selectByaddr(addr);
+		return dao.selectByaddr(sellerAddress);
+	}
+
+	@Override
+	public List<ProductDto> selectByproName(String productName) {
+		// TODO Auto-generated method stub
+		return dao.selectByproName(productName);
 	}
 
 }

@@ -21,6 +21,9 @@ public interface UserProductDao {
 	public int userProductDelete(int productSeq);
 	
 	// 주로소 상품 검색
-	public List<ProductDto> selectByaddr(String addr);
+	public List<ProductDto> selectByaddr(String sellerAddress);
+	
+	// 상품명으로 검색
+	public List<ProductDto> selectByproName(String productName);
 
 }

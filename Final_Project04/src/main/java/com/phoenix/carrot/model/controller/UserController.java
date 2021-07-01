@@ -64,12 +64,12 @@ public class UserController {
 		logger.info("[Controller] loginform.do");
 		logger.info("[Controller] : naverlogin.do");
 		logger.info("[Controller] : googlelogin.do");
-		// ³×ÀÌ¹ö¾ÆÀÌµð·Î ÀÎÁõ URLÀ» »ý¼ºÇÏ±â À§ÇÏ¿© naverLoginBOÅ¬·¡½ºÀÇ getAuthorizationURL ¸Þ¼Òµå È£Ãâ
+		// ï¿½ï¿½ï¿½Ì¹ï¿½ï¿½ï¿½ï¿½Ìµï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ URLï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï±ï¿½ ï¿½ï¿½ï¿½Ï¿ï¿½ naverLoginBOÅ¬ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ getAuthorizationURL ï¿½Þ¼Òµï¿½ È£ï¿½ï¿½
 		String naverAuthUrl = naverLoginBO.getAuthorizationUrl(session);
 
-		System.out.println("³×ÀÌ¹ö : " + naverAuthUrl);
+		System.out.println("ï¿½ï¿½ï¿½Ì¹ï¿½ : " + naverAuthUrl);
 
-		// ³×ÀÌ¹ö
+		// ï¿½ï¿½ï¿½Ì¹ï¿½
 		model.addAttribute("naverUrl", naverAuthUrl);
 
 		return "login";
@@ -81,11 +81,12 @@ public class UserController {
 	public Map<String, Boolean> ajaxLogin(HttpSession session, @RequestBody UserDto dto) {
 		logger.info("[Controller] : ajaxlogin.do");
 		
+		
 		UserDto res = biz.login(dto);
 
 		boolean check = false;
 		if(res != null) {
-			//matches : ³Ñ¾î¿Â °ª°ú ÀúÀåµÇ¾îÀÖ´Â °ªÀ» ºñ±³
+			//matches : ï¿½Ñ¾ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ç¾ï¿½ï¿½Ö´ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½
 			if(passwordEncoder.matches(dto.getPassword(), res.getPassword())) {
 				session.setAttribute("login", res);
 				check = true;
@@ -153,14 +154,14 @@ public class UserController {
 		
 		try {
 			if(VerifyRecaptcha.verify(gRecaptchaResponse)) {
-				return 0; // ¼º°øÇßÀ»¶§
+				return 0; // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 			} else {
-				return 1; // ½ÇÆÐÇßÀ»¶§
+				return 1; // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 			}
 		} catch (Exception e) {
 			// TODO: handle exception
 			e.printStackTrace();
-			return -1; // ¿¡·¯³ª¸é -1
+			return -1; // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ -1
 		}
 	}
 	
@@ -210,20 +211,20 @@ public class UserController {
 		OAuth2AccessToken oauthToken;
 		oauthToken = naverLoginBO.getAccessToken(session, code, state);
 
-		// 1. ·Î±×ÀÎ »ç¿ëÀÚ Á¤º¸¸¦ ÀÐ¾î¿Â´Ù.
-		apiResult = naverLoginBO.getUserProfile(oauthToken); // String Çü½ÄÀÇ json µ¥ÀÌÅÍ
+		// 1. ï¿½Î±ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ð¾ï¿½Â´ï¿½.
+		apiResult = naverLoginBO.getUserProfile(oauthToken); // String ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ json ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 
 		/*
-		 * apiResult ±¸Á¶ {"resultcode":"00", "messege":"success",
+		 * apiResult ï¿½ï¿½ï¿½ï¿½ {"resultcode":"00", "messege":"success",
 		 * "reponse":{"id":"339281","nickname":"kim", "age", "gender","email","name"}} }
 		 */
 
-		// 2. String Çü½ÄÀÎ apiResult¸¦ json ÇüÅÂ·Î ¹Ù²ãÁØ´Ù.
+		// 2. String ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ apiResultï¿½ï¿½ json ï¿½ï¿½ï¿½Â·ï¿½ ï¿½Ù²ï¿½ï¿½Ø´ï¿½.
 		JSONParser parser = new JSONParser();
 		Object obj = parser.parse(apiResult);
 		JSONObject jsonObj = (JSONObject) obj;
 
-		// 3. µ¥ÀÌÅÍ ÆÄ½Ì
+		// 3. ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ä½ï¿½
 		JSONObject response_obj = (JSONObject) jsonObj.get("response");
 		String userid = (String) response_obj.get("id");
 		String useremail = (String) response_obj.get("email");
@@ -233,7 +234,7 @@ public class UserController {
 		System.out.println(useremail);
 		System.out.println(username);
 
-		// 4. ÆÄ½Ì ´Ð³×ÀÓ
+		// 4. ï¿½Ä½ï¿½ ï¿½Ð³ï¿½ï¿½ï¿½
 		session.setAttribute("login", nickname);
 
 		model.addAttribute("naverloginUser", apiResult);
@@ -256,7 +257,7 @@ public class UserController {
 		if (res == null) {
 			int regresult = biz.regist(dto);
 			if (regresult > 0) {
-				System.out.println("È¸¿ø°¡ÀÔ¼º°ø");
+				System.out.println("È¸ï¿½ï¿½ï¿½ï¿½ï¿½Ô¼ï¿½ï¿½ï¿½");
 				session.setAttribute("login", dto);
 				username = dto.getUsername();
 			}
@@ -296,11 +297,11 @@ public class UserController {
 		if(res.getUserid() == null) {
 			int regresult = biz.regist(dto);
 			if (regresult > 0) {
-				System.out.println("È¸¿ø°¡ÀÔ¼º°ø");
+				System.out.println("È¸ï¿½ï¿½ï¿½ï¿½ï¿½Ô¼ï¿½ï¿½ï¿½");
 				username = dto.getUsername();
 				session.setAttribute("login", dto);
 			} else {
-				System.out.println("È¸¿ø°¡ÀÔ½ÇÆÐ");
+				System.out.println("È¸ï¿½ï¿½ï¿½ï¿½ï¿½Ô½ï¿½ï¿½ï¿½");
 			}
 		} else {
 			username = dto.getUsername();
@@ -323,14 +324,14 @@ public class UserController {
 		if(selectOneById.getUserid() == null) {
 			i = 1;
 			
-			//msg = "°¡ÀÔµÈ ¾ÆÀÌµð°¡ ¾ø½À´Ï´Ù. ¾ÆÀÌµð¸¦ È®ÀÎÇØ ÁÖ¼¼¿ä.";
+			//msg = "ï¿½ï¿½ï¿½Ôµï¿½ ï¿½ï¿½ï¿½Ìµï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½. ï¿½ï¿½ï¿½Ìµï¿½ È®ï¿½ï¿½ï¿½ï¿½ ï¿½Ö¼ï¿½ï¿½ï¿½.";
 		} else if(selectOneByEmail.getUseremail() == null) {
 			i = 2;
 			
-			//msg = "°¡ÀÔµÈ ÀÌ¸ÞÀÏÀÌ ¾ø½À´Ï´Ù. ÀÌ¸ÞÀÏÀ» È®ÀÎÇØ ÁÖ¼¼¿ä.";
+			//msg = "ï¿½ï¿½ï¿½Ôµï¿½ ï¿½Ì¸ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½. ï¿½Ì¸ï¿½ï¿½ï¿½ï¿½ï¿½ È®ï¿½ï¿½ï¿½ï¿½ ï¿½Ö¼ï¿½ï¿½ï¿½.";
 		} else {
 			i = 3;
-			//msg = "°¡ÀÔµÈ ÀÌ¸ÞÀÏ·Î ÀÓ½Ã ºñ¹Ð¹øÈ£¸¦ Àü¼ÛÇÏ¿´½À´Ï´Ù. ¸ÞÀÏÀ» È®ÀÎÇØÁÖ¼¼¿ä.";
+			//msg = "ï¿½ï¿½ï¿½Ôµï¿½ ï¿½Ì¸ï¿½ï¿½Ï·ï¿½ ï¿½Ó½ï¿½ ï¿½ï¿½Ð¹ï¿½È£ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï¿ï¿½ï¿½ï¿½ï¿½Ï´ï¿½. ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ È®ï¿½ï¿½ï¿½ï¿½ï¿½Ö¼ï¿½ï¿½ï¿½.";
 			biz.findPw(dto);
 		}
 	

@@ -23,6 +23,15 @@
 	
 	<!-- 지역으로 물품 검색 -->
 	<select id="selectByaddr" parameterType="String" resultType="productDto">
-		SELECT * FROM Product WHERE sellerAddress LIKE '%#{addr}%' ORDER BY productRegDate DESC
+	<![CDATA[
+		SELECT * FROM Product WHERE sellerAddress LIKE '%'||#{sellerAddress}||'%' ORDER BY productRegDate DESC
+	]]>
+	</select>
+	
+	<!-- 상품명으로 검색 -->
+	<select id="selectByproName" parameterType="String" resultType="productDto">
+	<![CDATA[
+		SELECT * FROM Product WHERE productName LIKE '%'||#{productName}||'%' ORDER BY productRegDate DESC
+	]]>
 	</select>
 </mapper>
