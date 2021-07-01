@@ -215,10 +215,12 @@ function kakaoLogin() {
 	        				location.href="index.jsp";
 	        			} else {
 	        				alert("로그인에 실패하였습니다.");
+	        				return false;
 	        			}
 	        		},
 	        		error : function() {
 	        			alert("통신 실패");
+	        			return false;
 	        		}
 	        	  });
 	        	 }
