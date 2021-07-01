@@ -8,7 +8,11 @@
 		<typeAlias type="com.phoenix.carrot.user.dto.UserDto" alias="userDto"/>
 		<typeAlias type="com.phoenix.carrot.product.dto.ProductDto" alias="productDto"/>
 		<typeAlias type="com.phoenix.carrot.dto.sns.CommentDto" alias="commentDto"/>
+<<<<<<< HEAD
 		
+=======
+		<typeAlias type="com.phoenix.carrot.dto.sns.LikeTableDto" alias="likeTableDto"/>
+>>>>>>> e34c70e85582941ca6f84ae484a270e12be0e30f
 	</typeAliases>
 	
 	<mappers>
@@ -18,6 +22,10 @@
 		<mapper resource="/mybatis/admproduct-mapper.xml"/>
 		<mapper resource="/mybatis/userproduct-mapper.xml"/>
 		<mapper resource="/mybatis/comment-mapper.xml"/>
+<<<<<<< HEAD
 		<mapper resource="/mybatis/noticeboard-mapper.xml"/>
+=======
+		<mapper resource="/mybatis/liketable-mapper.xml"/>
+>>>>>>> e34c70e85582941ca6f84ae484a270e12be0e30f
 	</mappers>
 </configuration>

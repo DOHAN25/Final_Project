@@ -21,9 +21,16 @@
 	<br/>
 	<a href="loginform.do">로그인</a>
 	<br/>
+<<<<<<< HEAD
 	<a href="marketplace.do">중고시장</a>
 	<br/>
 	<a href="noticeboardlist.do">공지사항</a>
+=======
+	<a href="usermarketplace.do">중고시장</a>
+	<br/>
+	<a href="usermarketplace.do">씨앗, 도구 판매</a>
+
+>>>>>>> e34c70e85582941ca6f84ae484a270e12be0e30f
 	
 <c:if test="${login != null}">
 

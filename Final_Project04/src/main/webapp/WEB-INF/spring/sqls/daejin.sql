@@ -200,6 +200,30 @@ VALUES(
 );
 ---------------------팔로우-----------------------------
 --------------------좋아요------------------------------
+DROP SEQUENCE likeSeq;
+DROP TABLE likeTable;
+
+CREATE SEQUENCE likeSeq;
+
+CREATE TABLE likeTable(
+	likeSeq NUMBER,
+	userSeq NUMBER,
+	userId VARCHAR2(100),
+	entireBoardSeq NUMBER
+);
+
+ALTER TABLE likeTable ADD CONSTRAINT FK_likeTable_Id
+FOREIGN KEY (userSeq) REFERENCES Users (userSeq)
+ON DELETE CASCADE;
+
+ALTER TABLE likeTable ADD CONSTRAINT FK_likeTable_Board
+FOREIGN KEY (entireBoardSeq) REFERENCES entireBoard (entireBoardSeq)
+ON DELETE CASCADE;
+
+INSERT INTO likeTable
+VALUES (likeSeq.NEXTVAL, 1, 'test01', 28);
+
+SELECT * FROM likeTable;
 --------------------해시태그----------------------------
 
 

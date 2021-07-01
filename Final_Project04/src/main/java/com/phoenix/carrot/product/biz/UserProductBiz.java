@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.phoenix.carrot.product.dto.ProductDto;
 
+
 public interface UserProductBiz {
 	
 	//유저상품리스트출력
@@ -16,5 +17,8 @@ public interface UserProductBiz {
 	public int userProductUpdate(ProductDto dto);
 	//유저상품삭제
 	public int userProductDelete(int productSeq);
+	
+	// 주소로 상품 검색
+	public List<ProductDto> selectByaddr(String addr);
 
 }

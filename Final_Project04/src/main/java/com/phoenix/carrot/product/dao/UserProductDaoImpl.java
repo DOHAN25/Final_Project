@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 
 import com.phoenix.carrot.product.dto.ProductDto;
 
+
 @Repository
 public class UserProductDaoImpl implements UserProductDao {
 	
@@ -65,6 +66,21 @@ public class UserProductDaoImpl implements UserProductDao {
 	public int userProductDelete(int productSeq) {
 		// TODO Auto-generated method stub
 		return 0;
+	}
+
+	@Override
+	public List<ProductDto> selectByaddr(String addr) {
+		// TODO Auto-generated method stub
+		
+		List<ProductDto> productListByaddr = new ArrayList<ProductDto>();
+		
+		try {
+			productListByaddr = sqlSession.selectList(NAMESPACE+"selectByaddr", addr);
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
+		return productListByaddr;
 	}
 
 }

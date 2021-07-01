@@ -11,6 +11,7 @@ import com.phoenix.carrot.biz.sns.SnsBoardBizImpl;
 import com.phoenix.carrot.product.dao.UserProductDao;
 import com.phoenix.carrot.product.dto.ProductDto;
 
+
 @Service
 public class UserProductBizImpl implements UserProductBiz {
 	
@@ -47,6 +48,12 @@ public class UserProductBizImpl implements UserProductBiz {
 	public int userProductDelete(int productSeq) {
 		// TODO Auto-generated method stub
 		return 0;
+	}
+
+	@Override
+	public List<ProductDto> selectByaddr(String addr) {
+		// TODO Auto-generated method stub
+		return dao.selectByaddr(addr);
 	}
 
 }

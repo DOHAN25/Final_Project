@@ -19,4 +19,10 @@
 		INSERT INTO Product
 		VALUES (productSeq.NEXTVAL, #{productName}, #{productPrice}, #{sellerAddress}, SYSDATE, #{productInfo}, NULL, NULL, 'Y', 'USER', 1, 'test', #{userLatitude}, #{userLongitude})
 	</insert>
+	
+	
+	<!-- 지역으로 물품 검색 -->
+	<select id="selectByaddr" parameterType="String" resultType="productDto">
+		SELECT * FROM Product WHERE sellerAddress LIKE '%#{addr}%' ORDER BY productRegDate DESC
+	</select>
 </mapper>
