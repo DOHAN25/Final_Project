@@ -83,8 +83,9 @@ public class UserController {
 		
 		
 		UserDto res = biz.login(dto);
-
+		
 		boolean check = false;
+		
 		if(res != null) {
 			//matches : �Ѿ�� ���� ����Ǿ��ִ� ���� ��
 			if(passwordEncoder.matches(dto.getPassword(), res.getPassword())) {
