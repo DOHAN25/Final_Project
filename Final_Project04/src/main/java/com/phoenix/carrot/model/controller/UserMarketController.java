@@ -134,7 +134,6 @@ public class UserMarketController {
 		model.addAttribute("dto", biz.userProductOne(productSeq));
 		return "userproductdetail";
 	}
-	
-	
+		
 
 }
