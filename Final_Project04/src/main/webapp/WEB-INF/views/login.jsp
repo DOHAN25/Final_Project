@@ -241,7 +241,8 @@ function kakaoLogin() {
 
 
 	<div class="container ">
-
+    
+    </div>
 		<div class="row">
 
 			<div class="col-md-5 col-md-offset-7 text-center" id="body">
@@ -270,7 +271,7 @@ function kakaoLogin() {
 						<div class="form-group">
 							<div class="col-sm-12">
 								<br />
-								<button onclick="login();"type="button" class="btn btn-primary btn-block">로그인</button>
+								<button onclick="login();"type="button" class="btn btn-info btn-block">로그인</button>
 							</div>
 							<br />
 							<br />
@@ -285,15 +286,17 @@ function kakaoLogin() {
 									type="button" class="btn btn-link">비밀번호 찾기</button></a> <br>
 							<br>
 							<a href="javascript:kakaoLogin();"><img
-								src="resources/image/kakao-logo.png" alt="Kakao image"
-								style="height: 20px; width: 20px; margin-right: 10px;">Kakao
-								로그인</a> <br>
-							<br>
+								src="resources/image/kakaolog.png" alt="Kakao image"
+								style="height:80%; width:80%; margin-right: 10px;"></a> <br>
 							<form class="form-horizontal" action="naverlogin.do">
 								<a href="${naverUrl }"><img
-									src="resources/image/naver_logo.png" alt="Naver image"
-									style="height: 20px; width: 20px; margin-right: 10px;">Naver
-									로그인</a>
+									src="resources/image/naverlog.png" alt="Naver image"
+									style="height:80%; width:80%; margin-right: 10px;"></a>
+							</form>
+							<form class="form-horizontal" action="#">
+								<a href="${naverUrl }"><img
+									src="resources/image/googlelog.png" alt="Google image"
+									style="height:80%; width:81%; margin-right: 10px;"></a>
 							</form>
 							<div id="googleBtn" class="g-signin2" data-onsuccess="onSignIn"></div>
 						</div>

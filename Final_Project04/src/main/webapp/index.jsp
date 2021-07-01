@@ -21,14 +21,13 @@
 	<br/>
 	<a href="loginform.do">로그인</a>
 	<br/>
-
 	<a href="marketplace.do">중고시장</a>
 	<br/>
 	<a href="noticeboardlist.do">공지사항</a>
 	<br/>
 	<a href="usermarketplace.do">중고시장</a>
 	<br/>
-	<a href="adminproduct">씨앗, 도구 판매</a>
+	<a href="adminproduct.jsp">씨앗, 도구 판매</a>
 
 
 	
