@@ -21,7 +21,7 @@
 	<br/>
 	<a href="loginform.do">로그인</a>
 	<br/>
-	<a href="marketplace.do">중고시장</a>
+	<a href="usermarketplace.do">중고시장</a>
 	
 <c:if test="${login != null}">
 

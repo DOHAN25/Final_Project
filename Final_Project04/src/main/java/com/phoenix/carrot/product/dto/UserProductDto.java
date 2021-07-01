@@ -2,7 +2,7 @@ package com.phoenix.carrot.product.dto;
 
 import java.util.Date;
 
-public class ProductDto {
+public class UserProductDto {
 	
 	private int productSeq;
 	private String productName;
@@ -19,11 +19,11 @@ public class ProductDto {
 	private String userLatitude;
 	private String userLongitude;
 	
-	public ProductDto() {
+	public UserProductDto() {
 
 	}
 
-	public ProductDto(int productSeq, String productName, int productPrice, String sellerAddress, Date productRegDate,
+	public UserProductDto(int productSeq, String productName, int productPrice, String sellerAddress, Date productRegDate,
 			String productInfo, String productImg, String productThumb, String saleStatus, String userRole, int userSeq,
 			String userId, String userLatitude, String userLongitude) {
 

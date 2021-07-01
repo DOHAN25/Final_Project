@@ -7,7 +7,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.phoenix.carrot.product.dto.ProductDto;
+import com.phoenix.carrot.product.dto.UserProductDto;
 
 @Repository
 public class UserProductDaoImpl implements UserProductDao {
@@ -17,9 +17,9 @@ public class UserProductDaoImpl implements UserProductDao {
 	private SqlSessionTemplate sqlSession;
 	
 	@Override
-	public List<ProductDto> userProductList() {
+	public List<UserProductDto> userProductList() {
 		
-		List<ProductDto> userProductList = new ArrayList<ProductDto>();
+		List<UserProductDto> userProductList = new ArrayList<UserProductDto>();
 		
 		try {
 			userProductList = sqlSession.selectList(NAMESPACE + "userProductList");
@@ -31,8 +31,8 @@ public class UserProductDaoImpl implements UserProductDao {
 	}
 
 	@Override
-	public ProductDto userProductOne(int productSeq) {
-		ProductDto dto = null;
+	public UserProductDto userProductOne(int productSeq) {
+		UserProductDto dto = null;
 		
 		try {
 			dto = sqlSession.selectOne(NAMESPACE + "userProductOne", productSeq);
@@ -43,7 +43,7 @@ public class UserProductDaoImpl implements UserProductDao {
 	}
 
 	@Override
-	public int userProductInsert(ProductDto dto) {
+	public int userProductInsert(UserProductDto dto) {
 		int res = 0;
 		
 		try {
@@ -56,7 +56,7 @@ public class UserProductDaoImpl implements UserProductDao {
 	}
 
 	@Override
-	public int userProductUpdate(ProductDto dto) {
+	public int userProductUpdate(UserProductDto dto) {
 		// TODO Auto-generated method stub
 		return 0;
 	}
@@ -65,6 +65,21 @@ public class UserProductDaoImpl implements UserProductDao {
 	public int userProductDelete(int productSeq) {
 		// TODO Auto-generated method stub
 		return 0;
+	}
+
+	@Override
+	public List<UserProductDto> selectByaddr(String addr) {
+		// TODO Auto-generated method stub
+		
+		List<UserProductDto> productListByaddr = new ArrayList<UserProductDto>();
+		
+		try {
+			productListByaddr = sqlSession.selectList(NAMESPACE+"selectByaddr", addr);
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
+		return productListByaddr;
 	}
 
 }

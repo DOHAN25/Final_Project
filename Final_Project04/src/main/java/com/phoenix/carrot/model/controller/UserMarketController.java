@@ -1,5 +1,6 @@
 package com.phoenix.carrot.model.controller;
 
+<<<<<<< HEAD
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
@@ -9,19 +10,34 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletRequestWrapper;
 
 import org.apache.commons.io.FileUtils;
+=======
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import javax.servlet.http.HttpSession;
+
+>>>>>>> b8200372a43a328406dca01a592b483e967168a0
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+<<<<<<< HEAD
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
+=======
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
+>>>>>>> b8200372a43a328406dca01a592b483e967168a0
 
 import com.google.gson.JsonObject;
 import com.phoenix.carrot.product.biz.UserProductBiz;
-import com.phoenix.carrot.product.dto.ProductDto;
+import com.phoenix.carrot.product.dto.UserProductDto;
 
 @Controller
 public class UserMarketController {
@@ -88,7 +104,7 @@ public class UserMarketController {
 	}
 	
 	@RequestMapping("/userproductinsertres.do")
-	public String productInsertRes(ProductDto dto) {
+	public String productInsertRes(UserProductDto dto) {
 		
 		logger.info("[Controller] : userproductinsertres.do");
 		
@@ -105,6 +121,22 @@ public class UserMarketController {
 		
 		model.addAttribute("dto", biz.userProductOne(productSeq));
 		return "userproductdetail";
+	}
+	
+	@RequestMapping(value="/searchProduct.do", method=RequestMethod.POST)
+	@ResponseBody
+	public Map<String, Object> searchProduct(HttpSession session,@RequestBody UserProductDto dto) {
+		
+		List<UserProductDto> list = new ArrayList<UserProductDto>();
+		
+		Map<String, Object> result = new HashMap<String, Object>();
+		
+		if(dto.getSellerAddress() != "" || dto.getSellerAddress() != null) {
+			list = biz.selectByaddr(dto.getSellerAddress());
+			result.put("list", list);
+		}
+		
+		return result;
 	}
 
 }

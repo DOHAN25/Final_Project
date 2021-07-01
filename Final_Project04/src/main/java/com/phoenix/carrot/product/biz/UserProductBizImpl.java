@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 
 import com.phoenix.carrot.biz.sns.SnsBoardBizImpl;
 import com.phoenix.carrot.product.dao.UserProductDao;
-import com.phoenix.carrot.product.dto.ProductDto;
+import com.phoenix.carrot.product.dto.UserProductDto;
 
 @Service
 public class UserProductBizImpl implements UserProductBiz {
@@ -20,25 +20,25 @@ public class UserProductBizImpl implements UserProductBiz {
 	private UserProductDao dao;
 	
 	@Override
-	public List<ProductDto> userProductList() {
+	public List<UserProductDto> userProductList() {
 
 		return dao.userProductList();
 	}
 
 	@Override
-	public ProductDto userProductOne(int productSeq) {
+	public UserProductDto userProductOne(int productSeq) {
 
 		return dao.userProductOne(productSeq);
 	}
 
 	@Override
-	public int userProductInsert(ProductDto dto) {
+	public int userProductInsert(UserProductDto dto) {
 
 		return dao.userProductInsert(dto);
 	}
 
 	@Override
-	public int userProductUpdate(ProductDto dto) {
+	public int userProductUpdate(UserProductDto dto) {
 		// TODO Auto-generated method stub
 		return 0;
 	}
@@ -47,6 +47,12 @@ public class UserProductBizImpl implements UserProductBiz {
 	public int userProductDelete(int productSeq) {
 		// TODO Auto-generated method stub
 		return 0;
+	}
+
+	@Override
+	public List<UserProductDto> selectByaddr(String addr) {
+		// TODO Auto-generated method stub
+		return dao.selectByaddr(addr);
 	}
 
 }
