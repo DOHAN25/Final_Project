@@ -10,30 +10,28 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @Controller
 public class WeatherController {
 
-	@RequestMapping("/weather.do")
-	public String weatherForm() {
-		
-		
-		
-		
-		return "weather";
-	}
-	
-	@ResponseBody
 	public JSONObject getApi(){
-		
 		
 		return null;
 	}
+	
+	@RequestMapping(value="/weather.do", method=RequestMethod.POST)
+	@ResponseBody
+	public String weatherForm() {
+	
+		return "weather";
+	}	
 	
 	@RequestMapping("/payment.do")
 	public String payment() {
 		return "payment";
 	}
 	
-	@RequestMapping("/loginstart.do")
-	public String loginstart() {
-		return "loginstart";
+	/*
+	@RequestMapping("/weather.do")
+	public String weatherForm() {
+		return "weather";
 	}
-
+	*/
+	
 }
