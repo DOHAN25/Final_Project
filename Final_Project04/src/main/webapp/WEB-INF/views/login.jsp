@@ -87,6 +87,7 @@ function login() {
 				if (msg.check == true) {
 					alert("반갑습니다.");
 					location.href="index.jsp";
+					redirect:"header.jsp";
 				} else {
 					$("#loginChk").show();
 					$("#loginChk").html("ID 혹은 PW가 잘못되었습니다.");
