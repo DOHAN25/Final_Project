@@ -121,8 +121,5 @@ public class EntireBoardDto {
 		this.likeCount = likeCount;
 	}
 	
-	
-	
-	
 
 }
