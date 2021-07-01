@@ -23,11 +23,11 @@
 		</tr>
 		<tr>
 			<td>이미지</td>
-			<td></td>
+			<td><img src="${pageContext.request.contextPath}/resources${dto.boardImg }"/></td>
 		</tr>
 		<tr>
 			<td>썸네일 이미지</td>
-			<td></td>
+			<td><img src="${pageContext.request.contextPath}/resources${dto.boardThumbImg }"/></td>
 			
 		</tr>
 		<tr>
@@ -42,14 +42,9 @@
 			</td>
 		</tr>
 	</table>
-	<img src="<c:url value ='C:\Git\Final_Project\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\Final_Project04\resources${dto.boardThumbImg }' />">
-	<img src="C:\Git\Final_Project\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\Final_Project04\resources${dto.boardImg }">
-
-	
+		
 
 
-	
-	
 
 </body>
 </html>
