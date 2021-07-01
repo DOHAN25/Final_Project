@@ -135,20 +135,6 @@ public class UserMarketController {
 		return "userproductdetail";
 	}
 	
-	@RequestMapping(value="/searchProduct.do", method=RequestMethod.POST)
-	@ResponseBody
-	public Map<String, Object> searchProduct(HttpSession session,@RequestBody ProductDto dto) {
-		
-		List<ProductDto> list = new ArrayList<ProductDto>();
-		
-		Map<String, Object> result = new HashMap<String, Object>();
-		
-		if(dto.getSellerAddress() != "" || dto.getSellerAddress() != null) {
-			list = biz.selectByaddr(dto.getSellerAddress());
-			result.put("list", list);
-		}
-		
-		return result;
-	}
+	
 
 }
