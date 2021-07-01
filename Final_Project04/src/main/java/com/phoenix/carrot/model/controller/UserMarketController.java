@@ -11,9 +11,9 @@ import com.phoenix.carrot.product.biz.UserProductBiz;
 import com.phoenix.carrot.product.dto.ProductDto;
 
 @Controller
-public class MarketController {
+public class UserMarketController {
 	
-	private Logger logger = LoggerFactory.getLogger(MarketController.class);
+	private Logger logger = LoggerFactory.getLogger(UserMarketController.class);
 	
 	@Autowired
 	private UserProductBiz biz;
@@ -25,36 +25,36 @@ public class MarketController {
 
     }
 	
-	@RequestMapping("/marketplace.do")
+	@RequestMapping("/usermarketplace.do")
 	public String userProductList(Model model) {
-		logger.info("[Controller] : marketplace.do");
+		logger.info("[Controller] : usermarketplace.do");
 		model.addAttribute("userProductList", biz.userProductList());
-		return "productmarket";
+		return "userproductmarket";
 	}
 	
 	@RequestMapping("/productinsert.do")
 	public String productInsertForm() {
-		return "productinsert";
+		return "userproductinsert";
 	}
 	
-	@RequestMapping("/productinsertres.do")
+	@RequestMapping("/userproductinsertres.do")
 	public String productInsertRes(ProductDto dto) {
 		
-		logger.info("[Controller] : productinsertres.do");
+		logger.info("[Controller] : userproductinsertres.do");
 		
 		if (biz.userProductInsert(dto) > 0) {
-			return "redirect:marketplace.do";
+			return "redirect:usermarketplace.do";
 		}
 		
-		return "redirect:productinsert.do";
+		return "redirect:userproductinsert.do";
 	}
 	
-	@RequestMapping("/productdetail.do")
+	@RequestMapping("/userproductdetail.do")
 	public String productDetail(Model model, int productSeq) {
-		logger.info("[Controller] : productdetail.do");
+		logger.info("[Controller] : userproductdetail.do");
 		
 		model.addAttribute("dto", biz.userProductOne(productSeq));
-		return "productdetail";
+		return "userproductdetail";
 	}
 
 }
