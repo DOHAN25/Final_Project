@@ -24,7 +24,7 @@
 	
 	<insert id="snsBoardInsert" parameterType="entireBoardDto">
 		INSERT INTO entireBoard
-		VALUES(entireBoardSeq.NEXTVAL, 1, SYSDATE, 'sns글테스트입니다.', #{boardContents}, 'test01', 1, #{boardImg}, #{boardThumbImg}, NULL)
+		VALUES(entireBoardSeq.NEXTVAL, 1, SYSDATE, 'sns글테스트입니다.', #{boardContents}, 'test01', 1, #{boardImg}, #{boardThumbImg}, 0)
 	</insert>
 	
 	<select id="snsBoardOne" resultMap="entireBoardMap">
