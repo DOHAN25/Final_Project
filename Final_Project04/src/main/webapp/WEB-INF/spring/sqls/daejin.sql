@@ -46,16 +46,16 @@ ON DELETE CASCADE;
 ---sns:1, knowhow:2, notice:3
 
 INSERT INTO entireBoard
-VALUES (entireBoardSeq.NEXTVAL, 1, SYSDATE, '테스트글입니다.', '테스트내용입니다.', 'test01', 1, NULL, NULL, NULL);
+VALUES (entireBoardSeq.NEXTVAL, 1, SYSDATE, '테스트글입니다.', '테스트내용입니다.', 'daejin', 1, NULL, NULL, NULL);
 
 INSERT INTO entireBoard
-VALUES (entireBoardSeq.NEXTVAL, 1, SYSDATE, '테스트글입니다2.', '테스트내용입니다2.', 'dh', 2, NULL, NULL, NULL);
+VALUES (entireBoardSeq.NEXTVAL, 1, SYSDATE, '테스트글입니다2.', '테스트내용입니다2.', 'daejin', 1, NULL, NULL, NULL);
 
 INSERT INTO entireBoard
-VALUES (entireBoardSeq.NEXTVAL, 1, SYSDATE, '테스트글입니다3.', '테스트내용입니다3.', 'dh', 2, NULL, NULL, NULL);
+VALUES (entireBoardSeq.NEXTVAL, 1, SYSDATE, '테스트글입니다3.', '테스트내용입니다3.', 'daejin', 1, NULL, NULL, NULL);
 
 INSERT INTO entireBoard
-VALUES (entireBoardSeq.NEXTVAL, 3, SYSDATE, '공지사항제목', '공지사항내용', 'cj', 1, NULL, NULL, NULL);
+VALUES (entireBoardSeq.NEXTVAL, 3, SYSDATE, '공지사항제목', '공지사항내용', 'admin', 1, NULL, NULL, NULL);
 
 SELECT * FROM entireBoard;
 

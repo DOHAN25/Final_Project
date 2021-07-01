@@ -83,4 +83,19 @@ public class SnsBoardDaoImpl implements SnsBoardDao {
 		return res;
 	}
 
+	@Override
+	public List<EntireBoardDto> snsUserFeedList() {
+		
+		List<EntireBoardDto> snsUserFeedList = new ArrayList<EntireBoardDto>();
+	
+		try {
+			snsUserFeedList = sqlSession.selectList(NAMESPACE + "snsUserFeedList");
+		} catch (Exception e) {
+			e.printStackTrace();
+		} 
+		
+		return snsUserFeedList;
+		
+	}
+
 }
