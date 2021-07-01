@@ -6,7 +6,7 @@
 		<typeAlias type="com.phoenix.carrot.dto.sns.WeekendFarmDto" alias="weekendFarmDto"/>
 		<typeAlias type="com.phoenix.carrot.dto.sns.EntireBoardDto" alias="entireBoardDto"/>
 		<typeAlias type="com.phoenix.carrot.user.dto.UserDto" alias="userDto"/>
-		<typeAlias type="com.phoenix.carrot.product.dto.ProductDto" alias="productDto"/>
+		<typeAlias type="com.phoenix.carrot.product.dto.UserProductDto" alias="userproductDto"/>
 		<typeAlias type="com.phoenix.carrot.dto.sns.CommentDto" alias="commentDto"/>
 	</typeAliases>
 	

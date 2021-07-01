@@ -6,17 +6,55 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>내 당근 거래/나눔</title>
 </head>
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<script type="text/javascript">
+	
+$(document).ready(function(){	
+	
+	$("#searchBtn").click(function (){
+		var selectBox = $("#selectBox option:selected").val();
+		var searchVal = $("#searhVal").val();
+		
+		if(selectBox == "" || selectBox == null) {
+				alert("카테고리를 선택해 주세요.!");
+				$("#searchVal").focus();
+		} else if(selectBox == "addr") {
+			$.ajax({
+				type: "post"
+				url: "searchProduct.do"
+				data: {
+					"sellerAddress": searchVal
+				},
+				success:function(val) {
+					alert(val);
+				}
+				
+			});
+		}
+			
+		
+	
+		
+	});
+
+});
+
+</script>
 <body>
 	<h1>당근마켓 상품 리스트</h1>
 
 	<a href="userproductinsert.do">상품등록</a>
 	<br>
-	<select id="">
-		<option value="">지역</option>
-		<option value="">상품명</option>
+	<select id="selectBox">
+		<option value="">선택</option>
+		<option value="addr">지역</option>
+		<option value="productName">상품명</option>
 	</select>
+	<input id="searchVal"type="text"></input>
+	<button id="searchBtn">검색</button>
 	
 	<table border="1">
 	<col width="200">
@@ -41,6 +79,7 @@
 			</c:when>
 			<c:otherwise>
 				<c:forEach items="${userProductList }" var="dto">
+				<tbody id="dynamicTbody">
 					<tr>
 						<td>${dto.productRegDate }</td>
 						<td>${dto.userId }</td>
@@ -48,6 +87,7 @@
 						<td>${dto.productPrice }</td>
 						<td>${dto.sellerAddress }</td>
 					</tr>
+				</tbody>
 				</c:forEach>
 			</c:otherwise>
 		</c:choose>
