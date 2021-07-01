@@ -26,10 +26,30 @@
 				data : {
 					entireBoardSeq : entireBoardSeq
 				},
-				success : function(entireBoardSeq) {
+				success : function(dto) {
+					//페이지새로고침
+					//document.location.reload(true);
 					
+					let heart = dto.likeCount;
+					
+					//페이지, 모달창에 하트수 갱신;
+					$('#m_heart'+entireBoardSeq).text(heart);
+					$('#heart'+entireBoardSeq).text(heart);
+					
+					console.log("하트추가 성공");
+				},
+				error : function() {
+					alert('서버에러');
 				}
-			})
+			});
+			console.log("꽉찬하트로 바껴라!");
+			
+			//꽉찬하트로 바꾸기!
+			$(this).html("<svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='currentColor' class='bi bi-suit-heart-fill' viewBox='0 0 16 16'><path d='M4 1c2.21 0 4 1.755 4 3.92C8 2.755 9.79 1 12 1s4 1.755 4 3.92c0 3.263-3.234 4.414-7.608 9.608a.513.513 0 0 1-.784 0C3.234 9.334 0 8.183 0 4.92 0 2.755 1.79 1 4 1z'/></svg>");
+	        $('.heart_icon'+entireBoardSeq).html("<svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='currentColor' class='bi bi-suit-heart-fill' viewBox='0 0 16 16'><path d='M4 1c2.21 0 4 1.755 4 3.92C8 2.755 9.79 1 12 1s4 1.755 4 3.92c0 3.263-3.234 4.414-7.608 9.608a.513.513 0 0 1-.784 0C3.234 9.334 0 8.183 0 4.92 0 2.755 1.79 1 4 1z'/></svg>");
+		
+		//꽉찬 하트를 눌렀을 때 
+		}
 		}
 	});
 </script>
