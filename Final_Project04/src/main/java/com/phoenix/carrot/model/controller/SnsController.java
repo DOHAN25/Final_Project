@@ -4,6 +4,7 @@ import java.io.File;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -13,12 +14,16 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.phoenix.carrot.biz.sns.FileValidator;
 import com.phoenix.carrot.biz.sns.SnsBoardBiz;
+import com.phoenix.carrot.dao.sns.LikeTableDao;
 import com.phoenix.carrot.dto.sns.EntireBoardDto;
+import com.phoenix.carrot.dto.sns.LikeTableDto;
 import com.phoenix.carrot.utils.UploadFileUtils;
 
 @Controller
@@ -31,6 +36,9 @@ public class SnsController {
 	
 	@Autowired
 	private SnsBoardBiz biz;
+	
+	@Autowired
+	private LikeTableDao likeDao;
 	
 	@Resource(name="uploadPath")
 	private String uploadPath;
@@ -117,4 +125,56 @@ public class SnsController {
 		return "redirect:main.do";
 	}
 	
+	//빈하트 클릭시 저장 
+	@ResponseBody
+	@RequestMapping(value="/saveHeart.do")
+	public EntireBoardDto save_heart(@RequestParam int entireBoardSeq, HttpSession session) {
+		
+		LikeTableDto likeDto = new LikeTableDto();
+		
+		//게시물 번호 세팅
+		likeDto.setEntireBoardSeq(entireBoardSeq);
+		
+		//좋아요 누른사람 id를 세팅 
+		likeDto.setUserId((String) session.getAttribute("userId"));
+		
+		//+1된 하트 갯수를 담아오기 위함
+		EntireBoardDto dto = likeDao.pictureSaveHeart(likeDto);
+		
+		return dto;
+	}
+	
+	@ResponseBody
+	@RequestMapping(value="removeHeart.do")
+	public EntireBoardDto remove_heart(@RequestParam int entireBoardSeq, HttpSession session) {
+		
+		LikeTableDto likeDto = new LikeTableDto();
+		
+		//게시물 번호 세팅 
+		likeDto.setEntireBoardSeq(entireBoardSeq);
+		
+		//좋아요 누른 사람 userId로 세팅
+		likeDto.setUserId((String) session.getAttribute("userId"));
+		
+		//-1된 하트 갯수를 담아오기 위함
+		EntireBoardDto dto = likeDao.pictureRemoveHeart(likeDto);
+		return dto;
+	}
+	
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
