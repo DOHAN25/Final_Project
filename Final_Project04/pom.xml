@@ -284,6 +284,7 @@
 		</dependency>
 		
 		  <!-- https://mvnrepository.com/artifact/com.google.code.gson/gson -->
+		  <!-- gson -->
           <!-- json 변환 -->
          <dependency>
              <groupId>com.google.code.gson</groupId>

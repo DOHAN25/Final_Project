@@ -18,6 +18,7 @@
 		<mapper resource="/mybatis/admproduct-mapper.xml"/>
 		<mapper resource="/mybatis/userproduct-mapper.xml"/>
 		<mapper resource="/mybatis/comment-mapper.xml"/>
+		<mapper resource="/mybatis/noticeboard-mapper.xml"/>
 		<mapper resource="/mybatis/liketable-mapper.xml"/>
 	</mappers>
 </configuration>
