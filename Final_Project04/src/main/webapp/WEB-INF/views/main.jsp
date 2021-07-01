@@ -106,7 +106,7 @@
 		</c:otherwise>
 	</c:choose>
 	<tr>
-		<td colspan="4" align="right"><input type="button" value="글작성" onclick=""></td>
+		<td colspan="4" align="right"><input type="button" value="글작성" onclick="location.href='snsBoardInsertForm.do'"></td>
 	</tr>
 	
 

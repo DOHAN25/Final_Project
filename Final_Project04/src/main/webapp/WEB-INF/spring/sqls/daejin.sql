@@ -54,11 +54,19 @@ VALUES (entireBoardSeq.NEXTVAL, 1, SYSDATE, '테스트글입니다2.', '테스�
 INSERT INTO entireBoard
 VALUES (entireBoardSeq.NEXTVAL, 1, SYSDATE, '테스트글입니다3.', '테스트내용입니다3.', 'dh', 2, NULL, NULL, NULL);
 
+INSERT INTO entireBoard
+VALUES (entireBoardSeq.NEXTVAL, 3, SYSDATE, '공지사항제목', '공지사항내용', 'cj', 1, NULL, NULL, NULL);
+
 SELECT * FROM entireBoard;
 
 SELECT *
 FROM entireBoard
 WHERE boardKind = 1
+ORDER BY boardDate ASC;
+
+SELECT *
+FROM entireBoard
+WHERE boardKind = 3
 ORDER BY boardDate ASC;
 ----------------------------------------------------
 --첨부파일을 위한 테이블 

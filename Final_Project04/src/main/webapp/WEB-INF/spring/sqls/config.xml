@@ -8,7 +8,6 @@
 		<typeAlias type="com.phoenix.carrot.user.dto.UserDto" alias="userDto"/>
 		<typeAlias type="com.phoenix.carrot.product.dto.ProductDto" alias="productDto"/>
 		<typeAlias type="com.phoenix.carrot.dto.sns.CommentDto" alias="commentDto"/>
-		<typeAlias type="com.phoenix.carrot.notice.dto.NoticeDto" alias="NoticeDto"/>
 		
 	</typeAliases>
 	
