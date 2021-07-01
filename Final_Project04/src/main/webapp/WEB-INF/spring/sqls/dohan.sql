@@ -22,6 +22,5 @@ SELECT * FROM USERS;
 
 DELETE FROM USERS WHERE USERID = 'kim1234';
 
-INSERT INTO USERS
-VALUES(USERSEQ.NEXTVAL, 'kim123', '1234q', 'ehgks3323@naver.com', 010123423112, '47500','서울 건대근처', '서울 연제구 거제동',
-'admin', '김도한', '950511');
+
+SELECT * FROM PRODUCT;
