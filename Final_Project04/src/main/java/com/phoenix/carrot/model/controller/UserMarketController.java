@@ -1,6 +1,5 @@
 package com.phoenix.carrot.model.controller;
 
-<<<<<<< HEAD
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -8,7 +7,6 @@ import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
-=======
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
@@ -18,7 +16,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletRequestWrapper;
 
 import org.apache.commons.io.FileUtils;
->>>>>>> 9c6706190aed17cb5203bb8554c48d79bd27911c
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,18 +23,16 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-<<<<<<< HEAD
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
-=======
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
->>>>>>> 9c6706190aed17cb5203bb8554c48d79bd27911c
 
 import com.google.gson.JsonObject;
 import com.phoenix.carrot.product.biz.UserProductBiz;
-import com.phoenix.carrot.product.dto.UserProductDto;
+import com.phoenix.carrot.product.dto.ProductDto;
+
 
 @Controller
 public class UserMarketController {
@@ -104,7 +99,7 @@ public class UserMarketController {
 	}
 	
 	@RequestMapping("/userproductinsertres.do")
-	public String productInsertRes(UserProductDto dto) {
+	public String productInsertRes(ProductDto dto) {
 		
 		logger.info("[Controller] : userproductinsertres.do");
 		
@@ -125,9 +120,9 @@ public class UserMarketController {
 	
 	@RequestMapping(value="/searchProduct.do", method=RequestMethod.POST)
 	@ResponseBody
-	public Map<String, Object> searchProduct(HttpSession session,@RequestBody UserProductDto dto) {
+	public Map<String, Object> searchProduct(HttpSession session,@RequestBody ProductDto dto) {
 		
-		List<UserProductDto> list = new ArrayList<UserProductDto>();
+		List<ProductDto> list = new ArrayList<ProductDto>();
 		
 		Map<String, Object> result = new HashMap<String, Object>();
 		

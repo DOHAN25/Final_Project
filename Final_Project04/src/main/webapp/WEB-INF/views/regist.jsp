@@ -382,9 +382,7 @@ $(document).ready(function() {
 			</div>
 		</div>
 		<div class="col-sm-6 col-md-offset-3">
-<<<<<<< HEAD
-			<form action="registPost.do" method="post" role="form"
-				id="usercheck" name="member">
+			<form action="registPost.do" method="post" role="form" id="usercheck" name="member">
 				<div class="form-group ">
 					<h5 style="margin:0px 0px"><b>이용약관 동의</b>
 					<!-- Button trigger modal -->
@@ -438,10 +436,9 @@ $(document).ready(function() {
 					  <input type="checkbox" id="inlineCheckbox3" value="option3"> 프로모션 정보 수신 동의(선택)
 					</label>
 				</div>
-=======
-			<form action="registPost.do" method="post" role="form" id="usercheck"
-				name="member">
->>>>>>> a7c5596a0879ee88c291ad53bf4c5ccaff3b349d
+
+			<form action="registPost.do" method="post" role="form" id="usercheck" name="member">
+
 				<div class="form-group">
 					<label for="id">아이디</label> <input type="text" class="form-control"
 						id="userid" name="userid" placeholder="ID">

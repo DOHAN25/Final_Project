@@ -7,7 +7,8 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.phoenix.carrot.product.dto.UserProductDto;
+import com.phoenix.carrot.product.dto.ProductDto;
+
 
 @Repository
 public class UserProductDaoImpl implements UserProductDao {
@@ -17,9 +18,9 @@ public class UserProductDaoImpl implements UserProductDao {
 	private SqlSessionTemplate sqlSession;
 	
 	@Override
-	public List<UserProductDto> userProductList() {
+	public List<ProductDto> userProductList() {
 		
-		List<UserProductDto> userProductList = new ArrayList<UserProductDto>();
+		List<ProductDto> userProductList = new ArrayList<ProductDto>();
 		
 		try {
 			userProductList = sqlSession.selectList(NAMESPACE + "userProductList");
@@ -31,8 +32,8 @@ public class UserProductDaoImpl implements UserProductDao {
 	}
 
 	@Override
-	public UserProductDto userProductOne(int productSeq) {
-		UserProductDto dto = null;
+	public ProductDto userProductOne(int productSeq) {
+		ProductDto dto = null;
 		
 		try {
 			dto = sqlSession.selectOne(NAMESPACE + "userProductOne", productSeq);
@@ -43,7 +44,7 @@ public class UserProductDaoImpl implements UserProductDao {
 	}
 
 	@Override
-	public int userProductInsert(UserProductDto dto) {
+	public int userProductInsert(ProductDto dto) {
 		int res = 0;
 		
 		try {
@@ -56,7 +57,7 @@ public class UserProductDaoImpl implements UserProductDao {
 	}
 
 	@Override
-	public int userProductUpdate(UserProductDto dto) {
+	public int userProductUpdate(ProductDto dto) {
 		// TODO Auto-generated method stub
 		return 0;
 	}
@@ -68,10 +69,10 @@ public class UserProductDaoImpl implements UserProductDao {
 	}
 
 	@Override
-	public List<UserProductDto> selectByaddr(String addr) {
+	public List<ProductDto> selectByaddr(String addr) {
 		// TODO Auto-generated method stub
 		
-		List<UserProductDto> productListByaddr = new ArrayList<UserProductDto>();
+		List<ProductDto> productListByaddr = new ArrayList<ProductDto>();
 		
 		try {
 			productListByaddr = sqlSession.selectList(NAMESPACE+"selectByaddr", addr);
