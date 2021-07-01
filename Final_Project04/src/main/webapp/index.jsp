@@ -28,7 +28,7 @@
 	<br/>
 	<a href="usermarketplace.do">중고시장</a>
 	<br/>
-	<a href="usermarketplace.do">씨앗, 도구 판매</a>
+	<a href="adminproduct">씨앗, 도구 판매</a>
 
 
 	
