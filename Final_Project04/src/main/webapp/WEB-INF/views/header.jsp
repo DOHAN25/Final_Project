@@ -37,7 +37,7 @@
                     <a class="nav-link" href="#">로컬마켓</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="payment.do">씨앗도구구매</a>
+                    <a class="nav-link" href="#">씨앗도구구매</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#">주말농장</a>
