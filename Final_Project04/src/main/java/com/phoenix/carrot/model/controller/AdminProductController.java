@@ -10,4 +10,6 @@ public class AdminProductController {
 	public String adminProduct() {
 		return "adminproduct";
 	}
+	
+	
 }

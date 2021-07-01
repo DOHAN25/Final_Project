@@ -7,6 +7,52 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<script type="text/javascript">
+	//로그인 한 상태에서 하트를 클릭했을 때 (로그인한 상태인 하트의 <a></a> class명: heart-click)
+	$(".heart-click").click(function(){
+		
+		//게시물 번호(entireBoardSeq)를 idx로 전달 받아 저장
+		let entireBoardSeq = $(this).attr('idx');
+		console.log("heart-click");
+		
+		//빈하트를 눌렀을때 
+		if($(this).children('svg').attr('class') == "bi bi-suit-heart"){
+			console.log("빈하트 클릭" + entireBoardSeq);
+			
+			$.ajax({
+				url : 'saveHeart.do',
+				type : 'get',
+				data : {
+					entireBoardSeq : entireBoardSeq
+				},
+				success : function(dto) {
+					//페이지새로고침
+					//document.location.reload(true);
+					
+					let heart = dto.likeCount;
+					
+					//페이지, 모달창에 하트수 갱신;
+					$('#m_heart'+entireBoardSeq).text(heart);
+					$('#heart'+entireBoardSeq).text(heart);
+					
+					console.log("하트추가 성공");
+				},
+				error : function() {
+					alert('서버에러');
+				}
+			});
+			console.log("꽉찬하트로 바껴라!");
+			
+			//꽉찬하트로 바꾸기!
+			$(this).html("<svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='currentColor' class='bi bi-suit-heart-fill' viewBox='0 0 16 16'><path d='M4 1c2.21 0 4 1.755 4 3.92C8 2.755 9.79 1 12 1s4 1.755 4 3.92c0 3.263-3.234 4.414-7.608 9.608a.513.513 0 0 1-.784 0C3.234 9.334 0 8.183 0 4.92 0 2.755 1.79 1 4 1z'/></svg>");
+	        $('.heart_icon'+entireBoardSeq).html("<svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='currentColor' class='bi bi-suit-heart-fill' viewBox='0 0 16 16'><path d='M4 1c2.21 0 4 1.755 4 3.92C8 2.755 9.79 1 12 1s4 1.755 4 3.92c0 3.263-3.234 4.414-7.608 9.608a.513.513 0 0 1-.784 0C3.234 9.334 0 8.183 0 4.92 0 2.755 1.79 1 4 1z'/></svg>");
+		
+		//꽉찬 하트를 눌렀을 때 
+		}
+		}
+	});
+</script>
 </head>
 <body>
 
