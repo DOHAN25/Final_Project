@@ -5,9 +5,12 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>당근팜</title>
 </head>
 <body>
+<%@include file ="/WEB-INF/views/header.jsp" %>
+
+
 
 	<a href="home.do">home...</a>
 	<br/>
@@ -17,6 +20,7 @@
 	<br/>
 	<a href="weather.do">태린 날씨</a>
 	<br/>
+<<<<<<< HEAD
 	<a href="header.do">보옥 헤더</a>
 	<br/>
 	<a href="loginform.do">로그인</a>
@@ -34,7 +38,13 @@
 <c:if test="${login != null}">
 
 	<div>${login.userid}님 환영합니다.</div>
+=======
 
-</c:if>
+
+	<a href="noticeboardlist.do">공지사항</a>
+	<br/>
+>>>>>>> main
+
+<%@include file ="/WEB-INF/views/footer.jsp" %>
 </body>
 </html>
