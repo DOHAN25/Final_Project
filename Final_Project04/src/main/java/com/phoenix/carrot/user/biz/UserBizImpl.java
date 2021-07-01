@@ -58,19 +58,19 @@ public class UserBizImpl implements UserBiz {
 
 	@Override
 	public void sendEmail(UserDto dto) {
-		// ³×ÀÌ¹öÀÏ °æ¿ì ³×ÀÌ¹ö °èÁ¤, gmailÀÏ °æ¿ì gmail °èÁ¤
-		final String user = "";
-		// À§ÀÇ °èÁ¤ ÆÐ½º¿öµå
-		final String password = "";
+		// ï¿½ï¿½ï¿½Ì¹ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ì¹ï¿½ ï¿½ï¿½ï¿½ï¿½, gmailï¿½ï¿½ ï¿½ï¿½ï¿½ gmail ï¿½ï¿½ï¿½ï¿½
+		final String user = "carrotparma01@gmail.com";
+		// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ð½ï¿½ï¿½ï¿½ï¿½ï¿½
+		final String password = "carrot01";
 
 		String msg = "";
 		msg += "<div align='center' style='border:1px solid black; font-family:verdana'>";
 		msg += "<h3 style='color: blue;'>";
-		msg += dto.getUserid() + "´ÔÀÇ ÀÓ½Ã ºñ¹Ð¹øÈ£ ÀÔ´Ï´Ù. ºñ¹Ð¹øÈ£¸¦ º¯°æÇÏ¿© »ç¿ëÇÏ¼¼¿ä.</h3>";
-		msg += "<p>ÀÓ½Ã ºñ¹Ð¹øÈ£ : ";
+		msg += dto.getUserid() + "ï¿½ï¿½ï¿½ï¿½ ï¿½Ó½ï¿½ ï¿½ï¿½Ð¹ï¿½È£ ï¿½Ô´Ï´ï¿½. ï¿½ï¿½Ð¹ï¿½È£ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï¿ï¿½ ï¿½ï¿½ï¿½ï¿½Ï¼ï¿½ï¿½ï¿½.</h3>";
+		msg += "<p>ï¿½Ó½ï¿½ ï¿½ï¿½Ð¹ï¿½È£ : ";
 		msg += dto.getPassword() + "</p></div>";
 		
-		//SMTP ¼­¹ö Á¤º¸ ¼³Á¤ÇÏ±â
+		//SMTP ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï±ï¿½
 		Properties prop = new Properties();
 		prop.put("mail.smtp.host", "smtp.gmail.com");
 		prop.put("mail.smtp.port", 465);
@@ -88,18 +88,18 @@ public class UserBizImpl implements UserBiz {
 			MimeMessage message = new MimeMessage(session);
 			message.setFrom(new InternetAddress(user));
 			
-			// ¼ö½ÅÀÚ ¸ÞÀÏ ÁÖ¼Ò
+			// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ö¼ï¿½
 			message.addRecipient(Message.RecipientType.TO, new InternetAddress(dto.getUseremail()));
 			
-			// Subject ¸ÞÀÏ Á¦¸ñÀ» ÀÔ·ÂÇÏ´Â ºÎºÐ
-			message.setSubject("´ç±ÙÆÊ ÀÓ½Ã ºñ¹Ð¹øÈ£ ÀÔ´Ï´Ù.");
+			// Subject ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ô·ï¿½ï¿½Ï´ï¿½ ï¿½Îºï¿½
+			message.setSubject("ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ó½ï¿½ ï¿½ï¿½Ð¹ï¿½È£ ï¿½Ô´Ï´ï¿½.");
 			
-			// Text ¸ÞÀÏ ³»¿ëÀ» ÀÔ·ÂÇÏ´Â ºÎºÐ
+			// Text ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ô·ï¿½ï¿½Ï´ï¿½ ï¿½Îºï¿½
 			message.setContent(msg, "text/html;charset=UTF-8");
 			
 			// send the message
-			Transport.send(message); // Àü¼Û
-			System.out.println("¸ÞÀÏ ¼º°øÀûÀ¸·Î Àü¼Û");
+			Transport.send(message); // ï¿½ï¿½ï¿½ï¿½
+			System.out.println("ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½");
 			
 		} catch (AddressException e) {
 			e.printStackTrace();
@@ -109,11 +109,11 @@ public class UserBizImpl implements UserBiz {
 		
 	}
 
-	//ºñ¹Ð¹øÈ£Ã£±â
+	//ï¿½ï¿½Ð¹ï¿½È£Ã£ï¿½ï¿½
 	@Override
 	public void findPw(UserDto dto) throws Exception {
 		
-			// ÀÓ½Ã ºñ¹Ð¹øÈ£ »ý¼º
+			// ï¿½Ó½ï¿½ ï¿½ï¿½Ð¹ï¿½È£ ï¿½ï¿½ï¿½ï¿½
 			String pw = "";
 			for (int i = 0; i < 12; i++) {
 				pw += (char) ((Math.random() * 26) + 97);
@@ -121,10 +121,10 @@ public class UserBizImpl implements UserBiz {
 			
 			dto.setPassword(pw);
 			
-			// ºñ¹Ð¹øÈ£ º¯°æ
+			// ï¿½ï¿½Ð¹ï¿½È£ ï¿½ï¿½ï¿½ï¿½
 			dao.updatePw(dto);
 			
-			// ºñ¹Ð¹øÈ£ º¯°æ ¸ÞÀÏ ¹ß¼Û
+			// ï¿½ï¿½Ð¹ï¿½È£ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ß¼ï¿½
 			sendEmail(dto);
 	
 		}	
