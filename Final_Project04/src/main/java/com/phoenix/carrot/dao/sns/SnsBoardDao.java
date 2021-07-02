@@ -15,6 +15,6 @@ public interface SnsBoardDao {
 	public int snsBoardDelete(int entireBoardSeq);
 	
 	//유저 개인피드
-	public List<EntireBoardDto> snsUserFeedList();
+	public List<EntireBoardDto> snsUserFeedList(String userId);
 
 }

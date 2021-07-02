@@ -11,17 +11,22 @@
 	<h1>snsboardupdate</h1>
 	<form action="snsBoardUpdateRes.do" method="post">
 	<input type="hidden" name="entireBoardSeq" value="${dto.entireBoardSeq }">
-		<table border="1">
+	<table border="1">
 		<tr>
 			<td>userId</td>
-			<td><input type="text" name="userId" value="${dto.userId }"></td>
+			<td>${dto.userId }</td>
 		</tr>
 		<tr>
 			<td>boardDate</td>
 			<td>${dto.boardDate }</td>
 		</tr>
 		<tr>
-			<td>snsImg</td>
+			<td>이미지</td>
+			<td><img src="${pageContext.request.contextPath}/resources${dto.boardImg }"/></td>
+		</tr>
+		<tr>
+			<td>썸네일 이미지</td>
+			<td><img src="${pageContext.request.contextPath}/resources${dto.boardThumbImg }"/></td>			
 		</tr>
 		<tr>
 			<th>내용</th>

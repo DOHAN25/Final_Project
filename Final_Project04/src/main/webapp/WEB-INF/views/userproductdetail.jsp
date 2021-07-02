@@ -12,6 +12,10 @@
 	
 	<table border="1">
 		<tr>
+			<td>userSeq</td>
+			<td>${dto.userSeq }</td>
+		</tr>
+		<tr>
 			<td>userId</td>
 			<td>${dto.userId }</td>
 		</tr>
@@ -47,6 +51,8 @@
 			</td>
 		</tr>
 	</table>
+	
+	<button type="button" onclick="location.href='chat.do?userId=${dto.userId }'">채팅하기</button>
 	
 	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=4b7e72eca108f2115775c1000b513249"></script>
 	<script>

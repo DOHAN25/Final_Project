@@ -124,7 +124,7 @@ public class UserMarketController {
 			return "redirect:usermarketplace.do";
 		}
 		
-		return "redirect:userproductinsert.do";
+		return "redirect:productinsert.do";
 	}
 	
 	@RequestMapping("/userproductdetail.do")

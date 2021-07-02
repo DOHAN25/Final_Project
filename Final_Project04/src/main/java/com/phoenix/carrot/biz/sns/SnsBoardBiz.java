@@ -13,6 +13,6 @@ public interface SnsBoardBiz {
 	public void snsBoardDelete(int entireBoardSeq) throws Exception;
 	
 	//유저개인피드
-	public List<EntireBoardDto> snsUserFeedList();
+	public List<EntireBoardDto> snsUserFeedList(String userId);
 
 }

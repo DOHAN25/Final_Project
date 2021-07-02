@@ -76,8 +76,12 @@
 	<form action="userproductinsertres.do" method="post">
 		<table border="1">
 			<tr>
+				<td>유저Seq</td>
+				<td><textarea rows="1" cols="20" name="userSeq" readonly="readonly">${login.userseq }</textarea></td>
+			</tr>
+			<tr>
 				<td>작성자</td>
-				<td></td>
+				<td><textarea rows="1" cols="20" name="userId" readonly="readonly">${login.userid }</textarea></td>
 			</tr>
 			<tr>
 				<td>상품명</td>
