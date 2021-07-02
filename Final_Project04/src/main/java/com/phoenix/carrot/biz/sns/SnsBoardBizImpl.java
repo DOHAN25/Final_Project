@@ -56,9 +56,9 @@ public class SnsBoardBizImpl implements SnsBoardBiz {
 	
 	//유저개인피드
 	@Override
-	public List<EntireBoardDto> snsUserFeedList() {
-		// TODO Auto-generated method stub
-		return dao.snsUserFeedList();
+	public List<EntireBoardDto> snsUserFeedList(String userId) {
+	
+		return dao.snsUserFeedList(userId);
 	}
 
 }

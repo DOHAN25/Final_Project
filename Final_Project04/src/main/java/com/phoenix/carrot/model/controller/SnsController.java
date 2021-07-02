@@ -52,8 +52,13 @@ public class SnsController {
 	}
 	
 	@RequestMapping("snsBoardUserFeed.do")
-	public String snsUserFeed(Model model) {
+	public String snsUserFeed(Model model, @RequestParam String userId) {
 		logger.info("[Controller] : snsBoardUserFeed.do");
+		
+		
+		System.out.println("userId : " + userId);
+		
+		model.addAttribute("snsUserFeedList", biz.snsUserFeedList(userId));
 		return "snsuserfeed";
 	}
 	

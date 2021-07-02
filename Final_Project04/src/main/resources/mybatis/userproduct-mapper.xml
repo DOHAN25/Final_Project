@@ -17,7 +17,7 @@
 	
 	<insert id="userProductInsert" parameterType="productDto">
 		INSERT INTO Product
-		VALUES (productSeq.NEXTVAL, #{productName}, #{productPrice}, #{sellerAddress}, SYSDATE, #{productInfo}, NULL, NULL, 'Y', 'USER', 1, 'test', #{userLatitude}, #{userLongitude})
+		VALUES (productSeq.NEXTVAL, #{productName}, #{productPrice}, #{sellerAddress}, SYSDATE, #{productInfo}, NULL, NULL, 'Y', 'USER', #{userSeq}, #{userId}, #{userLatitude}, #{userLongitude})
 	</insert>
 	
 	

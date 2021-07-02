@@ -15,37 +15,9 @@
 
 <!-- style -->
 	<style>
-	
-	.uploadResult{
-		width: 100%;
-		background-color : gray;
-	}
-	
-	.uploadResult ul{
-		display:flex;
-		flex-flow :row;
-		justify-content : center;
-		align-items : center;
-	}
-	
-	.uploadResult ul li{
-		list-style : none;
-		padding : 10px;
-	}
-	
-	.uploadResult ul li img{
-		width : 100px;
-	}
-	
-	.uploadResult ul li span{
-		color : white;
-	}
-	
 	#image_container img{
 		width:400px;
-		
 	}
-	
 	</style>
 	
 </head>
@@ -60,6 +32,10 @@
 				<p>사진 업로드</p>
 			</div>
 			<form action="snsBoardInsertRes.do" method="post" enctype="multipart/form-data">
+
+			<div>유저Seq :<textarea rows="1" cols="20" name="userSeq" readonly="readonly">${login.userseq }</textarea></div>
+			<div>유저아이디 :<textarea rows="1" cols="20" name="userId" readonly="readonly">${login.userid }</textarea></div>
+			
 			<!-- 사진업로드 form -->
 				<div class='uploadFileDiv'>
 					<input type="file" name="file" accept="image/*1" id="boardImg" onchange="setThumbnail(event);"><br>

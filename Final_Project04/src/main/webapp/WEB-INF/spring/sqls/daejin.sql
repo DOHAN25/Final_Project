@@ -46,23 +46,28 @@ ON DELETE CASCADE;
 ---sns:1, knowhow:2, notice:3
 
 INSERT INTO entireBoard
-VALUES (entireBoardSeq.NEXTVAL, 1, SYSDATE, '테스트글입니다.', '테스트내용입니다.', 'daejin', 1, NULL, NULL, NULL);
+VALUES (entireBoardSeq.NEXTVAL, 1, SYSDATE, '테스트글입니다.', '테스트내용입니다.', 'daejin', 1, NULL, NULL, 0);
 
 INSERT INTO entireBoard
-VALUES (entireBoardSeq.NEXTVAL, 1, SYSDATE, '테스트글입니다2.', '테스트내용입니다2.', 'daejin', 1, NULL, NULL, NULL);
+VALUES (entireBoardSeq.NEXTVAL, 1, SYSDATE, '테스트글입니다2.', '테스트내용입니다2.', 'daejin', 1, NULL, NULL, 0);
 
 INSERT INTO entireBoard
-VALUES (entireBoardSeq.NEXTVAL, 1, SYSDATE, '테스트글입니다3.', '테스트내용입니다3.', 'daejin', 1, NULL, NULL, NULL);
+VALUES (entireBoardSeq.NEXTVAL, 1, SYSDATE, '테스트글입니다3.', '테스트내용입니다3.', 'daejin', 1, NULL, NULL, 0);
 
 INSERT INTO entireBoard
 VALUES (entireBoardSeq.NEXTVAL, 3, SYSDATE, '공지사항제목', '공지사항내용', 'admin', 1, NULL, NULL, NULL);
 
 SELECT * FROM entireBoard;
-
+SELECT * FROM USERS;
 SELECT *
 FROM entireBoard
 WHERE boardKind = 1
 ORDER BY boardDate ASC;
+
+SELECT *
+FROM entireBoard
+WHERE boardKind = 1 AND userId = 'daejin'
+ORDER BY boardDate DESC
 
 SELECT *
 FROM entireBoard
@@ -99,7 +104,7 @@ CREATE TABLE Product (
 	productSeq NUMBER PRIMARY KEY NOT NULL,
 	productName VARCHAR2(100) NOT NULL,
 	productPrice NUMBER(30) NOT NULL,
-	sellerAddress VARCHAR2(30),
+	sellerAddress VARCHAR2(1000),
 	productRegDate DATE,
 	productInfo VARCHAR2(4000),
 	productImg VARCHAR2(4000),
@@ -133,7 +138,8 @@ VALUES (productSeq.NEXTVAL, '대진이가 심은 상추', 8000, '유저판매', 
 INSERT INTO Product 
 VALUES (productSeq.NEXTVAL, '태린이가 심은 고구마', 8800, '유저판매', SYSDATE, NULL, NULL, NULL, 'N','USER', 1, 'test', NULL, NULL);
 
-
+DELETE FROM Product
+WHERE userRole = 'USER'; 
 SELECT * FROM Product;
 
 SELECT * FROM Product
