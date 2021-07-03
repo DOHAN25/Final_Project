@@ -1,11 +1,9 @@
-package com.phoenix.carrot.dao.sns;
+package com.phoenix.carrot.biz.sns;
 
 import com.phoenix.carrot.dto.sns.EntireBoardDto;
 import com.phoenix.carrot.dto.sns.LikeTableDto;
 
-public interface LikeTableDao {
-	
-	String NAMESPACE = "liketable.";
+public interface LikeTableBiz {
 	
 	public EntireBoardDto pictureSaveHeart (LikeTableDto dto);
 	

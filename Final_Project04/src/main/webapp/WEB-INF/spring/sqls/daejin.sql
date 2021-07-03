@@ -226,9 +226,6 @@ ALTER TABLE likeTable ADD CONSTRAINT FK_likeTable_Board
 FOREIGN KEY (entireBoardSeq) REFERENCES entireBoard (entireBoardSeq)
 ON DELETE CASCADE;
 
-INSERT INTO likeTable
-VALUES (likeSeq.NEXTVAL, 1, 'test01', 28);
-
 SELECT * FROM likeTable;
 --------------------해시태그----------------------------
 

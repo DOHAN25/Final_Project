@@ -2,8 +2,12 @@ package com.phoenix.carrot.model.controller;
 
 import java.io.File;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
@@ -16,6 +20,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -24,6 +29,7 @@ import com.phoenix.carrot.biz.sns.SnsBoardBiz;
 import com.phoenix.carrot.dao.sns.LikeTableDao;
 import com.phoenix.carrot.dto.sns.EntireBoardDto;
 import com.phoenix.carrot.dto.sns.LikeTableDto;
+import com.phoenix.carrot.user.dto.UserDto;
 import com.phoenix.carrot.utils.UploadFileUtils;
 
 @Controller
@@ -97,15 +103,42 @@ public class SnsController {
 		return "redirect:main.do";
 		*/
 	}
-	
+
 	@RequestMapping("/snsBoardOne.do")
-	public String snsBoardOne(Model model, int entireBoardSeq) {
+	public String snsBoardOne(Model model, int entireBoardSeq, HttpSession session) {
 		logger.info("[Controller] : snsBoardOne.do");
-		
+				
+		/* 게시물에대한 정보 모델링 */
 		model.addAttribute("dto", biz.snsBoardOne(entireBoardSeq));
+		
 		return "snsboarddetail";
 	}
 	
+	/*
+	@RequestMapping("/snsBoardOne.do")
+	public String snsBoardOne(Model model, int entireBoardSeq, HttpServletRequest request, HttpServletResponse response, HttpSession session) {
+		logger.info("[Controller] : snsBoardOne.do");
+		
+		Map<String, Object> resultMap = null;
+		Map<String, Object> entireBoardMap = new HashMap<>();
+		int userSeq = 0;
+		
+		try {
+			Map<String, Object> Users = (Map<String, Object>) session.getAttribute("login");
+			//System.out.println("Map Users : " + Users);
+			userSeq = Integer.parseInt(Users.get("userSeq").toString());
+			
+			//게시판 상세 정보
+			resultMap = biz.snsBoardOne(entireBoardSeq);
+			entireBoardMap.put("entireBoardSeq", entireBoardSeq);
+			entireBoardMap.put("userSeq", userSeq);
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		
+		return "snsboarddetail";
+	}
+	*/
 	@RequestMapping("/snsBoardUpdateForm.do")
 	public String snsBoardUpdateForm(Model model, int entireBoardSeq) {
 		logger.info("[Controller] : snsBoardUpdateForm.do");
@@ -139,33 +172,41 @@ public class SnsController {
 	//빈하트 클릭시 저장 
 	@ResponseBody
 	@RequestMapping(value="/saveHeart.do")
-	public EntireBoardDto save_heart(@RequestParam int entireBoardSeq, HttpSession session) {
-		
+	public EntireBoardDto save_heart(@RequestParam int entireBoardSeq,@SessionAttribute("login") UserDto user, HttpSession session) {
+		logger.info("[Controller] : saveHeart.do");
 		LikeTableDto likeDto = new LikeTableDto();
 		
 		//게시물 번호 세팅
 		likeDto.setEntireBoardSeq(entireBoardSeq);
 		
 		//좋아요 누른사람 id를 세팅 
-		likeDto.setUserId((String) session.getAttribute("userId"));
-		
+		//likeDto.setUserId((String) session.getAttribute("userid"));
+		//String userId = ((String) session.getAttribute("userid"));
+		int userSeq = user.getUserseq();
+		String userId = user.getUserid();
+		System.out.println(userId);
+		likeDto.setUserSeq(userSeq);
+		likeDto.setUserId(userId);
 		//+1된 하트 갯수를 담아오기 위함
 		EntireBoardDto dto = likeDao.pictureSaveHeart(likeDto);
-		
 		return dto;
 	}
 	
 	@ResponseBody
-	@RequestMapping(value="removeHeart.do")
-	public EntireBoardDto remove_heart(@RequestParam int entireBoardSeq, HttpSession session) {
-		
+	@RequestMapping(value="/removeHeart.do")
+	public EntireBoardDto remove_heart(@RequestParam int entireBoardSeq,@SessionAttribute("login") UserDto user, HttpSession session) {
+		logger.info("[Controller] : /removeHeart.do");
 		LikeTableDto likeDto = new LikeTableDto();
 		
 		//게시물 번호 세팅 
 		likeDto.setEntireBoardSeq(entireBoardSeq);
 		
-		//좋아요 누른 사람 userId로 세팅
-		likeDto.setUserId((String) session.getAttribute("userId"));
+		//아이디, seq 세팅 
+		int userSeq = user.getUserseq();
+		String userId = user.getUserid();
+		System.out.println(userId);
+		likeDto.setUserSeq(userSeq);
+		likeDto.setUserId(userId);
 		
 		//-1된 하트 갯수를 담아오기 위함
 		EntireBoardDto dto = likeDao.pictureRemoveHeart(likeDto);
