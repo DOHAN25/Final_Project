@@ -1,5 +1,9 @@
 package com.phoenix.carrot.biz.sns;
 
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,14 +23,23 @@ public class LikeTableBizImpl implements LikeTableBiz {
 
 	@Override
 	public EntireBoardDto pictureSaveHeart(LikeTableDto dto) {
-		// TODO Auto-generated method stub
+
 		return dao.pictureSaveHeart(dto);
 	}
 
 	@Override
 	public EntireBoardDto pictureRemoveHeart(LikeTableDto dto) {
-		// TODO Auto-generated method stub
+
 		return dao.pictureRemoveHeart(dto);
 	}
+
+	@Override
+	public int likeCheck(int entireBoardSeq, int userSeq) {
+		
+		return dao.likeCheck(entireBoardSeq, userSeq);
+	}
+
+
+
 
 }

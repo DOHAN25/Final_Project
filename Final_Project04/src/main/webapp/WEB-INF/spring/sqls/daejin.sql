@@ -212,10 +212,11 @@ DROP TABLE likeTable;
 CREATE SEQUENCE likeSeq;
 
 CREATE TABLE likeTable(
-	likeSeq NUMBER,
+	likeSeq NUMBER PRIMARY KEY,
 	userSeq NUMBER,
 	userId VARCHAR2(100),
-	entireBoardSeq NUMBER
+	entireBoardSeq NUMBER,
+	likeCheck NUMBER DEFAULT 0
 );
 
 ALTER TABLE likeTable ADD CONSTRAINT FK_likeTable_Id

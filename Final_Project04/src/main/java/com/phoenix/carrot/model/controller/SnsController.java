@@ -25,6 +25,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.phoenix.carrot.biz.sns.FileValidator;
+import com.phoenix.carrot.biz.sns.LikeTableBiz;
 import com.phoenix.carrot.biz.sns.SnsBoardBiz;
 import com.phoenix.carrot.dao.sns.LikeTableDao;
 import com.phoenix.carrot.dto.sns.EntireBoardDto;
@@ -44,7 +45,7 @@ public class SnsController {
 	private SnsBoardBiz biz;
 	
 	@Autowired
-	private LikeTableDao likeDao;
+	private LikeTableBiz likebiz;
 	
 	@Resource(name="uploadPath")
 	private String uploadPath;
@@ -60,9 +61,6 @@ public class SnsController {
 	@RequestMapping("snsBoardUserFeed.do")
 	public String snsUserFeed(Model model, @RequestParam String userId) {
 		logger.info("[Controller] : snsBoardUserFeed.do");
-		
-		
-		System.out.println("userId : " + userId);
 		
 		model.addAttribute("snsUserFeedList", biz.snsUserFeedList(userId));
 		return "snsuserfeed";
@@ -103,42 +101,19 @@ public class SnsController {
 		return "redirect:main.do";
 		*/
 	}
-
+	
 	@RequestMapping("/snsBoardOne.do")
-	public String snsBoardOne(Model model, int entireBoardSeq, HttpSession session) {
+	public String snsBoardOne(Model model, int entireBoardSeq,@SessionAttribute("login") UserDto userdto, HttpSession session) {
 		logger.info("[Controller] : snsBoardOne.do");
-				
-		/* 게시물에대한 정보 모델링 */
+		int userSeq = userdto.getUserseq();
+		// 게시물에대한 정보 모델링 
 		model.addAttribute("dto", biz.snsBoardOne(entireBoardSeq));
+		model.addAttribute("likeCheck",likebiz.likeCheck(entireBoardSeq, userSeq));
 		
 		return "snsboarddetail";
 	}
 	
-	/*
-	@RequestMapping("/snsBoardOne.do")
-	public String snsBoardOne(Model model, int entireBoardSeq, HttpServletRequest request, HttpServletResponse response, HttpSession session) {
-		logger.info("[Controller] : snsBoardOne.do");
-		
-		Map<String, Object> resultMap = null;
-		Map<String, Object> entireBoardMap = new HashMap<>();
-		int userSeq = 0;
-		
-		try {
-			Map<String, Object> Users = (Map<String, Object>) session.getAttribute("login");
-			//System.out.println("Map Users : " + Users);
-			userSeq = Integer.parseInt(Users.get("userSeq").toString());
-			
-			//게시판 상세 정보
-			resultMap = biz.snsBoardOne(entireBoardSeq);
-			entireBoardMap.put("entireBoardSeq", entireBoardSeq);
-			entireBoardMap.put("userSeq", userSeq);
-		} catch (Exception e) {
-			// TODO: handle exception
-		}
-		
-		return "snsboarddetail";
-	}
-	*/
+
 	@RequestMapping("/snsBoardUpdateForm.do")
 	public String snsBoardUpdateForm(Model model, int entireBoardSeq) {
 		logger.info("[Controller] : snsBoardUpdateForm.do");
@@ -169,6 +144,7 @@ public class SnsController {
 		return "redirect:main.do";
 	}
 	
+	
 	//빈하트 클릭시 저장 
 	@ResponseBody
 	@RequestMapping(value="/saveHeart.do")
@@ -188,7 +164,7 @@ public class SnsController {
 		likeDto.setUserSeq(userSeq);
 		likeDto.setUserId(userId);
 		//+1된 하트 갯수를 담아오기 위함
-		EntireBoardDto dto = likeDao.pictureSaveHeart(likeDto);
+		EntireBoardDto dto = likebiz.pictureSaveHeart(likeDto);
 		return dto;
 	}
 	
@@ -209,11 +185,35 @@ public class SnsController {
 		likeDto.setUserId(userId);
 		
 		//-1된 하트 갯수를 담아오기 위함
-		EntireBoardDto dto = likeDao.pictureRemoveHeart(likeDto);
+		EntireBoardDto dto = likebiz.pictureRemoveHeart(likeDto);
 		return dto;
 	}
-	
-	
+	/*
+	@RequestMapping("/snsBoardOne.do")
+	public String snsBoardOne(Model model, @RequestParam int entireBoardSeq, @SessionAttribute("login") UserDto user, HttpSession session) {
+		logger.info("[Controller] : snsBoardOne.do");
+		 		
+		model.addAttribute("dto", biz.snsBoardOne(entireBoardSeq));
+		HashMap<String, Object> idxMap = new HashMap<String, Object>();
+		int userSeq = user.getUserseq();
+		idxMap.put("entireBoardSeq", entireBoardSeq);
+		idxMap.put("userSeq", userSeq);
+		
+		Map<String,Object> likeCheckMap = likebiz.likeCheck(idxMap);
+		
+		//like테이블에서 사용자가 해당 게시글에 대해서 좋아요를 눌렀는지 확인
+		if(likeCheckMap == null) {
+			//사용자가 좋아요를 한번도 누른적이 없으면
+			//like테이블에 데이터가 없으므로 null반환
+			model.addAttribute("likeCheck", 0);
+		} else {
+			model.addAttribute("likeCheck", likeCheckMap.get("likeCheck"));
+		}
+		
+		
+		return "snsboarddetail";
+	}
+	*/
 }
 
 
