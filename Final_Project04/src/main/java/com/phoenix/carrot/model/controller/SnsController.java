@@ -1,8 +1,9 @@
 package com.phoenix.carrot.model.controller;
 
 import java.io.File;
-
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Resource;
@@ -17,7 +18,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttribute;
@@ -30,6 +33,7 @@ import com.phoenix.carrot.biz.sns.SnsBoardBiz;
 import com.phoenix.carrot.dao.sns.LikeTableDao;
 import com.phoenix.carrot.dto.sns.EntireBoardDto;
 import com.phoenix.carrot.dto.sns.LikeTableDto;
+import com.phoenix.carrot.user.biz.UserBiz;
 import com.phoenix.carrot.user.dto.UserDto;
 import com.phoenix.carrot.utils.UploadFileUtils;
 
@@ -46,6 +50,9 @@ public class SnsController {
 	
 	@Autowired
 	private LikeTableBiz likebiz;
+	
+	@Autowired
+	private UserBiz userbiz;
 	
 	@Resource(name="uploadPath")
 	private String uploadPath;
@@ -214,6 +221,41 @@ public class SnsController {
 		return "snsboarddetail";
 	}
 	*/
+	
+	//검색을 위한 유저리스트 전체 출력 
+	@RequestMapping("/snsUserSearch.do")
+	public String userList(Model model) {
+		
+		logger.info("[Controller] : snsUserSearch.do");
+		model.addAttribute("userList", biz.userList());
+		return "snsusersearch";
+	} 
+	
+	@ResponseBody
+	@RequestMapping(value="/searchUser.do", method=RequestMethod.POST)
+	public Map<String, Object> searchUser (HttpSession session, @RequestBody UserDto userdto) {
+		
+		System.out.println("값 전달");
+		System.out.println("userid : " + userdto.getUserid());
+		System.out.println("username : " + userdto.getUsername());
+		
+		String userid = userdto.getUserid();
+		String username = userdto.getUsername();
+		List<UserDto> userList = new ArrayList<UserDto>();
+		
+		Map<String, Object> userResult = new HashMap<String, Object>();
+		
+		if(userid != null) {
+			userList =  biz.snsSearchUserById(userid);
+			if(userList != null) {
+				userResult.put("userList", userList);
+			}
+		} else if (username != null) {
+			userList = biz.snsSearchUserByName(username);
+			userResult.put("userList", userList);
+		}
+		return userResult;
+	}
 }
 
 

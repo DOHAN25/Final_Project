@@ -52,5 +52,51 @@
 		AND userId = #{userId}
 		ORDER BY boardDate DESC
 	</select>
+	
+	<!-- 유저검색을 위한 리스트 출력 -->
+	<select id="userList" resultType="userDto">
+		SELECT *
+		FROM USERS
+		ORDER BY USERSEQ
+	</select>
+	
+	<!-- sns유저검색 아이디로검색 -->
+	<select id="snsSearchUserById" parameterType="String" resultType="userDto">
+	<![CDATA[
+		SELECT * FROM USERS WHERE USERID LIKE '%'||#{USERID}||'%' ORDER BY USERID DESC
+	]]>
+	</select>
+	
+	<!-- sns유저 검색 이름으로 검색 -->
+	<select id="snsSearchUserByName" parameterType="String" resultType="userDto">
+	<![CDATA[
+		SELECT * FROM USERS WHERE USERNAME LIKE '%'||#{USERNAME}||'%' ORDER BY USERID DESC
+	]]>
+	</select>
 
 </mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
