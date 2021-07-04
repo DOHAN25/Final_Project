@@ -16,7 +16,8 @@
 	<!-- 로그인이 되었을때 -->
 	<c:if test="${not empty login }">
 
-		<div>${login.userid}님의 피드입니다.</div>
+		<div>${login.userid}님 안녕하세요.</div>
+		
 		
 		<table border="1">
 			<col width="20">
@@ -32,14 +33,21 @@
 		</tr>
 		
 		<c:choose>
+		
 			<c:when test="${empty snsUserFeedList }">
+				<tr>
+					<td>피드주인</td>
+					<td>${dto.userId }님의 피드입니다.</td>	
+				</tr>
 				<tr>
 					<th colspan="4">------ 작성된 글이 없습니다-----</th>
 				</tr>
-		
 			</c:when>
 			<c:otherwise>
 				<c:forEach items="${snsUserFeedList }" var= "dto">
+					<tr>
+						<td>${dto.userId }님의 피드입니다.</td>
+					</tr>
 					<tr>
 						<td>${dto.entireBoardSeq }</td>
 						<td>${dto.userId }</td>
