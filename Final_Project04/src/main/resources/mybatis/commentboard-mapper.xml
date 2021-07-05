@@ -74,12 +74,13 @@
 		WHERE commentNoSeq = #{commentNoSeq}
 	</update>
 	
-	<!-- 댓글수 감소 -->
+
+	<!-- 댓글수 감소 
 	<update id="board_reply_not_delete" parameterType="entireBoardDto">
 		UPDATE entireBoard SET commentCount = commentCount - 1
 		WHERE entireBoardSeq = #{entireBoardSeq}
 	</update> 
-	
+	-->
 	<!-- 현재 댓글테이블의 가장 큰 commentNoSEq 값을 가져온다 -->
 	<!-- 댓글 테이블의 마지막 auto_increment값을 가져옴 -->
 	<select id="p_reply_max_no" resultType="int">

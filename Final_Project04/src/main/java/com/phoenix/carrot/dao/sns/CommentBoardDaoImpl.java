@@ -103,7 +103,7 @@ public class CommentBoardDaoImpl implements CommentBoardDao {
 		} else {
 			//답글이 있을때 - content에 공백을 넣음 ("삭제된 게시물입니다")
 			//게시판 테이블에서 삭제하지 않고 content에 공백을 넣음 
-			result = sqlSession.update(NAMESPACE + "board_reply_not_delete", commentdto);
+			result = sqlSession.update(NAMESPACE + "board_reply_down", commentdto);
 		}
 		
 		if (result == 1) {
