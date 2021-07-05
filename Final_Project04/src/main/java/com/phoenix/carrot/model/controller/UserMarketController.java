@@ -47,6 +47,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 
 import com.google.gson.JsonObject;
+import com.phoenix.carrot.chat.biz.ChatRoomBiz;
+import com.phoenix.carrot.chat.dto.ChatRoomDto;
 import com.phoenix.carrot.product.biz.UserProductBiz;
 import com.phoenix.carrot.product.dto.ProductDto;
 
@@ -58,6 +60,11 @@ public class UserMarketController {
 	
 	@Autowired
 	private UserProductBiz biz;
+	
+	@Autowired
+	private ChatRoomBiz cbiz;
+	
+	
 	
 	
 	@RequestMapping(value = "/uploadSummernoteImageFile.do", produces = "application/json; charset=UTF-8")
