@@ -6,7 +6,19 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
+
+<script type="text/javascript">
+	window.onloaed =function() {
+		var session = document.getElementById("session").value;
+		console.log(session);
+		alert(session);
+	}
+
+
+</script>
 <body>
+
+	
 
 	<h1>상품정보</h1>
 	
@@ -52,7 +64,7 @@
 		</tr>
 	</table>
 	
-	<button type="button" onclick="location.href='chat.do?userId=${dto.userId }'">채팅하기</button>
+	<button type="button" onclick="location.href='chat.do?selleruserId=${dto.userId }&productName=${dto.productName }'">채팅하기</button>
 	
 	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=4b7e72eca108f2115775c1000b513249"></script>
 	<script>
