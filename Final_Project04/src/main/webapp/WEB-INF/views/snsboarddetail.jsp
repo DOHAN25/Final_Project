@@ -6,6 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 <body>
@@ -71,14 +72,15 @@
 	<table border="1">
 		<tr>
 			<td colspan="2" align="right">
-				<input type="button" value="수정" onclick="location.href='snsBoardUpdateForm.do?entireBoardSeq=${dto.entireBoardSeq}'"/>
+										
+				<input type="button" value="공유하기" onclick="location.href"/>
 				<input type="button" value="삭제" onclick="location.href='snsBoardDelete.do?entireBoardSeq=${dto.entireBoardSeq}'"/>
 				<input type="button" value="목록" onclick="location.href='snsBoardList.do'"/>
 			</td>
 		</tr>
 	</table>
 	</c:if>
-		
+	<a id="kakao-link-btn" href="javascript:sendLink()"><i class="fas fa-share-alt"></i>공유하기 </a>		
 
 
 
@@ -177,5 +179,46 @@
 	});
 	
 
+ /*
+   //<![CDATA[
+    // // 사용할 앱의 JavaScript 키를 설정해 주세요.
+    Kakao.init('4b7e72eca108f2115775c1000b513249');
+    // // 카카오링크 버튼을 생성합니다. 처음 한번만 호출하면 됩니다.
+    Kakao.Link.createDefaultButton({
+      container: '#kakao-link-btn',
+      objectType: 'feed',
+      */
+      /*
+      content: {
+        title: $('meta[property="og:title"]').attr( 'content' ),
+        description: $('meta[property="og:description"]').attr( 'content' ),
+        imageUrl: $( 'meta[property="og:image"]' ).attr( 'content' ),
+        link: {
+          mobileWebUrl:"http://localhost:8787/carrot/snsBoardOne.do?entireBoardSeq="+${dto.entireBoardSeq},
+          webUrl: "http://localhost:8787/carrot/snsBoardOne.do?entireBoardSeq="+${dto.entireBoardSeq}
+        }
+      },
+      
+      social: {
+        likeCount: 286,
+        commentCount: 45,
+        sharedCount: 845
+      },
+      */
+      /*
+      buttons: [
+        {
+          title: '웹으로 보기',
+          link: {
+            // webUrl: window.location.href
+            webUrl: "http://localhost:8787/carrot/snsBoardOne.do?entireBoardSeq="+${dto.entireBoardSeq}
+          }
+        }
+      ]
+    });
+    
+  //]]>
+ */
+ 
 </script>
 </html>
