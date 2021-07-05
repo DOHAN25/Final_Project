@@ -75,6 +75,7 @@ FROM entireBoard
 WHERE boardKind = 3
 ORDER BY boardDate ASC;
 
+<<<<<<< Updated upstream
 -------------------------상품 --------------------------------------
 DROP SEQUENCE productSeq;
 DROP TABLE Product;
@@ -130,6 +131,8 @@ ORDER BY productPrice DESC;
 SELECT * FROM Product
 WHERE userRole = 'USER'
 ORDER BY productRegDate DESC;
+=======
+>>>>>>> Stashed changes
 
 ----------------------댓글/대댓글------------------------
 DROP SEQUENCE commentNoSeq;

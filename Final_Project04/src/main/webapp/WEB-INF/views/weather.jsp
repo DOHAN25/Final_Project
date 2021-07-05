@@ -1,12 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+	
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Weather Api</title>
+<title>오늘의 날씨</title>
 </head>
 
 <body>
@@ -75,24 +77,6 @@
 	*/
 		
 	</script>
-	<script>
-	$.getJSON('http://apis.data.go.kr/B552584/UlfptcaAlarmInqireSvc/getUlfptcaAlarmInfo'
-			+'?serviceKey=okJR2mnA1Rzmmk7CjZYkoyCo5Rl8TOuU4%2FIbVsOhh%2F6aZSGHZ1TQ%2BcHnM0LxasBAl7RZv5glsiirPyxly%2FjMAA%3D%3D'
-			+'&returnType=json&numOfRows=200&pageNo=1&year=2021&itemCode=PM10',
-			function(result) {
-		$('.dTime').append(result.response.body.items.dataTime); //sysdate
-		var test = result.response.body.items.dataTime;
-		console.log(test);
-		$('.sdName').append(result.response.body.items.sidoName); //시도
-		$('.stName').append(result.response.body.items.stationName); //구
-		$('.khaiGrade').append(result.response.body.items.khaiGrade); //통합대기환경지수
-		$('.pm10Grade1h').append(result.response.body.items.pm10Grade1h); //미세먼지
-		$('.pm25Grade1h').append(result.response.body.items.pm25Grade1h); //초미세먼지
-		
-        });
-	</script>
-	
-	
 	<h2>날씨 미세먼지</h2>
 
 	<h5>오늘의 날씨</h5>
@@ -104,21 +88,18 @@
 	<h5 class="ctemp">현재 온도 (℃): </h5>
 	<h5 class="lowtemp">최저 온도 (℃): </h5>
 	<h5 class="hightemp">최고 온도 (℃): </h5>
-	
-		<br>
 
 	<h2>미세먼지</h2>
-	<h5 class="dTime">실시간 :</h5>
-	<h5 class="sdName">지역 : </h5>시 <h5 class="stName"> 도</h5>
-	<h5 class="khaiGrade">통합 대기 환경 지수 :</h5>
-	<h5 class="pm10Grade1h">미세먼지 수치 : (1시간 이내)</h5>
-	<h5 class="pm25Grade1h">초미세먼지 수치 : (1시간 이내)</h5>
-	<br>
-	<h3 class="grade">미세먼지 수치 등급 : 1- 좋음, 2- 보통, 3-나쁨, 4-매우나쁨 </h3>
+		<h4 class="grade">[ 미세먼지 수치 등급 : 1- 좋음, 2- 보통, 3-나쁨, 4-매우나쁨 ]</h4>
+	<c:forEach items="${list }" var="dto">
 	
-	<br>
-	<br>
-
+		<h5 class="dTime">실시간 :  ${dto.dataTime }</h5>
+		<h5 class="sdName">지역 :  ${dto.sidoName }   ${dto.stationName }</h5>
+		<h5 class="khaiGrade">통합 대기 환경 지수 :  ${dto.khaiGrade }</h5>
+		<h5 class="pm10Grade">미세먼지 수치 :  ${dto.pm10Grade }  (1시간 이내)</h5>
+		<h5 class="pm25Grade">초미세먼지 수치 :  ${dto.pm25Grade }  (1시간 이내)</h5>
+		<h5 >--------------------------------------------------</h5>
+	</c:forEach>
 
 </body>
 </html>

@@ -16,4 +16,6 @@ public interface AdminProductBiz {
 		public int adminProductUpdate(ProductDto dto);
 		//상품삭제
 		public int adminProductDelete(int productSeq);
+
+		public String adminproduct();
 }
