@@ -14,7 +14,7 @@ import com.sun.org.slf4j.internal.LoggerFactory;
 @Controller
 public class AdminProductController {
 
-	private Logger logger = org.slf4j.LoggerFactory.getLogger(AdminProductController.class);
+	private Logger logger = LoggerFactory.getLogger(AdminProductController.class);
 
 	@Autowired
 	private AdminProductBiz biz;
