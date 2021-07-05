@@ -6,18 +6,26 @@ public class LikeTableDto {
 	private int userSeq;
 	private String userId;
 	private int entireBoardSeq;
+	private int likeCheck;
 	
+	
+
 	public LikeTableDto() {
 
 	}
+	
+	
 
-	public LikeTableDto(int likeSeq, int userSeq, String userId, int entireBoardSeq) {
+	public LikeTableDto(int likeSeq, int userSeq, String userId, int entireBoardSeq, int likeCheck) {
 
 		this.likeSeq = likeSeq;
 		this.userSeq = userSeq;
 		this.userId = userId;
 		this.entireBoardSeq = entireBoardSeq;
+		this.likeCheck = likeCheck;
 	}
+
+
 
 	public int getLikeSeq() {
 		return likeSeq;
@@ -50,11 +58,19 @@ public class LikeTableDto {
 	public void setEntireBoardSeq(int entireBoardSeq) {
 		this.entireBoardSeq = entireBoardSeq;
 	}
-	
-	
-	
-	
-	
+
+
+
+	public int getLikeCheck() {
+		return likeCheck;
+	}
+
+
+
+	public void setLikeCheck(int likeCheck) {
+		this.likeCheck = likeCheck;
+	}
+
 	
 
 }

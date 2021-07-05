@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.phoenix.carrot.dto.sns.EntireBoardDto;
+import com.phoenix.carrot.user.dto.UserDto;
 
 @Repository
 public class SnsBoardDaoImpl implements SnsBoardDao {
@@ -97,5 +98,49 @@ public class SnsBoardDaoImpl implements SnsBoardDao {
 		return snsUserFeedList;
 		
 	}
+	//유저 전체 리스트 출력
+	@Override
+	public List<UserDto> userList() {
+		List<UserDto> userList = new ArrayList<UserDto>();
+		
+		
+		try {
+			userList = sqlSession.selectList(NAMESPACE + "userList");
+		} catch (Exception e) {
+			e.printStackTrace();
+		} 
+		
+		return userList;
+	}
+	
+	//유저 아이디로 검색
+	@Override
+	public List<UserDto> snsSearchUserById(String userid) {
+		
+		List<UserDto> snsUserListById = new ArrayList<UserDto>();
+		
+		try {
+			snsUserListById = sqlSession.selectList(NAMESPACE + "snsSearchUserById", userid);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return snsUserListById;
+	}
+	
+	//유저 네임으로 검색
+	@Override
+	public List<UserDto> snsSearchUserByName(String username) {
+		List<UserDto> snsUserListByName = new ArrayList<UserDto>();
+		
+		try {
+			snsUserListByName = sqlSession.selectList(NAMESPACE + "snsSearchUserByName", username);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return snsUserListByName;
+	}
+
+
 
 }

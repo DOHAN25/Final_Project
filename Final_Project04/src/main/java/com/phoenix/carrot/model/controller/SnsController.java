@@ -1,9 +1,14 @@
 package com.phoenix.carrot.model.controller;
 
 import java.io.File;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
@@ -13,17 +18,23 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.phoenix.carrot.biz.sns.FileValidator;
+import com.phoenix.carrot.biz.sns.LikeTableBiz;
 import com.phoenix.carrot.biz.sns.SnsBoardBiz;
 import com.phoenix.carrot.dao.sns.LikeTableDao;
 import com.phoenix.carrot.dto.sns.EntireBoardDto;
 import com.phoenix.carrot.dto.sns.LikeTableDto;
+import com.phoenix.carrot.user.biz.UserBiz;
+import com.phoenix.carrot.user.dto.UserDto;
 import com.phoenix.carrot.utils.UploadFileUtils;
 
 @Controller
@@ -38,7 +49,10 @@ public class SnsController {
 	private SnsBoardBiz biz;
 	
 	@Autowired
-	private LikeTableDao likeDao;
+	private LikeTableBiz likebiz;
+	
+	@Autowired
+	private UserBiz userbiz;
 	
 	@Resource(name="uploadPath")
 	private String uploadPath;
@@ -54,9 +68,6 @@ public class SnsController {
 	@RequestMapping("snsBoardUserFeed.do")
 	public String snsUserFeed(Model model, @RequestParam String userId) {
 		logger.info("[Controller] : snsBoardUserFeed.do");
-		
-		
-		System.out.println("userId : " + userId);
 		
 		model.addAttribute("snsUserFeedList", biz.snsUserFeedList(userId));
 		return "snsuserfeed";
@@ -99,13 +110,17 @@ public class SnsController {
 	}
 	
 	@RequestMapping("/snsBoardOne.do")
-	public String snsBoardOne(Model model, int entireBoardSeq) {
+	public String snsBoardOne(Model model, int entireBoardSeq,@SessionAttribute("login") UserDto userdto, HttpSession session) {
 		logger.info("[Controller] : snsBoardOne.do");
-		
+		int userSeq = userdto.getUserseq();
+		// 게시물에대한 정보 모델링 
 		model.addAttribute("dto", biz.snsBoardOne(entireBoardSeq));
+		model.addAttribute("likeCheck",likebiz.likeCheck(entireBoardSeq, userSeq));
+		
 		return "snsboarddetail";
 	}
 	
+
 	@RequestMapping("/snsBoardUpdateForm.do")
 	public String snsBoardUpdateForm(Model model, int entireBoardSeq) {
 		logger.info("[Controller] : snsBoardUpdateForm.do");
@@ -136,43 +151,111 @@ public class SnsController {
 		return "redirect:main.do";
 	}
 	
+	
 	//빈하트 클릭시 저장 
 	@ResponseBody
 	@RequestMapping(value="/saveHeart.do")
-	public EntireBoardDto save_heart(@RequestParam int entireBoardSeq, HttpSession session) {
-		
+	public EntireBoardDto save_heart(@RequestParam int entireBoardSeq,@SessionAttribute("login") UserDto user, HttpSession session) {
+		logger.info("[Controller] : saveHeart.do");
 		LikeTableDto likeDto = new LikeTableDto();
 		
 		//게시물 번호 세팅
 		likeDto.setEntireBoardSeq(entireBoardSeq);
 		
 		//좋아요 누른사람 id를 세팅 
-		likeDto.setUserId((String) session.getAttribute("userId"));
-		
+		//likeDto.setUserId((String) session.getAttribute("userid"));
+		//String userId = ((String) session.getAttribute("userid"));
+		int userSeq = user.getUserseq();
+		String userId = user.getUserid();
+		System.out.println(userId);
+		likeDto.setUserSeq(userSeq);
+		likeDto.setUserId(userId);
 		//+1된 하트 갯수를 담아오기 위함
-		EntireBoardDto dto = likeDao.pictureSaveHeart(likeDto);
-		
+		EntireBoardDto dto = likebiz.pictureSaveHeart(likeDto);
 		return dto;
 	}
 	
 	@ResponseBody
-	@RequestMapping(value="removeHeart.do")
-	public EntireBoardDto remove_heart(@RequestParam int entireBoardSeq, HttpSession session) {
-		
+	@RequestMapping(value="/removeHeart.do")
+	public EntireBoardDto remove_heart(@RequestParam int entireBoardSeq,@SessionAttribute("login") UserDto user, HttpSession session) {
+		logger.info("[Controller] : /removeHeart.do");
 		LikeTableDto likeDto = new LikeTableDto();
 		
 		//게시물 번호 세팅 
 		likeDto.setEntireBoardSeq(entireBoardSeq);
 		
-		//좋아요 누른 사람 userId로 세팅
-		likeDto.setUserId((String) session.getAttribute("userId"));
+		//아이디, seq 세팅 
+		int userSeq = user.getUserseq();
+		String userId = user.getUserid();
+		System.out.println(userId);
+		likeDto.setUserSeq(userSeq);
+		likeDto.setUserId(userId);
 		
 		//-1된 하트 갯수를 담아오기 위함
-		EntireBoardDto dto = likeDao.pictureRemoveHeart(likeDto);
+		EntireBoardDto dto = likebiz.pictureRemoveHeart(likeDto);
 		return dto;
 	}
+	/*
+	@RequestMapping("/snsBoardOne.do")
+	public String snsBoardOne(Model model, @RequestParam int entireBoardSeq, @SessionAttribute("login") UserDto user, HttpSession session) {
+		logger.info("[Controller] : snsBoardOne.do");
+		 		
+		model.addAttribute("dto", biz.snsBoardOne(entireBoardSeq));
+		HashMap<String, Object> idxMap = new HashMap<String, Object>();
+		int userSeq = user.getUserseq();
+		idxMap.put("entireBoardSeq", entireBoardSeq);
+		idxMap.put("userSeq", userSeq);
+		
+		Map<String,Object> likeCheckMap = likebiz.likeCheck(idxMap);
+		
+		//like테이블에서 사용자가 해당 게시글에 대해서 좋아요를 눌렀는지 확인
+		if(likeCheckMap == null) {
+			//사용자가 좋아요를 한번도 누른적이 없으면
+			//like테이블에 데이터가 없으므로 null반환
+			model.addAttribute("likeCheck", 0);
+		} else {
+			model.addAttribute("likeCheck", likeCheckMap.get("likeCheck"));
+		}
+		
+		
+		return "snsboarddetail";
+	}
+	*/
 	
+	//검색을 위한 유저리스트 전체 출력 
+	@RequestMapping("/snsUserSearch.do")
+	public String userList(Model model) {
+		
+		logger.info("[Controller] : snsUserSearch.do");
+		model.addAttribute("userList", biz.userList());
+		return "snsusersearch";
+	} 
 	
+	@ResponseBody
+	@RequestMapping(value="/searchUser.do", method=RequestMethod.POST)
+	public Map<String, Object> searchUser (HttpSession session, @RequestBody UserDto userdto) {
+		
+		System.out.println("값 전달");
+		System.out.println("userid : " + userdto.getUserid());
+		System.out.println("username : " + userdto.getUsername());
+		
+		String userid = userdto.getUserid();
+		String username = userdto.getUsername();
+		List<UserDto> userList = new ArrayList<UserDto>();
+		
+		Map<String, Object> userResult = new HashMap<String, Object>();
+		
+		if(userid != null) {
+			userList =  biz.snsSearchUserById(userid);
+			if(userList != null) {
+				userResult.put("userList", userList);
+			}
+		} else if (username != null) {
+			userList = biz.snsSearchUserByName(username);
+			userResult.put("userList", userList);
+		}
+		return userResult;
+	}
 }
 
 

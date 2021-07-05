@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import com.phoenix.carrot.dao.sns.SnsBoardDao;
 import com.phoenix.carrot.dto.sns.EntireBoardDto;
+import com.phoenix.carrot.user.dto.UserDto;
 
 @Service
 public class SnsBoardBizImpl implements SnsBoardBiz {
@@ -60,5 +61,25 @@ public class SnsBoardBizImpl implements SnsBoardBiz {
 	
 		return dao.snsUserFeedList(userId);
 	}
+	
+	@Override
+	public List<UserDto> userList() {
+		
+		return dao.userList();
+	}
+
+	@Override
+	public List<UserDto> snsSearchUserById(String userid) {
+		
+		return dao.snsSearchUserById(userid);
+	}
+
+	@Override
+	public List<UserDto> snsSearchUserByName(String username) {
+		
+		return dao.snsSearchUserByName(username);
+	}
+
+
 
 }

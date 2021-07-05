@@ -205,6 +205,25 @@ VALUES(
 	commentNoSeq.NEXTVAL, 1, 'test', '1번째 대댓글 테스트입니다.', SYSDATE, 2, 2, 1
 );
 ---------------------팔로우-----------------------------
+--SQL 수정 바람 
+DROP SEQUENCE followSeq;
+DROP TABLE followTable;
+
+CREATE SEQUENCE followSeq;
+
+CREATE TABLE followTable(
+	followSeq NUMBER PRIMARY KEY,
+	userSeq NUMBER NOT NULL,
+	userId VARCHAR2(100) NOT NULL,
+	followId VARCHAR2(100)
+);
+
+DROP TABLE followList;
+
+CREATE TABLE followList(
+	followId VARCHAR2(100),
+	followerId VARCHAR2(100),
+);
 --------------------좋아요------------------------------
 DROP SEQUENCE likeSeq;
 DROP TABLE likeTable;
@@ -212,10 +231,11 @@ DROP TABLE likeTable;
 CREATE SEQUENCE likeSeq;
 
 CREATE TABLE likeTable(
-	likeSeq NUMBER,
+	likeSeq NUMBER PRIMARY KEY,
 	userSeq NUMBER,
 	userId VARCHAR2(100),
-	entireBoardSeq NUMBER
+	entireBoardSeq NUMBER,
+	likeCheck NUMBER DEFAULT 0
 );
 
 ALTER TABLE likeTable ADD CONSTRAINT FK_likeTable_Id
@@ -226,11 +246,44 @@ ALTER TABLE likeTable ADD CONSTRAINT FK_likeTable_Board
 FOREIGN KEY (entireBoardSeq) REFERENCES entireBoard (entireBoardSeq)
 ON DELETE CASCADE;
 
-INSERT INTO likeTable
-VALUES (likeSeq.NEXTVAL, 1, 'test01', 28);
-
 SELECT * FROM likeTable;
+
 --------------------해시태그----------------------------
+
+DROP SEQUENCE hashTagSeq;
+DROP TABLE hashTag;
+
+CREATE SEQUENCE hashtagSeq;
+
+CREATE TABLE hashTag(
+	hashTagSeq NUMBER PRIMARY KEY,
+	hashTagName VARCHAR2(30)
+);
+
+DROP SEQUENCE boardHashTagSeq;
+DROP TABLE boardHashTag;
+
+CREATE SEQUENCE boardHashTagSeq;
+
+CREATE TABLE boardHashTag(
+	boardHashTagSeq NUMBER PRIMARY KEY,
+	hashTagSeq NUMBER NOT NULL,
+	entireBoardSeq NUMBER NOT NULL
+);
+
+ALTER TABLE boardHashTag ADD CONSTRAINT FK_Hash_hash
+FOREIGN KEY (hashTagSeq) REFERENCES hashTag (hashTagSeq)
+ON DELETE CASCADE;
+
+ALTER TABLE boardHashTag ADD CONSTRAINT FK_Hash_board
+FOREIGN KEY (entireBoardSeq) REFERENCES entireBoard (entireBoardSeq)
+ON DELETE CASCADE;
+
+
+SELECT *
+FROM USERS
+ORDER BY USERSEQ;
+
 
 
 
