@@ -94,6 +94,7 @@ ON DELETE CASCADE;
 SELECT * FROM boardFile;
 
 
+<<<<<<< Updated upstream
 -------------------------상품 --------------------------------------
 DROP SEQUENCE productSeq;
 DROP TABLE Product;
@@ -149,6 +150,8 @@ ORDER BY productPrice DESC;
 SELECT * FROM Product
 WHERE userRole = 'USER'
 ORDER BY productRegDate DESC;
+=======
+>>>>>>> Stashed changes
 
 ----------------------댓글/대댓글------------------------
 DROP SEQUENCE commentNoSeq;
