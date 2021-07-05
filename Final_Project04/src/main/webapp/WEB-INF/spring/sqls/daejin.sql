@@ -34,7 +34,8 @@ CREATE TABLE entireBoard(
 	userSeq NUMBER NOT NULL,
 	boardImg VARCHAR2(4000),
 	boardThumbImg VARCHAR2(4000),
-	likeCount NUMBER
+	likeCount NUMBER,
+	commentCount NUMBER
 );
 
 ALTER TABLE entireBoard
@@ -46,16 +47,16 @@ ON DELETE CASCADE;
 ---sns:1, knowhow:2, notice:3
 
 INSERT INTO entireBoard
-VALUES (entireBoardSeq.NEXTVAL, 1, SYSDATE, '테스트글입니다.', '테스트내용입니다.', 'daejin', 1, NULL, NULL, 0);
+VALUES (entireBoardSeq.NEXTVAL, 1, SYSDATE, '테스트글입니다.', '테스트내용입니다.', 'daejin', 1, NULL, NULL, 0, 0);
 
 INSERT INTO entireBoard
-VALUES (entireBoardSeq.NEXTVAL, 1, SYSDATE, '테스트글입니다2.', '테스트내용입니다2.', 'daejin', 1, NULL, NULL, 0);
+VALUES (entireBoardSeq.NEXTVAL, 1, SYSDATE, '테스트글입니다2.', '테스트내용입니다2.', 'daejin', 1, NULL, NULL, 0, 0);
 
 INSERT INTO entireBoard
-VALUES (entireBoardSeq.NEXTVAL, 1, SYSDATE, '테스트글입니다3.', '테스트내용입니다3.', 'daejin', 1, NULL, NULL, 0);
+VALUES (entireBoardSeq.NEXTVAL, 1, SYSDATE, '테스트글입니다3.', '테스트내용입니다3.', 'daejin', 1, NULL, NULL, 0, 0);
 
 INSERT INTO entireBoard
-VALUES (entireBoardSeq.NEXTVAL, 3, SYSDATE, '공지사항제목', '공지사항내용', 'admin', 1, NULL, NULL, NULL);
+VALUES (entireBoardSeq.NEXTVAL, 3, SYSDATE, '공지사항제목', '공지사항내용', 'admin', 1, NULL, NULL, NULL, 0);
 
 SELECT * FROM entireBoard;
 SELECT * FROM USERS;
@@ -73,26 +74,6 @@ SELECT *
 FROM entireBoard
 WHERE boardKind = 3
 ORDER BY boardDate ASC;
-----------------------------------------------------
---첨부파일을 위한 테이블 
-DROP SEQUENCE boardFileSeq;
-DROP TABLE boardFile;
-
-CREATE SEQUENCE boardFileSeq;
-
-CREATE TABLE boardFile(
-	boardFileName VARCHAR2(1000) NOT NULL,
-	entireBoardSeq NUMBER,
-	regdate DATE
-);
-
--- 게시글 첨부파일 테이블 참조키 설정
-ALTER TABLE boardFile ADD CONSTRAINT FK_board_file
-FOREIGN KEY (entireBoardSeq) REFERENCES entireBoard (entireBoardSeq)
-ON DELETE CASCADE;
-
-SELECT * FROM boardFile;
-
 
 -------------------------상품 --------------------------------------
 DROP SEQUENCE productSeq;
@@ -158,14 +139,17 @@ CREATE SEQUENCE commentNoSeq;
 
 CREATE TABLE commentBoard(
 	commentNoSeq NUMBER PRIMARY KEY,    --댓글번호
+	groupNo NUMBER,   --댓글이속한번호
+	groupNoNum NUMBER,  --같은 댓글이 속한 번호 중에 순서
+	groupDepth NUMBER,   --댓글의 깊이 모댓글이면 0, 답글이면 1
+	entireBoardSeq NUMBER NOT NULL,
 	userSeq NUMBER NOT NULL,
 	userId VARCHAR2(30) NOT NULL,
-	reContent VARCHAR2(2000) NOT NULL,
-	reRegDate DATE NOT NULL,
-	entireBoardSeq NUMBER NOT NULL,
-	groupNo NUMBER NOT NULL,   --댓글그룹번호
-	reRepSeq NUMBER NOT NULL  --대댓글 번호 
+	replyContent VARCHAR2(2000),
+	replyRegDate DATE 
+	
 );
+
 ALTER TABLE commentBoard ADD CONSTRAINT FK_CommentBoard_ID
 FOREIGN KEY (userSeq) REFERENCES Users (userSeq)
 ON DELETE CASCADE;
@@ -178,32 +162,16 @@ SELECT * FROM commentBoard;
 
 --1번째 댓글 
 INSERT INTO commentBoard
-VALUES(commentNoSeq.NEXTVAL, 1, 'test', '댓글테스트입니다.', SYSDATE, 2, 1, 0);
+VALUES(commentNoSeq.NEXTVAL, 1, 0, 42, 1, 'daejin', '댓글 1 테스트입니다.', SYSDATE);
 
 --2번째 댓글
 INSERT INTO commentBoard
 VALUES(
-	commentNoSeq.NEXTVAL, 1, 'test', '두번째댓글테스트입니다.', SYSDATE, 2,
+	commentNoSeq.NEXTVAL, 
 	(SELECT groupNo FROM commentBoard WHERE commentNoSeq = 1) + 1,
-	(SELECT reRepSeq FROM commentBoard WHERE commentNoSeq = 1) + 1
+	0, 42, 1, 'daejin', '댓글 2 테스트입니다.', SYSDATE
 );
 
---1번째 댓글의 1번째 대댓글
-INSERT INTO commentBoard
-VALUES(
-	commentNoSeq.NEXTVAL, 1, 'test', '1번째 대댓글 테스트입니다.', SYSDATE, 2, 1, 1
-);
-
---1번째 댓글의 2번째 대댓글
-INSERT INTO commentBoard
-VALUES(
-	commentNoSeq.NEXTVAL, 1, 'test', '1번째 대댓글 테스트입니다.', SYSDATE, 2, 1, 2
-);
---2번째 댓글의 대댓글
-INSERT INTO commentBoard
-VALUES(
-	commentNoSeq.NEXTVAL, 1, 'test', '1번째 대댓글 테스트입니다.', SYSDATE, 2, 2, 1
-);
 ---------------------팔로우-----------------------------
 --SQL 수정 바람 
 DROP SEQUENCE followSeq;
