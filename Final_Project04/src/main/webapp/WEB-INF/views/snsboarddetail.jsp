@@ -65,6 +65,31 @@
 			<td><span id="heart${dto.entireBoardSeq }">${dto.likeCount }</span></td>
 		</tr>
 	</table>
+	<!-- 댓글 -->
+	<div class="collapse" id="reply_card${commentdto.commentNoSeq }">
+		<div class="card card-body">
+			<!-- 댓글목록 -->
+			<div class="reply-list reply-list${commentdto.commentNoSeq}" >
+				<!-- 댓글목록이 들어가는곳 -->
+			</div>
+			<!-- 댓글작성 => 로그인상태여야 댓글작성칸 나오기-->
+			<c:if test="${not empty login}">
+				<div class="row reply_write">
+					<div class="col-1">
+						<a href="snsBoardUserFeed.do?userId=${userdto.userid }">${commentdto.userId }</a>
+					</div>
+					<div class="col-8" class="input_reply_div">
+						<input class="w-100 form-control" id="input_reply${commentdto.commentNoSeq }"
+						type="text" placeholder="댓글을 입력해주세요"/>
+					</div>
+					<div class="col-3">
+						<button type="button" idx="${commentdto.commentNoSeq}"
+						class="btn btn-success mb-1 write_reply">댓글&nbsp;달기</button>
+					</div>
+				</div>
+			</c:if>
+		</div>
+	</div>
 
 	<!-- 내 게시물만 삭제,수정버튼 나오게하기  -->
 	
@@ -177,6 +202,38 @@
 		}
 		
 	});
+	
+	//댓글달기
+	const CommentList = function(commentNoSeq) {
+		$.ajax({
+			url : '',
+			type : 'get',
+			data : {
+				commentNoSeq : commentNoSeq
+			},
+			
+			success : function(data) {
+				console.log("댓글리스트 가져오기 성공!");
+				
+				//댓글 목록을 html로 담기
+				let listHtml = "";
+				for (const i in data) {
+					let commentNoSeq = data[i].commentNoSeq;
+					let groupNo = data[i].groupNo;
+					let groupNoNum = data[i].groupNoNum;
+					let groupDepth = data[i].groupDepth;
+					let entireBoardSeq = data[i].entireBoardSeq;
+					let userSeq = data[i].userSeq;
+					let userId = data[i].userId;
+					let replyContent = data[i].replyContent;
+					let replyRegDate = data[i].replyRegDate;
+					
+					console.log(groupDepth); //모댓글일땐 0, 대댓글일땐 1
+				}
+			}
+			
+		});
+	}
 	
 
  /*

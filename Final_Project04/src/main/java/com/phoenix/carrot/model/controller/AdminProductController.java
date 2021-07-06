@@ -11,11 +11,11 @@ import com.phoenix.carrot.admin.dto.AdminProductDto;
 import com.sun.org.slf4j.internal.Logger;
 import com.sun.org.slf4j.internal.LoggerFactory;
 
-@Controller
+
 public class AdminProductController {
 
-	private Logger logger = LoggerFactory.getLogger(AdminProductController.class);
-
+	//private Logger logger = LoggerFactory.getLogger(AdminProductController.class);
+	/*
 	@Autowired
 	private AdminProductBiz biz;
 
@@ -91,5 +91,5 @@ public class AdminProductController {
 
 		return "redirect:adminproduct.do";
 	}
-
+	*/
 }

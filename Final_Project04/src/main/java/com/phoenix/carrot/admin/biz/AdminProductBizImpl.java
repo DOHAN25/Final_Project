@@ -16,50 +16,43 @@ import com.phoenix.carrot.product.dto.ProductDto;
 public class AdminProductBizImpl implements AdminProductBiz {
 	
 	private Logger logger = LoggerFactory.getLogger(UserProductBizImpl.class);
-	
-	@Autowired
-	private AdminProductDao dao;
-	
+
 	@Override
 	public List<ProductDto> adminProductList() {
-		
-		return dao.adminProductList();
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 	@Override
 	public ProductDto adminProductOne(int productSeq) {
-		
-		return dao.adminProductOne(productSeq);
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 	@Override
 	public int adminProductInsert(ProductDto dto) {
-		
-		return dao.adminProductInsert(dto);
+		// TODO Auto-generated method stub
+		return 0;
 	}
 
 	@Override
 	public int adminProductUpdate(ProductDto dto) {
-		
-		return dao.adminProductUpdate(dto);
+		// TODO Auto-generated method stub
+		return 0;
 	}
 
 	@Override
 	public int adminProductDelete(int productSeq) {
-		
-		return dao.adminProductDelete(productSeq);
+		// TODO Auto-generated method stub
+		return 0;
 	}
-	@Transactional
+
 	@Override
 	public String adminproduct() {
-	
-		dao.adminProductList();
-	
-		String adminproduct = null;
-		adminproduct.length();
-		
-		return adminproduct;
-		
+		// TODO Auto-generated method stub
+		return null;
 	}
+	
+	
 
 }
