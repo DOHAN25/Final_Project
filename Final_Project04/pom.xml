@@ -255,7 +255,7 @@
 		<!-- javax.websocket-api -->
 		<!-- https://mvnrepository.com/artifact/javax.websocket/javax.websocket-api -->
 		<dependency>
-<<<<<<< HEAD
+
 
 
 			<groupId>javax.websocket</groupId>
@@ -263,11 +263,8 @@
 			<version>1.1</version>
 			<scope>provided</scope>
 
-=======
-    		<groupId>javax.websocket</groupId>
-    		<artifactId>javax.websocket-api</artifactId>
-    		<version>1.1</version>
->>>>>>> cd3a15ccc097217de32f7386184d69494f6a257d
+
+
 		</dependency>
 
 		<!-- thumbnailator -->
