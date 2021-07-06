@@ -124,6 +124,8 @@ DELETE FROM Product
 WHERE userRole = 'USER'; 
 SELECT * FROM Product;
 
+DELETE FROM PRODUCT WHERE userRole = 'ADMIN';
+
 SELECT * FROM Product
 WHERE userRole = 'ADMIN'
 ORDER BY productPrice DESC;
