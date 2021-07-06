@@ -84,7 +84,7 @@
 	<!-- 현재 댓글테이블의 가장 큰 commentNoSEq 값을 가져온다 -->
 	<!-- 댓글 테이블의 마지막 auto_increment값을 가져옴 -->
 	<select id="p_reply_max_no" resultType="int">
-		SELECT ifnull(max(commentBoardSeq),0) FROM commentBoard
+		SELECT IFNULL(max(commentBoardSeq),0) FROM commentBoard
 	</select>
 	
 	<!-- 게시판에 댓글수 감소 -->
