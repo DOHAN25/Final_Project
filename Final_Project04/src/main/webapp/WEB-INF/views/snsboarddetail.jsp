@@ -6,6 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 <body>
@@ -64,6 +65,31 @@
 			<td><span id="heart${dto.entireBoardSeq }">${dto.likeCount }</span></td>
 		</tr>
 	</table>
+	<!-- 댓글 -->
+	<div class="collapse" id="reply_card${commentdto.commentNoSeq }">
+		<div class="card card-body">
+			<!-- 댓글목록 -->
+			<div class="reply-list reply-list${commentdto.commentNoSeq}" >
+				<!-- 댓글목록이 들어가는곳 -->
+			</div>
+			<!-- 댓글작성 => 로그인상태여야 댓글작성칸 나오기-->
+			<c:if test="${not empty login}">
+				<div class="row reply_write">
+					<div class="col-1">
+						<a href="snsBoardUserFeed.do?userId=${userdto.userid }">${commentdto.userId }</a>
+					</div>
+					<div class="col-8" class="input_reply_div">
+						<input class="w-100 form-control" id="input_reply${commentdto.commentNoSeq }"
+						type="text" placeholder="댓글을 입력해주세요"/>
+					</div>
+					<div class="col-3">
+						<button type="button" idx="${commentdto.commentNoSeq}"
+						class="btn btn-success mb-1 write_reply">댓글&nbsp;달기</button>
+					</div>
+				</div>
+			</c:if>
+		</div>
+	</div>
 
 	<!-- 내 게시물만 삭제,수정버튼 나오게하기  -->
 	
@@ -71,14 +97,15 @@
 	<table border="1">
 		<tr>
 			<td colspan="2" align="right">
-				<input type="button" value="수정" onclick="location.href='snsBoardUpdateForm.do?entireBoardSeq=${dto.entireBoardSeq}'"/>
+										
+				<input type="button" value="공유하기" onclick="location.href"/>
 				<input type="button" value="삭제" onclick="location.href='snsBoardDelete.do?entireBoardSeq=${dto.entireBoardSeq}'"/>
 				<input type="button" value="목록" onclick="location.href='snsBoardList.do'"/>
 			</td>
 		</tr>
 	</table>
 	</c:if>
-		
+	<a id="kakao-link-btn" href="javascript:sendLink()"><i class="fas fa-share-alt"></i>공유하기 </a>		
 
 
 
@@ -176,6 +203,79 @@
 		
 	});
 	
+	//댓글달기
+	const CommentList = function(commentNoSeq) {
+		$.ajax({
+			url : '',
+			type : 'get',
+			data : {
+				commentNoSeq : commentNoSeq
+			},
+			
+			success : function(data) {
+				console.log("댓글리스트 가져오기 성공!");
+				
+				//댓글 목록을 html로 담기
+				let listHtml = "";
+				for (const i in data) {
+					let commentNoSeq = data[i].commentNoSeq;
+					let groupNo = data[i].groupNo;
+					let groupNoNum = data[i].groupNoNum;
+					let groupDepth = data[i].groupDepth;
+					let entireBoardSeq = data[i].entireBoardSeq;
+					let userSeq = data[i].userSeq;
+					let userId = data[i].userId;
+					let replyContent = data[i].replyContent;
+					let replyRegDate = data[i].replyRegDate;
+					
+					console.log(groupDepth); //모댓글일땐 0, 대댓글일땐 1
+				}
+			}
+			
+		});
+	}
+	
 
+ /*
+   //<![CDATA[
+    // // 사용할 앱의 JavaScript 키를 설정해 주세요.
+    Kakao.init('4b7e72eca108f2115775c1000b513249');
+    // // 카카오링크 버튼을 생성합니다. 처음 한번만 호출하면 됩니다.
+    Kakao.Link.createDefaultButton({
+      container: '#kakao-link-btn',
+      objectType: 'feed',
+      */
+      /*
+      content: {
+        title: $('meta[property="og:title"]').attr( 'content' ),
+        description: $('meta[property="og:description"]').attr( 'content' ),
+        imageUrl: $( 'meta[property="og:image"]' ).attr( 'content' ),
+        link: {
+          mobileWebUrl:"http://localhost:8787/carrot/snsBoardOne.do?entireBoardSeq="+${dto.entireBoardSeq},
+          webUrl: "http://localhost:8787/carrot/snsBoardOne.do?entireBoardSeq="+${dto.entireBoardSeq}
+        }
+      },
+      
+      social: {
+        likeCount: 286,
+        commentCount: 45,
+        sharedCount: 845
+      },
+      */
+      /*
+      buttons: [
+        {
+          title: '웹으로 보기',
+          link: {
+            // webUrl: window.location.href
+            webUrl: "http://localhost:8787/carrot/snsBoardOne.do?entireBoardSeq="+${dto.entireBoardSeq}
+          }
+        }
+      ]
+    });
+    
+  //]]>
+ */
+ 
 </script>
 </html>

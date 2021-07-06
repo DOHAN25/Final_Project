@@ -33,21 +33,15 @@
 		</tr>
 		
 		<c:choose>
-		
+
 			<c:when test="${empty snsUserFeedList }">
-				<tr>
-					<td>피드주인</td>
-					<td>${dto.userId }님의 피드입니다.</td>	
-				</tr>
 				<tr>
 					<th colspan="4">------ 작성된 글이 없습니다-----</th>
 				</tr>
 			</c:when>
 			<c:otherwise>
 				<c:forEach items="${snsUserFeedList }" var= "dto">
-					<tr>
-						<td>${dto.userId }님의 피드입니다.</td>
-					</tr>
+
 					<tr>
 						<td>${dto.entireBoardSeq }</td>
 						<td>${dto.userId }</td>

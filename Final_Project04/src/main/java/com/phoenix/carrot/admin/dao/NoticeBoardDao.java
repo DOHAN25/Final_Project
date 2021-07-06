@@ -2,19 +2,17 @@ package com.phoenix.carrot.admin.dao;
 
 import java.util.List;
 
-import com.phoenix.carrot.admin.dto.NoticeBoardDto;
+import com.phoenix.carrot.dto.sns.EntireBoardDto;
 
 public interface NoticeBoardDao {
 
 	String NAMESPACE = "upgrade.noticedmapper.";
 	
-	public List<NoticeBoardDto> selectList();
-	public NoticeBoardDto selectOne(int admno);
-	public int insert(NoticeBoardDto dto);
-	public int update(NoticeBoardDto dto);
-	public int delete(int admno);
+	public List<EntireBoardDto> noticeBoardList();
+	public EntireBoardDto noticeBoardOne(int entireBoardSeq);
+	public int noticeBoardInsert(EntireBoardDto dto);
+	public int noticeBoardUpdate(EntireBoardDto dto);
+	public int noticeBoardDelete(int entireBoardSeq);
 	
-	public String test();
 
-	
 }

@@ -13,6 +13,7 @@
   		<result property="boardImg" column="boardImg"/>
   		<result property="boardThumbImg" column="boardThumbImg"/>
   		<result property="likeCount" column="likeCount"/>
+  		<result property="commentCount" column="commentCount"/>
   	</resultMap>
 
 	<select id="snsBoardList" resultType="entireBoardDto">
@@ -24,7 +25,7 @@
 	
 	<insert id="snsBoardInsert" parameterType="entireBoardDto">
 		INSERT INTO entireBoard
-		VALUES(entireBoardSeq.NEXTVAL, 1, SYSDATE, 'sns글테스트입니다.', #{boardContents}, #{userId}, #{userSeq}, #{boardImg}, #{boardThumbImg}, 0)
+		VALUES(entireBoardSeq.NEXTVAL, 1, SYSDATE, 'sns글테스트입니다.', #{boardContents}, #{userId}, #{userSeq}, #{boardImg}, #{boardThumbImg}, 0, 0)
 	</insert>
 	
 	<select id="snsBoardOne" resultMap="entireBoardMap">
