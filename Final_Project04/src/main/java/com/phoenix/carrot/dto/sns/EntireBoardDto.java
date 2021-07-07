@@ -20,7 +20,6 @@ public class EntireBoardDto {
 	private String boardImg;
 	private String boardThumbImg;
 	private int likeCount;
-	private int commentCount;
 	
 	//private String[] files;
 	
@@ -29,7 +28,7 @@ public class EntireBoardDto {
 	}
 
 	public EntireBoardDto(int entireBoardSeq, String boardKind, Date boardDate, String boardTitle, String boardContents,
-			String userId, int userSeq, String boardImg, String boardThumbImg, int likeCount, int commentCount) {
+			String userId, int userSeq, String boardImg, String boardThumbImg, int likeCount) {
 		this.entireBoardSeq = entireBoardSeq;
 		this.boardKind = boardKind;
 		this.boardDate = boardDate;
@@ -40,7 +39,6 @@ public class EntireBoardDto {
 		this.boardImg = boardImg;
 		this.boardThumbImg = boardThumbImg;
 		this.likeCount = likeCount;
-		this.commentCount = commentCount;
 	}
 
 	public int getEntireBoardSeq() {
@@ -122,16 +120,6 @@ public class EntireBoardDto {
 	public void setLikeCount(int likeCount) {
 		this.likeCount = likeCount;
 	}
-
-	public int getCommentCount() {
-		return commentCount;
-	}
-
-	public void setCommentCount(int commentCount) {
-		this.commentCount = commentCount;
-	}
-	
-	
 	
 
 }
