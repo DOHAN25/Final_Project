@@ -6,7 +6,6 @@ public class CommentBoardDto {
 	
 	private int commentNoSeq;
 	private int groupNo;  //댓글 그룹 번호 (모댓글과 거기에 속한 대댓글은 같은 번호를 가진다)
-	private int groupNoNum; //그룹 내 댓글 순서 (오래된 글 ~ 최신글 오름차순)
 	private int groupDepth; //그룹내 댓글 깊이 댓글인지 대댓글인지 
 	private int entireBoardSeq;  //댓글이 속한 게시글 번호 (받아와야하는 값)
 	private int userSeq;
@@ -18,12 +17,11 @@ public class CommentBoardDto {
 
 	}
 
-	public CommentBoardDto(int commentNoSeq, int groupNo, int groupNoNum, int groupDepth, int entireBoardSeq,
+	public CommentBoardDto(int commentNoSeq, int groupNo, int groupDepth, int entireBoardSeq,
 			int userSeq, String userId, String replyContent, Date replyRegDate) {
 
 		this.commentNoSeq = commentNoSeq;
 		this.groupNo = groupNo;
-		this.groupNoNum = groupNoNum;
 		this.groupDepth = groupDepth;
 		this.entireBoardSeq = entireBoardSeq;
 		this.userSeq = userSeq;
@@ -46,14 +44,6 @@ public class CommentBoardDto {
 
 	public void setGroupNo(int groupNo) {
 		this.groupNo = groupNo;
-	}
-
-	public int getGroupNoNum() {
-		return groupNoNum;
-	}
-
-	public void setGroupNoNum(int groupNoNum) {
-		this.groupNoNum = groupNoNum;
 	}
 
 	public int getGroupDepth() {

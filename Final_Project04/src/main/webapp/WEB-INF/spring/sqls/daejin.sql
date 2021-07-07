@@ -34,8 +34,7 @@ CREATE TABLE entireBoard(
 	userSeq NUMBER NOT NULL,
 	boardImg VARCHAR2(4000),
 	boardThumbImg VARCHAR2(4000),
-	likeCount NUMBER,
-	commentCount NUMBER
+	likeCount NUMBER
 );
 
 ALTER TABLE entireBoard
@@ -47,16 +46,16 @@ ON DELETE CASCADE;
 ---sns:1, knowhow:2, notice:3
 
 INSERT INTO entireBoard
-VALUES (entireBoardSeq.NEXTVAL, 1, SYSDATE, '테스트글입니다.', '테스트내용입니다.', 'daejin', 1, NULL, NULL, 0, 0);
+VALUES (entireBoardSeq.NEXTVAL, 1, SYSDATE, '테스트글입니다.', '테스트내용입니다.', 'daejin', 1, NULL, NULL, 0);
 
 INSERT INTO entireBoard
-VALUES (entireBoardSeq.NEXTVAL, 1, SYSDATE, '테스트글입니다2.', '테스트내용입니다2.', 'daejin', 1, NULL, NULL, 0, 0);
+VALUES (entireBoardSeq.NEXTVAL, 1, SYSDATE, '테스트글입니다2.', '테스트내용입니다2.', 'daejin', 1, NULL, NULL, 0);
 
 INSERT INTO entireBoard
-VALUES (entireBoardSeq.NEXTVAL, 1, SYSDATE, '테스트글입니다3.', '테스트내용입니다3.', 'daejin', 1, NULL, NULL, 0, 0);
+VALUES (entireBoardSeq.NEXTVAL, 1, SYSDATE, '테스트글입니다3.', '테스트내용입니다3.', 'daejin', 1, NULL, NULL, 0);
 
 INSERT INTO entireBoard
-VALUES (entireBoardSeq.NEXTVAL, 3, SYSDATE, '공지사항제목', '공지사항내용', 'admin', 1, NULL, NULL, NULL, 0);
+VALUES (entireBoardSeq.NEXTVAL, 3, SYSDATE, '공지사항제목', '공지사항내용', 'admin', 1, NULL, NULL, 0);
 
 SELECT * FROM entireBoard;
 SELECT * FROM USERS;
@@ -75,7 +74,7 @@ FROM entireBoard
 WHERE boardKind = 3
 ORDER BY boardDate ASC;
 
-<<<<<<< Updated upstream
+
 -------------------------상품 --------------------------------------
 DROP SEQUENCE productSeq;
 DROP TABLE Product;
@@ -131,8 +130,6 @@ ORDER BY productPrice DESC;
 SELECT * FROM Product
 WHERE userRole = 'USER'
 ORDER BY productRegDate DESC;
-=======
->>>>>>> Stashed changes
 
 ----------------------댓글/대댓글------------------------
 DROP SEQUENCE commentNoSeq;
@@ -143,7 +140,6 @@ CREATE SEQUENCE commentNoSeq;
 CREATE TABLE commentBoard(
 	commentNoSeq NUMBER PRIMARY KEY,    --댓글번호
 	groupNo NUMBER,   --댓글이속한번호
-	groupNoNum NUMBER,  --같은 댓글이 속한 번호 중에 순서
 	groupDepth NUMBER,   --댓글의 깊이 모댓글이면 0, 답글이면 1
 	entireBoardSeq NUMBER NOT NULL,
 	userSeq NUMBER NOT NULL,
@@ -161,20 +157,20 @@ ALTER TABLE commentBoard ADD CONSTRAINT FK_commentBoard_Ogigin
 FOREIGN KEY (entireBoardSeq) REFERENCES entireBoard (entireBoardSeq)
 ON DELETE CASCADE;
 
-SELECT * FROM commentBoard;
+SELECT * 
+FROM commentBoard
+WHERE entireBoardSeq = 1;
 
 --1번째 댓글 
 INSERT INTO commentBoard
-VALUES(commentNoSeq.NEXTVAL, 1, 0, 42, 1, 'daejin', '댓글 1 테스트입니다.', SYSDATE);
+VALUES(commentNoSeq.NEXTVAL, 1, 0, 1, 1, 'daejin', '댓글 1 테스트입니다.', SYSDATE);
 
 --2번째 댓글
 INSERT INTO commentBoard
-VALUES(
-	commentNoSeq.NEXTVAL, 
-	(SELECT groupNo FROM commentBoard WHERE commentNoSeq = 1) + 1,
-	0, 42, 1, 'daejin', '댓글 2 테스트입니다.', SYSDATE
-);
+VALUES(commentNoSeq.NEXTVAL, 2, 0, 1, 1, 'daejin', '댓글 1 테스트입니다.', SYSDATE);
 
+INSERT INTO commentBoard
+VALUES(commentNoSeq.NEXTVAL, 2, 1, 1, 1, 'daejin', '댓글 1 테스트입니다.', SYSDATE);
 ---------------------팔로우-----------------------------
 --SQL 수정 바람 
 DROP SEQUENCE followSeq;
@@ -249,11 +245,6 @@ ON DELETE CASCADE;
 ALTER TABLE boardHashTag ADD CONSTRAINT FK_Hash_board
 FOREIGN KEY (entireBoardSeq) REFERENCES entireBoard (entireBoardSeq)
 ON DELETE CASCADE;
-
-
-SELECT *
-FROM USERS
-ORDER BY USERSEQ;
 
 
 

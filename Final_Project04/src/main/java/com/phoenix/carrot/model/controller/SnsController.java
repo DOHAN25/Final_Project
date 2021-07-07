@@ -27,10 +27,12 @@ import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.phoenix.carrot.biz.sns.CommentBoardBiz;
 import com.phoenix.carrot.biz.sns.FileValidator;
 import com.phoenix.carrot.biz.sns.LikeTableBiz;
 import com.phoenix.carrot.biz.sns.SnsBoardBiz;
 import com.phoenix.carrot.dao.sns.LikeTableDao;
+import com.phoenix.carrot.dto.sns.CommentBoardDto;
 import com.phoenix.carrot.dto.sns.EntireBoardDto;
 import com.phoenix.carrot.dto.sns.LikeTableDto;
 import com.phoenix.carrot.user.biz.UserBiz;
@@ -53,6 +55,8 @@ public class SnsController {
 	
 	@Autowired
 	private UserBiz userbiz;
+	@Autowired
+	private CommentBoardBiz commentbiz;
 	
 	@Resource(name="uploadPath")
 	private String uploadPath;
@@ -110,12 +114,18 @@ public class SnsController {
 	}
 	
 	@RequestMapping("/snsBoardOne.do")
-	public String snsBoardOne(Model model, int entireBoardSeq,@SessionAttribute("login") UserDto userdto, HttpSession session) {
+	public String snsBoardOne(Model model, int entireBoardSeq ,@RequestParam Map<String, Object> paramMap,@SessionAttribute("login") UserDto userdto, HttpSession session) {
 		logger.info("[Controller] : snsBoardOne.do");
+		CommentBoardDto commentdto = new CommentBoardDto();
+		
 		int userSeq = userdto.getUserseq();
+		
 		// 게시물에대한 정보 모델링 
 		model.addAttribute("dto", biz.snsBoardOne(entireBoardSeq));
+		//좋아요 여부 정보 모델링
 		model.addAttribute("likeCheck",likebiz.likeCheck(entireBoardSeq, userSeq));
+		//댓글리스트 모델링 
+		model.addAttribute("replyList", commentbiz.getReplyList(paramMap));
 		
 		return "snsboarddetail";
 	}
@@ -195,33 +205,7 @@ public class SnsController {
 		EntireBoardDto dto = likebiz.pictureRemoveHeart(likeDto);
 		return dto;
 	}
-	/*
-	@RequestMapping("/snsBoardOne.do")
-	public String snsBoardOne(Model model, @RequestParam int entireBoardSeq, @SessionAttribute("login") UserDto user, HttpSession session) {
-		logger.info("[Controller] : snsBoardOne.do");
-		 		
-		model.addAttribute("dto", biz.snsBoardOne(entireBoardSeq));
-		HashMap<String, Object> idxMap = new HashMap<String, Object>();
-		int userSeq = user.getUserseq();
-		idxMap.put("entireBoardSeq", entireBoardSeq);
-		idxMap.put("userSeq", userSeq);
-		
-		Map<String,Object> likeCheckMap = likebiz.likeCheck(idxMap);
-		
-		//like테이블에서 사용자가 해당 게시글에 대해서 좋아요를 눌렀는지 확인
-		if(likeCheckMap == null) {
-			//사용자가 좋아요를 한번도 누른적이 없으면
-			//like테이블에 데이터가 없으므로 null반환
-			model.addAttribute("likeCheck", 0);
-		} else {
-			model.addAttribute("likeCheck", likeCheckMap.get("likeCheck"));
-		}
-		
-		
-		return "snsboarddetail";
-	}
-	*/
-	
+
 	//검색을 위한 유저리스트 전체 출력 
 	@RequestMapping("/snsUserSearch.do")
 	public String userList(Model model) {

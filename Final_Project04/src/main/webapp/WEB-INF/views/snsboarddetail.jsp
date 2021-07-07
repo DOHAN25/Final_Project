@@ -8,11 +8,168 @@
 <title>Insert title here</title>
 <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script type="text/javascript">
+
+	$(document).ready(function(){
+		
+		var status = false; // 수정과 대댓글을 동시에 적용 못하도록
+		
+		//댓글 저장 
+		$("#reply_save").click(function(){
+			//널검사 // 띄어쓰기 되는지 보기 
+			if($("#replyContent").val().trim() ==  ""){
+			alert("내용을 입력하세요");
+			$("#replyContent").focus();
+			return false;
+		}
+		
+		
+		var replyContent = $("#replyContent").val().replace("\n", "<br>"); //개행 처리
+
+		console.log("replyContent : ", replyContent)
+		//값 세팅
+		var objParams = {
+				groupNo			: 0,
+				groupDepth		: 0,
+				entireBoardSeq  : ${dto.entireBoardSeq},
+				userSeq			: ${login.userseq},
+				userId			: '${login.userid}',
+				replyContent	: replyContent
+		};
+		
+		console.log(objParams);
+		
+		var commentNoSeq;
+
+		
+		//ajax호출
+		$.ajax({
+			url			: "boardreplysave.do",
+			dataType	: "json",
+			contentType	: "application/x-www-form-urlencoded; charset=UTF-8",
+			type		: "POST",
+			async		: true, //동기 : false, 비동기 : true
+			data		: objParams,
+			success		: function(retVal) {
+				
+				if(retVal.code != "OK") {
+					alert(retVal.message);
+					return false;
+				} else {
+					commentNoSeq = retVal.commentNoSeq;
+				}
+				
+			},
+			error		: function(request, status, error) {
+				console.log("AJAX_ERROR");
+			}
+		});
+		
+		var reply_area = $("#reply_area");
+		
+		var reply =
+            '<tr reply_type="main">'+
+            '    <td width="820px">'+
+            replyContent+
+            '    </td>'+
+            '    <td width="100px">'+
+            $("#userId").val()+   //${login.userid}
+            '    </td>'+
+            '    <td align="center">'+
+            '       <button name="reply_reply" reply_id = "'+commentNoSeq+'">댓글</button>'+
+            '       <button name="reply_modify" r_type = "main" parent_id = "0" reply_id = "'+commentNoSeq+'">수정</button>      '+
+            '       <button name="reply_del" r_type = "main" reply_id = "'+commentNoSeq+'">삭제</button>      '+
+            '    </td>'+
+            '</tr>';
+            console.log("reply : ", reply)
+            
+            if($('#reply_area').contents().length == 0){
+            	$('#reply_area').append(reply);
+            } else {
+            	$('#reply_area tr:last').after(reply);
+            }
+            
+            //댓글 초기화
+            $("#userId").val("");
+            $("#replyContent").val("");
+            
+		});
+		
+		//댓글 삭제 
+		//댓글 수정
+		//댓글수정 취소
+		//댓글수정 저장
+		//대댓글 입력창
+		$(document).on("click","button[name='reply_reply']",function(){//동적이벤트
+			
+			if(status){
+				alert("수정과 대댓글은 동시에 불가합니다.");
+				return false;
+			}
+		
+			status = true;
+			
+			$("#reply_add").remove();
+			
+			var commentNoSeq = $(this).attr("commentNoSeq");
+			var last_check = false; //마지막 tr체크
+			
+			//입력받는 창 등록 
+			var replyEditor =
+                '<tr id="reply_add" class="reply_reply">'+
+                '    <td width="820px">'+
+                '        <textarea name="reply_reply_content" rows="3" cols="50"></textarea>'+
+                '    </td>'+
+                '    <td width="100px">'+
+                '        <input type="text" name="reply_reply_writer" style="width:100%;" maxlength="10" placeholder="작성자"/>'+
+                '    </td>'+
+                '    <td width="100px">'+
+                '        <input type="password" name="reply_reply_password" style="width:100%;" maxlength="10" placeholder="패스워드"/>'+
+                '    </td>'+
+                '    <td align="center">'+
+                '        <button name="reply_reply_save" parent_id="'+reply_id+'">등록</button>'+
+                '        <button name="reply_reply_cancel">취소</button>'+
+                '    </td>'+
+                '</tr>';
+           
+           var prevTr = $(this).parent().parent().next();
+           
+           //부모의 무모 다음이 sub이면 마지막 sub뒤에 붙인다.
+           //마지막 리플 처리
+           if(prevTr.attr("reply_type") == undefined) {
+        	   prevTr = $(this).parent().parent();
+           } else {
+        	   while(prevTr.attr("reply_type")=="sub"){//댓글의 다음이 sub면 계속 넘어감
+        			prevTr = prevTr.next();   
+        	   }
+        	   
+        	   if(prevTr.attr("reply_type") == undefined){//next뒤에 tr이 없다면 마지막이라는 표시를 해주자
+        		   last_check = true;
+        	   } else {
+        		   prevTr = prevTr.prev();
+        	   }
+           }
+		
+           if(last_check) { //마지막이라면 제일 마지막 tr뒤에 댓글 입력을 붙인다.
+        	   $('#reply_area tr:last').after(replyEditor);
+        	   
+           } else {
+        	   prevTr.arter(replyEditor);
+           }
+           
+		});
+
+		//대댓글 등록
+		//대댓글입력창취소
+		//대댓글?수정
+		//글삭제
+		
+</script>
 </head>
 <body>
 
 	<h1>SnsBoardDetail</h1>
-	
+
 	<table border="1">
 		<tr>
 			<td>userId</td>
@@ -66,30 +223,44 @@
 		</tr>
 	</table>
 	<!-- 댓글 -->
-	<div class="collapse" id="reply_card${commentdto.commentNoSeq }">
-		<div class="card card-body">
-			<!-- 댓글목록 -->
-			<div class="reply-list reply-list${commentdto.commentNoSeq}" >
-				<!-- 댓글목록이 들어가는곳 -->
-			</div>
-			<!-- 댓글작성 => 로그인상태여야 댓글작성칸 나오기-->
-			<c:if test="${not empty login}">
-				<div class="row reply_write">
-					<div class="col-1">
-						<a href="snsBoardUserFeed.do?userId=${userdto.userid }">${commentdto.userId }</a>
-					</div>
-					<div class="col-8" class="input_reply_div">
-						<input class="w-100 form-control" id="input_reply${commentdto.commentNoSeq }"
-						type="text" placeholder="댓글을 입력해주세요"/>
-					</div>
-					<div class="col-3">
-						<button type="button" idx="${commentdto.commentNoSeq}"
-						class="btn btn-success mb-1 write_reply">댓글&nbsp;달기</button>
-					</div>
-				</div>
-			</c:if>
-		</div>
-	</div>
+	
+    <table border="1" width="1200px" id="reply_area">
+         <tr reply_type="all"  style="display:none"><!-- 뒤에 댓글 붙이기 쉽게 선언 -->
+              <td colspan="4"></td>
+         </tr>
+              <!-- 댓글이 들어갈 공간 -->
+              <c:forEach var="replyList" items="${replyList}" varStatus="status">
+                  <tr reply_type="<c:if test="${replyList.groupDepth == 0}">main</c:if><c:if test="${replyList.groupDepth == 1}">sub</c:if>"><!-- 댓글의 depth 표시 -->
+                      <td width="820px">
+                          <c:if test="${replyList.groupDepth == 1}"> → </c:if>${replyList.replyContent}
+                      </td>
+                      <td width="100px">
+                          ${replyList.userId}
+                      </td>
+                      <td align="center">
+                            <c:if test="${replyList.groupDepth != 1 }">
+                                <button name="reply_reply" parent_id = "${replyList.userId}" reply_id = "${replyList.commentNoSeq}">댓글</button><!-- 첫 댓글에만 댓글이 추가 대댓글 불가 -->
+                            </c:if>
+                            	<button name="reply_modify" parent_id = "${replyList.groupNo}" r_type = "<c:if test="${replyList.groupDepth == 0}">main</c:if><c:if test="${replyList.groupDepth == 1}">sub</c:if>" reply_id = "${replyList.commentNoSeq}">수정</button>
+                            	<button name="reply_del" r_type = "<c:if test="${replyList.groupDepth == 0}">main</c:if><c:if test="${replyList.groupDepth == 1}">sub</c:if>" reply_id = "${replyList.commentNoSeq}">삭제</button>
+                       </td>
+                    </tr>
+                </c:forEach>
+      </table>
+      
+      <table border="1" width="1200px" bordercolor="#46AA46">
+          			<tr>
+                       <td width="500px">
+                        	유저 아이디: <textarea id="userId" name="userId" readonly="readonly" rows="1" cols="50">${login.userid}</textarea>
+                        	<button id="reply_save" name="reply_save">댓글 등록</button>
+                    	</td>
+                   </tr>
+                   <tr>
+                       <td>
+                           <textarea id="replyContent" name="replyContent" rows="4" cols="50" placeholder="댓글을 입력하세요."></textarea>
+                       </td>
+                   </tr>
+       </table>
 
 	<!-- 내 게시물만 삭제,수정버튼 나오게하기  -->
 	
@@ -105,7 +276,7 @@
 		</tr>
 	</table>
 	</c:if>
-	<a id="kakao-link-btn" href="javascript:sendLink()"><i class="fas fa-share-alt"></i>공유하기 </a>		
+
 
 
 
@@ -203,79 +374,7 @@
 		
 	});
 	
-	//댓글달기
-	const CommentList = function(commentNoSeq) {
-		$.ajax({
-			url : '',
-			type : 'get',
-			data : {
-				commentNoSeq : commentNoSeq
-			},
-			
-			success : function(data) {
-				console.log("댓글리스트 가져오기 성공!");
-				
-				//댓글 목록을 html로 담기
-				let listHtml = "";
-				for (const i in data) {
-					let commentNoSeq = data[i].commentNoSeq;
-					let groupNo = data[i].groupNo;
-					let groupNoNum = data[i].groupNoNum;
-					let groupDepth = data[i].groupDepth;
-					let entireBoardSeq = data[i].entireBoardSeq;
-					let userSeq = data[i].userSeq;
-					let userId = data[i].userId;
-					let replyContent = data[i].replyContent;
-					let replyRegDate = data[i].replyRegDate;
-					
-					console.log(groupDepth); //모댓글일땐 0, 대댓글일땐 1
-				}
-			}
-			
-		});
-	}
 	
-
- /*
-   //<![CDATA[
-    // // 사용할 앱의 JavaScript 키를 설정해 주세요.
-    Kakao.init('4b7e72eca108f2115775c1000b513249');
-    // // 카카오링크 버튼을 생성합니다. 처음 한번만 호출하면 됩니다.
-    Kakao.Link.createDefaultButton({
-      container: '#kakao-link-btn',
-      objectType: 'feed',
-      */
-      /*
-      content: {
-        title: $('meta[property="og:title"]').attr( 'content' ),
-        description: $('meta[property="og:description"]').attr( 'content' ),
-        imageUrl: $( 'meta[property="og:image"]' ).attr( 'content' ),
-        link: {
-          mobileWebUrl:"http://localhost:8787/carrot/snsBoardOne.do?entireBoardSeq="+${dto.entireBoardSeq},
-          webUrl: "http://localhost:8787/carrot/snsBoardOne.do?entireBoardSeq="+${dto.entireBoardSeq}
-        }
-      },
-      
-      social: {
-        likeCount: 286,
-        commentCount: 45,
-        sharedCount: 845
-      },
-      */
-      /*
-      buttons: [
-        {
-          title: '웹으로 보기',
-          link: {
-            // webUrl: window.location.href
-            webUrl: "http://localhost:8787/carrot/snsBoardOne.do?entireBoardSeq="+${dto.entireBoardSeq}
-          }
-        }
-      ]
-    });
-    
-  //]]>
- */
- 
+	
 </script>
 </html>
