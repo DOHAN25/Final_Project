@@ -26,7 +26,7 @@
 	<br/>
 	<a href="usermarketplace.do">중고시장</a>
 	<br/>
-	<a href="adminproduct.jsp">씨앗, 도구 판매</a>
+	
 
 
 <%@include file ="/WEB-INF/views/footer.jsp" %>
