@@ -98,6 +98,22 @@ public class UserProductDaoImpl implements UserProductDao {
 		
 		return productListByproName;
 	}
+
+	@Override
+	public List<ProductDto> selectlistLatLong() {
+		// TODO Auto-generated method stub
+		
+		List<ProductDto> list = null;
+		
+		try {
+			list = sqlSession.selectList(NAMESPACE+"selectlistLatLong");
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+			System.out.println("위도 경도 리스트 추출 실패");
+		}
+		return list;
+	}
 	
 
 }

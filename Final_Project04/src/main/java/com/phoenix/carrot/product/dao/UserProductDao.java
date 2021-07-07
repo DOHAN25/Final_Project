@@ -25,5 +25,8 @@ public interface UserProductDao {
 	
 	// 상품명으로 검색
 	public List<ProductDto> selectByproName(String productName);
+	
+	// 회원 위도 경도 리스트 뽑아오기
+	public List<ProductDto> selectlistLatLong();
 
 }

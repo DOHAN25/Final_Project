@@ -62,4 +62,10 @@ public class UserProductBizImpl implements UserProductBiz {
 		return dao.selectByproName(productName);
 	}
 
+	@Override
+	public List<ProductDto> selectlistLatLong() {
+		// TODO Auto-generated method stub
+		return dao.selectlistLatLong();
+	}
+
 }
