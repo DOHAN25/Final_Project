@@ -105,6 +105,10 @@ FOREIGN KEY (userSeq) REFERENCES Users (userSeq)
 ON DELETE CASCADE;
 
 INSERT INTO Product 
+VALUES (productSeq.NEXTVAL, '태린이가 심은 고구마', 8800, '유저판매', SYSDATE, NULL, NULL, NULL, 'N','USER', , 'test', "36.587769", "127.2323808");
+
+
+INSERT INTO Product 
 VALUES (productSeq.NEXTVAL, '1인용 텃밭 세트', 12800, '운영자판매', NULL, NULL, NULL, NULL, 'Y', 'ADMIN', 1, '운영자', NULL, NULL);
 
 INSERT INTO Product 
@@ -117,8 +121,7 @@ VALUES (productSeq.NEXTVAL, '친환경 물뿌리개', 6800, '운영자판매', N
 INSERT INTO Product 
 VALUES (productSeq.NEXTVAL, '대진이가 심은 상추', 8000, '유저판매', SYSDATE, NULL, NULL, NULL, 'N', 'USER', 1, 'test', NULL, NULL);
 
-INSERT INTO Product 
-VALUES (productSeq.NEXTVAL, '태린이가 심은 고구마', 8800, '유저판매', SYSDATE, NULL, NULL, NULL, 'N','USER', 1, 'test', NULL, NULL);
+
 
 DELETE FROM Product
 WHERE userRole = 'USER'; 
@@ -258,17 +261,9 @@ FROM USERS
 ORDER BY USERSEQ;
 
 
-
-
-
-
-
-
-
-
-
-
-
+DELETE FROM Product WHERE userLatitude IS NULL;
+select * from Product where userId = 'dodo010';
+SELECT userLatitude, userLongitude FROM Product
 
 
 
