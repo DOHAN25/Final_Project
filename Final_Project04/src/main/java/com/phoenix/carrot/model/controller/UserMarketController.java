@@ -146,7 +146,7 @@ public class UserMarketController {
 			jArray.put(sObject);
 		}
 		obj.put("positions", jArray);
-		
+
 		model.addAttribute("data", obj);
 		model.addAttribute("dto", biz.userProductOne(productSeq));
 		
