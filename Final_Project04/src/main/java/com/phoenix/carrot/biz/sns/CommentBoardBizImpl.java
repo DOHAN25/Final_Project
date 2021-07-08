@@ -18,41 +18,58 @@ public class CommentBoardBizImpl implements CommentBoardBiz {
 	private CommentBoardDao commentDao;
 
 	@Override
-	public EntireBoardDto boardWriteComment(CommentBoardDto commentdto) {
-		// TODO Auto-generated method stub
-		return commentDao.boardWriteComment(commentdto);
+	public List<CommentBoardDto> getReplyList(Map<String, Object> paramMap) {
+		
+		List<CommentBoardDto> boardReplyList = commentDao.getReplyList(paramMap);
+		
+		//sql에서 계층을 나누는 쿼리가 어려우니..
+		//부모
+		List<CommentBoardDto> boardReplyListParent = new ArrayList<CommentBoardDto>();
+		//자식
+		List<CommentBoardDto> boardReplyListChild = new ArrayList<CommentBoardDto>();
+		//통합
+		List<CommentBoardDto> newBoardReplyList = new ArrayList<CommentBoardDto>();
+		
+		//1.부모 자식 분리
+		for(CommentBoardDto commentDto : boardReplyList) {
+			if(commentDto.getGroupDepth() == 0) {
+				boardReplyListParent.add(commentDto);
+			} else {
+				boardReplyListChild.add(commentDto);
+			}
+		}
+		
+		//2부모를 돌린다.
+		for(CommentBoardDto commentDtoParent : boardReplyListParent) {
+			//부모를 넣는다
+			newBoardReplyList.add(commentDtoParent);
+			//자식을 그안에서 돌린다 
+			for(CommentBoardDto boardReplyChild: boardReplyListChild) {
+				if(commentDtoParent.getCommentNoSeq() == (boardReplyChild.getGroupNo())) {
+					newBoardReplyList.add(boardReplyChild);
+				}
+			}
+		}
+		return newBoardReplyList;
 	}
 
 	@Override
-	public EntireBoardDto boardWriteReComment(CommentBoardDto commentdto) {
-		// TODO Auto-generated method stub
-		return commentDao.boardWriteReComment(commentdto);
+	public int regReply(Map<String, Object> paramMap) {
+
+		return commentDao.regReply(paramMap);
 	}
 
 	@Override
-	public ArrayList<CommentBoardDto> commentList(CommentBoardDto commentdto) {
-		// TODO Auto-generated method stub
-		return commentDao.commentList(commentdto);
+	public int delReply(Map<String, Object> paramMap) {
+
+		return commentDao.delReply(paramMap);
 	}
 
 	@Override
-	public EntireBoardDto boardDeleteComment(CommentBoardDto commentdto) {
+	public boolean updateReply(Map<String, Object> paramMap) {
 		// TODO Auto-generated method stub
-		return commentDao.boardDeleteComment(commentdto);
+		return commentDao.updateReply(paramMap);
 	}
 
-	@Override
-	public EntireBoardDto boardDeleteReComment(CommentBoardDto commentdto) {
-		// TODO Auto-generated method stub
-		return commentDao.boardDeleteReComment(commentdto);
-	}
-
-	@Override
-	public EntireBoardDto profile_boardWriteComment(CommentBoardDto commentdto) {
-		// TODO Auto-generated method stub
-		return commentDao.profile_boardWriteComment(commentdto);
-	}
 	
-
-
 }

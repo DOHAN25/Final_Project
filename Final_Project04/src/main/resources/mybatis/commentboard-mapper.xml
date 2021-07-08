@@ -2,94 +2,45 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="commentboard">
 
-	<!-- 댓글쓰기 -->
-	<insert id="board_reply_write" parameterType="commentBoardDto">
-		INSERT INTO commentBoard
-		VALUES(commnetNoSeq.NEXTVAL, #{groupNo}, 0, 0, #{entireBoardSeq}, #{userSeq}, #{userId}, #{replyContent}, SYSDATE)
-	</insert>
-	
-	<!--모댓글일 경우 commentNo, groupNo일치하게 함 -->
-	<update id="board_reply_check" parameterType="commentBoardDto">
-		UPDATE commentBoard SET groupNo = #{groupNo}
-		WHERE commentNoSeq != groupNo 
-	</update>
-	
-	<!-- 모댓글이 삭제된 댓글일 때 그에 딸린 답글들이 모두 삭제되면 테이블에서 완전히 삭제한다. -->
-	<delete id="board_reply_delete_after_rereply_delete" parameterType="commentBoardDto">
-		DELETE FROM commentBoard
-		WHERE CONTENT = "" AND groupNo = #{groupNo}
-	</delete>
-	
-	<!-- 대댓글쓰기 -->
-	<insert id="board_rereply_write" parameterType="commentBoardDto">
-		INSERT INTO commentBoard
-		VALUES (commentNoSeq.NEXTVAL, #{groupNo}, 0, #{groupDepth}, #{entireBoardSeq}, #{userSeq}, #{userId}, #{replyContent}, SYSDATE)
-	</insert>
-	
-	<!-- 댓글수 증가 -->
-	<update id="board_reply_up" parameterType="commentBoardDto">
-		UPDATE entireBoardSeq SET commentCount=commentCount+1
-		WHERE entireBoardSeq = #{entireBoardSeq}
-	</update>
-	
-	<!-- 댓글리스트 가져오기 -->
-	<select id="board_replyList" parameterType="commentBoardDto" resultType="commentBoardDto">
-		SELECT c.commentNoSeq, c.groupNo, c.groupNoNum, c.groupDepth, c.entireBoardSeq, c.userSeq, c.userId, c.replyContent, c.replyRegDate 
-		FROM commentBoard c left outer join USERS u
-		ON c.userId = u.userId
-		WHERE c.entireBoardSeq = #{entireBoardSeq}
-		ORDER BY groupNo ASC, groupNoNum DESC
-	</select>
-	
-	<!-- 댓글 추가 삭제시 댓글 갯수 가져오기 -->
-	<select id="board_reply_count" parameterType="entireBoardDto" resultType="entireBoardDto">
-		SELECT commentCount
-		FROM entireBoard
-		WHERE entireBoardSeq = #{entireBoardSeq}
-	</select>
-	
-	<!-- 모댓글의 대댓글수 카운트 -->
-	<select id="board_count_rereply" parameterType="commentBoardDto" resultType="int">
-		SELECT count(commentNoSeq)
-		FROM commentBoard
-		WHERE commentNoSeq != #{commentNoSeq} AND groupNo = #{commentNoSeq}
-	</select>
-	
-	<!-- 대댓글수를 카운트 -->
-	<select id="board_count_rereply_fromrereply" parameterType="commentBoardDto" resultType="int">
-		SELECT count(commentNoSeq)
-		FROM commentBoard
-		WHERE commentNoSeq != #{groupNo} AND groupNo = #{groupNo}
-	</select>
-	
-	<!-- 모댓글 삭제 - 답글 없음 -->
-	<delete id="board_reply_delete" parameterType="commentBoardDto">
-		DELETE FROM commentBoard
-		WHERE commentNoSeq = #{commentNoSeq}
-	</delete>
-	
-	<!-- 모댓글 삭제 - 답글 있음 -->
-	<update id="board_reply_not_delete" parameterType="commentBoardDto">
-		UPDATE commentBoard SET replyContent=""
-		WHERE commentNoSeq = #{commentNoSeq}
-	</update>
-	
 
-	<!-- 댓글수 감소 
-	<update id="board_reply_not_delete" parameterType="entireBoardDto">
-		UPDATE entireBoard SET commentCount = commentCount - 1
-		WHERE entireBoardSeq = #{entireBoardSeq}
-	</update> 
-	-->
-	<!-- 현재 댓글테이블의 가장 큰 commentNoSEq 값을 가져온다 -->
-	<!-- 댓글 테이블의 마지막 auto_increment값을 가져옴 -->
-	<select id="p_reply_max_no" resultType="int">
-		SELECT IFNULL(max(commentBoardSeq),0) FROM commentBoard
+	<!-- 댓글리스트 가져오기 -->
+	<select id="board_replyList" parameterType="HashMap" resultType="commentBoardDto">
+		SELECT *
+		FROM commentBoard
+		WHERE entireBoardSeq = #{entireBoardSeq} 
+		ORDER BY commentNoSeq ASC
 	</select>
 	
-	<!-- 게시판에 댓글수 감소 -->
-	<update id="board_reply_down" parameterType="entireBoardDto">
-		UPDATE entireBoard SET commentCount = commentCount-1
-		WHERE entireBoardSeq = #{entireBoardSeq}
+	<!-- 댓글쓰기 -->
+	<insert id="insertBoardReply" parameterType="HashMap">
+		INSERT INTO commentBoard 
+		VALUES (commentNoSeq.NEXTVAL, #{groupNo}, #{groupDepth}, #{entireBoardSeq}, #{userSeq}, #{userId}, #{replyContent}, SYSDATE)
+	</insert>
+	
+	<!-- 댓글삭제 -->
+	<delete id="deleteBoardReply" parameterType="HashMap">
+		DELETE FROM commentBoard
+		WHERE commentNoSeq = #{commentNoSeq} AND userId = #{userId}
+	</delete>
+	
+	<!-- 댓글 전체 삭제 -->
+	<delete id="deleteBoardReplyAll" parameterType="HashMap">
+		DELETE 
+		FROM commentBoardTable
+		WHERE commentNoSeq IN (
+		SELECT commentNoSeq
+		FROM commentBoardTable
+		WHERE commentNoSeq = #{commentNoSeq} AND userId = #{userId}
+		) OR groupNo IN (
+		SELECT commentNoSeq
+		FROM commentBoardTable
+		WHERE commentNoSeq = #{commentNoSeq} AND userId = #{userId}
+		)
+	</delete>
+	
+	<update id="updateReply" parameterType="HashMap">
+		UPDATE commentBoardTable
+		SET replyContent = #{replyContent}, replyRegDate = SYSDATE
+		WHERE commentBoardTable
 	</update>
 </mapper>

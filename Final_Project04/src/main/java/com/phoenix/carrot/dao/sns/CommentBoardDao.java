@@ -11,17 +11,8 @@ public interface CommentBoardDao {
 	
 	String NAMESPACE = "commentboard.";
 	
-	//댓글 작성 
-	public EntireBoardDto boardWriteComment(CommentBoardDto commentdto);
-	//대댓글(답글) 작성
-	public EntireBoardDto boardWriteReComment(CommentBoardDto commentdto);
-	//댓글리스트
-	public ArrayList<CommentBoardDto> commentList(CommentBoardDto commentdto);
-	//모댓글 삭제
-	public EntireBoardDto boardDeleteComment(CommentBoardDto commentdto);
-	//대댓글 답글 삭제
-	public EntireBoardDto boardDeleteReComment(CommentBoardDto commentdto);
-	//댓글작성
-	public EntireBoardDto profile_boardWriteComment(CommentBoardDto commentdto);
-
+	public List<CommentBoardDto> getReplyList(Map<String, Object> paramMap); 
+	public int regReply(Map<String, Object> paramMap);
+	public int delReply(Map<String, Object> paramMap);
+	public boolean updateReply(Map<String, Object> paramMap);
 }
