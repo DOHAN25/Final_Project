@@ -81,6 +81,7 @@
             '       <button name="reply_del" r_type = "main" reply_id = "'+commentNoSeq+'">삭제</button>      '+
             '    </td>'+
             '</tr>';
+ 
             console.log("reply : ", reply)
             
             if($('#reply_area').contents().length == 0){
@@ -294,6 +295,11 @@
 
 		
 </script>
+<!-- 서머노트를 위해 추가해야할 부분 -->
+<script src="${pageContext.request.contextPath}/resources/summernote/summernote-lite.js"></script>
+<script src="${pageContext.request.contextPath}/resources/summernote/lang/summernote-ko-KR.js"></script>
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/summernote/summernote-lite.css">
+<!--  -->
 </head>
 <body>
 

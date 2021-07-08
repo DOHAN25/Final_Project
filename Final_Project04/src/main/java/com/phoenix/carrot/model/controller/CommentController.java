@@ -35,8 +35,7 @@ public class CommentController {
 		
 		//정보 입력
 		int result = commentbiz.regReply(paramMap);
-		
-		
+				
 		if(result > 0) {
 			retVal.put("code" , "OK");
 			retVal.put("commentNoSeq" , paramMap.get("commentNoSeq"));
