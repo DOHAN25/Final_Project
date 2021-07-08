@@ -51,7 +51,6 @@
                             <li><a class="dropdown-item" href="https://github.com/DOHAN25">김도한</a></li>
                             <li><a class="dropdown-item" href="https://github.com/dd-jiny">김대진</a></li>
                             <li><a class="dropdown-item" href="https://github.com/Taerin-Kim">김태린</a></li>
-                            <li><a class="dropdown-item" href="#">박찬종</a></li>
                             <li><a class="dropdown-item" href="https://github.com/jaehee-9638">이재희</a></li>
                             <li><a class="dropdown-item" href="https://github.com/1251024">장보옥</a></li>
                         </ul>
