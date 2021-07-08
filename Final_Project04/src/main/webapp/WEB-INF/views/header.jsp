@@ -12,6 +12,7 @@
 <!-- Google jQuery file -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="<%=request.getContextPath()%>/resources/bootstrap/js/bootstrap.js"></script>
+
 <title>당근팜</title>
 </head>
 <body>

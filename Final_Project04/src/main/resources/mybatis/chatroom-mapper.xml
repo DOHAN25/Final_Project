@@ -8,7 +8,7 @@
 	
 	
 	<select id="selectOne" parameterType="chatroomDto" resultType="chatroomDto">
-		SELECT * FROM CHATROOM WHERE CHATROOM_SELLER = #{chatroom_seller} AND CHATROOM_BUYER = #{chatroom_buyer}
+		SELECT * FROM CHATROOM WHERE CHATROOM_SELLER = #{chatroom_seller} AND CHATROOM_BUYER = #{chatroom_buyer} AND CHATROOM_TITLE = #{chatroom_title}
 	</select>
 	
 
