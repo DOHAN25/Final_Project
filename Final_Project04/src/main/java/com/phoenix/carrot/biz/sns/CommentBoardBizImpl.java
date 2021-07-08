@@ -61,14 +61,14 @@ public class CommentBoardBizImpl implements CommentBoardBiz {
 
 	@Override
 	public int delReply(Map<String, Object> paramMap) {
-		// TODO Auto-generated method stub
-		return 0;
+
+		return commentDao.delReply(paramMap);
 	}
 
 	@Override
-	public int updateReply(Map<String, Object> paramMap) {
+	public boolean updateReply(Map<String, Object> paramMap) {
 		// TODO Auto-generated method stub
-		return 0;
+		return commentDao.updateReply(paramMap);
 	}
 
 	

@@ -251,14 +251,17 @@ ALTER TABLE boardHashTag ADD CONSTRAINT FK_Hash_board
 FOREIGN KEY (entireBoardSeq) REFERENCES entireBoard (entireBoardSeq)
 ON DELETE CASCADE;
 
-SELECT *
-FROM USERS
-ORDER BY USERSEQ;
 
 
-DELETE FROM Product WHERE userLatitude IS NULL;
-select * from Product where userId = 'dodo010';
-SELECT userLatitude, userLongitude FROM Product
+
+
+
+
+
+
+
+
+
 
 
 

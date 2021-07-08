@@ -96,73 +96,202 @@
 		});
 		
 		//댓글 삭제 
+		$(document).on("click", "button[name='reply_del']", function(){
+			var check = false;
+			var commentNoSeq = $(this).attr("reply_id");
+			var r_type = $(this).attr("r_type");
+			console.log("commentNoSeq : ", commentNoSeq)
+			console.log(r_type)
+			//아이디와 코멘트 번호 넘겨 삭제
+			//값세팅
+			var objParams = {
+					commentNoSeq	: commentNoSeq,
+					userId 			: '${login.userid}',
+					r_type			: r_type
+			};
+			
+			//ajax호출
+			$.ajax({
+				url			:	"boardreplydel.do",
+				dataType	:	"json",
+				contentType :	"application/x-www-form-urlencoded; charset=UTF-8",
+				type		:	"POST",
+				async		:	false,
+				data		:	objParams,
+				success		:	function(retVal) {
+					
+					if(retVal.code != "OK") {
+						alert(retVal.message);
+					} else {
+						check = true;
+					}
+				},
+				error	:	function(request, status, error) {
+					console.log("AJAX_ERROR");
+				}
+			});
+			
+			if(check) {
+				
+				if(r_type=="main"){ //depth가 0이면 하위 댓글 다 지움
+					//삭제하면서 하위 댓글도 삭제
+					var prevTr = $(this).parent().parent().next(); //댓글의 다음
+					
+					while(prevTr.attr("reply_type")=="sub"){ //댓글의 다음이 sub이면 계속 넘어감
+						prevTr.remove();
+						prevTr = $(this).parent().parent().next();
+					}
+					
+					$(this).parent().parent().remove();
+				} else {
+					//아니면 자기만 지움
+					$(this).parent().parent().remove();
+				}
+			}
+		});
+		
 		//댓글 수정
 		//댓글수정 취소
 		//댓글수정 저장
-		//대댓글 입력창
-		$(document).on("click","button[name='reply_reply']",function(){//동적이벤트
-			
-			if(status){
-				alert("수정과 대댓글은 동시에 불가합니다.");
-				return false;
-			}
+        //대댓글 입력창
+        	$(document).on("click","button[name='reply_reply']",function(){ //동적 이벤트
+            		
+            	if(status){
+                     alert("수정과 대댓글은 동시에 불가합니다.");
+                     return false;
+                   }
+                    
+                     status = true;
+            		
+            	$("#reply_add").remove();
+            		
+            	var commentNoSeq = $(this).attr("reply_id");
+            	console.log("commentNoSeq : ", commentNoSeq)
+            	var last_check = false;//마지막 tr 체크
+            		
+            	//입력받는 창 등록
+            	var replyEditor = 
+            		'<tr id="reply_add" class="reply_reply">'+
+	            	'	<td width="820px">'+
+	            	'		<textarea name="reply_reply_content" rows="3" cols="50"></textarea>'+
+	            	'	</td>'+
+	            	'	<td width="100px">'+
+	            	'		<textarea name="userId" style="width:100%;" maxlength="10" readonly="readonly">'+'${login.userid}'+'</textarea>'+
+	            	'	</td>'+
+	            	'	<td align="center">'+
+	            	'		<button name="reply_reply_save" parent_id='+commentNoSeq+'>등록</button>'+
+	            	'		<button name="reply_reply_cancel">취소</button>'+
+	            	'	</td>'+
+	            	'</tr>';
+	            		
+				var prevTr = $(this).parent().parent().next();
+	            	
+	            //부모의 부모 다음이 sub이면 마지막 sub 뒤에 붙인다.
+            	//마지막 리플 처리
+            	if(prevTr.attr("reply_type") == undefined){
+            		prevTr = $(this).parent().parent();
+            	}else{
+            		while(prevTr.attr("reply_type")=="sub"){//댓글의 다음이 sub면 계속 넘어감
+                          prevTr = prevTr.next();
+                   }
+            			
+            		if(prevTr.attr("reply_type") == undefined){//next뒤에 tr이 없다면 마지막이라는 표시를 해주자
+            			last_check = true;
+            		}else{
+            			prevTr = prevTr.prev();
+            		}
+            			
+            	}
+	            	
+	            if(last_check){//마지막이라면 제일 마지막 tr 뒤에 댓글 입력을 붙인다.
+	            	$('#reply_area tr:last').after(replyEditor);	
+	            }else{
+	            	prevTr.after(replyEditor);
+	            }
+            		
+            });
+        	//대댓글 등록
+        	$(document).on("click","button[name='reply_reply_save']",function(){
+        		
+        		var userId = $("textarea[name='userId']");
+        		var reply_reply_content = $("textarea[name='reply_reply_content']");
+        		var replyContent = reply_reply_content.val().replace("\n", "<br>"); //개행처리
+        		console.log("userId : ", userId)
+        		//널검사 
+        		if(reply_reply_content.val().trim() == ""){
+        			alert("내용을 입력하세요");
+        			reply_reply_content.focus();
+        			return false;
+        		}
+        		
+        		//값세팅
+        		var objParams = {
+        				groupNo			: $(this).attr("parent_id"),
+        				groupDepth		: 1,
+        				entireBoardSeq  : ${dto.entireBoardSeq},
+        				userSeq			: ${login.userseq},
+        				userId			: '${login.userid}',
+        				replyContent	: replyContent
+        		};
+        		
+        		var commentNoSeq;
+        		var groupNo;
+        		console.log("objParams : ",objParams)
+        		//ajax호출
+        		$.ajax({
+        			url			: "boardreplysave.do",
+        			dataType	: "json",
+        			contentType	: "application/x-www-form-urlencoded; charset=UTF-8",
+        			type		: "POST",
+        			async		: false,
+        			data		: objParams,
+        			success		: function(retVal) {
+        				
+        				if(retVal.code != "OK") {
+        					alert(retVal.message);
+        				}else {
+        					commentNoSeq = retVal.commentNoSeq;
+        					groupNo = retVal.groupNo;
+        				}
+        			},
+        			error		: function(request, status, error){
+        				console.log("AJAX_ERROR");
+        			}
+        		});
+        		var reply =
+                    '<tr reply_type="sub">'+
+                    '    <td width="820px"> → '+
+                    replyContent+
+                    '    </td>'+
+                    '    <td width="100px">'+
+                    userId.val()+
+                    '    </td>'+
+                    '    <td align="center">'+
+                    '       <button name="reply_modify" r_type = "sub" parent_id = "'+groupNo+'" reply_id = "'+commentNoSeq+'">수정</button>'+
+                    '       <button name="reply_del" r_type = "sub" reply_id = "'+commentNoSeq+'">삭제</button>'+
+                    '    </td>'+
+                    '</tr>';
+                    
+                    var prevTr = $(this).parent().parent().prev();
+                    
+                    prevTr.after(reply);
+                    $("#reply_add").remove();
+                    
+                    status = false;
+        	});
+        	//대댓글입력창취소
+        	$(document).on("click", "button[name='reply_reply_cancel']", function(){
+        		$("#reply_add").remove();
+        		
+        		status = false;
+        	});
+        	
+  
+	});
 		
-			status = true;
-			
-			$("#reply_add").remove();
-			
-			var commentNoSeq = $(this).attr("commentNoSeq");
-			var last_check = false; //마지막 tr체크
-			
-			//입력받는 창 등록 
-			var replyEditor =
-                '<tr id="reply_add" class="reply_reply">'+
-                '    <td width="820px">'+
-                '        <textarea name="reply_reply_content" rows="3" cols="50"></textarea>'+
-                '    </td>'+
-                '    <td width="100px">'+
-                '        <input type="text" name="reply_reply_writer" style="width:100%;" maxlength="10" placeholder="작성자"/>'+
-                '    </td>'+
-                '    <td width="100px">'+
-                '        <input type="password" name="reply_reply_password" style="width:100%;" maxlength="10" placeholder="패스워드"/>'+
-                '    </td>'+
-                '    <td align="center">'+
-                '        <button name="reply_reply_save" parent_id="'+reply_id+'">등록</button>'+
-                '        <button name="reply_reply_cancel">취소</button>'+
-                '    </td>'+
-                '</tr>';
-           
-           var prevTr = $(this).parent().parent().next();
-           
-           //부모의 무모 다음이 sub이면 마지막 sub뒤에 붙인다.
-           //마지막 리플 처리
-           if(prevTr.attr("reply_type") == undefined) {
-        	   prevTr = $(this).parent().parent();
-           } else {
-        	   while(prevTr.attr("reply_type")=="sub"){//댓글의 다음이 sub면 계속 넘어감
-        			prevTr = prevTr.next();   
-        	   }
-        	   
-        	   if(prevTr.attr("reply_type") == undefined){//next뒤에 tr이 없다면 마지막이라는 표시를 해주자
-        		   last_check = true;
-        	   } else {
-        		   prevTr = prevTr.prev();
-        	   }
-           }
 		
-           if(last_check) { //마지막이라면 제일 마지막 tr뒤에 댓글 입력을 붙인다.
-        	   $('#reply_area tr:last').after(replyEditor);
-        	   
-           } else {
-        	   prevTr.arter(replyEditor);
-           }
-           
-		});
-
-		//대댓글 등록
-		//대댓글입력창취소
 		//대댓글?수정
-		//글삭제
+
 		
 </script>
 </head>

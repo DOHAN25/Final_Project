@@ -40,7 +40,7 @@
 	
 	<update id="updateReply" parameterType="HashMap">
 		UPDATE commentBoardTable
-		SET groupNo = #{groupNo}, groupDepth = #{groupDepth}, entireBoardSeq = #{entireBoardSeq}, replyContent = #{replyContent}, replyRegDate = SYSDATE
+		SET replyContent = #{replyContent}, replyRegDate = SYSDATE
 		WHERE commentBoardTable
 	</update>
 </mapper>
