@@ -11,7 +11,6 @@
 <%@include file ="/WEB-INF/views/header.jsp" %>
 
 
-gkrnqk
 
 
 <%@include file ="/WEB-INF/views/footer.jsp" %>
