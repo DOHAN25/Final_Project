@@ -49,7 +49,48 @@ public class CommentController {
 		
 		return retVal;
 	}
-
+	
+	//댓글삭제
+	@RequestMapping(value="/boardreplydel.do", method=RequestMethod.POST)
+	@ResponseBody
+	public Object boardReplyDel(@RequestParam Map<String, Object> paramMap) {
+		//리턴값
+		Map<String, Object> retVal = new HashMap<String, Object>();
+		
+		//정보입력 
+		int result = commentbiz.delReply(paramMap);
+		
+		if(result > 0) {
+			retVal.put("code", "OK");
+		} else {
+			retVal.put("code", "FAIL");
+			retVal.put("message", "삭제에 실패했습니다. 패스워드를 확인해주세요");
+		}
+		return retVal;
+	}
+	
+	///댓글 수정
+	@RequestMapping(value="/boardreplyupdate.do", method=RequestMethod.POST)
+	@ResponseBody
+	public Object boardReplyUpdate(@RequestParam Map<String, Object> paramMap) {
+		
+		//리턴값
+		Map<String, Object> retVal = new HashMap<String, Object>();
+		
+		//정보입력 
+		boolean check = commentbiz.updateReply(paramMap);
+		
+		if(check) {
+			retVal.put("code", "OK");
+			retVal.put("userId", paramMap.get("userId"));
+			retVal.put("message", "수정에 성공하였습니다.");
+		} else {
+			retVal.put("code", "FAIL");
+			retVal.put("message", "수정에 실패 하였습니다.");
+		}
+		
+		return retVal;
+	}
 }
 
 

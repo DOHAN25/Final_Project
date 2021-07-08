@@ -12,5 +12,5 @@ public interface CommentBoardBiz {
 	public List<CommentBoardDto> getReplyList(Map<String, Object> paramMap);
 	public int regReply(Map<String, Object> paramMap);
 	public int delReply(Map<String, Object> paramMap);
-	public int updateReply(Map<String, Object> paramMap);
+	public boolean updateReply(Map<String, Object> paramMap);
 }

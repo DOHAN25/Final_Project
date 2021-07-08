@@ -41,14 +41,19 @@ public class CommentBoardDaoImpl implements CommentBoardDao {
 
 	@Override
 	public int delReply(Map<String, Object> paramMap) {
-		// TODO Auto-generated method stub
-		return 0;
+		
+		return sqlSession.delete(NAMESPACE + "deleteBoardReply", paramMap);
 	}
 
 	@Override
-	public int updateReply(Map<String, Object> paramMap) {
-		// TODO Auto-generated method stub
-		return 0;
+	public boolean updateReply(Map<String, Object> paramMap) {
+		int result = sqlSession.update("updateReply", paramMap);
+		
+		if(result > 0) {
+			return true;
+		} else {
+			return false;
+		}
 	}
 	
 	/*
