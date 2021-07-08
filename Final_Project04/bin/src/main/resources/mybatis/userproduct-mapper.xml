@@ -35,6 +35,8 @@
 	]]>
 	</select>
 	
+	
+	
 	<!-- 회원 위도 경도 / 상품명 / 주소 리스트로 뽑아오기 -->
 	<select id="selectlistLatLong" resultType="productDto">
 	 	SELECT userLatitude, userLongitude FROM Product

@@ -67,26 +67,26 @@ public class UserMarketController {
 		JsonObject jsonObject = new JsonObject();
 		
         /*
-		 * String fileRoot = "C:\\summernote_image\\"; // 외부경로로 저장을 희망할때.
+		 * String fileRoot = "C:\\summernote_image\\"; // �쇅遺�寃쎈줈濡� ���옣�쓣 �씗留앺븷�븣.
 		 */
 		
-		// 내부경로로 저장
+		// �궡遺�寃쎈줈濡� ���옣
 		String contextRoot = new HttpServletRequestWrapper(request).getRealPath("/");
 		String fileRoot = contextRoot+"resources/fileupload/";
 		
-		String originalFileName = multipartFile.getOriginalFilename();	//오리지날 파일명
-		String extension = originalFileName.substring(originalFileName.lastIndexOf("."));	//파일 확장자
-		String savedFileName = UUID.randomUUID() + extension;	//저장될 파일 명
+		String originalFileName = multipartFile.getOriginalFilename();	//�삤由ъ��궇 �뙆�씪紐�
+		String extension = originalFileName.substring(originalFileName.lastIndexOf("."));	//�뙆�씪 �솗�옣�옄
+		String savedFileName = UUID.randomUUID() + extension;	//���옣�맆 �뙆�씪 紐�
 		
 		File targetFile = new File(fileRoot + savedFileName);	
 		try {
 			InputStream fileStream = multipartFile.getInputStream();
-			FileUtils.copyInputStreamToFile(fileStream, targetFile);	//파일 저장
-			jsonObject.addProperty("url", "/carrot/resources/fileupload/"+savedFileName); // contextroot + resources + 저장할 내부 폴더명
+			FileUtils.copyInputStreamToFile(fileStream, targetFile);	//�뙆�씪 ���옣
+			jsonObject.addProperty("url", "/carrot/resources/fileupload/"+savedFileName); // contextroot + resources + ���옣�븷 �궡遺� �뤃�뜑紐�
 			jsonObject.addProperty("responseCode", "success");
 				
 		} catch (IOException e) {
-			FileUtils.deleteQuietly(targetFile);	//저장된 파일 삭제
+			FileUtils.deleteQuietly(targetFile);	//���옣�맂 �뙆�씪 �궘�젣
 			jsonObject.addProperty("responseCode", "error");
 			e.printStackTrace();
 		}
@@ -127,7 +127,7 @@ public class UserMarketController {
 	}
 
 	@RequestMapping("/userproductdetail.do")
-	public String productDetail(Model model, int productSeq,HttpServletRequest request) {
+	public String productDetail(Model model,@RequestParam("productSeq") int productSeq, HttpServletRequest request) {
 		logger.info("[Controller] : userproductdetail.do");
 
 				
@@ -137,7 +137,7 @@ public class UserMarketController {
 		JSONArray jArray = new JSONArray();
 		JSONObject sObject = new JSONObject();
 
-		// 이곳에서 회원 위도 경도 가지고 json으로 보내준다.
+		
 		list = biz.selectlistLatLong();
 		
 		for (int i = 0; i < list.size(); i++) {

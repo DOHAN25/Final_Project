@@ -84,6 +84,7 @@
               <li><a href="#section4">꿀팁</a></li>
               <li><a href="#section5">날씨/미세먼지</a></li>
               <li><a href="#section6">게시판</a></li>
+              <li><a href="#section7">로그인</a></li>
             </ul>
             <form class="navbar-form navbar-right" role="search">
               <div class="form-group">
@@ -124,6 +125,12 @@
     
         <div class="container-fluid" id="section6">
             <a href="noticeboardlist.do"><div class="col-md-12" id="text"><img src="resources/image/게시판_main1.jpg" alt="당근팜" style="width: 100%;">
+            <div class="text"><p id="img_title">게시판</p><p id="img_content">설명</p></div></div></a>
+        </div>
+        
+        
+        <div class="container-fluid" id="section7">
+            <a href="loginform.do"><div class="col-md-12" id="text"><img src="resources/image/로그인_main1.jpg" alt="당근팜" style="width: 100%;">
             <div class="text"><p id="img_title">게시판</p><p id="img_content">설명</p></div></div></a>
         </div>
     
