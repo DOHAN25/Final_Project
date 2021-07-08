@@ -108,7 +108,7 @@ public class UserMarketController {
 		return "userproductmarket";
 	}
 
-	@RequestMapping("/productinsert.do")
+	@RequestMapping("/userproductinsert.do")
 	public String productInsertForm() {
 		return "userproductinsert";
 	}
