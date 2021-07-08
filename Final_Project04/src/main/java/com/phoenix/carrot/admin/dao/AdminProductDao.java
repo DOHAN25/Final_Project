@@ -6,7 +6,7 @@ import com.phoenix.carrot.product.dto.ProductDto;
 
 public interface AdminProductDao {
 
-	String NAMESPACE = "adminproduct.";
+	String NAMESPACE = "adminProduct.";
 	//상품리스트출력
 	public List<ProductDto> adminProductList();
 	//등록상품상세출력

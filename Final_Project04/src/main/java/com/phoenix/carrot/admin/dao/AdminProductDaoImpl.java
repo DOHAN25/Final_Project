@@ -5,9 +5,11 @@ import java.util.List;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 
 import com.phoenix.carrot.product.dto.ProductDto;
 
+@Repository
 public class AdminProductDaoImpl implements AdminProductDao {
 
 	@Autowired
@@ -44,7 +46,7 @@ public class AdminProductDaoImpl implements AdminProductDao {
 		int res = 0;
 		
 		try {
-			res = sqlSession.insert(NAMESPACE + "adminProducti=Insert", dto);
+			res = sqlSession.insert(NAMESPACE + "adminProductInsert", dto);
 		}catch (Exception e) {
 			e.printStackTrace();
 		}
