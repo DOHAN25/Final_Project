@@ -60,11 +60,12 @@ public class ChatController {
 		if(result == null) {
 			
 			int res = cbiz.createChatRoom(cdto);
-			
-		
+			System.out.println("채팅방만 개설된 상태");
+			System.out.println(res);
 			if(res > 0) {
 				
 			ChatRoomDto result2 = cbiz.selectOne(cdto);
+			System.out.println(result2.getChatroom_id());
 			
 			// 메세지 기본값 설정
 			mdto.setChatroom_id(result2.getChatroom_id());
@@ -87,14 +88,15 @@ public class ChatController {
 		} else {
 			
 			List<MessageDto> mlist = mbiz.selectList(result.getChatroom_id());
-			
+			System.out.println(mlist);
 			model.addAttribute("messageList", mlist);
 			
-			System.out.println("채팅방이 존재하여 해당 채팅방 메세지를 넘겨줍니다.");
+			
 			
 		}
 
-		
+		model.addAttribute("productName", productName);
+		model.addAttribute("sellerId", selleruserId);
 
 		return "chat";
 	}

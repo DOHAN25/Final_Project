@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="ko">
 
@@ -8,10 +9,11 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>실시간 채팅</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script> 
+<!--<script type="text/javascript" src="https://cdn.jsdeliver.net/sockjs/1/sockjs.min.js"></script> -->
 <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
 <!-- Font Awesome icons (free version)-->
-<script src="https://use.fontawesome.com/releases/v5.15.3/js/all.js"
-	crossorigin="anonymous"></script>
+<script src="https://use.fontawesome.com/releases/v5.15.3/js/all.js" crossorigin="anonymous"></script>
 <!-- Google fonts-->
 <link rel="preconnect" href="https://fonts.gstatic.com" />
 <link
@@ -155,90 +157,217 @@
 <!-- 웹소켓 연결 하는 부분 -->
 <script type="text/javascript">
 	$(document).ready(function(){
+		openSocket();
+	
+		$(".msg_send_btn").click(function(){
+			sendMessage();
+		});
 		
 	});
 
-
-
-
+	
+	
 	var ws;
-	var message1 = document.getElementId("msg_history");
+	var message = $("#getMessage").val();
+	var loginuserId = '${login.userid}';
+	
+	
+	var date = new Date();
+
 	
 	function openSocket() {
-		if(ws !== undefined && ws.readyState !== WebSocekt.CLOSED) {
-			writeResponse("WebSocket 연결이 종료 되었습니다.");
+		if(ws !== undefined && ws.readyState !== WebSocket.CLOSED) {
+			alert("이미 채팅이 진행중인 사이트가 존재합니다.!");
+			return false;
 		}
 		
-		ws = new WebSocket("ws://localhost:8787/carrot.echo.do");
+		ws = new WebSocket("ws://localhost:8787//carrot/echo.do");
 		
-		ws.open = function(even) {
+		ws.open = function(event) {
+			
 			if(event.data === undefined) {
-				return false;
+				return;
 			}
 			
-			writeResponse(event.data);
+			var data = event.data;
+			var sessionId = null;
+			var message = null;
+			
+			var strArray = data.split(':');
+
+			sessionId = strArray[0];
+			message  = strArray[1];
+			
+			if(loginuserId == sessionId) {
+				
+				var printHTML = "<div class='outgoing_msg'>";
+				printHTML += "<div class='sent_msg'>";
+				printHTML += "<p>"+message+"</p>";
+				//printHTML += "<span class='time_date'>"+date+"</span>";
+				printHTML += "</div>";
+				printHTML += "</div>";
+				
+				$(".msg_history").append(printHTML);
+			} else {
+			
+				
+				var printHTML = "<dic class='incoming_msg'>";
+				printHTML += "<p id='ididid'>";
+				printHTML += "<small>"+sessionId+"</small>";
+				printHTML += "</p>";
+				printHTML += "<div vlass='received_withd_msg'>";
+				printHTML += "<p>"+message+"</p>";
+				//printHTML += "<span class='time_date'>"+date+"</span>";
+				printHTML += "</div>";
+				printHTML += "</div>";
+				printHTML += "</div>";
+				
+				
+				$(".msg_history").append(printHTML);
+			
+			}
+			
+			
 		}
+		
+		ws.onmessage = function(event) {
+
+			var data = event.data;
+			var sessionId = data["sender"];
+			var message = data["message"];
+			
+			console.log(sessionId);
+			console.log(message);
+			
+			var strArray = data.split(':');
+
+			sessionId = strArray[0];
+			message  = strArray[1];
+			
+			if(loginuserId == sessionId) {
+				
+				var printHTML = "<div class='outgoing_msg'>";
+				printHTML += "<div class='sent_msg'>";
+				printHTML += "<p>"+message+"</p>";
+				//printHTML += "<span class='time_date'>"+date+"</span>";
+				printHTML += "</div>";
+				printHTML += "</div><br>";
+				
+				$(".msg_history").append(printHTML);
+			} else {
+			
+				
+				
+				
+				
+				$(".msg_history").append(printHTML);
+			
+			}
+		}
+		
+		ws.onclose = function(event) {
+			printHTML = "대화가 종료되었습니다.";
+			$('.msg_history').append(printHTML);
+		}
+		
 	}
+	
+	
+	
+	
+	function sendMessage() {
+		var text = loginuserId + "," + message;
+		ws.send(text);
+		text = "";
+	}
+	
+	
+	function closeChatRoom(event) {
+		ws.close();
+	}
+	
+	function incoming_msg(event) {
+		var printHTML = "<dic class='incoming_msg'>";
+		printHTML += "<p id='ididid'>";
+		printHTML += "<small>"+sessionId+"</small>";
+		printHTML += "</p>";
+		printHTML += "<div vlass='received_withd_msg'>";
+		printHTML += "<p>"+message+"</p>";
+		//printHTML += "<span class='time_date'>"+date+"</span>";
+		printHTML += "</div>";
+		printHTML += "</div>";
+		printHTML += "</div><br>";
+	}
+
+	
+	
+
+
 </script>
 <body>
+
 	<div class="container">
-		<h3 class=" text-center" id="title">게시글 제목</h3>
+		<h3 class=" text-center" id="title">제품명:${productName }</h3>
 		<p id="title-id">
-			<small>채팅상대 id</small>
+			<small>상대방 아이디:${sellerId }</small>
 		</p>
 		<div class="messaging">
 			<div class="inbox_msg">
 				<div class="mesgs">
+				
+			<c:choose>
+				<c:when test="${empty messageList }">
 					<div class="msg_history">
 						<div class="incoming_msg">
 							<p id="ididid">
-								<small>상대방id</small>
+								<small>운영자</small>
 							</p>
 							<div class="received_msg">
 								<div class="received_withd_msg">
-									<p>당근 구매 가능 ?</p>
-									<span class="time_date"> 11:01 AM | June 9</span>
-								</div>
-							</div>
-						</div>
-						<div class="outgoing_msg">
-							<div class="sent_msg">
-								<p>네 가능합니다.</p>
-								<span class="time_date"> 11:01 AM | June 9</span>
-							</div>
-						</div>
-						<div class="incoming_msg">
-							<p id="ididid">
-								<small>상대방id</small>
-							</p>
-							<div class="received_msg">
-								<div class="received_withd_msg">
-									<p>구매 하겠습니다 ~</p>
-									<span class="time_date"> 11:01 AM | Yesterday</span>
-								</div>
-							</div>
-						</div>
-						<div class="outgoing_msg">
-							<div class="sent_msg">
-								<p>네~</p>
-								<span class="time_date"> 11:01 AM | Today</span>
-							</div>
-						</div>
-						<div class="incoming_msg">
-							<p id="ididid">
-								<small>상대방id</small>
-							</p>
-							<div class="received_msg">
-								<div class="received_withd_msg">
-									<p>.,,.,.,</p>
-									<span class="time_date"> 11:01 AM | Today</span>
+									<p>
+										채팅방이 생성되었습니다. 대화를 시작해 보세요.
+										욕설과 비속어 사용은 금지입니다.
+									</p>
+									<!--  <span class="time_date"></span>-->
 								</div>
 							</div>
 						</div>
 					</div>
+				</c:when>
+				<c:otherwise>
+					<c:forEach items="${messageList }" var="messageDto">
+						<div class="msg_history">
+						<c:if test="${messageDto.message_sender != login.userid  }">
+						<div class="incoming_msg">
+							<p id="ididid">
+								<small>${messageDto.message_sender }</small>
+							</p>
+							<div class="received_msg">
+								<div class="received_withd_msg">
+									<p>
+										${messageDto.message_content }
+									</p>
+									<!--  <span class="time_date">${messageDto.message_regdate }</span>-->
+								</div>
+							</div>
+						</div>
+						</c:if>
+						<c:if test="${messageDto.message_sender == login.userid }">
+						<div class="outgoing_msg">
+							<div class="sent_msg" id="addMessage">
+								<p>${messageDto.message_content }</p>
+								<!--<span class="time_date">${messageDto.message_regdate }</span>-->
+							</div>
+						</div>
+						</c:if>		
+					</div>
+					
+					</c:forEach>
+				</c:otherwise>
+			</c:choose>	
 					<div class="type_msg">
 						<div class="input_msg_write">
-							<input type="text" class="write_msg" placeholder="Type a message" />
+							<input type="text" class="write_msg" placeholder="Type a message" id="getMessage"/>
 
 							<button class="msg_send_btn" type="button">
 								<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
