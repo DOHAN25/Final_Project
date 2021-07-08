@@ -90,7 +90,6 @@
 		
 		var data = JSON.parse('${data}');
 		
-		
 		 var markers = $(data.positions).map(function(i, position) {
 	            return new kakao.maps.Marker({
 	                position : new kakao.maps.LatLng(position.lat, position.lng)
