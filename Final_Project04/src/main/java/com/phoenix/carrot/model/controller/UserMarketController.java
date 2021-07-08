@@ -61,36 +61,32 @@ public class UserMarketController {
 	@Autowired
 	private ChatRoomBiz cbiz;
 
-	@RequestMapping(value = "/uploadSummernoteImageFile.do", produces = "application/json; charset=UTF-8")
+	@RequestMapping(value="/uploadSummernoteImageFile.do",  method=RequestMethod.POST, produces = "application/json; charset=utf8")
 	@ResponseBody
-	public String uploadSummernoteImageFile(@RequestParam("file") MultipartFile multipartFile,
-			HttpServletRequest request) {
+	public String uploadSummernoteImageFile(@RequestParam("file") MultipartFile multipartFile, HttpServletRequest request )  {
 		JsonObject jsonObject = new JsonObject();
-
-		// 외부경로 저장 희망
-		// String fileRoot = "C:\\summernote_image\\";
-		// 내부경로 저장
+		
+        /*
+		 * String fileRoot = "C:\\summernote_image\\"; // 외부경로로 저장을 희망할때.
+		 */
+		
+		// 내부경로로 저장
 		String contextRoot = new HttpServletRequestWrapper(request).getRealPath("/");
-		String fileRoot = contextRoot + "resources/fileupload/";
-		// 오리지날 파일명
-		String originalFileName = multipartFile.getOriginalFilename();
-		// 파일 확장자
-		String extension = originalFileName.substring(originalFileName.lastIndexOf("."));
-		// 저장될파일명
-		String savedFileName = UUID.randomUUID() + extension;
-
-		File targetFile = new File(fileRoot + savedFileName);
+		String fileRoot = contextRoot+"resources/fileupload/";
+		
+		String originalFileName = multipartFile.getOriginalFilename();	//오리지날 파일명
+		String extension = originalFileName.substring(originalFileName.lastIndexOf("."));	//파일 확장자
+		String savedFileName = UUID.randomUUID() + extension;	//저장될 파일 명
+		
+		File targetFile = new File(fileRoot + savedFileName);	
 		try {
 			InputStream fileStream = multipartFile.getInputStream();
-			// 파일저장
-			FileUtils.copyInputStreamToFile(fileStream, targetFile);
-			// contextroot + resources + 저장할 내부 폴더명
-			jsonObject.addProperty("url", "/summernote/resources/fileupload/" + savedFileName);
+			FileUtils.copyInputStreamToFile(fileStream, targetFile);	//파일 저장
+			jsonObject.addProperty("url", "/carrot/resources/fileupload/"+savedFileName); // contextroot + resources + 저장할 내부 폴더명
 			jsonObject.addProperty("responseCode", "success");
-
+				
 		} catch (IOException e) {
-			// 저장된 파일 삭제
-			FileUtils.deleteQuietly(targetFile);
+			FileUtils.deleteQuietly(targetFile);	//저장된 파일 삭제
 			jsonObject.addProperty("responseCode", "error");
 			e.printStackTrace();
 		}
