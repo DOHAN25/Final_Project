@@ -99,6 +99,13 @@ CREATE TABLE Product (
 	userLongitude VARCHAR2(1000) 
 );
 
+SELECT * FROM Product WHERE userRole = 'ADMIN';
+
+SELECT userLatitude, userLongitude FROM Product;
+DELETE FROM Product 
+
+
+
 
 
 CREATE SEQUENCE orderSeq;
