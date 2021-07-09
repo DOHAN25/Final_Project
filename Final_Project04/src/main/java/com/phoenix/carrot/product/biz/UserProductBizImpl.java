@@ -68,4 +68,10 @@ public class UserProductBizImpl implements UserProductBiz {
 		return dao.selectlistLatLong();
 	}
 
+	@Override
+	public ProductDto selectOneByName(String productName) {
+		// TODO Auto-generated method stub
+		return dao.selectOneByName(productName);
+	}
+
 }

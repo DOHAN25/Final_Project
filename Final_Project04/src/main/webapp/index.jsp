@@ -78,6 +78,7 @@
           <!-- Collect the nav links, forms, and other content for toggling -->
           <div class="collapse navbar-collapse navbar-scrollspy" id="myNavbar">
             <ul class="nav navbar-nav">
+            <c:if test="${login == null }">
               <li><a href="#section1">로컬마켓</a></li>
               <li><a href="#section2">씨앗,도구 구매</a></li>
               <li><a href="#section3">주말농장</a></li>
@@ -85,7 +86,18 @@
               <li><a href="#section5">날씨/미세먼지</a></li>
               <li><a href="#section6">게시판</a></li>
               <li><a href="#section7">로그인</a></li>
+            </c:if>
+            <c:if test="${login != null }">
+              <li><a href="#section1">로컬마켓</a></li>
+              <li><a href="#section2">씨앗,도구 구매</a></li>
+              <li><a href="#section3">주말농장</a></li>
+              <li><a href="#section4">꿀팁</a></li>
+              <li><a href="#section5">날씨/미세먼지</a></li>
+              <li><a href="#section6">게시판</a></li>
+              <li><a href="#section7">로그아웃</a></li>
+            </c:if>
             </ul>
+            
             <form class="navbar-form navbar-right" role="search">
               <div class="form-group">
                 <input type="text" class="form-control" placeholder="Search">
@@ -96,6 +108,7 @@
         </div><!-- /.container-fluid -->
       </nav>
       
+       <c:if test="${login != null }">
           <div class="container-fluid" id="section1">
             <a href="usermarketplace.do"><div class="col-md-12" id="text" ><img src="resources/image/로컬마켓_main.jpg" alt="당근팜" style="width: 100%; height: 100%;">
                 <div class="text"><p id="img_title">로컬마켓으로 이동</p><p id="img_content">설명</p></div></div></a>
@@ -133,7 +146,47 @@
             <a href="loginform.do"><div class="col-md-12" id="text"><img src="resources/image/로그인_main1.jpg" alt="당근팜" style="width: 100%;">
             <div class="text"><p id="img_title">게시판</p><p id="img_content">설명</p></div></div></a>
         </div>
+    </c:if>
     
+     <c:if test="${login == null }">
+     	<div class="container-fluid" id="section1">
+            <a href="loginform.do"><div class="col-md-12" id="text" ><img src="resources/image/로컬마켓_main.jpg" alt="당근팜" style="width: 100%; height: 100%;">
+                <div class="text"><p id="img_title">로컬마켓으로 이동</p><p id="img_content">설명</p></div></div></a>
+            </div>
+              
+          
+          <div class="container-fluid" id="section2">
+                <a href="loginform.do"><div class="col-md-12" id="text"><img src="resources/image/씨앗도구구매_main2.jpg" alt="당근팜" style="width: 100%; height: 100%;">
+              <div class="text"><p id="img_title">씨앗,도구 구매</p><p id="img_content">설명</p></div></div></a>
+          </div>
+        
+        
+          <div class="container-fluid" id="section3">
+              <a href="loginform.do"><div class="col-md-12" id="text"><img src="resources/image/주말농장_main1.jpg" alt="당근팜" style="width: 100%; height: 100%;">
+              <div class="text"><p id="img_title">주말농장</p><p id="img_content">설명</p></div></div></a>
+          </div>
+        
+          <div class="container-fluid" id="section4">
+            <a href="loginform.do"><div class="col-md-12" id="text"><img src="resources/image/꿀팁얻기_main1.jpg" alt="당근팜" style="width: 100%;">
+              <div class="text"><p id="img_title">꿀팁얻기</p><p id="img_content">설명</p></div></div></a>
+          </div>
+        
+          <div class="container-fluid" id="section5">
+            <a href="loginform.do"><div class="col-md-12" id="text"><img src="resources/image/날씨확인_main1.jpg" alt="당근팜" style="width: 100%;">
+            <div class="text"><p id="img_title">날씨확인</p><p id="img_content">설명</p></div></div></a>
+        </div>
+    
+        <div class="container-fluid" id="section6">
+            <a href="loginform.do"><div class="col-md-12" id="text"><img src="resources/image/게시판_main1.jpg" alt="당근팜" style="width: 100%;">
+            <div class="text"><p id="img_title">게시판</p><p id="img_content">설명</p></div></div></a>
+        </div>
+        
+        
+        <div class="container-fluid" id="section7">
+            <a href="loginform.do"><div class="col-md-12" id="text"><img src="resources/image/로그인_main1.jpg" alt="당근팜" style="width: 100%;">
+            <div class="text"><p id="img_title">게시판</p><p id="img_content">설명</p></div></div></a>
+        </div>
+     </c:if>
           
       
       <script>

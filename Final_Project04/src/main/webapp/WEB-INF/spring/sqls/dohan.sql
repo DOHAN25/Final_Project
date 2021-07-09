@@ -99,7 +99,9 @@ CREATE TABLE Product (
 	userLongitude VARCHAR2(1000) 
 );
 
-SELECT * FROM Product WHERE userRole = 'ADMIN';
+SELECT * FROM Product WHERE userRole = 'USER';
+SELECT * FROM Product;
+DELETE FROM Product WHERE productPrice = 1800;
 
 SELECT userLatitude, userLongitude FROM Product;
 DELETE FROM Product 
