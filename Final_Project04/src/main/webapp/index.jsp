@@ -144,8 +144,8 @@
         
         
         <div class="container-fluid" id="section7">
-            <a href="loginform.do"><div class="col-md-12" id="text"><img src="resources/image/로그인_main1.jpg" alt="당근팜" style="width: 100%;">
-            <div class="text"><p id="img_title">로그인</p><p id="img_content">설명</p></div></div></a>
+            <a href="logOut.do"><div class="col-md-12" id="text"><img src="resources/image/로그인_main1.jpg" alt="당근팜" style="width: 100%;">
+            <div class="text"><p id="img_title">로그아웃</p><p id="img_content">설명</p></div></div></a>
         </div>
     </c:if>
     
@@ -185,7 +185,7 @@
         
         <div class="container-fluid" id="section7">
             <a href="loginform.do"><div class="col-md-12" id="text"><img src="resources/image/로그인_main1.jpg" alt="당근팜" style="width: 100%;">
-            <div class="text"><p id="img_title">게시판</p><p id="img_content">설명</p></div></div></a>
+            <div class="text"><p id="img_title">로그인</p><p id="img_content">로그인을 해주세요</p></div></div></a>
         </div>
      </c:if>
           
