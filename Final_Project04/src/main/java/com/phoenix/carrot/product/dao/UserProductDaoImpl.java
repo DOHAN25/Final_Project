@@ -114,6 +114,21 @@ public class UserProductDaoImpl implements UserProductDao {
 		}
 		return list;
 	}
+
+	@Override
+	public ProductDto selectOneByName(String productName) {
+		// TODO Auto-generated method stub
+		
+		ProductDto res = null;
+		
+		try {
+			res = sqlSession.selectOne(NAMESPACE+"selectOneByName", productName);
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
+		return res;
+	}
 	
 
 }

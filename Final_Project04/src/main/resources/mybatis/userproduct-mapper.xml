@@ -37,6 +37,13 @@
 	
 	<!-- 회원 위도 경도 / 상품명 / 주소 리스트로 뽑아오기 -->
 	<select id="selectlistLatLong" resultType="productDto">
-	 	SELECT userLatitude, userLongitude FROM Product WHERE userRole = 'USER'
+	 	SELECT productName, userLatitude, userLongitude FROM Product WHERE userRole = 'USER'
+	</select>
+	
+	<!-- 상품명으로 selectOne -->
+	<select id="selectOneByName" resultType="productDto">
+		
+		SELECT * FROM Product WHERE productName = #{productName}
+	
 	</select>
 </mapper>

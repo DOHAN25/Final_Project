@@ -50,6 +50,8 @@ import com.phoenix.carrot.chat.dto.ChatRoomDto;
 import com.phoenix.carrot.product.biz.UserProductBiz;
 import com.phoenix.carrot.product.dto.ProductDto;
 
+
+
 @Controller
 public class UserMarketController {
 
@@ -133,22 +135,63 @@ public class UserMarketController {
 				
 		List<ProductDto> list = new ArrayList<ProductDto>();
 
+		list = biz.selectlistLatLong();
+	
+		
 		JSONObject obj = new JSONObject();
 		JSONArray jArray = new JSONArray();
 		JSONObject sObject = new JSONObject();
 
-		
-		list = biz.selectlistLatLong();
-		
 		for (int i = 0; i < list.size(); i++) {
+			
+			sObject.put("title", list.get(i).getProductName());
 			sObject.put("lat", list.get(i).getUserLatitude());
 			sObject.put("lng", list.get(i).getUserLongitude());
 			jArray.put(sObject);
 		}
+		
+		obj.put("positions", jArray);
+		
+		model.addAttribute("data", obj);
+		
+		model.addAttribute("dto", biz.userProductOne(productSeq));
+		
+		return "userproductdetail";
+	}
+	
+	@RequestMapping("/markerdetail.do")
+	public String markerDetail(HttpServletRequest request, Model model) {
+		String productName = request.getParameter("productName");
+		System.out.println(productName);
+		
+		logger.info("[Controller] : marekrdetail.do");
+		
+		ProductDto dto = biz.selectOneByName(productName);
+		
+		List<ProductDto> list = new ArrayList<ProductDto>();
+
+		list = biz.selectlistLatLong();
+	
+		
+		JSONObject obj = new JSONObject();
+		JSONArray jArray = new JSONArray();
+		JSONObject sObject = new JSONObject();
+
+		for (int i = 0; i < list.size(); i++) {
+			
+			sObject.put("title", list.get(i).getProductName());
+			sObject.put("lat", list.get(i).getUserLatitude());
+			sObject.put("lng", list.get(i).getUserLongitude());
+			jArray.put(sObject);
+		}
+		
 		obj.put("positions", jArray);
 
 		model.addAttribute("data", obj);
-		model.addAttribute("dto", biz.userProductOne(productSeq));
+		
+		
+		model.addAttribute("dto", biz.userProductOne(dto.getProductSeq()));
+		
 		
 		return "userproductdetail";
 	}

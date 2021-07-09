@@ -14,8 +14,7 @@
 
 <script type="text/javascript">
 	window.onloaed = function() {
-	
-		
+
 	}
 </script>
 <body>
@@ -71,6 +70,8 @@
 		src="//dapi.kakao.com/v2/maps/sdk.js?appkey=4b7e72eca108f2115775c1000b513249&libraries=services,clusterer,drawing"></script>
 
 	<script type="text/javascript">
+	
+	
 		var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
 		mapOption = {
 			center : new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
@@ -80,43 +81,32 @@
 
 		var map = new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
 
-		var clusterer = new kakao.maps.MarkerClusterer({
-			map : map, // 마커들을 클러스터로 관리하고 표시할 지도 객체
-			averageCenter : true, // 클러스터에 포함된 마커들의 평균 위치를 클러스터 마커 위치로 설정
-			minLevel : 10, // 클러스터 할 최소 지도 레벨
-			disableClickZoom : true
-		// 클러스터 마커를 클릭했을 때 지도가 확대되지 않도록 설정한다
-		});
 		
+		// 마커 이미지의 이미지 주소입니다
+		var imageSrc = "https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerStar.png"; 
+
 		var data = JSON.parse('${data}');
 		
-		 var markers = $(data.positions).map(function(i, position) {
-	            return new kakao.maps.Marker({
-	                position : new kakao.maps.LatLng(position.lat, position.lng)
-	            });
-	        });
-
-	        // 클러스터러에 마커들을 추가합니다
-	   clusterer.addMarkers(markers);
-
-
-
-		 // 마커 클러스터러에 클릭이벤트를 등록합니다
-	    // 마커 클러스터러를 생성할 때 disableClickZoom을 true로 설정하지 않은 경우
-	    // 이벤트 헨들러로 cluster 객체가 넘어오지 않을 수도 있습니다
-	    kakao.maps.event.addListener(clusterer, 'clusterclick', function(cluster) {
-
-	        // 현재 지도 레벨에서 1레벨 확대한 레벨
-	        var level = map.getLevel()-1;
-
-	        // 지도를 클릭된 클러스터의 마커의 위치를 기준으로 확대합니다
-	        map.setLevel(level, {anchor: cluster.getCenter()});
-	    });
+		for (var i = 0; i < data.positions.length; i++) {
+			
+			// 마커 이미지의 이미지 크기 입니다
+		    var imageSize = new kakao.maps.Size(24, 35); 
+		    // 마커 이미지를 생성합니다    
+		    var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize); 
+		    
+			var markerPosition  = new kakao.maps.LatLng(data.positions[i].lat, data.positions[i].lng);
+			
+			var markerTitle = data.positions[i].title;
+			
+			var marker = new kakao.maps.Marker({
+			    map: map,
+				position: markerPosition,
+				title: markerTitle,
+				image: markerImage
+			});			
+		}
 		
 		
-		 
-		 
-
 		// HTML5의 geolocation으로 사용할 수 있는지 확인합니다 
 		if (navigator.geolocation) {
 
@@ -140,7 +130,55 @@
 
 			displayMarker(locPosition, message);
 		}
+		
+		
+		// 마커에 onclick 이벤트 등록하기
+		kakao.maps.event.addListener(marker, 'click', function(){
+			var productTitle = marker.Fb;
+		
+			location.href="markerdetail.do?productName="+productTitle;
+		});
+		
+		
+		/*
+		var clusterer = new kakao.maps.MarkerClusterer({
+			map : map, // 마커들을 클러스터로 관리하고 표시할 지도 객체
+			averageCenter : true, // 클러스터에 포함된 마커들의 평균 위치를 클러스터 마커 위치로 설정
+			minLevel : 10, // 클러스터 할 최소 지도 레벨
+			disableClickZoom : true
+		// 클러스터 마커를 클릭했을 때 지도가 확대되지 않도록 설정한다
+		});
+		*/
 
+		/*
+		for(idx in markers) {
+		 var markers = $(data.positions).map(function(i, position) {
+		        return new kakao.maps.Marker({
+		            position : new kakao.maps.LatLng(position.lat, position.lng)
+		        });
+		    });
+		
+		    // 클러스터러에 마커들을 추가합니다
+		  clusterer.addMarkers(markers);
+		}
+		 */
+		/*
+		// 마커 클러스터러에 클릭이벤트를 등록합니다
+		// 마커 클러스터러를 생성할 때 disableClickZoom을 true로 설정하지 않은 경우
+		// 이벤트 헨들러로 cluster 객체가 넘어오지 않을 수도 있습니다
+		kakao.maps.event.addListener(clusterer, 'clusterclick', function(
+				cluster) {
+
+			// 현재 지도 레벨에서 1레벨 확대한 레벨
+			var level = map.getLevel() - 1;
+
+			// 지도를 클릭된 클러스터의 마커의 위치를 기준으로 확대합니다
+			map.setLevel(level, {
+				anchor : cluster.getCenter()
+			});
+		});
+		*/
+		
 		// 지도에 마커와 인포윈도우를 표시하는 함수입니다
 		function displayMarker(locPosition, message) {
 
@@ -165,6 +203,32 @@
 			// 지도 중심좌표를 접속위치로 변경합니다
 			map.setCenter(locPosition);
 		}
+		
+		/*
+		// 마커 여러개 추가하는 부분
+		var data = JSON.parse('${data}');
+
+		// 마커 이미지의 이미지 주소입니다
+		var imageSrc = "https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerStar.png";
+		var imageSize = new kakao.maps.Size(24, 35);
+
+		var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize);
+
+		
+		for (var i = 0; i < data.positions.length; i++) {
+			
+			var markerPosition = new kakao.maps.LatLng(data.positions[i].lat, data.positions[i].lng);
+			var markerTitle =  data.positions[i].title;
+			
+			var marker = new kakao.maps.Marker({
+				map : map,
+				position : markerPosition,
+				title : markerTitle,
+				image : markerImage
+			});
+			
+		}
+		*/
 	</script>
 
 
