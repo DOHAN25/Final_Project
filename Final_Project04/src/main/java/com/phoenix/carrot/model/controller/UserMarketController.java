@@ -186,7 +186,7 @@ public class UserMarketController {
 		}
 		
 		obj.put("positions", jArray);
-		
+
 		model.addAttribute("data", obj);
 		
 		

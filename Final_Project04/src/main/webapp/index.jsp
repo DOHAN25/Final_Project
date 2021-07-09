@@ -52,6 +52,7 @@
 }
 #img_content{
     font-size: 20px;
+   	color: white;
 }
 
     </style>
@@ -72,7 +73,7 @@
             <a class="navbar-brand" href="#">
                 <img src="img/logo.jpg" alt="당근팜">
             </a>
-            <p class="navbar-text"><a href="#" class="navbar-link">당근팜</a>은 최고의 서비스를 제공합니다.</p>
+            <p class="navbar-text">내가 키운 채소, <a href="#" class="navbar-link">당근팜</a>에서 거래하세요!</p>
           </div>
       
           <!-- Collect the nav links, forms, and other content for toggling -->
@@ -80,7 +81,7 @@
             <ul class="nav navbar-nav">
             <c:if test="${login == null }">
               <li><a href="#section1">로컬마켓</a></li>
-              <li><a href="#section2">씨앗,도구 구매</a></li>
+              <li><a href="#section2">씨앗마켓</a></li>
               <li><a href="#section3">주말농장</a></li>
               <li><a href="#section4">꿀팁</a></li>
               <li><a href="#section5">날씨/미세먼지</a></li>
@@ -111,29 +112,29 @@
        <c:if test="${login != null }">
           <div class="container-fluid" id="section1">
             <a href="usermarketplace.do"><div class="col-md-12" id="text" ><img src="resources/image/로컬마켓_main.jpg" alt="당근팜" style="width: 100%; height: 100%;">
-                <div class="text"><p id="img_title">로컬마켓으로 이동</p><p id="img_content">설명</p></div></div></a>
+                <div class="text"><p id="img_title">로컬마켓으로 이동</p><p id="img_content">내가 키운 채소, 당근팜에서 거래하기</p></div></div></a>
             </div>
               
           
           <div class="container-fluid" id="section2">
                 <a href="adminproduct.do"><div class="col-md-12" id="text"><img src="resources/image/씨앗도구구매_main2.jpg" alt="당근팜" style="width: 100%; height: 100%;">
-              <div class="text"><p id="img_title">씨앗,도구 구매</p><p id="img_content">설명</p></div></div></a>
+              <div class="text"><p id="img_title">씨앗마켓</p><p id="img_content">당근팜에서 우리집 텃밭가꾸기 상품을 준비해보세요.</p></div></div></a>
           </div>
         
         
           <div class="container-fluid" id="section3">
               <a href="loginform.do"><div class="col-md-12" id="text"><img src="resources/image/주말농장_main1.jpg" alt="당근팜" style="width: 100%; height: 100%;">
-              <div class="text"><p id="img_title">주말농장</p><p id="img_content">설명</p></div></div></a>
+              <div class="text"><p id="img_title">주말농장</p><p id="img_content">주말농장 체험하러 가기</p></div></div></a>
           </div>
         
           <div class="container-fluid" id="section4">
             <a href="main.do"><div class="col-md-12" id="text"><img src="resources/image/꿀팁얻기_main1.jpg" alt="당근팜" style="width: 100%;">
-              <div class="text"><p id="img_title">꿀팁얻기</p><p id="img_content">설명</p></div></div></a>
+              <div class="text"><p id="img_title">꿀팁얻기</p><p id="img_content">나만의 농작물 키우기 꿀팁얻기</p></div></div></a>
           </div>
         
           <div class="container-fluid" id="section5">
             <a href="weather.do"><div class="col-md-12" id="text"><img src="resources/image/날씨확인_main1.jpg" alt="당근팜" style="width: 100%;">
-            <div class="text"><p id="img_title">날씨확인</p><p id="img_content">설명</p></div></div></a>
+            <div class="text"><p id="img_title">날씨확인</p><p id="img_content">오늘의 날씨를 확인해보세요</p></div></div></a>
         </div>
     
         <div class="container-fluid" id="section6">
@@ -144,7 +145,7 @@
         
         <div class="container-fluid" id="section7">
             <a href="loginform.do"><div class="col-md-12" id="text"><img src="resources/image/로그인_main1.jpg" alt="당근팜" style="width: 100%;">
-            <div class="text"><p id="img_title">게시판</p><p id="img_content">설명</p></div></div></a>
+            <div class="text"><p id="img_title">로그인</p><p id="img_content">설명</p></div></div></a>
         </div>
     </c:if>
     
