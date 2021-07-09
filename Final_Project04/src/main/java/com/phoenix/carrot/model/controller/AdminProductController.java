@@ -18,6 +18,9 @@ public class AdminProductController {
 	@Autowired
 	private AdminProductBiz adminproductbiz;
 	
+	
+	/* adminproduct 게시판 ---------------------------------------------------*/
+	/* 상품 리스트 */ 
 	@RequestMapping("/adminproduct.do")
 	public String adminProduct(Model model) {
 		logger.info("[Controller] : adminproduct.do");
@@ -25,9 +28,8 @@ public class AdminProductController {
 
 		return "adminproduct";
 	}
-	
-	
 
+	/* 상품등록 페이지 */
 	@RequestMapping("/adminproductinsert.do")
 	public String adminProductInsertForm() {
 		return "adminproductinsert";
@@ -45,6 +47,7 @@ public class AdminProductController {
 		return "redirect:adminproductinsert.do";
 	}
 	
+	/* 상품 상세 정보 */
 	@RequestMapping("/adminproductdetail.do")
 	public String adminProductDetail(Model model, int productSeq) {
 		logger.info("[Controller] : adminproductdetail.do");
@@ -53,6 +56,16 @@ public class AdminProductController {
 		return "adminproductdetail";
 	}
 	
+	/* adminproduct 결제 ---------------------------------------------------*/
+	/* 상품 주문 페이지 */
+	@RequestMapping("/adminproductorder.do")
+	public String adminproductOrder(Model model, int productSeq) {
+		logger.info("[Controller] : adminproductorder.do");
+		
+		model.addAttribute("dto", adminproductbiz.adminProductOne(productSeq));
+
+		return "adminproductorder";
+	}
 	
 	
 }

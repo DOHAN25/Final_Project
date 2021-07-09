@@ -12,6 +12,7 @@
 
 
 	<h1>상품정보</h1>
+		<input type="hidden" name="userSeq" value="${dto.productSeq }">
 
 	<table border="1">
 		<tr>
@@ -32,7 +33,7 @@
 		</tr>
 		<tr>
 			<td colspan="4" align="right">
-				<input type="button" value="구매하기" onclick="location.href='adminproductinsert.do'">
+				<input type="button" value="구매하기" onclick="location.href='adminproductorder.do?productSeq=${dto.productSeq }'">
 				<input type="button" value="목록" onclick="location.href='adminproduct.do'">
 			</td>
 		</tr>
