@@ -7,15 +7,42 @@
 <head>
 <meta charset="UTF-8">
 <title>씨앗 마켓</title>
-<style type="text/css">
-#adminproductlist{
-	height: 20px;
-}
+ <style>
+    #productname {
+      margin-top: 20px;
+      margin-bottom: 5px;
+    }
 
-</style>
+    #price {
+      margin-top: 0px;
+    }
+
+
+    #imghover {
+      opacity: 100%;
+    }
+
+    #imghover:hover {
+      opacity: 0.6;
+      transition: opacity 1s
+    }
+    #adminproductlist{
+	height: 20px;
+	}
+  </style>
 </head>
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
+  <!-- 합쳐지고 최소화된 최신 CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+  <!--jquery (부트스트랩의 자바스트립트 플러그인을 위해 필요합니다.)-->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+
+  <!-- 부가적인 테마 -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+  <!-- 합쳐지고 최소화된 최신 자바스크립트 -->
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+  
 <script type="text/javascript">
 	
 $(document).ready(function(){	
@@ -60,6 +87,104 @@ $(document).ready(function(){
 });
 
 </script>
+<body>
+<div class="container" style="width: 100%;">
+    <div class="col-md-8 col-md-offset-2 ">
+	
+	    <div class="col-md-2 position-fixed">
+	        <hr style=" border-width: 3px; background-color: black; color:black">
+	        <h1>씨앗마켓<br> 상품 <br>리스트</h1>
+	        <br>
+	        <p>당근팜 씨앗 마켓만의 텃밭가꾸기 상품들을 만나보세요!</p>
+	        <!-- /input-group -->
+	        <div class="row">
+	          <div class="col-md-12">
+	            <!-- 상품검색-->
+	            <select id="selectBox">
+	              <option value="productName">상품명</option>
+	            </select>
+	            <div class="input-group">
+	              <input type="text" class="form-control" id="searchVal" placeholder="Search for...">
+	              <span class="input-group-btn">
+	                <button class="btn btn-default" type="button" id="searchBtn">
+	                  <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+	                </button>
+	              </span>
+	            </div>
+	
+	          </div>
+	        </div>
+	        <hr>
+	        <div>
+	          <input type="button" value="상품등록" onclick="location.href='adminproductinsert.do'">
+	          <input type="button" value="메인" onclick="location.href='/carrot'">
+	
+	        </div>
+	    </div>
+		
+		<!-- 상품 리스트 -->
+		<div id="dynamicTbody" class="col-md-10">
+			<div>
+				<c:choose>
+					<c:when test="${empty adminProductList }">
+						<div>
+							<div>------ 작성된 글이 없습니다 ------ </div>
+						</div>
+					</c:when>
+					<c:otherwise>
+						<c:forEach items="${adminProductList }" var="ProductDto">
+							<div id="adminproductlist" class="row">
+								<%-- <div>${ProductDto.productSeq }</div> --%>
+								<%-- <div>${ProductDto.productImg }</div> --%>
+								<div class="col-md-4">
+									 <a href="#">
+							            <div id="imghover">
+							                <img val="${ProductDto.productImg }" src="https://www.verandarecipe.com/web/product/big/201705/1353_shop1_266999.jpg" alt="상품이미지" class=" img-responsive">
+							            </div>
+						            </a>
+									<div>
+										<p id="productname"><a href="adminproductdetail.do?productSeq=${ProductDto.productSeq }">${ProductDto.productName }</a></p>
+										<p id="price"> ${ProductDto.productPrice }</p>
+									</div>
+								</div>
+							</div>
+						
+						</c:forEach>
+					</c:otherwise>
+				</c:choose>
+		
+			    <div class="row">
+			    </div>
+			</div>
+		
+			
+		</div>
+		<!-- 페이지네이션 -->
+		<div class="row" style="text-align: center;">
+		<nav>
+			<ul class="pagination">
+				<li>
+				    <a href="#" aria-label="Previous">
+				        <span aria-hidden="true">&laquo;</span>
+				    </a>
+				</li>
+				<li><a href="#">1</a></li>
+				<li><a href="#">2</a></li>
+				<li><a href="#">3</a></li>
+			    <li>
+				    <a href="#" aria-label="Next">
+				        <span aria-hidden="true">&raquo;</span>
+				    </a>
+				</li>
+			</ul>
+	    </nav>
+	</div>
+	</div>
+	
+</div>
+</body>
+
+<%-- <!-- 테이블 구조 -->
 <body>
 	<h1>씨앗마켓 상품 리스트</h1>
 	<br>
@@ -116,7 +241,7 @@ $(document).ready(function(){
 		</tr>
 	</table>
 
-</body>
+</body> --%>
 </html>
 
 
