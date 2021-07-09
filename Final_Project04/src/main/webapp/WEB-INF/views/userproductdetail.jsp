@@ -140,7 +140,6 @@
 		});
 		
 		
-	
 		/*
 		var clusterer = new kakao.maps.MarkerClusterer({
 			map : map, // 마커들을 클러스터로 관리하고 표시할 지도 객체
@@ -149,6 +148,7 @@
 			disableClickZoom : true
 		// 클러스터 마커를 클릭했을 때 지도가 확대되지 않도록 설정한다
 		});
+		*/
 
 		/*
 		for(idx in markers) {
@@ -162,7 +162,7 @@
 		  clusterer.addMarkers(markers);
 		}
 		 */
-/*
+		/*
 		// 마커 클러스터러에 클릭이벤트를 등록합니다
 		// 마커 클러스터러를 생성할 때 disableClickZoom을 true로 설정하지 않은 경우
 		// 이벤트 헨들러로 cluster 객체가 넘어오지 않을 수도 있습니다
@@ -177,7 +177,7 @@
 				anchor : cluster.getCenter()
 			});
 		});
-*/
+		*/
 		
 		// 지도에 마커와 인포윈도우를 표시하는 함수입니다
 		function displayMarker(locPosition, message) {
