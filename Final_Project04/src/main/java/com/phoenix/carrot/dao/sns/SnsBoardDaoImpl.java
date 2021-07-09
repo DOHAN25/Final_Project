@@ -43,7 +43,7 @@ public class SnsBoardDaoImpl implements SnsBoardDao {
 		}
 		return dto;
 	}
-
+	
 
 	@Override
 	public int snsBoardInsert(EntireBoardDto dto) {
@@ -98,6 +98,20 @@ public class SnsBoardDaoImpl implements SnsBoardDao {
 		return snsUserFeedList;
 		
 	}
+	
+	//유저 개인피드 깔기
+	@Override
+	public UserDto snsUserSelectOne(String userId) {
+		UserDto userDto = null;
+		
+		try {
+			userDto = sqlSession.selectOne(NAMESPACE + "snsUserSelectOne" , userId);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return userDto;
+	}
+	
 	//유저 전체 리스트 출력
 	@Override
 	public List<UserDto> userList() {
@@ -140,6 +154,8 @@ public class SnsBoardDaoImpl implements SnsBoardDao {
 		}
 		return snsUserListByName;
 	}
+	
+
 
 
 

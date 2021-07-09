@@ -18,6 +18,8 @@
 
 		<div>${login.userid}님 안녕하세요.</div>
 		
+		<div>${snsUserSelectOne.userid}님의 피드입니다.</div>
+		
 		
 		<table border="1">
 			<col width="20">
