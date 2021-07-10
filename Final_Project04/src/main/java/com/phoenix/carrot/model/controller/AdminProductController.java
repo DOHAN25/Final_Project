@@ -51,28 +51,22 @@ public class AdminProductController {
 		
 		logger.info("[Controller] : adminproductinsertres.do");
 		
-//		String imgUploadPath = uploadPath + File.separator + "upload";
-//		String ymdPath = UploadFileUtils.calcPath(imgUploadPath);
-//		String fileName = null;
+		String imgUploadPath = uploadPath + File.separator + "upload";
+		String ymdPath = UploadFileUtils.calcPath(imgUploadPath);
+		String fileName = null;
 		
-		if (adminproductbiz.adminProductInsert(dto) > 0) {
-//			if (file != null) {
-//				fileName = UploadFileUtils.fileUpload(imgUploadPath, file.getOriginalFilename(), file.getBytes(), ymdPath);
-//			} else {
-//				fileName = uploadPath + File.separator + "image" + File.separator +"none.png";
-//			}
-//					
-//			dto.setProductImg(File.separator + "upload" + ymdPath + File.separator + fileName);
-//			dto.setProductThumb(File.separator + "upload" + ymdPath + File.separator + "s" + File.separator + "s_" + fileName);
-//			
-//			adminproductbiz.adminProductInsert(dto);
-//			
-			
-			return "redirect:adminproduct.do";
-			
+		if (file != null) {
+			fileName = UploadFileUtils.fileUpload(imgUploadPath, file.getOriginalFilename(), file.getBytes(), ymdPath);
+		} else {
+			fileName = uploadPath + File.separator + "image" + File.separator +"none.png";
 		}
 		
-		return "redirect:adminproductinsert.do";
+		dto.setProductImg(File.separator + "upload" + ymdPath + File.separator + fileName);
+		dto.setProductThumb(File.separator + "upload" + ymdPath + File.separator + "s" + File.separator + "s_" + fileName);
+		
+		adminproductbiz.adminProductInsert(dto);
+		
+		return "redirect:adminproduct.do";
 	}
 	
 	/* 상품 상세 정보 */

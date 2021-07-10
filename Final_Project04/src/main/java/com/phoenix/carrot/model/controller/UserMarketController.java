@@ -12,6 +12,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.UUID;
 
+import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletRequestWrapper;
 
@@ -49,6 +50,7 @@ import com.phoenix.carrot.chat.biz.ChatRoomBiz;
 import com.phoenix.carrot.chat.dto.ChatRoomDto;
 import com.phoenix.carrot.product.biz.UserProductBiz;
 import com.phoenix.carrot.product.dto.ProductDto;
+import com.phoenix.carrot.utils.UploadFileUtils;
 
 
 
@@ -56,7 +58,10 @@ import com.phoenix.carrot.product.dto.ProductDto;
 public class UserMarketController {
 
 	private Logger logger = LoggerFactory.getLogger(UserMarketController.class);
-
+	
+	@Resource(name="uploadPath")
+	private String uploadPath;
+	
 	@Autowired
 	private UserProductBiz biz;
 
@@ -116,16 +121,24 @@ public class UserMarketController {
 	}
 
 	@RequestMapping("/userproductinsertres.do")
-	public String productInsertRes(ProductDto dto) {
+	public String productInsertRes(ProductDto dto, MultipartFile file) throws Exception {
 
-		logger.info("[Controller] : userproductinsertres.do");
-
-		if (biz.userProductInsert(dto) > 0) {
-
-			return "redirect:usermarketplace.do";
+		String imgUploadPath = uploadPath + File.separator + "upload";
+		String ymdPath = UploadFileUtils.calcPath(imgUploadPath);
+		String fileName = null;
+		
+		if (file != null) {
+			fileName = UploadFileUtils.fileUpload(imgUploadPath, file.getOriginalFilename(), file.getBytes(), ymdPath);
+		} else {
+			fileName = uploadPath + File.separator + "image" + File.separator +"none.png";
 		}
-
-		return "redirect:productinsert.do";
+		
+		dto.setProductImg(File.separator + "upload" + ymdPath + File.separator + fileName);
+		dto.setProductThumb(File.separator + "upload" + ymdPath + File.separator + "s" + File.separator + "s_" + fileName);
+		
+		biz.userProductInsert(dto);
+		
+		return "redirect:usermarketplace.do";
 	}
 
 	@RequestMapping("/userproductdetail.do")
