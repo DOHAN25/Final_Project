@@ -29,10 +29,11 @@
 			<td>상품이미지</td>
 			<td>
 				<img src="${pageContext.request.contextPath}/resources${dto.productImg }">
-				<img src="${pageContext.request.contextPath}/resources${dto.productThumb }"/>
-			
-			</td>
-			
+			</td>	
+		</tr>
+		<tr>
+			<td>상품 썸네일이미지</td>
+			<td><img src="${pageContext.request.contextPath}/resources${dto.productThumb }"/></td>
 		</tr>
 		<tr>
 			<td>상품명</td>

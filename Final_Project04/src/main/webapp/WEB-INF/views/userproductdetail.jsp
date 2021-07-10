@@ -25,6 +25,18 @@
 
 	<table border="1">
 		<tr>
+			<td>상품이미지</td>
+			<td>
+				<img src="${pageContext.request.contextPath}/resources${dto.productImg }">
+			</td>	
+		</tr>
+		<tr>
+			<td>상품 썸네일이미지</td>
+			<td>
+				<img src="${pageContext.request.contextPath}/resources${dto.productThumb }"/>
+			</td>
+		</tr>
+		<tr>
 			<td>userSeq</td>
 			<td>${dto.userSeq }</td>
 		</tr>
