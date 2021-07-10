@@ -5,109 +5,175 @@ import java.util.Date;
 public class OrderDto {
 	
 	private int orderSeq;
-	private int productPrice;
-	private String receiverName;
-	private String receiverOaddress;
-	private String receiverAddress;
-	private String receiverDetailaddress;
-	private int quantity;
+	private int productSeq;
 	private String productName;
-	private Date orderDate;
-	private String userId;
+	private int productPrice;
+	private int quantity;
+	private int deliveryfee;
 	private int orderAmount;
+	private String pay_method;
+	private int userSeq;
+	private String userId;
+	private String receiveName;
 	private String receiverPhone;
+	private String receiverOaddress;
+	private String receiverRaddress;
+	private String receiverDetailaddress;
+	private Date orderDate;
+	
 	public OrderDto() {
-		
 	}
-	public OrderDto(int orderSeq, int productPrice, String receiverName, String receiverOaddress,
-			String receiverAddress, String receiverDetailaddress, int quantity, String productName, Date orderDate,
-			String userId, int orderAmount, String receiverPhone) {
+
+	public OrderDto(int orderSeq, int productSeq, String productName, int productPrice, int quantity, int deliveryfee,
+			int orderAmount, String pay_method, int userSeq, String userId, String receiveName, String receiverPhone,
+			String receiverOaddress, String receiverRaddress, String receiverDetailaddress, Date orderDate) {
 		super();
 		this.orderSeq = orderSeq;
-		this.productPrice = productPrice;
-		this.receiverName = receiverName;
-		this.receiverOaddress = receiverOaddress;
-		this.receiverAddress = receiverAddress;
-		this.receiverDetailaddress = receiverDetailaddress;
-		this.quantity = quantity;
+		this.productSeq = productSeq;
 		this.productName = productName;
-		this.orderDate = orderDate;
-		this.userId = userId;
+		this.productPrice = productPrice;
+		this.quantity = quantity;
+		this.deliveryfee = deliveryfee;
 		this.orderAmount = orderAmount;
+		this.pay_method = pay_method;
+		this.userSeq = userSeq;
+		this.userId = userId;
+		this.receiveName = receiveName;
 		this.receiverPhone = receiverPhone;
+		this.receiverOaddress = receiverOaddress;
+		this.receiverRaddress = receiverRaddress;
+		this.receiverDetailaddress = receiverDetailaddress;
+		this.orderDate = orderDate;
 	}
+
 	public int getOrderSeq() {
 		return orderSeq;
 	}
+
 	public void setOrderSeq(int orderSeq) {
 		this.orderSeq = orderSeq;
 	}
-	public int getProductPrice() {
-		return productPrice;
+
+	public int getProductSeq() {
+		return productSeq;
 	}
-	public void setProductPrice(int productPrice) {
-		this.productPrice = productPrice;
+
+	public void setProductSeq(int productSeq) {
+		this.productSeq = productSeq;
 	}
-	public String getReceiverName() {
-		return receiverName;
-	}
-	public void setReceiverName(String receiverName) {
-		this.receiverName = receiverName;
-	}
-	public String getReceiverOaddress() {
-		return receiverOaddress;
-	}
-	public void setReceiverOaddress(String receiverOaddress) {
-		this.receiverOaddress = receiverOaddress;
-	}
-	public String getReceiverAddress() {
-		return receiverAddress;
-	}
-	public void setReceiverAddress(String receiverAddress) {
-		this.receiverAddress = receiverAddress;
-	}
-	public String getReceiverDetailaddress() {
-		return receiverDetailaddress;
-	}
-	public void setReceiverDetailaddress(String receiverDetailaddress) {
-		this.receiverDetailaddress = receiverDetailaddress;
-	}
-	public int getQuantity() {
-		return quantity;
-	}
-	public void setQuantity(int quantity) {
-		this.quantity = quantity;
-	}
+
 	public String getProductName() {
 		return productName;
 	}
+
 	public void setProductName(String productName) {
 		this.productName = productName;
 	}
-	public Date getOrderDate() {
-		return orderDate;
+
+	public int getProductPrice() {
+		return productPrice;
 	}
-	public void setOrderDate(Date orderDate) {
-		this.orderDate = orderDate;
+
+	public void setProductPrice(int productPrice) {
+		this.productPrice = productPrice;
 	}
-	public String getUserId() {
-		return userId;
+
+	public int getQuantity() {
+		return quantity;
 	}
-	public void setUserId(String userId) {
-		this.userId = userId;
+
+	public void setQuantity(int quantity) {
+		this.quantity = quantity;
 	}
+
+	public int getDeliveryfee() {
+		return deliveryfee;
+	}
+
+	public void setDeliveryfee(int deliveryfee) {
+		this.deliveryfee = deliveryfee;
+	}
+
 	public int getOrderAmount() {
 		return orderAmount;
 	}
+
 	public void setOrderAmount(int orderAmount) {
 		this.orderAmount = orderAmount;
 	}
+
+	public String getPay_method() {
+		return pay_method;
+	}
+
+	public void setPay_method(String pay_method) {
+		this.pay_method = pay_method;
+	}
+
+	public int getUserSeq() {
+		return userSeq;
+	}
+
+	public void setUserSeq(int userSeq) {
+		this.userSeq = userSeq;
+	}
+
+	public String getUserId() {
+		return userId;
+	}
+
+	public void setUserId(String userId) {
+		this.userId = userId;
+	}
+
+	public String getReceiveName() {
+		return receiveName;
+	}
+
+	public void setReceiveName(String receiveName) {
+		this.receiveName = receiveName;
+	}
+
 	public String getReceiverPhone() {
 		return receiverPhone;
 	}
+
 	public void setReceiverPhone(String receiverPhone) {
 		this.receiverPhone = receiverPhone;
 	}
+
+	public String getReceiverOaddress() {
+		return receiverOaddress;
+	}
+
+	public void setReceiverOaddress(String receiverOaddress) {
+		this.receiverOaddress = receiverOaddress;
+	}
+
+	public String getReceiverRaddress() {
+		return receiverRaddress;
+	}
+
+	public void setReceiverRaddress(String receiverRaddress) {
+		this.receiverRaddress = receiverRaddress;
+	}
+
+	public String getReceiverDetailaddress() {
+		return receiverDetailaddress;
+	}
+
+	public void setReceiverDetailaddress(String receiverDetailaddress) {
+		this.receiverDetailaddress = receiverDetailaddress;
+	}
+
+	public Date getOrderDate() {
+		return orderDate;
+	}
+
+	public void setOrderDate(Date orderDate) {
+		this.orderDate = orderDate;
+	}	
+	
 	
 	
 
