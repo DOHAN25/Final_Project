@@ -1,7 +1,9 @@
 package com.phoenix.carrot.model.controller;
 
 import java.util.List;
+import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
@@ -9,9 +11,11 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttribute;
 
 import com.phoenix.carrot.chat.biz.ChatRoomBiz;
@@ -100,4 +104,43 @@ public class ChatController {
 
 		return "chat";
 	}
+	
+	
+	
+	@RequestMapping(value="/messageinput.do", method=RequestMethod.GET)
+	public String messageInput(@RequestParam Map<String,Object> param) {
+	
+		String chatroom_title = (String)param.get("chatroom_title");
+		String message_sender = (String)param.get("message_sender");
+		String message_receiver = (String)param.get("message_receiver");
+		String message_content = (String)param.get("message_content");
+		
+		
+		ChatRoomDto cdto = new ChatRoomDto();
+		cdto.setChatroom_buyer(message_sender);
+		cdto.setChatroom_title(chatroom_title);
+		cdto.setChatroom_seller(message_receiver);
+		
+		 ChatRoomDto resultDto = cbiz.selectOne(cdto);
+		 int chatroom_id = resultDto.getChatroom_id();
+		 
+		 MessageDto dto = new MessageDto();
+		 dto.setChatroom_id(chatroom_id);
+		 dto.setMessage_content(message_content);
+		 dto.setMessage_receiver(message_receiver);
+		 dto.setMessage_sender(message_sender);
+		 
+		 int res = mbiz.insertMessage(dto);
+		
+		 
+		 String result = "";
+		if(res > 0 ) {
+			result="메세지 저장 완료!";
+		} else {
+			result="메세지 저장 실패!";
+		}
+		
+		return result;
+	}
+	
 }
