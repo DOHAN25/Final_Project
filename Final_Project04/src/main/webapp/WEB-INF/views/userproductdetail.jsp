@@ -176,7 +176,7 @@
 
 	<button type="button"
 		onclick="location.href='chat.do?selleruserId=${dto.userId }&productName=${dto.productName }'">채팅하기</button>
-
+ <%@include file ="/WEB-INF/views/1footer.jsp" %>
 </body>
 
 
