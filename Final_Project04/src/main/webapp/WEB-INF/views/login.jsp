@@ -143,6 +143,7 @@ function onSignIn(googleUser) {
 		dataType : "json",
 		success : function(msg) {
 			alert(msg.username + "님 환영합니다.");
+			location.href="index.jsp";
 		},
 		error : function() {
 			alert("통신 실패");
