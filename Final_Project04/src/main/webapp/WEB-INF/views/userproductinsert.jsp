@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>로컬마켓 상품 등록</title>
 <script type="text/javascript"
 	src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
@@ -148,13 +148,10 @@
                         <td><input type="text" name="userId" class="form-control" readonly value="${login.userid}"></td>
                     </tr>
                     <tr>
-                        <th style="vertical-align: middle;">상품썸네일</th>
-                        <td>
-                        	<div class="col-sm-10" id="image_container">
-                        		<img id="preview-image" src="https://via.placeholder.com/400x400" class="img-responsive" alt="Responsive image">
-                        		<input type="file" name="file" accept="image/*1" id="boardImg" onchange="setThumbnail(event);" class="form-control custom-file-input" id="customFile" >
-                        	</div>
-                        </td>
+                     	<th style="vertical-align: middle;">상품이미지</th>
+                        	<td><img src="https://via.placeholder.com/300x300" class="img-responsive" alt="Responsive image">
+                            	<input type="file" name="file" accept="image/*1" id="boardImg" onchange="setThumbnail(event);" class="form-control custom-file-input" id="customFile" >
+                        	</td>
                     </tr>
                     <tr>
                         <th>상품명</th>
