@@ -16,6 +16,8 @@ public interface FollowDao {
 	public List<FollowDto> selectFollow(String follower_ID) throws Exception;
 	//팔로우 취소
 	public void deleteFollow(String following_ID, String follower_ID) throws Exception;
+	//팔로우한사람인지 아닌지 확인
+	public int checkFollow(String following_ID, String follower_ID) throws Exception;
 	//내가 팔로우 한 사용자들 조회
 	public List<FollowDto> myFollow(String following_ID) throws Exception;
 	
