@@ -6,6 +6,15 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<!-- 합쳐지고 최소화된 최신 CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+    <!--jquery (부트스트랩의 자바스트립트 플러그인을 위해 필요합니다.)-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+
+    <!-- 부가적인 테마 -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+    <!-- 합쳐지고 최소화된 최신 자바스크립트 -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 </head>
 <body>
 <!--navbar-->
@@ -52,7 +61,7 @@
                         <li><a href="registform.do"title="회원가입" style="color:rgb(116, 116, 116)"><span class="glyphicon glyphicon-registration-mark" aria-hidden="true"></span></span></a></li>
                         <li><a href="mypage.do" title="마이페이지" style="color:rgb(116,116,116)"><span class="glyphicon glyphicon-user" aria-hidden="true"></span></a></li>
                         </c:if>
-                        <c:if test="${login != null }">
+                        <c:if test="${login == null }">
                         <li><a href="loginform.do"title="로그인" style="color:rgb(116, 116, 116)"><span class="glyphicon glyphicon-log-in" aria-hidden="true"></span></span></a></li>
                         <li><a href="logOut.do" title="로그아웃" style="color:rgb(116,116,116)"><span class="glyphicon glyphicon-log-out" aria-hidden="true"></span></a></li>
                         <li><a href="registform.do"title="회원가입" style="color:rgb(116, 116, 116)"><span class="glyphicon glyphicon-registration-mark" aria-hidden="true"></span></span></a></li>
