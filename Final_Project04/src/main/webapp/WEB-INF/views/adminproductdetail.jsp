@@ -17,13 +17,6 @@
     <!-- 합쳐지고 최소화된 최신 자바스크립트 -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
     
-    <style>
-    	#productImg{
-    		width: 300px;
-		 	height: 150px;
-		 	object-fit: cover;
-		}
-    </style>
 </head>
 <body>
 
@@ -31,8 +24,9 @@
   <div class="container" style="width: 100%; padding-top:100px">
     <div class="col-md-8 col-md-offset-2 ">
       <div class="col-md-5">
-        <img src="https://www.verandarecipe.com/web/product/big/201705/1353_shop1_266999.jpg" alt="상품이미지"
-          class=" img-responsive" style="border :1px solid rgb(226, 226, 226);">
+	    <img id="productImg" src="${pageContext.request.contextPath}/resources${dto.productImg }" alt="상품이미지"
+          class="img-responsive"  style="border :1px solid rgb(226, 226, 226);">
+          
       </div>
 
       <div class="col-md-6 col-md-offset-1">

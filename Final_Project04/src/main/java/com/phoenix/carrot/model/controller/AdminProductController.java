@@ -160,8 +160,9 @@ public class AdminProductController {
 		model.addAttribute("receiverRaddress", dto.getReceiverRaddress());
 		model.addAttribute("receiverDetailaddress", dto.getReceiverDetailaddress());
 
+		System.out.println("model:"+model);
 	
-		return "adminproductorderPayRes";
+		return "adminproductorderPay";
 	}
 	
 	/* 아임포트 결제 후 db 저장하기 */
@@ -221,5 +222,5 @@ public class AdminProductController {
 //	}
 //	
 	
-	
+
 }
