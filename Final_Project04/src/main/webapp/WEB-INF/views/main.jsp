@@ -110,7 +110,8 @@
                                              
                             <div class="col-md-12" style="padding-top: 10px;">
                                 <!--작성자 프로필 이미지-->
-                                <img src="https://via.placeholder.com/50" class="img-circle"  alt="프로필 이미지"  > 
+                                <img src="./resources/image/userdefaultimg.png" class="img-responsive img-circle"  alt="프로필 이미지"  style="height:40px; width:50px;">
+                                 
                                 <!--작성자 아이디 -->
                                 <a href="#" style="color: black; padding-left: 10px;"><b>${dto.userId }</b></a>
                                 <!--작성일-->
@@ -140,7 +141,9 @@
                         <div class="row" style="padding-top: 20px;">
                             <div class="col-md-10 col-md-offset-1">
                                 <!--게시물 이미지-->
+                                <a href="snsBoardOne.do?entireBoardSeq=${dto.entireBoardSeq }">
                                 <img src="${pageContext.request.contextPath}/resources${dto.boardImg }" class="img-responsive"  alt="게시물 이미지" style="height: 450px; width: 700px;"  > 
+                            	</a>
                             </div>
                         </div>
                         <div class="row" style="padding-top:20px;">

@@ -7,16 +7,31 @@
 <title>Insert title here</title>
 <script type="text/javascript"
 	src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+
+<!-- 합쳐지고 최소화된 최신 CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+<!--jquery (부트스트랩의 자바스트립트 플러그인을 위해 필요합니다.)-->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+
+<!-- 부가적인 테마 -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+<!-- 합쳐지고 최소화된 최신 자바스크립트 -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+
 <!-- 썸머노트 경로 -->
-<script
-	src="${pageContext.request.contextPath}/resources/js/summernote/summernote-lite.js"></script>
-<script
-	src="${pageContext.request.contextPath}/resources/js/summernote/lang/summernote-ko-KR.js"></script>
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath}/resources/css/summernote/summernote-lite.css">
+<script src="${pageContext.request.contextPath}/resources/js/summernote/summernote-lite.js"></script>
+<script src="${pageContext.request.contextPath}/resources/js/summernote/lang/summernote-ko-KR.js"></script>
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/summernote/summernote-lite.css">
+<!-- include libraries(jQuery, bootstrap) 
+<link href="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.css" rel="stylesheet"> 
+<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script> 
+<script src="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.js"></script>
+-->
 <!-- style -->
 <style>
 	#image_container img{
+			height:400px;
 			width:400px;
 		}
 </style>
@@ -121,74 +136,86 @@
 	<form action="userproductinsertres.do" method="post" enctype="multipart/form-data">
 		<input type="hidden" id="userLatitude" name="userLatitude">
 		<input type="hidden" id="userLongitude" name="userLongitude">
+		<input type="hidden" id="userLongitude" name="userSeq" readonly value="${login.userseq}">
 					<!-- 이미지 업로드 -->
-		<div>
-			<div>상품이미지</div>
-			<div class='uploadFileDiv'>
-				<input type="file" name="file" accept="image/*1" id="productImg" onchange="setThumbnail(event);"><br>
-			</div>			
-			<div id="image_container"></div>
-			<!--  <button id='uploadBtn'>Upload</button> -->
-			<%=request.getRealPath("/") %>
-			<!-- end -->		
-		</div>
-		<table border="1">
-			<tr>
-				<td>유저Seq</td>
-				<td><textarea rows="1" cols="20" name="userSeq"
-						readonly="readonly">${login.userseq }</textarea></td>
-			</tr>
-			<tr>
-				<td>작성자</td>
-				<td><textarea rows="1" cols="20" name="userId"
-						readonly="readonly">${login.userid }</textarea></td>
-			</tr>
-			<tr>
-				<td>상품명</td>
-				<td><input type="text" name="productName" /></td>
-				<td>상품가격</td>
-				<td><input type="text" name="productPrice" /></td>
-			</tr>
-			<tr>
-				<td>거래가능지역</td>
-				<td><input type="text" id="sellerAddress" name="sellerAddress" /></td>
-				<td><button type="button" class="btnjuso" onClick="goPopup();">검색</button></td>
-			</tr>
-				
-			<tr>
-				<!-- div에 에디터를 사용하는경우 -->
-				<!-- <div id="summernote">Hello Summernote</div> -->
-				<!-- summernote : form 안에 에디터를 사용하는 경우 -->
-				<td>상품정보</td>
-				<td><textarea id="summernote" name="productInfo"></textarea></td>
-			</tr>
-			<tr>
-				<td colspan="2" align="right"><input type="submit" value="상품등록" />
-					<input type="button" value="취소"
-					onclick="location.href='marketplace.do'" /></td>
-			</tr>
-		</table>
+		    <div class="container">
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2" >
+                <h1 style="margin-top:50px;">유저 상품정보 등록</h1>
+                <table class="table table-bordered" style="margin-top:50px;">
+                    <tr>
+                        <th>작성자</th>
+                        <td><input type="text" name="userId" class="form-control" readonly value="${login.userid}"></td>
+                    </tr>
+                    <tr>
+                        <th style="vertical-align: middle;">상품썸네일</th>
+                        <td>
+                        	<div class="col-sm-10" id="image_container">
+                        		<img id="preview-image" src="https://via.placeholder.com/400x400" class="img-responsive" alt="Responsive image">
+                        		<input type="file" name="file" accept="image/*1" id="boardImg" onchange="setThumbnail(event);" class="form-control custom-file-input" id="customFile" >
+                        	</div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>상품명</th>
+                        <td><input type="text" name="productName" class="form-control" placeholder="상품명을 입력해주세요"></td>
+                    </tr>
+                    <tr>
+                        <th>판매금액</th>
+                        <td><input type="text" name="productPrice" class="form-control" placeholder="금액을 입력해주세요"></td>
+                    </tr>
+                    <tr>
+                        <th style="vertical-align: middle;">주소</th>
+                        <td>
+                            <div class="col-md-10">
+                                <input type="text" class="form-control" id="sellerAddress" name="sellerAddress" placeholder="주소 검색" style="margin-bottom: 10px;">
+                            </div>
+                            <div class="col-md-2">
+                                <button type="button" class="btn btn-warning btn-block" onClick="goPopup();"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
+                            </div>
+                            
+                            <input type="text" class="form-control" placeholder="자세한 주소를 입력해주세요 ">
+                        </td>
+                    </tr>
+                    <tr>
+                        <th style="vertical-align: middle;">내용</th>
+                        <td>
+                       	 	<textarea placeholder="상품정보를 입력해주세요" id="summernote" name="productInfo" rows="10"></textarea>
+                        </td>
+                    </tr>
+                  </table>
+                  <div class="row">
+                      <div class="col-md-6"><button type="submit" class="btn btn-warning btn-block">글작성</button></div>
+                      <div class="col-md-6"><button type="button" class="btn btn-default btn-block" onclick="location.href='marketplace.do'">취소</button></div>
+                  </div>
+            </div>
+        </div>
+    </div>
 	</form>
 </body>
 
 <script type="text/javascript">
 
-	//이미지 미리보기 함수 
-	function setThumbnail(event) {
-		var reader = new FileReader();
-	
-		//onload됐을시에 발생할 이벤트 작성 
-		reader.onload = function(event) {
-			//FileReader가 로드 됐을 때 img 엘리먼트 생성하고 src 속성을 설정 
-			var img = document.createElement("img");
-			img.setAttribute("src", event.target.result);
-			//이미지가 들어갈 div에 넣어주기 
-			document.querySelector("div#image_container").appendChild(img);
-	};
-	
-	//리더에서 input 태그에서 선택한 파일을 읽어오도록 설정 
-	reader.readAsDataURL(event.target.files[0]);
-} 
+	function readImage(input) {
+    	// 인풋 태그에 파일이 있는 경우
+    	if(input.files && input.files[0]) {
+        	// 이미지 파일인지 검사 (생략)
+        	// FileReader 인스턴스 생성
+        	const reader = new FileReader()
+        	// 이미지가 로드가 된 경우
+        	reader.onload = e => {
+            	const previewImage = document.getElementById("preview-image")
+            	previewImage.src = e.target.result
+        	}
+        	// reader가 이미지 읽도록 하기
+        reader.readAsDataURL(input.files[0])
+    	}
+	}
+	// input file에 change 이벤트 부여
+	const inputImage = document.getElementById("boardImg")
+	inputImage.addEventListener("change", e => {
+    	readImage(e.target)
+	})
 
 </script>
 </html>
