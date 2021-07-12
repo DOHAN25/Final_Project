@@ -343,11 +343,11 @@ public class UserController {
 		return i;
 	}
 	
-	@RequestMapping("/userupdate.do")
+	@RequestMapping("/mypage.do")
 	public String userupdate() {
 		logger.info("[Controller] : userupdate.do");
 		
-		return "userupdate";
+		return "mypage";
 	}
 	
 	@RequestMapping("/honeytip.do")
