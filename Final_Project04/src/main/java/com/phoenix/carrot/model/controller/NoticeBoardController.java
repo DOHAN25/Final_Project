@@ -36,7 +36,7 @@ public class NoticeBoardController {
 		
 		EntireBoardDto dto = biz.noticeBoardOne(entireBoardSeq);
 		
-		model.addAttribute("selectOne", dto);
+		model.addAttribute("dto", dto);
 		
 		
 		return "noticeboarddetail";
