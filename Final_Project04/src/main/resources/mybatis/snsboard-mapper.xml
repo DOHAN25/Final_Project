@@ -16,7 +16,7 @@
   	</resultMap>
 
 	<select id="snsBoardList" resultType="entireBoardDto">
-		SELECT *
+		SELECT entireBoardSeq, boardKind, boardDate, boardTitle, boardContents, userId, userSeq, boardImg, boardThumbImg, likeCount
 		FROM entireBoard
 		WHERE boardKind = 1
 		ORDER BY boardDate DESC
@@ -24,11 +24,11 @@
 	
 	<insert id="snsBoardInsert" parameterType="entireBoardDto">
 		INSERT INTO entireBoard
-		VALUES(entireBoardSeq.NEXTVAL, 1, SYSDATE, 'sns글테스트입니다.', #{boardContents}, #{userId}, #{userSeq}, #{boardImg}, #{boardThumbImg}, 0)
+		VALUES(entireBoardSeq.NEXTVAL, 1, TO_CHAR(SYSDATE, 'YYYY-MM-DD HH24:MI:SS'), 'sns글테스트입니다.', #{boardContents}, #{userId}, #{userSeq}, #{boardImg}, #{boardThumbImg}, 0)
 	</insert>
 	
 	<select id="snsBoardOne" resultMap="entireBoardMap">
-		SELECT *
+		SELECT entireBoardSeq, boardKind, boardDate, boardTitle, boardContents, userId, userSeq, boardImg, boardThumbImg, likeCount
 		FROM entireBoard
 		WHERE entireBoardSeq = #{entireBoardSeq}
 	</select>

@@ -52,7 +52,7 @@
     </style>
 </head>
 <body>
-
+	<h2>유저 검색 : <a href="snsUserSearch.do">유저검색</a></h2>
 <!-- 재희 CSS -->
     <div class="container" style="width: 100%;">
         <div class="row" style="padding-top:50px;">
@@ -81,7 +81,7 @@
                         <!--글작성 이동 버튼 -->
                         <li id="navbar-style" role="presentation" ><a href="snsBoardInsertForm.do" id="li-color"><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span><span style="margin-left:20px" style="color: black;">글작성</span></a></li>
                         <!--마이페이지로 이동 버튼 -->
-                        <li id="navbar-style" role="presentation" ><a href="#" id="li-color"><span class="glyphicon glyphicon-search" aria-hidden="true"></span><span style="margin-left:20px" style="color: black;">마이페이지</span></a></li>
+                        <li id="navbar-style" role="presentation" ><a href="mypage.do?userid=${login.userid}" id="li-color"><span class="glyphicon glyphicon-search" aria-hidden="true"></span><span style="margin-left:20px" style="color: black;">마이페이지</span></a></li>
                          <!-- 타임라인 -->
                         <li id="navbar-style" role="presentation" ><a href="main.do" id="li-color"><span class="glyphicon glyphicon-search" aria-hidden="true"></span><span style="margin-left:20px" style="color: black;">타임라인</span></a></li>
                         <!--채팅-->
@@ -113,7 +113,7 @@
                                 <img src="./resources/image/userdefaultimg.png" class="img-responsive img-circle"  alt="프로필 이미지"  style="height:40px; width:50px;">
                                  
                                 <!--작성자 아이디 -->
-                                <a href="#" style="color: black; padding-left: 10px;"><b>${dto.userId }</b></a>
+                                <a href="snsBoardUserFeed.do?userId=${dto.userId }" style="color: black; padding-left: 10px;"><b>${dto.userId }</b></a>
                                 <!--작성일-->
                                 <span style="padding-left: 20px;">${dto.boardDate }</span>
                             </div>

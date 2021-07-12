@@ -23,9 +23,7 @@
 			return false;
 		}
 		
-		
 		var replyContent = $("#replyContent").val().replace("\n", "<br>"); //개행 처리
-
 		console.log("replyContent : ", replyContent)
 		//값 세팅
 		var objParams = {
@@ -155,9 +153,9 @@
 		//댓글수정 취소
 		//댓글수정 저장
         //대댓글 입력창
-        	$(document).on("click","button[name='reply_reply']",function(){ //동적 이벤트
+        $(document).on("click","button[name='reply_reply']",function(){ //동적 이벤트
             		
-            	if(status){
+            if(status){
                      alert("수정과 대댓글은 동시에 불가합니다.");
                      return false;
                    }

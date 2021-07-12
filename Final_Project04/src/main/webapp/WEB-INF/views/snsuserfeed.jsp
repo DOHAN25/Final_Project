@@ -42,7 +42,6 @@
 			</c:when>
 			<c:otherwise>
 				<c:forEach items="${snsUserFeedList }" var= "dto">
-
 					<tr>
 						<td>${dto.entireBoardSeq }</td>
 						<td>${dto.userId }</td>
