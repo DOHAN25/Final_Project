@@ -15,7 +15,7 @@
 </style>
 </head>
 <body>
-	
+	<%@include file="/WEB-INF/views/1header.jsp"%>
 	<h1>유저프로필사진 변경</h1>
 	
 	<!-- 사진업로드 박스 -->
@@ -65,6 +65,6 @@
 				reader.readAsDataURL(event.target.files[0]);
 			} 
 		</script>
-	
+	<%@include file="/WEB-INF/views/1footer.jsp"%>
 </body>
 </html>

@@ -15,7 +15,7 @@
 </head>
 
 <body>
-
+<%@include file="/WEB-INF/views/1header.jsp"%>
 
 
 <!-- !!!주문 정보!!! -->
@@ -163,5 +163,6 @@
 
 		});
 	</script>
+<%@include file="/WEB-INF/views/1footer.jsp"%>
 </body>
 </html>

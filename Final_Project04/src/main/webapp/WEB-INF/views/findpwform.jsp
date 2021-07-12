@@ -87,7 +87,7 @@ var idJ = /^[a-z0-9][a-z0-9_\-]{4,19}$/;
 
 </script>
 <body>
-
+<%@include file="/WEB-INF/views/1header.jsp"%>
 	<h3>비밀번호 찾기</h3>
 	
 	<label>아이디</label>
@@ -101,6 +101,6 @@ var idJ = /^[a-z0-9][a-z0-9_\-]{4,19}$/;
 	<div id="emailresult"></div>
 	
 	<button id="findemailBtn" type="button">이메일전송</button>
-	
+	<%@include file="/WEB-INF/views/1footer.jsp"%>
 </body>
 </html>

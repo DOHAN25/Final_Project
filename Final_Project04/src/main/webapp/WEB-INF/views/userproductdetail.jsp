@@ -18,7 +18,7 @@
 	}
 </script>
 <body>
-
+<%@include file="/WEB-INF/views/1header.jsp"%>
 
 
 	<h1>상품정보</h1>

@@ -359,6 +359,7 @@ $(document).ready(function() {
 	</script>
 </head>
 <body>
+<%@include file="/WEB-INF/views/1header.jsp"%>
 		<!-- 페이지 상단  -->
 		<div class="container" style="width: 100%;">
 			<div class="row" >

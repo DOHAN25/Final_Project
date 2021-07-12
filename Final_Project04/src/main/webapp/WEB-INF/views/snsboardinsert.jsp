@@ -78,7 +78,7 @@
 	
 </head>
 <body>
-	
+	<%@include file="/WEB-INF/views/1header.jsp"%>
 
 	    <div class="container" style="width: 100%;">
         <div class="row" style="padding-top:50px;">
@@ -325,7 +325,7 @@
 		
 	</script>
 
-
+<%@include file="/WEB-INF/views/1footer.jsp"%>
 </body>
 </html>
 

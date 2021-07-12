@@ -112,7 +112,7 @@ public class UserMarketController {
 	public String userProductList(Model model) {
 		logger.info("[Controller] : usermarketplace.do");
 		model.addAttribute("userProductList", biz.userProductList());
-		return "userproductmarket";
+		return "userproductmarket1";
 	}
 
 	@RequestMapping("/userproductinsert.do")

@@ -300,7 +300,7 @@
 <!--  -->
 </head>
 <body>
-
+<%@include file="/WEB-INF/views/1header.jsp"%>
 	<h1>SnsBoardDetail</h1>
 
 	<table border="1">
@@ -412,7 +412,7 @@
 
 
 
-
+<%@include file="/WEB-INF/views/1footer.jsp"%>
 </body>
 <script type="text/javascript">
 	//페이지가 뒤로가기 하면 하트버튼과 하트수 갱신이 안된다. 이때 하트를 누르면 디비에 중복으로 값이 들어가진다.

@@ -21,7 +21,7 @@
                       <span class="icon-bar"></span>
                       <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="#"><img src="resources/image/당근팜_로고_2.png" alt="배너"  style=" height: 25px; width: 100px;"></a>
+                    <a class="navbar-brand" href="index.jsp"><img src="resources/image/당근팜_로고_2.png" alt="배너"  style=" height: 25px; width: 100px;"></a>
                   </div>
               
                   <!-- Collect the nav links, forms, and other content for toggling -->
@@ -46,8 +46,18 @@
                      </c:if>
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
-                        <li><a href="#"title="로그인 페이지 이동" style="color:rgb(116, 116, 116)"><span class="glyphicon glyphicon-log-in" aria-hidden="true"></span></span></a></li>
-                        <li><a href="#" title="메인 페이지 이동" style="color:rgb(116,116,116)"><span class="glyphicon glyphicon-home" aria-hidden="true"></span></a></li>
+                    	<c:if test="${login != null }">
+                        <li><a href="loginform.do"title="로그인" style="color:rgb(116, 116, 116)"><span class="glyphicon glyphicon-log-in" aria-hidden="true"></span></span></a></li>
+                        <li><a href="logOut.do" title="로그아웃" style="color:rgb(116,116,116)"><span class="glyphicon glyphicon-log-out" aria-hidden="true"></span></a></li>
+                        <li><a href="registform.do"title="회원가입" style="color:rgb(116, 116, 116)"><span class="glyphicon glyphicon-registration-mark" aria-hidden="true"></span></span></a></li>
+                        <li><a href="mypage.do" title="마이페이지" style="color:rgb(116,116,116)"><span class="glyphicon glyphicon-user" aria-hidden="true"></span></a></li>
+                        </c:if>
+                        <c:if test="${login != null }">
+                        <li><a href="loginform.do"title="로그인" style="color:rgb(116, 116, 116)"><span class="glyphicon glyphicon-log-in" aria-hidden="true"></span></span></a></li>
+                        <li><a href="logOut.do" title="로그아웃" style="color:rgb(116,116,116)"><span class="glyphicon glyphicon-log-out" aria-hidden="true"></span></a></li>
+                        <li><a href="registform.do"title="회원가입" style="color:rgb(116, 116, 116)"><span class="glyphicon glyphicon-registration-mark" aria-hidden="true"></span></span></a></li>
+                        <li><a href="loginform.do" title="마이페이지" style="color:rgb(116,116,116)"><span class="glyphicon glyphicon-user" aria-hidden="true"></span></a></li>
+                        </c:if>
                     </ul>
                   </div><!-- /.navbar-collapse -->
                 </div><!-- /.container-fluid -->

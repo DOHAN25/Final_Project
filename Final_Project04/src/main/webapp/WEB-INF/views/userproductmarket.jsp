@@ -96,6 +96,7 @@ $(document).ready(function(){
 
 </script>
 <body>
+<%@include file="/WEB-INF/views/1header.jsp"%>
 	<h1>당근마켓 상품 리스트</h1>
 
 	<a href="userproductinsert.do">상품등록</a>
@@ -149,7 +150,7 @@ $(document).ready(function(){
 			<td colspan="4" align="right"><input type="button" value="글작성" onclick="location.href='productinsert.do'"></td>
 		</tr>
 	</table>
-
+<%@include file="/WEB-INF/views/1footer.jsp"%>
 </body>
 </html>
 
