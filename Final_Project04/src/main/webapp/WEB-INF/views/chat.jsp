@@ -8,7 +8,7 @@
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>실시간 채팅</title>
+<title>채팅</title>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script> 
 <!--<script type="text/javascript" src="https://cdn.jsdeliver.net/sockjs/1/sockjs.min.js"></script> -->
 <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
