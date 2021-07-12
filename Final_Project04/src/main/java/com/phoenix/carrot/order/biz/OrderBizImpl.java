@@ -1,5 +1,7 @@
 package com.phoenix.carrot.order.biz;
 
+import java.util.HashMap;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,8 +15,8 @@ public class OrderBizImpl implements OrderBiz {
 	private OrderDao orderdao;
 	
 	@Override
-	public int productorderInsert(OrderDto orderDto) {
-		return orderdao.productorderInsert(orderDto);
+	public int productorderInsert(OrderDto params) {
+		return orderdao.productorderInsert(params);
 	}
 
 	@Override
