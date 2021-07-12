@@ -75,7 +75,7 @@ public class SnsController {
 		return "main";
 	}
 	
-	@RequestMapping("snsBoardUserFeed.do")
+	@RequestMapping("/snsBoardUserFeed.do")
 	public String snsUserFeed(Model model, @RequestParam String userId) {
 		logger.info("[Controller] : snsBoardUserFeed.do");
 		
