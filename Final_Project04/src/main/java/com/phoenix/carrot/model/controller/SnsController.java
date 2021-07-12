@@ -62,8 +62,14 @@ public class SnsController {
 	private String uploadPath;
 	
 	@RequestMapping("/main.do")
-	public String mainForm(Model model) {
+	public String mainForm(Model model , HttpSession session, @SessionAttribute("login") UserDto userdto) {
 		logger.info("[Controller] : main.do");
+		
+		String userId = userdto.getUserid();
+		
+		//좋아요 여부 정보 모델링
+		//model.addAttribute("likeCheck",likebiz.likeCheck(entireBoardSeq, userSeq));
+		model.addAttribute("snsUserSelectOne", biz.snsUserSelectOne(userId));
 		model.addAttribute("snsBoardList", biz.snsBoardList());
 		
 		return "main";

@@ -21,6 +21,14 @@
 		WHERE follower_ID =#{follower_ID}
 	</select>
 	
+	<!-- 로그인한 아이디가 팔로우한 사용자인지 알기위해-->
+	<select id="checkFollow" parameterType="HashMap" resultType="int">
+		SELECT COUNT(*) 
+		FROM sub 
+		WHERE following_ID = #{following_ID} 
+		AND follower_ID = #{follower_ID}
+	</select>
+	
 	<!-- 팔로우 취소 -->
 	<delete id="followDelete" parameterType="HashMap">
 		SELECT *

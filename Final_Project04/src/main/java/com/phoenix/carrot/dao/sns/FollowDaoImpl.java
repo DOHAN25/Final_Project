@@ -56,4 +56,13 @@ public class FollowDaoImpl implements FollowDao {
 		return sqlSession.selectList(NAMESPACE + "myFollow" , following_ID);
 	}
 
+	@Override
+	public int checkFollow(String following_ID, String follower_ID) throws Exception {
+		Map<String, String> map = new HashMap<>();
+		map.put("following_ID", following_ID);
+		map.put("follower_ID", follower_ID);
+		System.out.println("map : "+map);
+		return sqlSession.selectOne(NAMESPACE + "checkFollow",map);
+	}
+
 }

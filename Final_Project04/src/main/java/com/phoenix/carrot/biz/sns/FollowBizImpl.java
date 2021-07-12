@@ -33,17 +33,24 @@ public class FollowBizImpl implements FollowBiz {
 		// TODO Auto-generated method stub
 		return followDao.selectFollow(follower_ID);
 	}
+	
+	@Override
+	public int checkFollow(String following_ID, String follower_ID) throws Exception {
+		return 0;
+	}
+	
 	//팔로우 취소
 	@Override
 	public void deleteFollow(String following_ID, String follower_ID) throws Exception {
 		followDao.deleteFollow(following_ID, follower_ID);
-		
 	}
+	
 	//내가 팔로우 한 사용자들 조회
 	@Override
 	public List<FollowDto> myFollow(String following_ID) throws Exception {
-		// TODO Auto-generated method stub
 		return followDao.myFollow(following_ID);
 	}
+
+
 
 }
