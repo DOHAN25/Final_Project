@@ -117,6 +117,7 @@ $(document).ready(function(){
 	<col width="300">
 	
 	<tr>
+		<th>상품썸네일</th>
 		<th>등록날짜</th>
 		<th>유저ID</th>
 		<th>상품명</th>
@@ -134,6 +135,7 @@ $(document).ready(function(){
 				<c:forEach items="${userProductList }" var="dto">
 				
 					<tr>
+						<td><img src="${pageContext.request.contextPath}/resources${dto.productThumb }"></td>
 						<td>${dto.productRegDate }</td>
 						<td>${dto.userId }</td>
 						<td><a href="userproductdetail.do?productSeq=${dto.productSeq }">${dto.productName }</a></td>
