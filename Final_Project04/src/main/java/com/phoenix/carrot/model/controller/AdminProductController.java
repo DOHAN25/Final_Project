@@ -106,7 +106,18 @@ public class AdminProductController {
 		return "adminproductorder";
 	}
 
-
+//	/* 아임포트 결제 페이지*/
+//	@RequestMapping(value = "/adminproductorderpay.do", method = RequestMethod.POST)
+//	@ResponseBody //결과를 json 형식으로 클라이언트 브라우저에 송신
+//	public String adminproductorderPay(@RequestBody OrderDto dto) {
+//		logger.info("[Controller] : adminproductorderpay.do");
+//		JsonObject json = new JsonObject();
+//
+//		System.out.println(json);
+//		
+//		return json.toString();
+//	}
+	
 	
 	/* 아임포트 결제 페이지*/
 
@@ -133,6 +144,9 @@ public class AdminProductController {
 				
 		model.addAttribute("dto", adminproductbiz.adminProductOne(productSeq));
 		
+		//form 형태로 받아온 paymethod는 hidden type이어서 
+		//@RequestParam("paymethod")String paymethod에 담아주기
+		//HttpServletRequest request에 담기지 않는다.
 		model.addAttribute("paymethod", paymethod); 
 		
 		
@@ -149,7 +163,63 @@ public class AdminProductController {
 	
 		return "adminproductorderPayRes";
 	}
+	
+	/* 아임포트 결제 후 db 저장하기 */
+//	@ResponseBody 화면에 뿌려줄때
+	//ajax에서 보낸걸 받아와야 한다.
 
+	
+	//1
+//	@RequestMapping(value = "/adminproductorderPayRes.do", method = RequestMethod.POST)
+//	public String adminproductorderPayRes(Model model, @RequestBody OrderDto orderdto)throws Exception {
+//		logger.info("[Controller] : adminproductorderPayRes.do");
+//
+//		 HashMap<String, Object> map = new HashMap<String, Object>();
+//	        map.put("userseq", orderdto.getUserSeq());
+//	        map.put("productSeq", orderdto.getProductSeq());
+//	        return map;
+//	        
+//	}
+	
+	//2222-데디터 전달 받는거 됨
+	@RequestMapping(value="/adminproductorderPayRes.do")
+	public ModelAndView adminproductorderPayRes(@RequestBody OrderDto params, HttpServletRequest request){
+	    ModelAndView mv = new ModelAndView();
+	    boolean result = true;        
+	        
+	    System.out.println("controllerparams"+params);
+	    
+	    //컨트롤러에서 서비스 넘어가는데
+	    //뷰에서 ajax로 파람 넘겨줌
+	    //뷰에서 받아온건 map타입
+	    //biz에서 orderdto 라서 에러가 남
+	    int res = orderbiz.productorderInsert(params);
+	    System.out.println("res:"+res);
+	    
+	    
+	    
+	    mv.addObject("result", result);
+	    
+	    return mv;
+	}
+	
+	
+//3
+//	@RequestMapping(value = "/adminproductorderPayRes.do", method = RequestMethod.POST)
+//	@ResponseBody
+//	public Map<String, Object> adminproductorderPayRes(Model model, @RequestParam Map<String, Object> params) {
+//		logger.info("[Controller] : adminproductorderPayRes.do");
+//		Map<String, Object> map = new HashMap<String, Object>();
+//		System.out.println(params.get("userseq"));
+//		System.out.println(map);
+//		
+//		String id = (String) params.get("userseq");
+//		System.out.println(id);
+//		
+//		
+//		return map;
+//	}
+//	
 	
 	
 }

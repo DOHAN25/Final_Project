@@ -113,7 +113,7 @@
 						//
 						url : "${path}/adminproductorderPayRes.do", //cross-domain error가 발생하지 않도록 주의해주세요
 						type : 'POST',
-						dataType : 'json',
+						dataType : 'text',
 						contentType: 'application/json',
 						data :JSON.stringify(params)
 		
