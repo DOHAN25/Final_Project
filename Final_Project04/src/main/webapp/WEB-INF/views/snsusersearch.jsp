@@ -76,7 +76,7 @@ $(document).ready(function(){
 	
 </script>
 <body>
-
+<%@include file="/WEB-INF/views/1header.jsp"%>
 	<h1>유저검색창</h1>
 	
 	<select id="selectBox">
@@ -116,6 +116,6 @@ $(document).ready(function(){
 	</tbody>
 
 	</table>
-
+<%@include file="/WEB-INF/views/1footer.jsp"%>
 </body>
 </html>

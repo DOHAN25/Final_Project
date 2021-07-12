@@ -10,4 +10,9 @@ public class MypageController {
 public String Mypage() {
 	return "mypage";
 }
+
+@RequestMapping("/userUpdate.do")
+public String userUpdate() {
+	return"userupdate";
+}
 }

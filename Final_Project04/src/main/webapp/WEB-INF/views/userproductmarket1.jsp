@@ -183,7 +183,7 @@ td {
 	}
 </script>
 <body>
-
+<%@include file="/WEB-INF/views/1header.jsp"%>
 	<div class="container" style="width: 100%;">
 
 		<!--바디 (사이드바 포함 )-->
@@ -306,6 +306,6 @@ td {
 			<div class="col-sm-2 col-md-2 "></div>
 		</div>
 	</div>
-
+<%@include file="/WEB-INF/views/1footer.jsp"%>
 </body>
 </html>

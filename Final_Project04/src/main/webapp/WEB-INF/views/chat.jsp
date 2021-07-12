@@ -155,7 +155,7 @@
 </style>
 </head>
 <body>
-
+<%@include file="/WEB-INF/views/1header.jsp"%>
 	<div class="container">
 		<h3 class=" text-center" id="title">제품명:${productName }</h3>
 		<p id="title-id">
@@ -414,6 +414,6 @@ $(document).ready(function(){
 		
 	}
 </script>
-	
+	<%@include file="/WEB-INF/views/1footer.jsp"%>
 </body>
 </html>

@@ -7,7 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-
+<%@include file="/WEB-INF/views/1header.jsp"%>
 	<h1>snsboardupdate</h1>
 	<form action="snsBoardUpdateRes.do" method="post">
 	<input type="hidden" name="entireBoardSeq" value="${dto.entireBoardSeq }">
@@ -41,6 +41,6 @@
 		</table>
 		
 	</form>
-
+<%@include file="/WEB-INF/views/1footer.jsp"%>
 </body>
 </html>

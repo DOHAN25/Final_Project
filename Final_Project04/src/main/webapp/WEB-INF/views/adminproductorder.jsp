@@ -41,6 +41,7 @@
 	</head>
 
 	<body>
+	<%@include file="/WEB-INF/views/1header.jsp"%>
 	<h1>씨앗마켓 상품 주문 페이지</h1>
         <!-- 주문정보를 form형태로 Adminproductcontroller로 보내준다. -->
         <form id="orderinfo" action="adminproductorderpay.do" method="post">
@@ -140,7 +141,7 @@
             </div>
         </form>
     
-
+<%@include file="/WEB-INF/views/1footer.jsp"%>
 	</body>
 
 	</html>
