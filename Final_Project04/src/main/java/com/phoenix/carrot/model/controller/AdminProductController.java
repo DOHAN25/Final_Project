@@ -58,6 +58,8 @@ public class AdminProductController {
 	}
 
 	/* 상품등록 페이지 */
+	//C:\Git\Final_Project\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\Final_Project04\resources\
+	//상품이미지 안보일땐 해당 경로 upload폴더가 있는지 확인
 	@RequestMapping("/adminproductinsert.do")
 	public String adminProductInsertForm() {
 		return "adminproductinsert";
@@ -119,10 +121,12 @@ public class AdminProductController {
 //	}
 	
 	
+
+
 	/* 아임포트 결제 페이지*/
 
 	@RequestMapping(value = "/adminproductorderpay.do", method = RequestMethod.POST)
-	public String adminproductorderPay(@RequestParam("paymethod")String paymethod ,Model model, OrderDto dto, int productSeq) {
+	public String adminproductorderPay(Model model, OrderDto dto, int productSeq) {
 		logger.info("[Controller] : adminproductorderpay.do");
 		
 		/* adminproductorder.jsp에서 주문정보를 받아온거 찍어보기 */ 
@@ -147,7 +151,7 @@ public class AdminProductController {
 		//form 형태로 받아온 paymethod는 hidden type이어서 
 		//@RequestParam("paymethod")String paymethod에 담아주기
 		//HttpServletRequest request에 담기지 않는다.
-		model.addAttribute("paymethod", paymethod); 
+	//	model.addAttribute("paymethod", paymethod); 
 		
 		
 		model.addAttribute("productName:"+dto.getProductName());
@@ -162,7 +166,7 @@ public class AdminProductController {
 
 		System.out.println("model:"+model);
 	
-		return "adminproductorderPay";
+		return "adminproductorderPayRes";
 	}
 	
 	/* 아임포트 결제 후 db 저장하기 */
@@ -182,7 +186,7 @@ public class AdminProductController {
 //	        
 //	}
 	
-	//2222-데디터 전달 받는거 됨
+	//2222-데이터 전달 받는거 됨
 	@RequestMapping(value="/adminproductorderPayRes.do")
 	public ModelAndView adminproductorderPayRes(@RequestBody OrderDto params, HttpServletRequest request){
 	    ModelAndView mv = new ModelAndView();

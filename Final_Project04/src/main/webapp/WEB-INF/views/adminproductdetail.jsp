@@ -59,7 +59,8 @@
               </div>
               <div class="col-md-4 col-md-offset-4">
               <!-- 추후 [option x productPrice]금액으로 수정하기  -->
-                ${dto.productPrice }
+               <div id=orderAmount> ${dto.productPrice }</div>
+               <input type="hidden" id="orderAmount" value=" ${dto.productPrice }">
               </div>
             </div>
           </div>
