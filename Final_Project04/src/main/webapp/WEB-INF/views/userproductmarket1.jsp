@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -36,6 +36,30 @@ td {
 	padding: 50px 0px 50px 0px;
 	vertical-align: bottom;
 }
+
+#styled-select {
+	width: 100px;
+	height: 34px;
+	overflow: hidden;
+	background: url("../img/downarrow_blue.png") no-repeat right #fff;
+	border: 1px solid #ccc;
+	margin: auto;
+	border-radius: 6px;
+}
+
+#styled-select select {
+	background: transparent;
+	width: 100px;
+	padding: 5px;
+	font-size: 15px;
+	line-height: 1;
+	border: 0;
+	border-radius: 0;
+	height: 34px;
+	-webkit-appearance: none;
+	font-family: helvetica-roman;
+	color: #9C9C9C;
+}
 </style>
 </head>
 <script type="text/javascript"
@@ -61,7 +85,8 @@ td {
 												var addrVal = {
 													"sellerAddress" : searchVal
 												}
-												$.ajax({
+												$
+														.ajax({
 															type : "post",
 															url : "searchProduct.do",
 															data : JSON
@@ -174,10 +199,22 @@ td {
 					<div class="col-md-4 col-md-offset-6" style="padding-bottom: 10px;">
 						<div class="input-group">
 							<div class="input-group-btn">
+							<!-- 
 								<button type="button" class="btn btn-warning dropdown-toggle"
+								
 									data-toggle="dropdown" aria-expanded="false">
 									선택 <span class="caret"></span>
 								</button>
+							 -->
+								<div id="styled-select">
+									<select name="group" id="selectBox">
+										<option value="">선택</option>
+										<option value="addr">지역</option>
+										<option value="productName">상품명</option>
+									</select>
+								</div>
+
+								<!-- 
 								<ul class="dropdown-menu" role="menu">
 									<select id="selectBox">
 										<option value="">선택</option>
@@ -185,6 +222,7 @@ td {
 										<option value="productName">상품명</option>
 									</select>
 								</ul>
+								 -->
 							</div>
 							<!-- /btn-group -->
 							<input type="text" class="form-control" aria-label="..."
@@ -222,7 +260,8 @@ td {
 
 									<tr>
 										<td>${dto.productRegDate }</td>
-										<td><img src="${pageContext.request.contextPath}/resources${dto.productImg }"></td>
+										<td><img style="width: 200px; height: 200px;"
+											src="${pageContext.request.contextPath}/resources${dto.productImg }"></td>
 										<td>${dto.userId }</td>
 										<td><a
 											href="userproductdetail.do?productSeq=${dto.productSeq }">${dto.productName }</a></td>

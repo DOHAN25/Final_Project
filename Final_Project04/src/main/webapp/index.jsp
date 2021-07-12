@@ -278,7 +278,7 @@ body {
 	
 
 
-	<a href="userupdate.do">마이페이지</a>
+	<a href="mypage.do">마이페이지</a>
 	
 	
 

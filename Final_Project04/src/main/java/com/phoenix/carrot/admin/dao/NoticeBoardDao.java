@@ -6,7 +6,7 @@ import com.phoenix.carrot.dto.sns.EntireBoardDto;
 
 public interface NoticeBoardDao {
 
-	String NAMESPACE = "upgrade.noticedmapper.";
+	String NAMESPACE = "noticeboard.";
 	
 	public List<EntireBoardDto> noticeBoardList();
 	public EntireBoardDto noticeBoardOne(int entireBoardSeq);
