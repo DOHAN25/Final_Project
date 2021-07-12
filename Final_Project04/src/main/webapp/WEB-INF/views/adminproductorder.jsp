@@ -38,7 +38,7 @@
 	height: 150px;
 	object-fit: cover;
 }
-/* .fade.in {
+.fade.in {
   opacity: 1;
 }
 .modal.in .modal-dialog {
@@ -48,7 +48,7 @@
 }
 .modal-backdrop.in {
   opacity: 0.5;
-} */
+} 
 
 
 .inipay_modal.fade:not(.show) { opacity: 1 !important; }
@@ -162,7 +162,7 @@
 
 	<script>
 		//id를 이용하여 받아온 값을 변수에 넣어준다.
-		var userSeq = $("#userSeq").val();
+		/* var userSeq = $("#userSeq").val();
 		var productPrice = $("#productPrice").val();
 		var productSeq = $("#productSeq").val();
 		var productName = $("#productName").val();
@@ -188,10 +188,11 @@
 		console.log(receiverPhone);
 		console.log(receiverOaddress);
 		console.log(receiverRaddress);
-		console.log(receiverDetailaddress);
+		console.log(receiverDetailaddress */);
 
 		/* 넘길데이터 */
-		//                var params = $("#orderinfo").serialize(); // serialize() : 입력된 모든Element(을)를 문자열의 데이터에 serialize 한다.
+        var params = $("#orderinfo").serializeArray(); // serialize() : 입력된 모든Element(을)를 문자열의 데이터에 serialize 한다.
+        
 		/*  var params ={'userSeq':userSeq, 'productPrice': "${dto.productPrice }", 'productSeq':"${dto.productSeq }",'productName':"${dto.productName }", 
 		'quantity':"1", 
 		 'orderAmount':"${dto.productPrice }", 'paymethod': paymethod, 'userId': userId,'receiveName':receiveName,
