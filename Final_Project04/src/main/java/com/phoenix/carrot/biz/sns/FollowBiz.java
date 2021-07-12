@@ -12,6 +12,8 @@ public interface FollowBiz {
 	public int followCount(String follower_ID) throws Exception;
 	//팔로우 한 사용자 조회
 	public List<FollowDto> selectFollow(String follower_ID) throws Exception;
+	//팔로우체크
+	public int checkFollow(String following_ID, String follower_ID) throws Exception;
 	//팔로우 취소
 	public void deleteFollow(String following_ID, String follower_ID) throws Exception;
 	//내가 팔로우 한 사용자들 조회

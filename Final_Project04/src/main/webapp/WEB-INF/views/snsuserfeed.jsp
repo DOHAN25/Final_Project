@@ -20,7 +20,6 @@
 		
 		<div>${snsUserSelectOne.userid}님의 피드입니다.</div>
 		
-		
 		<table border="1">
 			<col width="20">
 			<col width="100">
