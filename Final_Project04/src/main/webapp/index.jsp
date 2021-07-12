@@ -63,7 +63,6 @@ body {
 </head>
 <body>
 
-<<<<<<< HEAD
 	<nav class="navbar navbar-default navbar-fixed-top ">
 		<!--navbar-fixed-top":상단 고정 그냥하면 윗부분 덮어져서 바디에 패딩탑 설정하자  -->
 		<!--navbar-inverse" : 네브바 색상 변경 반대 색상으로~-->
@@ -315,7 +314,7 @@ body {
 	</script>
 
 
-=======
+
 <nav class="navbar navbar-default navbar-fixed-top " ><!--navbar-fixed-top":상단 고정 그냥하면 윗부분 덮어져서 바디에 패딩탑 설정하자  -->
         <!--navbar-inverse" : 네브바 색상 변경 반대 색상으로~-->
         <div class="container-fluid" >
