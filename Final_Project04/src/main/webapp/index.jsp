@@ -235,7 +235,7 @@
 	<br/>
 	<a href="usermarketplace.do">중고시장</a>
 	<br/>
-	
+	<a href="chat.do">채팅하기</a>
 
 
 

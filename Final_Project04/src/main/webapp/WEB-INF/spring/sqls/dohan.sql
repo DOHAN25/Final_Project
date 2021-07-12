@@ -127,5 +127,4 @@ CREATE TABLE Order (
 	receiverPhone VARCHAR2(200) NOT NULL
 	
 );
-
-
+select * from message;

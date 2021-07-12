@@ -154,156 +154,6 @@
 }
 </style>
 </head>
-<!-- 웹소켓 연결 하는 부분 -->
-<script type="text/javascript">
-	$(document).ready(function(){
-		openSocket();
-	
-		$(".msg_send_btn").click(function(){
-			sendMessage();
-		});
-		
-	});
-
-	
-	
-	var ws;
-	var message = $("#getMessage").val();
-	var loginuserId = '${login.userid}';
-	
-	
-	var date = new Date();
-
-	
-	function openSocket() {
-		if(ws !== undefined && ws.readyState !== WebSocket.CLOSED) {
-			alert("이미 채팅이 진행중인 사이트가 존재합니다.!");
-			return false;
-		}
-		
-		ws = new WebSocket("ws://localhost:8787//carrot/echo.do");
-		
-		ws.open = function(event) {
-			
-			if(event.data === undefined) {
-				return;
-			}
-			
-			var data = event.data;
-			var sessionId = null;
-			var message = null;
-			
-			var strArray = data.split(':');
-
-			sessionId = strArray[0];
-			message  = strArray[1];
-			
-			if(loginuserId == sessionId) {
-				
-				var printHTML = "<div class='outgoing_msg'>";
-				printHTML += "<div class='sent_msg'>";
-				printHTML += "<p>"+message+"</p>";
-				//printHTML += "<span class='time_date'>"+date+"</span>";
-				printHTML += "</div>";
-				printHTML += "</div>";
-				
-				$(".msg_history").append(printHTML);
-			} else {
-			
-				
-				var printHTML = "<dic class='incoming_msg'>";
-				printHTML += "<p id='ididid'>";
-				printHTML += "<small>"+sessionId+"</small>";
-				printHTML += "</p>";
-				printHTML += "<div vlass='received_withd_msg'>";
-				printHTML += "<p>"+message+"</p>";
-				//printHTML += "<span class='time_date'>"+date+"</span>";
-				printHTML += "</div>";
-				printHTML += "</div>";
-				printHTML += "</div>";
-				
-				
-				$(".msg_history").append(printHTML);
-			
-			}
-			
-			
-		}
-		
-		ws.onmessage = function(event) {
-
-			var data = event.data;
-			var sessionId = data["sender"];
-			var message = data["message"];
-			
-			console.log(sessionId);
-			console.log(message);
-			
-			var strArray = data.split(':');
-
-			sessionId = strArray[0];
-			message  = strArray[1];
-			
-			if(loginuserId == sessionId) {
-				
-				var printHTML = "<div class='outgoing_msg'>";
-				printHTML += "<div class='sent_msg'>";
-				printHTML += "<p>"+message+"</p>";
-				//printHTML += "<span class='time_date'>"+date+"</span>";
-				printHTML += "</div>";
-				printHTML += "</div><br>";
-				
-				$(".msg_history").append(printHTML);
-			} else {
-			
-				
-				
-				
-				
-				$(".msg_history").append(printHTML);
-			
-			}
-		}
-		
-		ws.onclose = function(event) {
-			printHTML = "대화가 종료되었습니다.";
-			$('.msg_history').append(printHTML);
-		}
-		
-	}
-	
-	
-	
-	
-	function sendMessage() {
-		var text = loginuserId + "," + message;
-		ws.send(text);
-		text = "";
-	}
-	
-	
-	function closeChatRoom(event) {
-		ws.close();
-	}
-	
-	function incoming_msg(event) {
-		var printHTML = "<dic class='incoming_msg'>";
-		printHTML += "<p id='ididid'>";
-		printHTML += "<small>"+sessionId+"</small>";
-		printHTML += "</p>";
-		printHTML += "<div vlass='received_withd_msg'>";
-		printHTML += "<p>"+message+"</p>";
-		//printHTML += "<span class='time_date'>"+date+"</span>";
-		printHTML += "</div>";
-		printHTML += "</div>";
-		printHTML += "</div><br>";
-	}
-
-	
-	
-
-
-</script>
 <body>
 
 	<div class="container">
@@ -314,7 +164,6 @@
 		<div class="messaging">
 			<div class="inbox_msg">
 				<div class="mesgs">
-				
 			<c:choose>
 				<c:when test="${empty messageList }">
 					<div class="msg_history">
@@ -325,7 +174,7 @@
 							<div class="received_msg">
 								<div class="received_withd_msg">
 									<p>
-										채팅방이 생성되었습니다. 대화를 시작해 보세요.
+										채팅방에 입장하였습니다. 대화를 시작해 보세요.
 										욕설과 비속어 사용은 금지입니다.
 									</p>
 									<!--  <span class="time_date"></span>-->
@@ -361,7 +210,6 @@
 						</div>
 						</c:if>		
 					</div>
-					
 					</c:forEach>
 				</c:otherwise>
 			</c:choose>	
@@ -369,7 +217,7 @@
 						<div class="input_msg_write">
 							<input type="text" class="write_msg" placeholder="Type a message" id="getMessage"/>
 
-							<button class="msg_send_btn" type="button">
+							<button class="msg_send_btn" type="button" onclick="sendMessage();">
 								<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
 									fill="currentColor" class="bi bi-chat-dots" viewBox="0 0 16 16">
                             <path
@@ -383,12 +231,189 @@
 					</div>
 				</div>
 			</div>
-
-
-
-
 		</div>
 	</div>
+	<button onclick="closeChatRoom();">채팅방 나가기</button>
 	<!--https://bootsnipp.com/snippets/1ea0N : bootstrap template원본 -->
+	<!-- 웹소켓 연결 하는 부분 -->
+
+	
+<script type="text/javascript">
+
+$(document).ready(function(){
+	openSocket();
+});
+
+
+
+
+	var ws;
+	var message = document.getElementById("getMessage").value;
+	var loginuserId = '${login.userid}';
+	var title = '${productName}'
+	function openSocket() {
+		if(ws !== undefined && ws.readyState !== WebSocket.CLOSED) {
+			alert("이미 채팅이 진행중인 사이트가 존재합니다.!");
+			return;
+		}
+		
+		ws = new WebSocket("ws://localhost:8787/carrot/echo.do");
+		
+		ws.onopen = function(event) {
+			
+			console.log(event);
+			if(event.data === undefined) {
+				return;
+			} else {
+				$(".msg_history").append(event.data);
+			}
+			
+			/*
+			var strArray = data.split(':');
+
+			sessionId = strArray[0];
+			message  = strArray[1];
+			
+			if(loginuserId == sessionId) {
+				
+				var printHTML = "<div class='outgoing_msg'>";
+				printHTML += "<div class='sent_msg'>";
+				printHTML += "<p>"+message+"</p>";
+				//printHTML += "<span class='time_date'>"+date+"</span>";
+				printHTML += "</div>";
+				printHTML += "</div>";
+				
+				$(".msg_history").append(printHTML);
+			} else {
+			
+				
+				var printHTML = "<dic class='incoming_msg'>";
+				printHTML += "<p id='ididid'>";
+				printHTML += "<small>"+sessionId+"</small>";
+				printHTML += "</p>";
+				printHTML += "<div vlass='received_withd_msg'>";
+				printHTML += "<p>"+message+"</p>";
+				//printHTML += "<span class='time_date'>"+date+"</span>";
+				printHTML += "</div>";
+				printHTML += "</div>";
+				printHTML += "</div>";
+				
+				
+				$(".msg_history").append(printHTML);
+			
+			}
+			*/	
+		};
+		
+		ws.onmessage = function(event) {
+
+			var data = event.data;
+			console.log(data);
+			//var sessionId = data["sender"];
+			//var message = data["message"];
+			
+			//console.log(sessionId);
+			//console.log(message);
+			
+			var strArray = data.split(':');
+
+			var sessionId = strArray[0];
+			var message  = strArray[1];
+			
+			if(loginuserId == sessionId) {
+				outgoing_msg(event);
+			} else {
+				 incoming_msg(event);	
+			}
+		};
+		/*
+		ws.onclose = function(event) {
+			printHTML = "대화가 종료되었습니다.";
+			$('.msg_history').append(printHTML);
+		}
+		*/
+	}
+	
+	
+	
+	
+	function sendMessage() {
+		var message = document.getElementById("getMessage").value;
+		var text = loginuserId + "," + message;
+		var receiver = '${sellerId}';
+		ws.send(text);
+		text = "";
+		
+		var MessageVal = {
+				"message_sender" : loginuserId,
+				"message_receiver" : receiver,
+				"message_content" : message,
+				"chatroom_title" : title
+		}
+		
+		$('#getMessage').val('');
+		
+		
+		$.ajax({
+			type: "post",
+			url: "messageinput.do",
+			data: MessageVal,
+			contentType:"application/json",
+			success: function(msg) {
+				console.log(msg.result);
+			},
+			error:function(msg) {
+				console.log(msg.result);
+			}
+			
+		});
+		
+	}
+	
+	function closeChatRoom(event) {
+		ws.close();
+		history.go(-1);
+	}
+	
+	function incoming_msg(event) {
+		var data = event.data;
+		//var sessionId = data["sender"];
+		//var message = data["message"];
+		var strArray = data.split(':');
+		var sessionId = strArray[0];
+		var inputmessage  = strArray[1];
+		var printHTML = "<dic class='incoming_msg'>";
+		printHTML += "<p id='ididid'>";
+		printHTML += "<small>"+sessionId+"</small>";
+		printHTML += "</p>";
+		printHTML += "<div class='received_msg'>";
+		printHTML += "<div class='received_withd_msg'>";
+		printHTML += "<p>"+inputmessage+"</p>";
+		//printHTML += "<span class='time_date'>"+date+"</span>";
+		printHTML += "</div>";
+		printHTML += "</div>";
+		printHTML += "</div><br>";
+		$(".msg_history").append(printHTML);
+	}
+	
+	function outgoing_msg(event) {
+		var data = event.data;
+		//var sessionId = data["sender"];
+		//var message = data["message"];
+		var strArray = data.split(':');
+		var sessionId = strArray[0];
+		var inputmessage  = strArray[1];
+		var printHTML = "<div class='outgoing_msg'>";
+		printHTML += "<div class='sent_msg'>";
+		printHTML += "<p>"+inputmessage+"</p>";
+		//printHTML += "<span class='time_date'>"+date+"</span>";
+		printHTML += "</div>";
+		printHTML += "</div><br>";
+		
+		$(".msg_history").append(printHTML);
+		
+	}
+</script>
+	
 </body>
 </html>

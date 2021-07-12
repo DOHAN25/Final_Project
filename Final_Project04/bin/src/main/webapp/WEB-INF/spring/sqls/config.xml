@@ -12,6 +12,7 @@
 		<typeAlias type="com.phoenix.carrot.chat.dto.ChatRoomDto" alias="chatroomDto"/>
 		<typeAlias type="com.phoenix.carrot.chat.dto.MessageDto" alias="messageDto"/>
 		<typeAlias type="com.phoenix.carrot.order.dto.OrderDto" alias="orderDto"/>
+		<typeAlias type="com.phoenix.carrot.dto.sns.FollowDto" alias="followDto"/>
 	</typeAliases>
 	
 	<mappers>
@@ -26,5 +27,6 @@
 		<mapper resource="/mybatis/chatroom-mapper.xml"/>
 		<mapper resource="/mybatis/message-mapper.xml"/>
 		<mapper resource="/mybatis/order-mapper.xml"/>
+		<mapper resource="/mybatis/follow-mapper.xml"/>
 	</mappers>
 </configuration>
