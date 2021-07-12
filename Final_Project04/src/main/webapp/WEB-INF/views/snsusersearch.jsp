@@ -82,10 +82,9 @@ $(document).ready(function(){
 					console.log(data)
 					//console.log(data.list.length);
 					//console.log(data.list[0].userid);
-					var html = "<div>";
+					var html = "<div class='list-group'>";
 					for(var i = 0; i < data.userList.length; i++) {
-						html += "<div><a class='list-group-item' href='snsBoardUserFeed.do?userId="+data.userList[i].userid+"'>"+"<img src='https://via.placeholder.com/40' class='img-circle'  alt='' style='margin-right:10px;'"'>'+data.userList[i].userid+"</a></td>";
-						html += "<div><a href='snsBoardUserFeed.do?userId="+data.userList[i].userid+" class='list-group-item'>"+"<img src='https://via.placeholder.com/40' class='img-circle'  alt='' style='margin-right:10px;' >"+data.userList[i].username+"</a></td>";
+						html += "<div><a class='list-group-item' href='snsBoardUserFeed.do?userId="+data.userList[i].userid+"'>"+"<img src='https://via.placeholder.com/40' class='img-circle'  alt='' style='margin-right:10px;'>"+data.userList[i].userid+"</a></div>";
 						html += "</div><br>";
 					}
 					
@@ -93,6 +92,7 @@ $(document).ready(function(){
 					$("#dynamicTbody").append(html);
 				}
 			});
+			
 		} else if(selectBox === "username") {
 			
 			var usernameVal = {
@@ -107,10 +107,10 @@ $(document).ready(function(){
 				dataType:"json",
 				success: function(data) {
 					
-					var html = "<tr>";
+					var html = "<div class='list-group'>";
 					for(var i = 0; i < data.userList.length; i++) {
-						html += "<td><a href='snsBoardUserFeed.do?userId="+data.userList[i].userid+"'>"+data.userList[i].userid+"</a></td>";
-						html += "<td>"+data.userList[i].username+"</td>";
+						html += "<div><a class='list-group-item' href='snsBoardUserFeed.do?userId="+data.userList[i].userid+"'>"+"<img src='https://via.placeholder.com/40' class='img-circle'  alt='' style='margin-right:10px;'>"+data.userList[i].username+"</a></div>";
+						html += "</div><br>";
 					}
 					
 					html += "</tr><br>";
@@ -189,15 +189,15 @@ $(document).ready(function(){
                     <button type="button" id="searchBtn" class="btn btn-default" ><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
                 </div>
                </div>
-         
+         <a href="#" class="list-group-item disabled" style="text-align: center;">유저 검색 목록 </a> 
          <c:forEach items="${userList}" var="userdto">
             <div id="dynamicTbody">
                <div class="row">
                    <div class="col-md-12">
                         <div class="list-group" >
-                            <a href="#" class="list-group-item disabled" style="text-align: center;">유저 검색 목록 </a> 
+                            
                             <a href="snsBoardUserFeed.do?userId=${userdto.userid }" class="list-group-item"><img src="https://via.placeholder.com/40" class="img-circle"  alt="" style="margin-right:10px;" >${userdto.userid }</a>
-                        	<a href="snsBoardUserFeed.do?userId=${userdto.userid }" class="list-group-item"><img src="https://via.placeholder.com/40" class="img-circle"  alt="" style="margin-right:10px;" >${userdto.username }</a>
+                        	<a href="snsBoardUserFeed.do?userId=${userdto.userid }" class="list-group-item">${userdto.username }</a>
                         </div>
                    </div>
                </div>

@@ -2,6 +2,7 @@ package com.phoenix.carrot.model.controller;
 
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -25,7 +26,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.github.scribejava.core.model.OAuth2AccessToken;
-
+import com.phoenix.carrot.admin.dto.WeatherDto;
 import com.phoenix.carrot.login.NaverLoginBo;
 import com.phoenix.carrot.login.VerifyRecaptcha;
 import com.phoenix.carrot.user.biz.UserBiz;
@@ -37,6 +38,8 @@ public class UserController {
 	
 	private Logger logger = LoggerFactory.getLogger(UserController.class);
 	
+	@Autowired
+	private Weather weather;
 	
 	// NaverLoginBo
 		private NaverLoginBo naverLoginBO;
@@ -345,7 +348,15 @@ public class UserController {
 
 	
 	@RequestMapping("/honeytip.do")
-	public String hoenyTip() {
+	public String hoenyTip(Model model) {
+		
+		//get()호출
+		
+		List<WeatherDto> list = weather.get();
+		System.out.println("controller" + list);
+		model.addAttribute("list", list);
+	
+	
 		return "honeytip";
 	}
 
