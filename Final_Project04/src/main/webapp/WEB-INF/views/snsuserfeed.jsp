@@ -9,7 +9,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-
+<%@include file="/WEB-INF/views/1header.jsp"%>
 	<c:if test="${empty login }">
 		<div>로그인해주세요</div>
 	</c:if>
@@ -63,6 +63,6 @@
 		
 	</c:if>
 
-
+<%@include file="/WEB-INF/views/1footer.jsp"%>
 </body>
 </html>

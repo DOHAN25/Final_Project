@@ -130,7 +130,7 @@
 </script>
 </head>
 <body>
-
+<%@include file="/WEB-INF/views/1header.jsp"%>
 	<h1>당근마켓등록</h1>
 
 	<form action="userproductinsertres.do" method="post" enctype="multipart/form-data">
@@ -192,6 +192,7 @@
         </div>
     </div>
 	</form>
+	<%@include file="/WEB-INF/views/1footer.jsp"%>
 </body>
 
 <script type="text/javascript">

@@ -88,6 +88,7 @@ $(document).ready(function(){
 
 </script>
 <body>
+<%@include file="/WEB-INF/views/1header.jsp"%>
 <div class="container" style="width: 100%;">
     <div class="col-md-8 col-md-offset-2 ">
 	
@@ -180,7 +181,7 @@ $(document).ready(function(){
 		    </nav>
 		</div>
 	</div>
-	
+	<%@include file="/WEB-INF/views/1footer.jsp"%>
 </div>
 </body>
 

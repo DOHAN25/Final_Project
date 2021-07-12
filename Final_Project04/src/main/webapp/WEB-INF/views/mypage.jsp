@@ -61,7 +61,7 @@
                     <div class="col-md-9">
                         <span id="id">아이디</span>
                         <p style="padding-top:20px; ">자기소개 글 </p>
-                        <button type="button" class="btn btn-default btn-sm">개인정보 수정 </button>
+                        <button type="button" class="btn btn-default btn-sm" onclick="location.href='userUpdate.do'">개인정보 수정 </button>
                     </div>
                 </div>
 
