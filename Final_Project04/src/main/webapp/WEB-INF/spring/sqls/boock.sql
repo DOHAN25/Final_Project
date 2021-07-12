@@ -33,7 +33,7 @@ CREATE TABLE productorder (
 	quantity NUMBER(30) NOT NULL,
 	deliveryfee NUMBER(30) NOT NULL,
 	orderAmount NUMBER NOT NULL,
-	pay_method VARCHAR2(100) NOT NULL,
+	paymethod VARCHAR2(100) NOT NULL,
 	userSeq NUMBER(30) NOT NULL,
 	userId VARCHAR2(200) NOT NULL,
 	receiveName VARCHAR2(100) NOT NULL,

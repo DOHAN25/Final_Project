@@ -28,7 +28,7 @@
                 </div>
                 <div class="col-md-4">
                     <h4>DEVELOPER</h4>
-                    <div class="dropdown">
+                    <div class="dropup">
                         <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true">
                           Dropdown
                           <span class="caret"></span>

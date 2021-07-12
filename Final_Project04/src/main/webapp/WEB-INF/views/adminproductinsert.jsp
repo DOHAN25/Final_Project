@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>씨앗 마켓</title>
+<title>씨앗 마켓 상품 상세 페이지</title>
 
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
@@ -116,7 +116,12 @@
 				<!--  <button id='uploadBtn'>Upload</button> -->
 				<%=request.getRealPath("/") %>
 				<!-- end -->
-				
+				<!-- 
+				***이미지 업로드 안되면 경로 확인할 것!***
+				▽ local기준 ▽
+				C:\Git\Final_Project\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\Final_Project04\resources에
+				upload폴더가 있는지 확인하기
+				 -->
 				
 			</div>
 			<div>
