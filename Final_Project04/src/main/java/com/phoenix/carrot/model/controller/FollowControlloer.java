@@ -26,6 +26,6 @@ public class FollowControlloer {
 		String follower = followdto.getFollowerId();
 		
 		
-		return null;
+		return 0;
 	};
 }
