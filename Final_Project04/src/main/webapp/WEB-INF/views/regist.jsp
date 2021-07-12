@@ -380,8 +380,8 @@ $(document).ready(function() {
 		                      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 		                       
 		                        <ul class="nav navbar-nav navbar-right">
-		                            <li><a href="#"title="로그인 페이지 이동"><span class="glyphicon glyphicon-log-in" aria-hidden="true"></span></a></li>
-		                            <li><a href="#" title="메인 페이지 이동"><span class="glyphicon glyphicon-home" aria-hidden="true"></span></a></li>
+		                            <li><a href="loginform.do"title="로그인 페이지 이동"><span class="glyphicon glyphicon-log-in" aria-hidden="true"></span></a></li>
+		                            <li><a href="index.jsp" title="메인 페이지 이동"><span class="glyphicon glyphicon-home" aria-hidden="true"></span></a></li>
 		                        </ul>
 		                      </div><!-- /.navbar-collapse -->
 		                    </div><!-- /.container-fluid -->

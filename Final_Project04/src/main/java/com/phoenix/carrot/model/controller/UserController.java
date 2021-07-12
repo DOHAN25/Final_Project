@@ -342,6 +342,13 @@ public class UserController {
 	
 		return i;
 	}
+	
+	@RequestMapping("/userupdate.do")
+	public String userupdate() {
+		logger.info("[Controller] : userupdate.do");
+		
+		return "userupdate";
+	}
 
 
 	
