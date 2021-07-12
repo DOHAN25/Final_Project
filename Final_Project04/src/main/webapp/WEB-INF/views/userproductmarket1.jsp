@@ -7,7 +7,7 @@
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>내 당근 거래/나눔</title>
+<title>로컬마켓</title>
 <!-- 합쳐지고 최소화된 최신 CSS -->
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
@@ -183,7 +183,7 @@ td {
 	}
 </script>
 <body>
-
+<%@include file="/WEB-INF/views/1header.jsp"%>
 	<div class="container" style="width: 100%;">
 
 		<!--바디 (사이드바 포함 )-->
@@ -306,6 +306,6 @@ td {
 			<div class="col-sm-2 col-md-2 "></div>
 		</div>
 	</div>
-
+<%@include file="/WEB-INF/views/1footer.jsp"%>
 </body>
 </html>

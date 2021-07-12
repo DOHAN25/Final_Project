@@ -61,7 +61,7 @@
 
 </script>
 <body>
-	
+	<%@include file="/WEB-INF/views/1header.jsp"%>
 	<h2>아이디 찾기</h2>
 	
 		<label>Email</label>
@@ -70,6 +70,7 @@
 		<br>
 		<input type="button" value="찾기" onclick="findid();">
 		<button type="button" id="cancelBtn" onclick="history.go(-1)">취소</button>
+		<%@include file="/WEB-INF/views/1footer.jsp"%>
 </body>
 </html>
 

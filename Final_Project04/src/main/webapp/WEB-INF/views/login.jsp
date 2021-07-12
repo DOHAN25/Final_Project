@@ -33,7 +33,7 @@
 	src="https://developers.kakao.com/sdk/js/kakao.js"></script>
 
 
-<title>로그인 페이지</title>
+<title>로그인</title>
 
 <style type="text/css">
 * {
@@ -68,7 +68,7 @@ function login() {
 	var userid = $("#inputEmail3").val().trim();
 	var password = $("#inputPassword3").val().trim();
 
-	// 자바스크립트 오브젝트 리터럴 형태 뭔지 찾아보자.
+
 	var loginVal = {
 		"userid" : userid,
 		"password" : password

@@ -7,7 +7,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>내정보수정</title>
     <!-- 합쳐지고 최소화된 최신 CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
     <!--jquery (부트스트랩의 자바스트립트 플러그인을 위해 필요합니다.)-->
@@ -39,7 +39,7 @@
     </style>
 </head>
 <body>
-
+<%@include file="/WEB-INF/views/1header.jsp"%>
     <div class="container" style="width: 100%;">
         
         <!--바디 (사이드바 포함 )-->
@@ -130,6 +130,6 @@
             </div>
         </div>
     </div>
-    
+  <%@include file="/WEB-INF/views/1footer.jsp"%>  
 </body>
 </html>

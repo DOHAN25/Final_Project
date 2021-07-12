@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>로컬마켓</title>
 
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
@@ -18,7 +18,7 @@
 	}
 </script>
 <body>
-
+<%@include file="/WEB-INF/views/1header.jsp"%>
 
 
 	<h1>상품정보</h1>

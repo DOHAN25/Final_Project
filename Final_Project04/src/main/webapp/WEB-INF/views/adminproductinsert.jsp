@@ -92,7 +92,7 @@
 </head>
 </head>
 <body>
-
+<%@include file="/WEB-INF/views/1header.jsp"%>
 	<h1>씨앗마켓 상품정보 등록</h1>
 
 
@@ -164,5 +164,6 @@
 	} 
 	
 	</script>
+<%@include file="/WEB-INF/views/1footer.jsp"%>
 </body>
 </html>

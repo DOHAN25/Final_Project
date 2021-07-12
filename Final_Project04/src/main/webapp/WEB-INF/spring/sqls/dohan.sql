@@ -146,12 +146,17 @@ CREATE TABLE entireBoard(
 );
 
 INSERT INTO entireBoard
-VALUES (entireBoardSeq.NEXTVAL, 3, SYSDATE, '공지사항제목', '공지사항내용', 'admin', 1, NULL, NULL, 0);
+VALUES (entireBoardSeq.NEXTVAL, 3, SYSDATE, '판매금지 물품(필독)', '주류, 담배, 전자담배, 총, 유류, 유통기한이 지난 제품, 음란물, 암표매매 행위, 이외 법률을 위반하는 모든 제품/물품', 'admin', 1, NULL, NULL, 0);
+INSERT INTO entireBoard
+VALUES (entireBoardSeq.NEXTVAL, 3, SYSDATE, '로컬마켓 거래 및 환불(필독)', '기본적으로 거래 당사자들끼리 자유롭게 거래할 수 있습니다. 저희 당근팜은 중개자이며 운영정책에 따라 운영되고 있습니다. 모든 책임은 기본적으로 거래 당사자에게 있습니다.', 'admin', 1, NULL, NULL, 0);
+INSERT INTO entireBoard
+VALUES (entireBoardSeq.NEXTVAL, 3, SYSDATE, '당근팜 이용시 지켜야 할 매너(필독)', '1.서로 존중해주세요. 2.시간 약속을 잘 지켜주세요. 3.따뜻한 감사 인사로 마무리 지어주세요. 4.어떤 상황에서도 욕설, 비방, 명예훼손 등읜 언행은 지양해 주세요. 5.직접 촬영한 사진만 사용해 주세요.', 'admin', 1, NULL, NULL, 0);
 
 
 SELECT * FROM entireBoard;
 
 
+DELETE FROM entireBoard WHERE entireBoardSeq = 5;
 
 
 

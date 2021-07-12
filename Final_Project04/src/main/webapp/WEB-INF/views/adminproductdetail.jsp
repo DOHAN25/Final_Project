@@ -19,7 +19,7 @@
     
 </head>
 <body>
-
+<%@include file="/WEB-INF/views/1header.jsp"%>
 
   <div class="container" style="width: 100%; padding-top:100px">
     <div class="col-md-8 col-md-offset-2 ">
@@ -301,6 +301,6 @@
     </div>
   </div>
 
-
+<%@include file="/WEB-INF/views/1footer.jsp"%>
 </body>
 </html>

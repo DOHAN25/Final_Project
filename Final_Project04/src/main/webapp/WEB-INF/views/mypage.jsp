@@ -7,7 +7,7 @@
    <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>게시판 </title>
+    <title>마이페이지</title>
     <!-- 합쳐지고 최소화된 최신 CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
     <!--jquery (부트스트랩의 자바스트립트 플러그인을 위해 필요합니다.)-->
@@ -61,7 +61,7 @@
                     <div class="col-md-9">
                         <span id="id">아이디</span>
                         <p style="padding-top:20px; ">자기소개 글 </p>
-                        <button type="button" class="btn btn-default btn-sm">개인정보 수정 </button>
+                        <button type="button" class="btn btn-default btn-sm" onclick="location.href='userUpdate.do'">개인정보 수정 </button>
                     </div>
                 </div>
 
