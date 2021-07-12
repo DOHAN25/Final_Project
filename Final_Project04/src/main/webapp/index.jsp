@@ -91,10 +91,12 @@ body {
 						<li><a href="#section5">날씨/미세먼지</a></li>
 						<li><a href="#section6">공지사항</a></li>
 						
+						
 					</c:if>
 					<c:if test="${login != null }">
 						<li><a href="#section1">로컬마켓</a></li>
 						<li><a href="#section2">씨앗,도구 구매</a></li>
+						<li><a href="#section3">모두의 당근</a></li>
 						<li><a href="#section4">꿀팁</a></li>
 						<li><a href="#section5">날씨/미세먼지</a></li>
 						<li><a href="#section6">공지사항</a></li>
@@ -132,9 +134,22 @@ body {
 					</div>
 				</div></a>
 		</div>
+		
+		<div class="container-fluid" id="section3">
+			<a href="main.do"><div class="col-md-12" id="text">
+					<img src="resources/image/모두의당근.jpg" alt="당근팜"
+						style="width: 100%; height: 100%;">
+					<div class="text">
+						<p id="img_title">모두의 당근</p>
+						<p id="img_content">내가 키운 작물을 자랑하고 공유해보세요!</p>
+					</div>
+				</div></a>
+		</div>
+		
+		
 
 		<div class="container-fluid" id="section4">
-			<a href="main.do"><div class="col-md-12" id="text">
+			<a href="honeytip.do"><div class="col-md-12" id="text">
 					<img src="resources/image/꿀팁얻기_main1.jpg" alt="당근팜"
 						style="width: 100%;">
 					<div class="text">
@@ -262,30 +277,10 @@ body {
 
 	
 
-	
 
-
-	<a href="home.do">home...</a>
-	<br />
-	<a href="main.do">대진이메인</a>
-	<br />
-	<a href="pay.do">재희</a>
-	<br />
-	<a href="weather.do">태린 날씨</a>
-	<br />
-	<a href="header.do">보옥 헤더</a>
-	<br />
-	<a href="loginform.do">로그인</a>
-	<br />
-	<a href="noticeboardlist.do">공지사항</a>
-	<br />
-	<a href="usermarketplace.do">중고시장</a>
-	<br />
-	<a href="chat.do">채팅하기</a>
-	<br>
 	<a href="userupdate.do">마이페이지</a>
-	<br>
-	<a href="honeytip.do">차투</a>
+	
+	
 
 
 	<%@include file="/WEB-INF/views/1footer.jsp"%>
