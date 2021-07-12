@@ -129,3 +129,35 @@ CREATE TABLE Order (
 	
 );
 select * from message;
+
+
+
+CREATE TABLE entireBoard(
+	entireBoardSeq NUMBER PRIMARY KEY NOT NULL,
+	boardKind NUMBER NOT NULL,
+	boardDate DATE NOT NULL,
+	boardTitle VARCHAR2(200),
+	boardContents VARCHAR2(4000), 
+	userId VARCHAR2(30) NOT NULL,
+	userSeq NUMBER NOT NULL,
+	boardImg VARCHAR2(4000),
+	boardThumbImg VARCHAR2(4000),
+	likeCount NUMBER
+);
+
+INSERT INTO entireBoard
+VALUES (entireBoardSeq.NEXTVAL, 3, SYSDATE, '공지사항제목', '공지사항내용', 'admin', 1, NULL, NULL, 0);
+
+
+SELECT * FROM entireBoard;
+
+
+
+
+
+
+
+
+
+
+

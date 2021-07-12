@@ -81,12 +81,14 @@
 		var paymethod = $("#paymethod").val();
 		var productPrice = $("#productPrice").val();
 		
-		
-		var params ={'userSeq':userSeq, 'productPrice': productPrice, 'productSeq':productSeq,'productName':productName, 'quantity':quantity, 
+		/* 넘길데이터 */
+		var params = $("#orderinfo").serialize(); // serialize() : 입력된 모든Element(을)를 문자열의 데이터에 serialize 한다.
+
+/* 		var params ={'userSeq':userSeq, 'productPrice': productPrice, 'productSeq':productSeq,'productName':productName, 'quantity':quantity, 
 				'orderAmount':orderAmount, 'paymethod': paymethod, 'userId': userId,'receiveName':receiveName,
 				'receiverPhone':receiverPhone,'receiverOaddress': receiverOaddress,  'receiverOaddress':receiverOaddress, 
 				'receiverRaddress': receiverRaddress, 'receiverDetailaddress': receiverDetailaddress,'paymethod':paymethod };
-		console.log(params);
+	 */	console.log(params);
 
 		
 		$(function() {
@@ -113,7 +115,7 @@
 						//
 						url : "${path}/adminproductorderPayRes.do", //cross-domain error가 발생하지 않도록 주의해주세요
 						type : 'POST',
-						dataType : 'json',
+						dataType : 'text',
 						contentType: 'application/json',
 						data :JSON.stringify(params)
 		

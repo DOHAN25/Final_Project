@@ -38,6 +38,7 @@ polyline{
 </style>
 
 <body>
+    <%@include file="/WEB-INF/views/1header.jsp"%>
     
     <div class="container" style="width: 100%;">
         
@@ -50,7 +51,7 @@ polyline{
             <div class="col-sm-8 col-md-8">
                 <div class="row" style="height: 500px;">
                     <div class="col-sm-12 col-md-12">
-                        <h3>차트 제목 작성칸</h3>
+                        <h3>햇빛 광량에 따른 추천작물</h3>
                     </div>
                     <!--div박스 안에 차트 넣으면 됩니다.-->
                     <div id="chart" class="col-sm-12 col-md-12" style="height:800px;">
@@ -68,15 +69,30 @@ svg.append("g")
 svg.append("g")
 	.attr("class", "lines");
 
-var width = 1600,
+var width = 1800,
     height = 500,
 	radius = Math.min(width, height) / 2;
     
 svg.append("text")
 .attr("class", "sum")
-.attr("transform", "translate("+(width/2)+","+(height/3)+")")
-.text("채광량(단위: umol/m2/sec)");
+.attr("transform", "translate(100, 100)")
+.text("채광량(단위: umol/m2/sec)")
+.style("font-size", 20);
 
+svg.append("text")
+.attr("transform", "translate(115, -40)")
+.text("400")
+.style("font-size", 28);
+
+svg.append("text")
+.attr("transform", "translate(-145, -40)")
+.text("80")
+.style("font-size", 28);
+
+svg.append("text")
+.attr("transform", "translate(-20, 140)")
+.text("200")
+.style("font-size", 28);
 
 
 
@@ -153,7 +169,9 @@ function change(data) {
 		.attr("dy", ".35em")
 		.text(function(d) {
 			return d.data.label;
-		});
+		})
+		.style("font-size", 18)
+		.style("font-weight", "bold");
 	
 	function midAngle(d){
 		return d.startAngle + (d.endAngle - d.startAngle)/2;
@@ -212,7 +230,9 @@ function change(data) {
 </script>
                     
                     </div>
-
+				<div>
+				
+				</div>
                     <!--div박스 안에 차트 넣으면 됩니다.-->
                 </div>
                 <div class="row">
@@ -242,15 +262,5 @@ function change(data) {
                     </div>
                 </div>
             </div>
-            <!--오른쪽 사이드-->
-            <div class="col-sm-2 col-md-2">
-                <ul class="nav navbar-nav navbar-right">
-                    <li><a href="http://bootstrapk.com/components/#responsive-embed"title="로그인" style="color:rgb(116, 116, 116)"><span class="glyphicon glyphicon-log-in" aria-hidden="true"></a></li>
-                    <li><a href="#" title="로그아웃" style="color:rgb(116,116,116)"><span class="glyphicon glyphicon-log-out" aria-hidden="true"></span></a></li>
-                    <li><a href="#"title="회원가입" style="color:rgb(116, 116, 116)"><span class="glyphicon glyphicon-registration-mark" aria-hidden="true"></span></span></a></li>
-                    <li><a href="#" title="마이페이지" style="color:rgb(116,116,116)"><span class="glyphicon glyphicon-user" aria-hidden="true"></span></a></li>
-
-                </ul>
-            </div>
-</body>
+ <%@include file="/WEB-INF/views/1footer.jsp" %>
 </html>

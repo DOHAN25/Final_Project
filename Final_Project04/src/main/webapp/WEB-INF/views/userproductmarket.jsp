@@ -46,9 +46,9 @@ $(document).ready(function(){
 						html += "<td>"+data.list[i].userId+"</td>";
 						html += "<td><a href='userproductdetail.do?productSeq="+data.list[i].productSeq+"'>"+data.list[i].productName+"</a></td>";
 						html += "<td>"+data.list[i].productPrice+"</td>";
-						html += "<td>"+data.list[i].sellerAddress+"</td>";	
+						html += "<td>"+data.list[i].sellerAddress+"</td>";
+						html += "</tr><br>";
 					}
-					html += "</tr>";
 					$("#dynamicTbody").empty();
 					$("#dynamicTbody").append(html);
 				}
