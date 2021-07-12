@@ -63,6 +63,7 @@ body {
 </head>
 <body>
 
+<<<<<<< HEAD
 	<nav class="navbar navbar-default navbar-fixed-top ">
 		<!--navbar-fixed-top":상단 고정 그냥하면 윗부분 덮어져서 바디에 패딩탑 설정하자  -->
 		<!--navbar-inverse" : 네브바 색상 변경 반대 색상으로~-->
@@ -314,6 +315,167 @@ body {
 	</script>
 
 
+=======
+<nav class="navbar navbar-default navbar-fixed-top " ><!--navbar-fixed-top":상단 고정 그냥하면 윗부분 덮어져서 바디에 패딩탑 설정하자  -->
+        <!--navbar-inverse" : 네브바 색상 변경 반대 색상으로~-->
+        <div class="container-fluid" >
+          <!-- Brand and toggle get grouped for better mobile display -->
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#myNavbar">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#">
+                <img src="img/logo.jpg" alt="당근팜">
+            </a>
+            <p class="navbar-text">내가 키운 채소, <a href="#" class="navbar-link">당근팜</a>에서 거래하세요!</p>
+          </div>
+      
+          <!-- Collect the nav links, forms, and other content for toggling -->
+          <div class="collapse navbar-collapse navbar-scrollspy" id="myNavbar">
+            <ul class="nav navbar-nav">
+            <c:if test="${login == null }">
+              <li><a href="#section1">로컬마켓</a></li>
+              <li><a href="#section2">씨앗마켓</a></li>
+              <li><a href="#section3">주말농장</a></li>
+              <li><a href="#section4">꿀팁</a></li>
+              <li><a href="#section5">날씨/미세먼지</a></li>
+              <li><a href="#section6">게시판</a></li>
+              <li><a href="#section7">로그인</a></li>
+            </c:if>
+            <c:if test="${login != null }">
+              <li><a href="#section1">로컬마켓</a></li>
+              <li><a href="#section2">씨앗마켓</a></li>
+              <li><a href="#section3">주말농장</a></li>
+              <li><a href="#section4">꿀팁</a></li>
+              <li><a href="#section5">날씨/미세먼지</a></li>
+              <li><a href="#section6">게시판</a></li>
+              <li><a href="#section7">로그아웃</a></li>
+            </c:if>
+            </ul>
+            
+            <form class="navbar-form navbar-right" role="search">
+              <div class="form-group">
+                <input type="text" class="form-control" placeholder="Search">
+              </div>
+              <button type="submit" class="btn btn-default">Submit</button>
+            </form>
+          </div><!-- /.navbar-collapse -->
+        </div><!-- /.container-fluid -->
+      </nav>
+      
+       <c:if test="${login != null }">
+          <div class="container-fluid" id="section1">
+            <a href="usermarketplace.do"><div class="col-md-12" id="text" ><img src="resources/image/로컬마켓_main.jpg" alt="당근팜" style="width: 100%; height: 100%;">
+                <div class="text"><p id="img_title">로컬마켓으로 이동</p><p id="img_content">내가 키운 채소, 당근팜에서 거래하기</p></div></div></a>
+            </div>
+              
+          
+          <div class="container-fluid" id="section2">
+                <a href="adminproduct.do"><div class="col-md-12" id="text"><img src="resources/image/씨앗도구구매_main2.jpg" alt="당근팜" style="width: 100%; height: 100%;">
+              <div class="text"><p id="img_title">씨앗마켓</p><p id="img_content">당근팜에서 우리집 텃밭가꾸기 상품을 준비해보세요.</p></div></div></a>
+          </div>
+        
+        
+          <div class="container-fluid" id="section3">
+              <a href="loginform.do"><div class="col-md-12" id="text"><img src="resources/image/주말농장_main1.jpg" alt="당근팜" style="width: 100%; height: 100%;">
+              <div class="text"><p id="img_title">주말농장</p><p id="img_content">주말농장 체험하러 가기</p></div></div></a>
+          </div>
+        
+          <div class="container-fluid" id="section4">
+            <a href="main.do"><div class="col-md-12" id="text"><img src="resources/image/꿀팁얻기_main1.jpg" alt="당근팜" style="width: 100%;">
+              <div class="text"><p id="img_title">꿀팁얻기</p><p id="img_content">나만의 농작물 키우기 꿀팁얻기</p></div></div></a>
+          </div>
+        
+          <div class="container-fluid" id="section5">
+            <a href="weather.do"><div class="col-md-12" id="text"><img src="resources/image/날씨확인_main1.jpg" alt="당근팜" style="width: 100%;">
+            <div class="text"><p id="img_title">날씨확인</p><p id="img_content">오늘의 날씨를 확인해보세요</p></div></div></a>
+        </div>
+    
+        <div class="container-fluid" id="section6">
+            <a href="noticeboardlist.do"><div class="col-md-12" id="text"><img src="resources/image/게시판_main1.jpg" alt="당근팜" style="width: 100%;">
+            <div class="text"><p id="img_title">게시판</p><p id="img_content">설명</p></div></div></a>
+        </div>
+        
+        
+        <div class="container-fluid" id="section7">
+            <a href="logOut.do"><div class="col-md-12" id="text"><img src="resources/image/로그인_main1.jpg" alt="당근팜" style="width: 100%;">
+            <div class="text"><p id="img_title">로그아웃</p><p id="img_content">설명</p></div></div></a>
+        </div>
+    </c:if>
+    
+     <c:if test="${login == null }">
+     	<div class="container-fluid" id="section1">
+            <a href="loginform.do"><div class="col-md-12" id="text" ><img src="resources/image/로컬마켓_main.jpg" alt="당근팜" style="width: 100%; height: 100%;">
+                <div class="text"><p id="img_title">로컬마켓으로 이동</p><p id="img_content">설명</p></div></div></a>
+            </div>
+              
+          
+          <div class="container-fluid" id="section2">
+                <a href="loginform.do"><div class="col-md-12" id="text"><img src="resources/image/씨앗도구구매_main2.jpg" alt="당근팜" style="width: 100%; height: 100%;">
+              <div class="text"><p id="img_title">씨앗,도구 구매</p><p id="img_content">설명</p></div></div></a>
+          </div>
+        
+        
+          <div class="container-fluid" id="section3">
+              <a href="loginform.do"><div class="col-md-12" id="text"><img src="resources/image/주말농장_main1.jpg" alt="당근팜" style="width: 100%; height: 100%;">
+              <div class="text"><p id="img_title">주말농장</p><p id="img_content">설명</p></div></div></a>
+          </div>
+        
+          <div class="container-fluid" id="section4">
+            <a href="loginform.do"><div class="col-md-12" id="text"><img src="resources/image/꿀팁얻기_main1.jpg" alt="당근팜" style="width: 100%;">
+              <div class="text"><p id="img_title">꿀팁얻기</p><p id="img_content">설명</p></div></div></a>
+          </div>
+        
+          <div class="container-fluid" id="section5">
+            <a href="loginform.do"><div class="col-md-12" id="text"><img src="resources/image/날씨확인_main1.jpg" alt="당근팜" style="width: 100%;">
+            <div class="text"><p id="img_title">날씨확인</p><p id="img_content">설명</p></div></div></a>
+        </div>
+    
+        <div class="container-fluid" id="section6">
+            <a href="loginform.do"><div class="col-md-12" id="text"><img src="resources/image/게시판_main1.jpg" alt="당근팜" style="width: 100%;">
+            <div class="text"><p id="img_title">게시판</p><p id="img_content">설명</p></div></div></a>
+        </div>
+        
+        
+        <div class="container-fluid" id="section7">
+            <a href="loginform.do"><div class="col-md-12" id="text"><img src="resources/image/로그인_main1.jpg" alt="당근팜" style="width: 100%;">
+            <div class="text"><p id="img_title">로그인</p><p id="img_content">로그인을 해주세요</p></div></div></a>
+        </div>
+     </c:if>
+          
+      
+      <script>
+        $(document).ready(function(){
+    // Add scrollspy to <body>
+    $('body').scrollspy({target: ".navbar", offset: 50});   
+  
+    // Add smooth scrolling on all links inside the navbar
+    $("#myNavbar a").on('click', function(event) {
+  
+      // Prevent default anchor click behavior
+      event.preventDefault();
+  
+      // Store hash
+      var hash = this.hash;
+  
+      // Using jQuery's animate() method to add smooth page scroll
+      // The optional number (800) specifies the number of milliseconds it takes to scroll to the specified area
+      $('html, body').animate({
+        scrollTop: $(hash).offset().top
+      }, 800, function(){
+     
+        // Add hash (#) to URL when done scrolling (default click behavior)
+        window.location.hash = hash;
+      });
+    });
+  });
+      </script>
+
+	
+>>>>>>> 0b639b4d9c642088650275c8d1a3c9badfd87699
 
 	<a href="home.do">home...</a>
 	<br />

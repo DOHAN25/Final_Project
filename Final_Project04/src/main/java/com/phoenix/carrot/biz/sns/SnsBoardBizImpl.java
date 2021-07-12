@@ -62,6 +62,12 @@ public class SnsBoardBizImpl implements SnsBoardBiz {
 		return dao.snsUserFeedList(userId);
 	}
 	
+	//유저 정보깔기 
+	@Override
+	public UserDto snsUserSelectOne(String userId) {
+
+		return dao.snsUserSelectOne(userId);
+	}
 	@Override
 	public List<UserDto> userList() {
 		
@@ -79,7 +85,6 @@ public class SnsBoardBizImpl implements SnsBoardBiz {
 		
 		return dao.snsSearchUserByName(username);
 	}
-
-
+	
 
 }

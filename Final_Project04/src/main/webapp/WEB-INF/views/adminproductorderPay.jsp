@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>씨앗 마켓</title>
+<title>Insert title here</title>
     <!-- jQuery -->
     <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js" ></script>
   
@@ -24,93 +24,9 @@
     
     <style>
     </style>
+    
 </head>
 <body>
-
-
-	<h1>씨앗마켓 상품 주문 페이지</h1>
-
-	<form action="adminproductorderpay.do" method="POST">
-
-	<input type="hidden" name="productSeq" value="${dto.productSeq }">
-	<input type="hidden" name="userSeq" value="${login.userseq }">
-
-		<h2>상품 정보</h2>
-		<p>
-			<span>이미지:</span><input name="productName" value="${dto.productImg }" readonly="readonly">
-		</p>
-		<p>
-			<span>상품명:</span><input name="productName" value="${dto.productName }" readonly="readonly">
-		</p>
-
-		<p>
-			<span>가격:</span><input name="productPrice" value="${dto.productPrice }" readonly="readonly">
-		</p>
-
-		<h2>주문자 정보</h2>
-		<p>
-			<span>이름:</span> <input type="text" name="username" value="${login.username }" readonly="readonly" autofocus="autofocus">
-		</p>
-		<p>
-			<span>휴대폰:</span><input type="text" name="userphone" value="${login.userphone }" placeholder="연락처를 입력해주세요">
-		</p>
-		
-		<p>
-			<span>이메일:</span> <input type="text" name="useremail" value="${login.useremail }"placeholder="이메일을 입력해주세요">
-			
-		</p>
-		
-		<p>
-			<span>주소:</span> <input type="text" name="useraddress" value="${login.useraddress }"placeholder="주소글 입력해주세요">
-			
-		</p>
-		
-		<p>
-			<span>상세주소:</span> <input type="text" name="userdetailaddress" value="${login.userdetailaddress }"placeholder="상세주소를 입력해주세요">
-			
-		</p>
-		
-	
-  		<button onclick="requestPay()">결제하기</button>
-		<input type="reset"	value="취소하기">
-		<input type="button" value="뒤로가기" onclick="location.href='adminproductdetail.do?productSeq=${dto.productSeq }'">
-
-
-<%-- 
-
-adminproductorder
-<br>
-userseq:
-${login.userseq }
-<br>이미지:
-${dto.productImg }
-
-<br>
-상품명:
-${dto.productName }
-<br>
-상품가격:
-${dto.productPrice }
-<br>
-주문자명:
-${login.userid }
-<br>
-주문자 이름:
-${login.username }
-<br>
-주문자 연락처:
-${login.userphone }
-<br>
-useremail
-${login.useremail }
-<br>
-주문자 주소:
-${login.useraddress }
-<br>
-상세주소:
-${login.userdetailaddress } --%>
-
-	</form>
 
 <script type="text/javascript">
 
@@ -121,7 +37,7 @@ IMP.init("imp98397380"); // "imp00000000" 대신 발급받은 "가맹점 식별�
 function requestPay() {
 	// IMP.request_pay(param, callback) 호출
 	IMP.request_pay({ // param
-	  pg: "html5_inicis", //kg이니시스 (웹표준 결제창)
+	  pg: "html5_inicis", 
 	  pay_method: "card",
 	  merchant_uid: "ORD20180131-0000011",
 	  name: "노르웨이 회전 의자",
@@ -153,5 +69,51 @@ function requestPay() {
 
 </script>
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+adminproductorder
+<br>
+userseq:
+${login.userseq }
+<br>
+이미지:
+${dto.productImg }
+
+<br>
+상품명:
+${dto.productName }
+<br>
+상품가격:
+${dto.productPrice }
+<br>
+주문자명:
+${login.userid }
+<br>
+주문자 이름:
+${login.username }
+<br>
+주문자 연락처:
+${login.userphone }
+<br>
+useremail
+${login.useremail }
+<br>
+주문자 주소:
+${login.useraddress }
+<br>
+상세주소:
+${login.userdetailaddress } 
 </body>
 </html>

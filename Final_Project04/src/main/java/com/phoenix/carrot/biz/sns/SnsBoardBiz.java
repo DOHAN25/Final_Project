@@ -15,6 +15,8 @@ public interface SnsBoardBiz {
 	
 	//유저개인피드
 	public List<EntireBoardDto> snsUserFeedList(String userId);
+	//유저 개인피드에 유저 정보깔기
+	public UserDto snsUserSelectOne(String userId);
 	//유저 리스트 출력
 	public List<UserDto> userList();
 	//유저 아이디로 검색

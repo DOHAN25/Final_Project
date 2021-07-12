@@ -1,20 +1,31 @@
 package com.phoenix.carrot.model.controller;
 
+import java.io.File;
+import java.io.IOException;
+
+import javax.annotation.Resource;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.phoenix.carrot.admin.biz.AdminProductBiz;
 import com.phoenix.carrot.product.dto.ProductDto;
+import com.phoenix.carrot.utils.UploadFileUtils;
 
 @Controller
 public class AdminProductController {
 
 	private Logger logger = LoggerFactory.getLogger(AdminProductController.class);
 
+	
+	@Resource(name="uploadPath")
+	private String uploadPath;
+	
 	@Autowired
 	private AdminProductBiz adminproductbiz;
 	
@@ -36,15 +47,26 @@ public class AdminProductController {
 	}
 	
 	@RequestMapping("/adminproductinsertres.do")
-	public String adminProductInsertRes(ProductDto dto) {
+	public String adminProductInsertRes(ProductDto dto, MultipartFile file) throws Exception {
 		
 		logger.info("[Controller] : adminproductinsertres.do");
 		
-		if (adminproductbiz.adminProductInsert(dto) > 0) {
-			return "redirect:adminproduct.do";
+		String imgUploadPath = uploadPath + File.separator + "upload";
+		String ymdPath = UploadFileUtils.calcPath(imgUploadPath);
+		String fileName = null;
+		
+		if (file != null) {
+			fileName = UploadFileUtils.fileUpload(imgUploadPath, file.getOriginalFilename(), file.getBytes(), ymdPath);
+		} else {
+			fileName = uploadPath + File.separator + "image" + File.separator +"none.png";
 		}
 		
-		return "redirect:adminproductinsert.do";
+		dto.setProductImg(File.separator + "upload" + ymdPath + File.separator + fileName);
+		dto.setProductThumb(File.separator + "upload" + ymdPath + File.separator + "s" + File.separator + "s_" + fileName);
+		
+		adminproductbiz.adminProductInsert(dto);
+		
+		return "redirect:adminproduct.do";
 	}
 	
 	/* 상품 상세 정보 */
@@ -66,6 +88,15 @@ public class AdminProductController {
 
 		return "adminproductorder";
 	}
-	
+
+	/* 아임포트 결제 페이지*/
+	@RequestMapping("/adminproductorderpay.do")
+	public String adminproductorderPay(Model model, int productSeq) {
+		logger.info("[Controller] : adminproductorderpay.do");
+		
+		model.addAttribute("dto", adminproductbiz.adminProductOne(productSeq));
+
+		return "adminproductorderPay";
+	}
 	
 }

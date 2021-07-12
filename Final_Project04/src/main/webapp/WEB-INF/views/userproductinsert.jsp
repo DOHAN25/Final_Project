@@ -14,7 +14,12 @@
 	src="${pageContext.request.contextPath}/resources/js/summernote/lang/summernote-ko-KR.js"></script>
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/resources/css/summernote/summernote-lite.css">
-
+<!-- style -->
+<style>
+	#image_container img{
+			width:400px;
+		}
+</style>
 
 <script type="text/javascript">
 	//주소팝업
@@ -113,9 +118,20 @@
 
 	<h1>당근마켓등록</h1>
 
-	<form action="userproductinsertres.do" method="post">
+	<form action="userproductinsertres.do" method="post" enctype="multipart/form-data">
 		<input type="hidden" id="userLatitude" name="userLatitude">
 		<input type="hidden" id="userLongitude" name="userLongitude">
+					<!-- 이미지 업로드 -->
+		<div>
+			<div>상품이미지</div>
+			<div class='uploadFileDiv'>
+				<input type="file" name="file" accept="image/*1" id="productImg" onchange="setThumbnail(event);"><br>
+			</div>			
+			<div id="image_container"></div>
+			<!--  <button id='uploadBtn'>Upload</button> -->
+			<%=request.getRealPath("/") %>
+			<!-- end -->		
+		</div>
 		<table border="1">
 			<tr>
 				<td>유저Seq</td>
@@ -157,6 +173,22 @@
 
 <script type="text/javascript">
 
+	//이미지 미리보기 함수 
+	function setThumbnail(event) {
+		var reader = new FileReader();
+	
+		//onload됐을시에 발생할 이벤트 작성 
+		reader.onload = function(event) {
+			//FileReader가 로드 됐을 때 img 엘리먼트 생성하고 src 속성을 설정 
+			var img = document.createElement("img");
+			img.setAttribute("src", event.target.result);
+			//이미지가 들어갈 div에 넣어주기 
+			document.querySelector("div#image_container").appendChild(img);
+	};
+	
+	//리더에서 input 태그에서 선택한 파일을 읽어오도록 설정 
+	reader.readAsDataURL(event.target.files[0]);
+} 
 
 </script>
 </html>

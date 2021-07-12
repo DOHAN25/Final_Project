@@ -73,6 +73,7 @@ public class SnsController {
 	public String snsUserFeed(Model model, @RequestParam String userId) {
 		logger.info("[Controller] : snsBoardUserFeed.do");
 		
+		model.addAttribute("snsUserSelectOne", biz.snsUserSelectOne(userId));
 		model.addAttribute("snsUserFeedList", biz.snsUserFeedList(userId));
 		return "snsuserfeed";
 	}
@@ -84,13 +85,14 @@ public class SnsController {
 	}
 	
 	@RequestMapping("/snsBoardInsertRes.do")
-	public String snsBoardInsertRes(EntireBoardDto dto, MultipartFile file) throws Exception {
+	public String snsBoardInsertRes(EntireBoardDto dto, MultipartFile file, HttpSession session) throws Exception {
 		logger.info("[Controller] : snsBoardInsertRes.do");
 		
 		String imgUploadPath = uploadPath + File.separator + "upload";
 		String ymdPath = UploadFileUtils.calcPath(imgUploadPath);
 		String fileName = null;
-		
+		String userId = dto.getUserId();
+		System.out.println("userId : " + userId);
 		if (file != null) {
 			fileName = UploadFileUtils.fileUpload(imgUploadPath, file.getOriginalFilename(), file.getBytes(), ymdPath);
 		} else {
@@ -102,7 +104,7 @@ public class SnsController {
 		
 		biz.snsBoardInsert(dto);
 		
-		return "redirect:main.do";
+		return "redirect:snsBoardUserFeed.do?userId="+userId;
 		
 		/*
 		 RedirectAttributes redirectAttributes파라미터 추가! 

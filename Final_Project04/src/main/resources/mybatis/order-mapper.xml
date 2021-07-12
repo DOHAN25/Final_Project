@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="Order">
+
+	<insert id="productorderInsert" parameterType="String">
+			
+		INSERT INTO PRODUCTORDER
+		VALUES(ORDERSEQ.NEXTVAL, #{productSeq}, #{productName},  #{productPrice}, #{quantity},#{deliveryfee},#{orderAmount},
+		#{pay_method}, #{userSeq}, #{userId}, 
+		#{receiveName}, #{receiverPhone},#{receiverOaddress},#{receiverRaddress}, #{receiverDetailaddress},SYSDATE );
+	</insert>
+	
+		
+	<select id="productorderOne" parameterType="orderDto" resultType="int">
+		
+		SELECT userSeq, orderSeq, receiveName, receiverPhone, receiverOaddress, receiverRaddress, receiverDetailaddress, orderdate, ROWNUM FROM
+		(SELECT userSeq, orderSeq, receiveName, receiverPhone, receiverOaddress, receiverRaddress, receiverDetailaddress, orderdate, ROWNUM 
+		FROM productorder
+		WHERE orderseq = #{orderseq}
+		ORDER BY orderdate DESC) WHERE ROWNUM = 1;
+	</select>
+	
+</mapper>

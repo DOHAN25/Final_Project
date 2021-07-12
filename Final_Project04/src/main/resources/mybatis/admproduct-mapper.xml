@@ -18,7 +18,7 @@
 	
 	<insert id="adminProductInsert" parameterType="productDto">
 		INSERT INTO Product
-		VALUES (productSeq.NEXTVAL, #{productName}, #{productPrice}, NULL, SYSDATE, #{productInfo}, NULL, NULL, 'Y', 'ADMIN', 1, 'test', NULL, NULL)
+		VALUES (productSeq.NEXTVAL, #{productName}, #{productPrice}, NULL, SYSDATE, #{productInfo}, #{productImg}, #{productThumb}, 'Y', 'ADMIN', #{userSeq}, #{userId},  NULL,  NULL)
 	</insert>
 	
 </mapper>

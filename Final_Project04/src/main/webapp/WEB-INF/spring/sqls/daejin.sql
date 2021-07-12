@@ -129,8 +129,7 @@ SELECT * FROM Product;
 DELETE FROM PRODUCT WHERE userRole = 'ADMIN';
 
 SELECT * FROM Product
-WHERE userRole = 'ADMIN'
-ORDER BY productPrice DESC;
+WHERE userRole = 'ADMIN';
 
 SELECT * FROM Product
 WHERE userRole = 'USER'
@@ -185,17 +184,10 @@ CREATE SEQUENCE followSeq;
 
 CREATE TABLE followTable(
 	followSeq NUMBER PRIMARY KEY,
-	userSeq NUMBER NOT NULL,
-	userId VARCHAR2(100) NOT NULL,
-	followId VARCHAR2(100)
+	following_ID VARCHAR2(100),
+	follower_ID VARCHAR2(100)
 );
 
-DROP TABLE followList;
-
-CREATE TABLE followList(
-	followId VARCHAR2(100),
-	followerId VARCHAR2(100),
-);
 --------------------좋아요------------------------------
 DROP SEQUENCE likeSeq;
 DROP TABLE likeTable;
