@@ -349,6 +349,11 @@ public class UserController {
 		
 		return "userupdate";
 	}
+	
+	@RequestMapping("/honeytip.do")
+	public String hoenyTip() {
+		return "honeytip";
+	}
 
 
 	

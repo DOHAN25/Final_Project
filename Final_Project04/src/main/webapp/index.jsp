@@ -474,7 +474,7 @@ body {
       </script>
 
 	
->>>>>>> 0b639b4d9c642088650275c8d1a3c9badfd87699
+
 
 	<a href="home.do">home...</a>
 	<br />
@@ -495,8 +495,10 @@ body {
 	<a href="chat.do">채팅하기</a>
 	<br>
 	<a href="userupdate.do">마이페이지</a>
+	<br>
+	<a href="honeytip.do">차투</a>
 
 
-
+<%@include file ="/WEB-INF/views/1footer.jsp" %>
 </body>
 </html>
