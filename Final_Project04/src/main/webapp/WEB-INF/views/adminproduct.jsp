@@ -139,7 +139,7 @@ $(document).ready(function(){
 								<div class="col-md-4">
 									 <a href="#">
 							            <div id="imghover">
-							                <img val="${ProductDto.productImg }" src="https://www.verandarecipe.com/web/product/big/201705/1353_shop1_266999.jpg" alt="상품이미지" class=" img-responsive">
+							                <img class=" img-responsive"alt="상품이미지" src="${pageContext.request.contextPath}/resources${ProductDto.productThumb }"/>
 							            </div>
 						            </a>
 									<div>

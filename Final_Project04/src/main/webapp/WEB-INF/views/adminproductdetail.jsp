@@ -17,6 +17,11 @@
     <!-- 합쳐지고 최소화된 최신 자바스크립트 -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
     <style>
+    	#productImg{
+    		width: 300px;
+		 	height: 150px;
+		 	object-fit: cover;
+		}
     </style>
 </head>
 <body>
@@ -28,12 +33,12 @@
 		<tr>
 			<td>상품이미지</td>
 			<td>
-				<img src="${pageContext.request.contextPath}/resources${dto.productImg }">
+				<img id="productImg" src="${pageContext.request.contextPath}/resources${dto.productImg }">
 			</td>	
 		</tr>
 		<tr>
 			<td>상품 썸네일이미지</td>
-			<td><img src="${pageContext.request.contextPath}/resources${dto.productThumb }"/></td>
+			<td><img id="productThumb" src="${pageContext.request.contextPath}/resources${dto.productThumb }"/></td>
 		</tr>
 		<tr>
 			<td>상품명</td>

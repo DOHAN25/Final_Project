@@ -9,9 +9,8 @@ public class OrderDto {
 	private String productName;
 	private int productPrice;
 	private int quantity;
-	private int deliveryfee;
 	private int orderAmount;
-	private String pay_method;
+	private String paymethod;
 	private int userSeq;
 	private String userId;
 	private String receiveName;
@@ -25,7 +24,7 @@ public class OrderDto {
 	}
 
 	public OrderDto(int orderSeq, int productSeq, String productName, int productPrice, int quantity, int deliveryfee,
-			int orderAmount, String pay_method, int userSeq, String userId, String receiveName, String receiverPhone,
+			int orderAmount, String paymethod, int userSeq, String userId, String receiveName, String receiverPhone,
 			String receiverOaddress, String receiverRaddress, String receiverDetailaddress, Date orderDate) {
 		super();
 		this.orderSeq = orderSeq;
@@ -33,9 +32,8 @@ public class OrderDto {
 		this.productName = productName;
 		this.productPrice = productPrice;
 		this.quantity = quantity;
-		this.deliveryfee = deliveryfee;
 		this.orderAmount = orderAmount;
-		this.pay_method = pay_method;
+		this.paymethod = paymethod;
 		this.userSeq = userSeq;
 		this.userId = userId;
 		this.receiveName = receiveName;
@@ -86,13 +84,6 @@ public class OrderDto {
 		this.quantity = quantity;
 	}
 
-	public int getDeliveryfee() {
-		return deliveryfee;
-	}
-
-	public void setDeliveryfee(int deliveryfee) {
-		this.deliveryfee = deliveryfee;
-	}
 
 	public int getOrderAmount() {
 		return orderAmount;
@@ -102,12 +93,12 @@ public class OrderDto {
 		this.orderAmount = orderAmount;
 	}
 
-	public String getPay_method() {
-		return pay_method;
+	public String getPaymethod() {
+		return paymethod;
 	}
 
-	public void setPay_method(String pay_method) {
-		this.pay_method = pay_method;
+	public void setPaymethod(String paymethod) {
+		this.paymethod = paymethod;
 	}
 
 	public int getUserSeq() {
@@ -172,6 +163,16 @@ public class OrderDto {
 
 	public void setOrderDate(Date orderDate) {
 		this.orderDate = orderDate;
+	}
+
+	@Override
+	public String toString() {
+		return "OrderDto [orderSeq=" + orderSeq + ", productSeq=" + productSeq + ", productName=" + productName
+				+ ", productPrice=" + productPrice + ", quantity=" + quantity + ", orderAmount=" + orderAmount
+				+ ", paymethod=" + paymethod + ", userSeq=" + userSeq + ", userId=" + userId + ", receiveName="
+				+ receiveName + ", receiverPhone=" + receiverPhone + ", receiverOaddress=" + receiverOaddress
+				+ ", receiverRaddress=" + receiverRaddress + ", receiverDetailaddress=" + receiverDetailaddress
+				+ ", orderDate=" + orderDate + "]";
 	}	
 	
 	
