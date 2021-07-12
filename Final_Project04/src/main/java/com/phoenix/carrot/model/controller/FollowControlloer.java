@@ -24,8 +24,18 @@ public class FollowControlloer {
 		
 		followbiz.insertFollow(followdto);
 		String follower = followdto.getFollowerId();
+		int followingInfo = followbiz.checkFollow(followdto.getFollowingId(), follower_ID);
 		
+		//followingInfo=1이라면 이미 팔로워  followingInfo=0이라면 아직 팔로워하지 않았음
+		if(followingInfo == 0) {
+			model.addAttribute("followingInfo", "enable");
+		} else {
+			model.addAttribute("followingInfo", "disable");
+		}
 		
-		return 0;
+		model.addAttribute("countSub",followbiz.followCount(follower_ID));//구독자 수
+		model.addAttribute("member_email_sub",followbiz.selectFollow(follower_ID));
+		
+		return followbiz.followCount(follower_ID);
 	};
 }
