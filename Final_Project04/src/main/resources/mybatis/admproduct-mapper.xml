@@ -10,7 +10,8 @@
 		ORDER BY productPrice DESC
 	</select>
 
-	<select id="adminProductOne" resultType="productDto">
+	<!--  메소드에 태워서 보내주는 파라미터, where절에 파라미터있으면 parameterType 같은 타입으로 적어줘야 함-->
+	<select id="adminProductOne" resultType="productDto" parameterType="int">
 		SELECT *
 		FROM Product
 		WHERE productSeq = #{productSeq}
