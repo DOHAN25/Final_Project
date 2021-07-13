@@ -117,7 +117,8 @@ public class UserController {
 	@RequestMapping(value="/registPost.do", method=RequestMethod.POST)
 	public String registPost(UserDto dto) {
 		logger.info("[Controller] : registPost.do");
-		
+		dto.setUserImg("NULL");
+		dto.setUserProfileImg("NULL");
 		dto.setPassword(passwordEncoder.encode(dto.getPassword()));
 		
 		int res = biz.regist(dto);
