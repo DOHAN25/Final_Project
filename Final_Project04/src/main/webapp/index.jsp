@@ -65,16 +65,16 @@ body {
 <body>
 
 	<nav class="navbar navbar-default navbar-fixed-top ">
-		<div class="container-fluid">
-			<div class="navbar-header">
+		<div class="container-fluid" >
+			<div class="navbar-header" >
 				<button type="button" class="navbar-toggle collapsed"
 					data-toggle="collapse" data-target="#myNavbar">
 					<span class="sr-only">Toggle navigation</span> <span
 						class="icon-bar"></span> <span class="icon-bar"></span> <span
 						class="icon-bar"></span>
 				</button>
-				<a class="navbar-brand" href="index.jsp"> <img src="resources/image/logo-banner.png"
-					alt="당근팜">
+				<a class="navbar-brand" href="index.jsp"  style="margin:0px 0px 0px 0px; padding:0px 0px 0px 0px; padding-top:0px;"> <img src="resources/image/logo-banner.png"
+					alt="당근팜" >
 				</a>
 				<p class="navbar-text">
 					내가 키운 채소, <a href="index.jsp" class="navbar-link">당근팜</a>에서 거래하세요!
@@ -82,7 +82,7 @@ body {
 			</div>
 
 		
-			<div class="collapse navbar-collapse navbar-scrollspy" id="myNavbar">
+			<div class="collapse navbar-collapse navbar-scrollspy" id="myNavbar" >
 				<ul class="nav navbar-nav">
 					<c:if test="${login == null }">
 						<li><a href="#section1">로컬마켓</a></li>
@@ -94,7 +94,7 @@ body {
 					</c:if>
 					<c:if test="${login != null }">
 						<li><a href="#section1">로컬마켓</a></li>
-						<li><a href="#section2">씨앗,도구 구매</a></li>
+						<li><a href="#section2">씨앗마켓</a></li>
 						<li><a href="#section3">모두의 당근</a></li>
 						<li><a href="#section4">꿀팁</a></li>
 						<li><a href="#section6">공지사항</a></li>
@@ -256,7 +256,7 @@ body {
 	
 
 
-	<a href="mypage.do">마이페이지</a>
+	
 	
 	
 

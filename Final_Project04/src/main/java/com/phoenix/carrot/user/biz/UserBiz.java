@@ -12,11 +12,13 @@ public interface UserBiz {
 	
 	public String find_id(String useremail);
 	
+	public int updatePw(UserDto dto);
+	
 	//�̸��Ϲ߼�
 	public void sendEmail(UserDto dto);
 
 	//��й�ȣã��
-	public void findPw(UserDto dto) throws Exception;
+	public String findPw(UserDto dto) throws Exception;
 
 
 }

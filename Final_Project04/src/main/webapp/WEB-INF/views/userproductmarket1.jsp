@@ -226,7 +226,7 @@ td {
 							</div>
 							<!-- /btn-group -->
 							<input type="text" class="form-control" aria-label="..."
-								id="searchVal">
+								id="searchVal" style="margin-left:15px;">
 						</div>
 						<!-- /input-group -->
 					</div>
@@ -240,13 +240,13 @@ td {
 
 				<table class="table table-hover">
 					<tr>
-						<th>등록날짜</th>
-						<th>상품 이미지</th>
+						<th style="text-align: center;">등록날짜</th>
+						<th style="text-align: center;">상품 이미지</th>
 						<!--혹시몰라서 넣어둡니다 나중에 빼도됩니다-->
-						<th>유저ID</th>
-						<th>상품명</th>
-						<th>상품가격</th>
-						<th>판매자 주소</th>
+						<th style="text-align: center;">유저ID</th>
+						<th style="text-align: center;">상품명</th>
+						<th style="text-align: center; width:100px;">상품가격</th>
+						<th style="text-align: center;">판매자 주소</th>
 					</tr>
 					<tbody id="dynamicTbody">
 						<c:choose>
@@ -259,14 +259,14 @@ td {
 								<c:forEach items="${userProductList }" var="dto">
 
 									<tr>
-										<td>${dto.productRegDate }</td>
+										<td style="vertical-align: middle;">${dto.productRegDate }</td>
 										<td><img style="width: 200px; height: 200px;"
 											src="${pageContext.request.contextPath}/resources${dto.productImg }"></td>
-										<td>${dto.userId }</td>
-										<td><a
+										<td style="vertical-align: middle;">${dto.userId }</td>
+										<td style="vertical-align: middle;"><a
 											href="userproductdetail.do?productSeq=${dto.productSeq }">${dto.productName }</a></td>
-										<td>${dto.productPrice }</td>
-										<td>${dto.sellerAddress }</td>
+										<td style="vertical-align: middle;">${dto.productPrice }</td>
+										<td style="vertical-align: middle;">${dto.sellerAddress }</td>
 									</tr>
 
 								</c:forEach>

@@ -21,12 +21,10 @@
 <body>
 <%@include file="/WEB-INF/views/1header.jsp"%>
 
-  <div class="container" style="width: 100%">
-  	
+  <div class="container" style="width: 100%; padding-top:100px">
+	<div style="text-align: center;">
+		<h1>씨앗마켓 상품 상세 페이지</h1></div>
     <div class="col-md-8 col-md-offset-2 ">
-    <div style="text-align: center;">
-		<h1>씨앗마켓 상품 상세 페이지</h1>
-	</div>
       <div class="col-md-5">
 	    <img id="productImg" src="${pageContext.request.contextPath}/resources${dto.productImg }" alt="상품이미지"
           class="img-responsive"  style="border :1px solid rgb(226, 226, 226);">

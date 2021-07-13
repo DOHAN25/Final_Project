@@ -37,5 +37,7 @@
   <update id="updatePw" parameterType="userDto">
   		UPDATE USERS SET PASSWORD = #{password} WHERE USERID = #{userid}
   </update>
+  
+  
     
 </mapper>
