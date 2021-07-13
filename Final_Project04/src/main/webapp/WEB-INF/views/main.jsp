@@ -61,7 +61,7 @@
             <div class="col-sm-2 col-md-2 " id="left_side_bar" style="border-right:1px solid rgb(214, 214, 214); height: 100%;  ">
                 <!--로고이미지-->
                 <div class="row">
-                <img src="resources/image/logo.png" class="img-responsive"  alt="당근팜 로고" style="padding-bottom: 20px; height: 200px; width: 300px;" >
+                <img src="resources/image/logo.png" class="img-responsive"  alt="당근팜 로고" style="padding-bottom: 20px;" >
                 </div>
                 <!--프로필사진,id-->
                 <div class="row">
@@ -141,10 +141,10 @@
                         </div>
                         <div class="row" style="padding-top: 20px;">
                         
-                            <div class="col-md-10 col-md-offset-1" style="text-align:center;">
+                            <div class="col-md-10 col-md-offset-1"  >
                                 <!--게시물 이미지 센터로 나오는지 확인-->
-                                <a href="snsBoardOne.do?entireBoardSeq=${dto.entireBoardSeq }">
-                                <img src="${pageContext.request.contextPath}/resources${dto.boardImg }" class="img-responsive"  alt="게시물 이미지" style="height: 500px; width: 500px; "   > 
+                                <a href="snsBoardOne.do?entireBoardSeq=${dto.entireBoardSeq }"  >
+                                <img src="${pageContext.request.contextPath}/resources${dto.boardImg }" class="img-responsive"  alt="게시물 이미지" style="height: 500px; width: 500px; margin-left:200px; "   > 
                             	</a>
                             </div>
                         </div>

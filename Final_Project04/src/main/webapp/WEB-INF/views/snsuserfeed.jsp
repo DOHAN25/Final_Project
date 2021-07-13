@@ -62,7 +62,7 @@
 <!--왼쪽 사이드-->
             <div class="col-sm-2 col-md-2 " id="left_side_bar" style="border-right:1px solid rgb(214, 214, 214); height: 100%;  ">
                <div class="row">
-                <img src="https://via.placeholder.com/300x200" class="img-responsive"  alt="당근팜 로고" style="padding-bottom: 20px;" >
+                <img src="resources/image/logo.png" class="img-responsive"  alt="당근팜 로고" style="padding-bottom: 20px;" >
                 </div>
                 <!--프로필사진,id-->
                 <div class="row">
@@ -99,6 +99,8 @@
 
                 </div>
             </div>
+            
+            
 <!--본문-->
             
                     <div class="col-sm-8 col-md-8 col-md-offset-2 " style="border:1px solid rgb(228, 228, 228);">
@@ -162,7 +164,7 @@
 											<td>
 												<div class="col-sm-12 col-md-12 img-responsive" >
       												<a type="button" href="snsBoardOne.do?entireBoardSeq=${dto.entireBoardSeq }"> 	
-      													<img src="${pageContext.request.contextPath}/resources${dto.boardThumbImg }" alt="내가 올린 이미지" id="img" style="padding:10px 10px 10px 10px;">
+      													<img src="${pageContext.request.contextPath}/resources${dto.boardThumbImg }" alt="내가 올린 이미지" id="img" style="padding:10px 10px 10px 10px; width:250px; height:250px;">
       												</a>
 												</div>
 											</td>
@@ -173,16 +175,18 @@
                                		</c:forEach>
                                 </c:otherwise>
                             </c:choose>
-                            </div>
+                            
                             </table>
+                            </div>
                     </div>
+                    
                
 <!--오른쪽 사이드-->
             <div class="col-sm-2 col-md-2 "  id="right_side_bar" style=" border-left:1px solid rgb(214, 214, 214); padding:0px 5px; ">
-                <div class="col-md-12">
+                <div class="col-md-12" style="margin-top:20px;">
             	       <a href="snsUserSearch.do"><button type="button" class="btn btn-warning btn-block" style="margin-bottom:20px;">유저 검색</button></a>
 				</div>
-                <div class="col-md-12" style="padding:0px 0px 0px 0px;">
+                <div class="col-md-12" style="padding:0px 0px 0px 0px; ">
                     <!--팔로우 추천 리스트-->
                     <div class="list-group" >
                         <a href="#" class="list-group-item disabled" style="text-align: center;">팔로우 추천</a>
@@ -204,8 +208,11 @@
            		</div>
         </div>
     </div>
+    
+    
 	</c:if>
+	
 
-<%@include file="/WEB-INF/views/1footer.jsp"%>
+
 </body>
 </html>
