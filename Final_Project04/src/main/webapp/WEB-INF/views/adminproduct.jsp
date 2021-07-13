@@ -95,7 +95,7 @@
         <body>
         
         <%@include file="/WEB-INF/views/1header.jsp" %>
-            <div class="container" style="width: 100%;">
+            <div class="container" style="width: 100%; padding-top:80px;">
                 <div class="col-md-8 col-md-offset-2 ">
 
                     <div class="col-md-2 position-fixed">
