@@ -40,7 +40,7 @@
 					<tr>
 						<td>상품이미지</td>
 						<td><img
-							src="${pageContext.request.contextPath}/resources${dto.productImg }">
+							src="${pageContext.request.contextPath}/resources${dto.productThumb }">
 						</td>
 					</tr>
 					<tr style="display: none;">

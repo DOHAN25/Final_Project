@@ -10,8 +10,10 @@
 
         <!-- style -->
         <style>
-            #image_container img {
-                width: 400px;
+            #preview-image img {
+                height: 300px;
+                width: 300px;
+                
             }
         </style>
 
@@ -88,7 +90,7 @@
     </head>
 
     <body>
-        <%@include file="/WEB-INF/views/1header.jsp" %>
+       
 
 
             <form action="adminproductinsertres.do" method="POST" enctype="multipart/form-data">
@@ -112,7 +114,7 @@
                                 <tr>
                                     <th style="vertical-align: middle;">상품이미지</th>
                                     <td><img src="https://via.placeholder.com/300x300" class="img-responsive"
-                                            alt="Responsive image">
+                                            alt="Responsive image" id="preview-image" style="height:400px; width:400px;">
                                         <input type="file" name="file" accept="image/*1" id="boardImg"
                                             onchange="setThumbnail(event);" class="form-control custom-file-input"
                                             id="customFile">
@@ -172,21 +174,7 @@
                 })
 
 
-                 //이미지 미리보기 함수 
-                 function setThumbnail(event) {
-                     var reader = new FileReader();
-                     //onload됐을시에 발생할 이벤트 작성 
-                     reader.onload = function (event) {
-                         //FileReader가 로드 됐을 때 img 엘리먼트 생성하고 src 속성을 설정 
-                         var img = document.createElement("img");
-                         img.setAttribute("src", event.target.result);
-                         //이미지가 들어갈 div에 넣어주기 
-                         document.querySelector("div#image_container").appendChild(img);
-                     };
 
-                     //리더에서 input 태그에서 선택한 파일을 읽어오도록 설정 
-                     reader.readAsDataURL(event.target.files[0]);
-                }
 
             </script>
             <%@include file="/WEB-INF/views/1footer.jsp" %>
