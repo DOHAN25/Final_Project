@@ -132,7 +132,7 @@ $(document).ready(function(){
             <div class="col-sm-2 col-md-2 " id="left_side_bar" style="border-right:1px solid rgb(214, 214, 214); height: 100%;  ">
             	 <!--로고이미지-->
                 <div class="row">
-                <img src="resources/image/logo.png" class="img-responsive"  alt="당근팜 로고" style="padding-bottom: 20px; height: 200px; width: 300px;" >
+                <img src="resources/image/logo.png" class="img-responsive"  alt="당근팜 로고" style="padding-bottom: 20px;" >
                 </div>
                 <!--프로필사진,id-->
                 <div class="row">
@@ -147,19 +147,19 @@ $(document).ready(function(){
                 <div class="row">
                     <ul class="nav nav-pills nav-stacked" >
                         <!--홈으로 이동 버튼 -->
-                        <li id="navbar-style" role="presentation" ><a href="index.jsp" id="li-color"><span class="glyphicon glyphicon-home" aria-hidden="true"></span><span style="margin-left:20px" style="color: black;">home</span></a></li>
+                        <li id="navbar-style" role="presentation" ><a href="index.jsp" id="li-color" style="color: black;"><span class="glyphicon glyphicon-home" aria-hidden="true"></span><span style="margin-left:20px" style="color: black;">home</span></a></li>
                         <!--나의 피드보기 이동 버튼 -->
-                        <li id="navbar-style" role="presentation" ><a href="snsBoardUserFeed.do?userId=${login.userid }" id="li-color"><span class="glyphicon glyphicon-user" aria-hidden="true"></span><span style="margin-left:20px" style="color: black;">나의 피드 보기</span></a></li>
+                        <li id="navbar-style" role="presentation" ><a href="snsBoardUserFeed.do?userId=${login.userid }" id="li-color" style="color: black;"><span class="glyphicon glyphicon-th" aria-hidden="true"></span><span style="margin-left:20px" style="color: black;">나의 피드 보기</span></a></li>
                         <!--글작성 이동 버튼 -->
-                        <li id="navbar-style" role="presentation" ><a href="snsBoardInsertForm.do" id="li-color"><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span><span style="margin-left:20px" style="color: black;">글작성</span></a></li>
+                        <li id="navbar-style" role="presentation" ><a href="snsBoardInsertForm.do" id="li-color" style="color: black;"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span><span style="margin-left:20px" style="color: black;">글작성</span></a></li>
                         <!--마이페이지로 이동 버튼 -->
-                        <li id="navbar-style" role="presentation" ><a href="mypage.do?userid=${login.userid}" id="li-color"><span class="glyphicon glyphicon-search" aria-hidden="true"></span><span style="margin-left:20px" style="color: black;">마이페이지</span></a></li>
+                        <li id="navbar-style" role="presentation" ><a href="mypage.do?userid=${login.userid}" id="li-color" style="color: black;"><span class="glyphicon glyphicon-user" aria-hidden="true"></span><span style="margin-left:20px" style="color: black;">마이페이지</span></a></li>
                          <!-- 타임라인 -->
-                        <li id="navbar-style" role="presentation" ><a href="main.do" id="li-color"><span class="glyphicon glyphicon-search" aria-hidden="true"></span><span style="margin-left:20px" style="color: black;">타임라인</span></a></li>
+                        <li id="navbar-style" role="presentation" ><a href="main.do" id="li-color" style="color: black;"><span class="glyphicon glyphicon-time" aria-hidden="true"></span><span style="margin-left:20px" style="color: black;">타임라인</span></a></li>
                         <!--채팅-->
-                        <li id="navbar-style" role="presentation" ><a href="#" id="li-color"><span class="glyphicon glyphicon-search" aria-hidden="true"></span><span style="margin-left:20px" style="color: black;">채팅</span></a></li>
+                        <li id="navbar-style" role="presentation" ><a href="#" id="li-color" style="color: black;"><span class="glyphicon glyphicon-comment" aria-hidden="true"></span><span style="margin-left:20px" style="color: black;">채팅</span></a></li>
                         <!--로컬마켓 가기-->
-                        <li id="navbar-style" role="presentation" ><a href="usermarketplace.do" id="li-color"><span class="glyphicon glyphicon-search" aria-hidden="true"></span><span style="margin-left:20px" style="color: black;">로컬마켓 가기</span></a></li>
+                        <li id="navbar-style" role="presentation" ><a href="usermarketplace.do" id="li-color" style="color: black;"><span class="glyphicon glyphicon-gift" aria-hidden="true"></span><span style="margin-left:20px" style="color: black;">로컬마켓 가기</span></a></li>
                         
                       </ul>
                         

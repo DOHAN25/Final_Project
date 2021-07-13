@@ -87,7 +87,7 @@
             <div class="col-sm-2 col-md-2 " id="left_side_bar" style="border-right:1px solid rgb(214, 214, 214); height: 100%;  ">
              <!--로고이미지-->
                 <div class="row">
-                <img src="resources/image/logo.png" class="img-responsive"  alt="당근팜 로고" style="padding-bottom: 20px; height: 200px; width: 300px;" >
+                <img src="resources/image/logo.png" class="img-responsive"  alt="당근팜 로고" style="padding-bottom: 20px;" >
                 </div>
                 <!--프로필사진,id-->
                 <div class="row">
@@ -150,8 +150,8 @@
                       <!--이미지 미리보기 -->
                       <div class="form-group" >
                             <label for="image" class="col-sm-2 control-label">이미지 미리보기</label>
-                            <div class="col-sm-10" id="image_container">
-                            	<img style="width: 500px; height:500px;" id="preview-image" src="https://dummyimage.com/500x500/ffffff/000000.png&text=preview+image">
+                            <div class="col-sm-10" id="image_container" style="text-align:center;">
+                            	<img style="width: 500px; height:500px;  " id="preview-image" src="https://dummyimage.com/500x500/ffffff/000000.png&text=preview+image">
                             </div>
                       </div>
 
@@ -159,7 +159,7 @@
                       <div class="form-group">
                           <label for="text" class="col-sm-2 control-label" >게시글</label>
                           <div class="col-sm-10">
-                              <textarea class="form-control" rows="20" id="insert-form-group" name="boardContents"  placeholder="n자 이내로 입력 가능합니다. "></textarea>
+                              <textarea class="form-control" rows="10" id="insert-form-group" name="boardContents"  placeholder="n자 이내로 입력 가능합니다. "></textarea>
                           </div>
                         </div>
                         <!--#해시태그-->
@@ -324,7 +324,7 @@
 	</script>
 	
 
-<%@include file="/WEB-INF/views/1footer.jsp"%>
+
 </body>
 
 </html>
