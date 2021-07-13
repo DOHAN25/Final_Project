@@ -121,6 +121,7 @@
 										title : markerTitle,
 										image : markerImage
 									});
+									marker.setMap(map);
 								}
 
 								// HTML5의 geolocation으로 사용할 수 있는지 확인합니다 
