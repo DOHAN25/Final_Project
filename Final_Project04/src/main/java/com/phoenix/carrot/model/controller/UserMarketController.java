@@ -174,42 +174,44 @@ public class UserMarketController {
 		return "userproductdetail";
 	}
 
-	/*
-	 * @RequestMapping("/markerdetail.do") public String
-	 * markerDetail(HttpServletRequest request, Model model) { String productName =
-	 * request.getParameter("productName"); System.out.println(productName);
-	 * 
-	 * logger.info("[Controller] : marekrdetail.do");
-	 * 
-	 * ProductDto dto = biz.selectOneByName(productName);
-	 * 
-	 * List<ProductDto> list = new ArrayList<ProductDto>();
-	 * 
-	 * list = biz.selectlistLatLong();
-	 * 
-	 * JSONObject obj = new JSONObject(); JSONArray jArray = new JSONArray();
-	 * JSONObject sObject = new JSONObject();
-	 * 
-	 * for (int i = 0; i < list.size(); i++) {
-	 * 
-	 * sObject.put("title", list.get(i).getProductName()); sObject.put("lat",
-	 * list.get(i).getUserLatitude()); sObject.put("lng",
-	 * list.get(i).getUserLongitude()); jArray.put(sObject); }
-	 * 
-	 * 
-	 * for(ProductDto dto2 : list) { sObject.put("title", dto2.getProductName());
-	 * sObject.put("lat", dto2.getUserLatitude()); sObject.put("lng",
-	 * dto2.getUserLongitude()); jArray.put(sObject); }
-	 * 
-	 * obj.put("positions", jArray);
-	 * 
-	 * model.addAttribute("data", obj);
-	 * 
-	 * 
-	 * model.addAttribute("dto", biz.userProductOne(dto.getProductSeq()));
-	 * 
-	 * 
-	 * return "userproductdetail"; }
-	 */
+	
+	  @RequestMapping("/markerdetail.do") public String
+	 markerDetail(HttpServletRequest request, Model model) { 
+		  String productName = request.getParameter("productName");
+		  System.out.println(productName);
+	 
+	 logger.info("[Controller] : marekrdetail.do");
+	 
+	  ProductDto dto = biz.selectOneByName(productName);
+	
+	 List<ProductDto> list = new ArrayList<ProductDto>();
+	  
+	list = biz.selectlistLatLong();
+	 
+	JSONObject obj = new JSONObject(); JSONArray jArray = new JSONArray();
+	 JSONObject sObject = new JSONObject();
+	 
+	 for (int i = 0; i < list.size(); i++) {
+	  
+	  sObject.put("title", list.get(i).getProductName()); sObject.put("lat",
+	  list.get(i).getUserLatitude()); sObject.put("lng",
+	  list.get(i).getUserLongitude()); jArray.put(sObject); }
+	  
+	  /*
+	  for(ProductDto dto2 : list) { sObject.put("title", dto2.getProductName());
+	  sObject.put("lat", dto2.getUserLatitude()); sObject.put("lng",
+	  dto2.getUserLongitude()); jArray.put(sObject); }
+	  */
+	  obj.put("positions", jArray);
+	  
+	  model.addAttribute("data", obj);
+	  
+	  
+	  model.addAttribute("dto", dto);
+	  
+	  
+	  return "userproductdetail2";
+	  }
+
 
 }
