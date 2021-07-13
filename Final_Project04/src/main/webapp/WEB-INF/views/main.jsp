@@ -130,7 +130,7 @@
                             
                             <div class="col-md-10 col-md-offset-1">
                                 <!--해시태그 혹시 몰라서 넣어뒀습니다.. 만약 링크 걸어서이동 하고싶으면 첫번째꺼쓰고 ,링크 필요없으면 나머지 4개 같이 하면 됩니다.-->
-                                <a href="#"><span style=" padding-right: 20px;">#냥냥</span></a>
+                                <span style="color:cornflowerblue; padding-right: 20px;">#냥냥</span>
                                 <span style="color:cornflowerblue; padding-right: 20px;">#고양이만한 당근</span>
                                 <span style="color:cornflowerblue; padding-right: 20px;">#당근</span>
                                 <span style="color:cornflowerblue; padding-right: 20px;">#주말농장</span>
@@ -140,10 +140,11 @@
                             </div>
                         </div>
                         <div class="row" style="padding-top: 20px;">
-                            <div class="col-md-10 col-md-offset-1">
-                                <!--게시물 이미지-->
+                        
+                            <div class="col-md-10 col-md-offset-1" style="text-align:center;">
+                                <!--게시물 이미지 센터로 나오는지 확인-->
                                 <a href="snsBoardOne.do?entireBoardSeq=${dto.entireBoardSeq }">
-                                <img src="${pageContext.request.contextPath}/resources${dto.boardImg }" class="img-responsive"  alt="게시물 이미지" style="height: 450px; width: 700px;"  > 
+                                <img src="${pageContext.request.contextPath}/resources${dto.boardImg }" class="img-responsive"  alt="게시물 이미지" style="height: 500px; width: 500px; "   > 
                             	</a>
                             </div>
                         </div>
