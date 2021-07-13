@@ -70,7 +70,7 @@
 <!-- style -->
 	<style>
 	#image_container img{
-		height: 300px;
+		height: 500px;
 		width: 500px;
 		
 	}
@@ -151,7 +151,7 @@
                       <div class="form-group" >
                             <label for="image" class="col-sm-2 control-label">이미지 미리보기</label>
                             <div class="col-sm-10" id="image_container">
-                            	<img style="width: 500px;" id="preview-image" src="https://dummyimage.com/500x500/ffffff/000000.png&text=preview+image">
+                            	<img style="width: 500px; height:500px;" id="preview-image" src="https://dummyimage.com/500x500/ffffff/000000.png&text=preview+image">
                             </div>
                       </div>
 
