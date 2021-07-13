@@ -69,8 +69,8 @@ svg.append("g")
 svg.append("g")
 	.attr("class", "lines");
 
-var width = 1800,
-    height = 500,
+var width = 1400,
+    height = 300,
 	radius = Math.min(width, height) / 2;
     
 svg.append("text")
@@ -80,17 +80,17 @@ svg.append("text")
 .style("font-size", 20);
 
 svg.append("text")
-.attr("transform", "translate(115, -40)")
+.attr("transform", "translate(60, -20)")
 .text("400")
 .style("font-size", 28);
 
 svg.append("text")
-.attr("transform", "translate(-145, -40)")
+.attr("transform", "translate(-100, -20)")
 .text("80")
 .style("font-size", 28);
 
 svg.append("text")
-.attr("transform", "translate(-20, 140)")
+.attr("transform", "translate(-20, 90)")
 .text("200")
 .style("font-size", 28);
 
@@ -116,7 +116,7 @@ svg.attr("transform", "translate(" + width / 2 + "," + height / 2 + ")");
 var key = function(d){ return d.data.label; };
 
 var color = d3.scale.ordinal()
-	.domain(["상추, 케일, 적근대, 시금치, 곤드레나물, 방울토마토", "상추, 쑥갓, 청경채, 잎브로콜리, 셀러리, 잎들깨, 참나물, 돌나물", " 오크상추, 치커리, 신선초, 미나리, 아욱, 부추, 쪽파, 달래, 생강"])
+	.domain(["상추, 케일, 적근대, 시금치, 곤드레나물, 방울토마토", "상추, 쑥갓, 청경채, 잎브로콜리, 셀러리, 잎들깨, 참나물, 돌나물", "상추, 치커리, 신선초, 미나리, 아욱, 부추, 쪽파, 달래, 생강"])
 	.range(["#ffff00", "#ffcc00", "#ff9900"]);
 
 function randomData (){
@@ -170,7 +170,7 @@ function change(data) {
 		.text(function(d) {
 			return d.data.label;
 		})
-		.style("font-size", 18)
+		.style("font-size", 16)
 		.style("font-weight", "bold");
 	
 	function midAngle(d){
