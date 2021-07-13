@@ -341,7 +341,11 @@ public class UserController {
 		} else {
 			i = 3;
 			//msg = "���Ե� �̸��Ϸ� �ӽ� ��й�ȣ�� �����Ͽ����ϴ�. ������ Ȯ�����ּ���.";
-			biz.findPw(selectOneById);
+			
+			String newPw = biz.findPw(selectOneById);
+			selectOneById.setPassword(passwordEncoder.encode(newPw));
+			biz.updatePw(selectOneById);
+			
 		}
 	
 		return i;
