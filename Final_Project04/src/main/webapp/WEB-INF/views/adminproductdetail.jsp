@@ -21,12 +21,10 @@
 <body>
 <%@include file="/WEB-INF/views/1header.jsp"%>
 
-  <div class="container" style="width: 100%">
-  	
+  <div class="container" style="width: 100%; padding-top:100px">
+	<div style="text-align: center;">
+		<h1>씨앗마켓 상품 상세 페이지</h1></div>
     <div class="col-md-8 col-md-offset-2 ">
-    <div style="text-align: center;">
-		<h1>씨앗마켓 상품 상세 페이지</h1>
-	</div>
       <div class="col-md-5">
 	    <img id="productImg" src="${pageContext.request.contextPath}/resources${dto.productImg }" alt="상품이미지"
           class="img-responsive"  style="border :1px solid rgb(226, 226, 226);">
@@ -34,13 +32,10 @@
       </div>
 
       <div class="col-md-6 col-md-offset-1">
-      	<!-- 상품명: -->
-        <h4>${dto.productName }</h4>
-        <!-- 가격 -->
-        <h4>${dto.productPrice }</h4>
+        <h4><!-- 상품명: -->${dto.productName }</h4>
+        <h4><!-- 가격 -->${dto.productPrice }</h4>
         <hr>
-        <!-- 상품정보 -->
-        <p>${dto.productInfo }</p>
+        <p><!-- 상품정보 -->${dto.productInfo }</p>
         <span><b>구매혜택 </b></span><span>당근씨앗 드립니다</span><br>
         <span><b>배송 방법 </b></span><span>택배</span><br>
         <span><b>배송비 </b></span><span> 3,000</span>
