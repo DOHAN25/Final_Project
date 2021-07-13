@@ -23,6 +23,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import com.phoenix.carrot.admin.biz.AdminProductBiz;
@@ -124,51 +125,67 @@ public class AdminProductController {
 
 
 	/* 아임포트 결제 페이지*/
-
+	@ResponseBody // 결과를 json 형식으로 클라이언트 브라우저에 송신
 	@RequestMapping(value = "/adminproductorderpay.do", method = RequestMethod.POST)
-	public String adminproductorderPay(Model model, OrderDto dto, int productSeq) {
+	public String adminproductorderPay(@RequestParam HashMap<String,Object> param){
 		logger.info("[Controller] : adminproductorderpay.do");
-		
-		/* adminproductorder.jsp에서 주문정보를 받아온거 찍어보기 */ 
-		
-		System.out.println("dto:"+dto.toString());
-		System.out.println("paymethod:"+dto.getPaymethod());
-		System.out.println("productName:"+dto.getProductName());
+		int result = 0;
+		String str = "";
 
-		System.out.println("quantity:"+dto.getQuantity());
-		System.out.println("orderAmount:"+dto.getOrderAmount());
-		
-		System.out.println("receiveName:"+dto.getReceiveName());
-		System.out.println("receiverPhone:"+dto.getReceiverPhone());
-		System.out.println("receiverOaddress:"+dto.getReceiverOaddress());
-		System.out.println("receiverRaddress:"+dto.getReceiverRaddress());
-		System.out.println("receiverDetailaddress:"+dto.getReceiverDetailaddress());
-		
-		/* model에 받아온 주문 정보 넣어주기 */
-				
-		model.addAttribute("dto", adminproductbiz.adminProductOne(productSeq));
-		
-		//form 형태로 받아온 paymethod는 hidden type이어서 
-		//@RequestParam("paymethod")String paymethod에 담아주기
-		//HttpServletRequest request에 담기지 않는다.
-	//	model.addAttribute("paymethod", paymethod); 
-		
-		
-		model.addAttribute("productName:"+dto.getProductName());
-		model.addAttribute("orderAmount:"+dto.getOrderAmount());
-		model.addAttribute("quantity", dto.getQuantity());
-		model.addAttribute("orderAmount", dto.getOrderAmount());
-		model.addAttribute("receiveName", dto.getReceiveName());
-		model.addAttribute("receiverPhone", dto.getReceiverPhone());
-		model.addAttribute("receiverOaddress", dto.getReceiverOaddress());
-		model.addAttribute("receiverRaddress", dto.getReceiverRaddress());
-		model.addAttribute("receiverDetailaddress", dto.getReceiverDetailaddress());
-
-		System.out.println("model:"+model);
-	
-		return "adminproductorderPayRes";
-	}
-	
+		ObjectMapper mapper = new ObjectMapper();
+		try {
+			result = orderbiz.productorderInsert(param);
+			str = mapper.writeValueAsString(result);// java object -> json문자열로 변환
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return "adminproductorder";
+	};
+//
+//	@RequestMapping(value = "/adminproductorderpay.do", method = RequestMethod.POST)
+//	public String adminproductorderPay(Model model, OrderDto dto, int productSeq) {
+//		logger.info("[Controller] : adminproductorderpay.do");
+//		
+//		/* adminproductorder.jsp에서 주문정보를 받아온거 찍어보기 */ 
+//		
+//		System.out.println("dto:"+dto.toString());
+//		System.out.println("paymethod:"+dto.getPaymethod());
+//		System.out.println("productName:"+dto.getProductName());
+//
+//		System.out.println("quantity:"+dto.getQuantity());
+//		System.out.println("orderAmount:"+dto.getOrderAmount());
+//		
+//		System.out.println("receiveName:"+dto.getReceiveName());
+//		System.out.println("receiverPhone:"+dto.getReceiverPhone());
+//		System.out.println("receiverOaddress:"+dto.getReceiverOaddress());
+//		System.out.println("receiverRaddress:"+dto.getReceiverRaddress());
+//		System.out.println("receiverDetailaddress:"+dto.getReceiverDetailaddress());
+//		
+//		/* model에 받아온 주문 정보 넣어주기 */
+//				
+//		model.addAttribute("dto", adminproductbiz.adminProductOne(productSeq));
+//		
+//		//form 형태로 받아온 paymethod는 hidden type이어서 
+//		//@RequestParam("paymethod")String paymethod에 담아주기
+//		//HttpServletRequest request에 담기지 않는다.
+//	//	model.addAttribute("paymethod", paymethod); 
+//		
+//		
+//		model.addAttribute("productName:"+dto.getProductName());
+//		model.addAttribute("orderAmount:"+dto.getOrderAmount());
+//		model.addAttribute("quantity", dto.getQuantity());
+//		model.addAttribute("orderAmount", dto.getOrderAmount());
+//		model.addAttribute("receiveName", dto.getReceiveName());
+//		model.addAttribute("receiverPhone", dto.getReceiverPhone());
+//		model.addAttribute("receiverOaddress", dto.getReceiverOaddress());
+//		model.addAttribute("receiverRaddress", dto.getReceiverRaddress());
+//		model.addAttribute("receiverDetailaddress", dto.getReceiverDetailaddress());
+//
+//		System.out.println("model:"+model);
+//	
+//		return "adminproductorderPayRes";
+//	}
+//	
 	/* 아임포트 결제 후 db 저장하기 */
 //	@ResponseBody 화면에 뿌려줄때
 	//ajax에서 보낸걸 받아와야 한다.
@@ -187,27 +204,27 @@ public class AdminProductController {
 //	}
 	
 	//2222-데이터 전달 받는거 됨
-	@RequestMapping(value="/adminproductorderPayRes.do")
-	public ModelAndView adminproductorderPayRes(@RequestBody OrderDto params, HttpServletRequest request){
-	    ModelAndView mv = new ModelAndView();
-	    boolean result = true;        
-	        
-	    System.out.println("controllerparams"+params);
-	    
-	    //컨트롤러에서 서비스 넘어가는데
-	    //뷰에서 ajax로 파람 넘겨줌
-	    //뷰에서 받아온건 map타입
-	    //biz에서 orderdto 라서 에러가 남
-	    int res = orderbiz.productorderInsert(params);
-	    System.out.println("res:"+res);
-	    
-	    
-	    
-	    mv.addObject("result", result);
-	    
-	    return mv;
-	}
-	
+//	@RequestMapping(value="/adminproductorderPayRes.do")
+//	public ModelAndView adminproductorderPayRes(@RequestBody OrderDto params, HttpServletRequest request){
+//	    ModelAndView mv = new ModelAndView();
+//	    boolean result = true;        
+//	        
+//	    System.out.println("controllerparams"+params);
+//	    
+//	    //컨트롤러에서 서비스 넘어가는데
+//	    //뷰에서 ajax로 파람 넘겨줌
+//	    //뷰에서 받아온건 map타입
+//	    //biz에서 orderdto 라서 에러가 남
+//	    int res = orderbiz.productorderInsert(params);
+//	    System.out.println("res:"+res);
+//	    
+//	    
+//	    
+//	    mv.addObject("result", result);
+//	    
+//	    return mv;
+//	}
+//	
 	
 //3
 //	@RequestMapping(value = "/adminproductorderPayRes.do", method = RequestMethod.POST)
