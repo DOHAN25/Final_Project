@@ -97,21 +97,15 @@ td {
 																	data) {
 																//console.log(data.list.length);
 																//console.log(data.list[0].productName);
-																var html = "<tr>";
-																for (var i = 0; i < data.list.length; i++) {
-																	html += "<td>"
-																			+ data.list[i].productRegDate
-																			+ "</td>";
-																	html += "<td>"
-																			+ data.list[i].userId
-																			+ "</td>";
-																	html += "<td><a href='userproductdetail.do?productSeq="
-																			+ data.list[i].productSeq
-																			+ "'>"
-																			+ data.list[i].productName
-																			+ "</a></td>";
-																	html += "<td>"
-																			+ data.list[i].productPrice
+																
+		
+										var html = "<tr>";
+									    for (var i = 0; i < data.list.length; i++) {
+											html += "<td>" + data.list[i].productRegDate+"</td>";
+											html += "<td><img stlye='width: 200px; height: 200px;' src='${pageContext.request.contextPath}/resources"+data.list[i].productImg+"'></td>";
+										  	html += "<td>"+ data.list[i].userId+"</td>";
+											html += "<td><a href='userproductdetail.do?productSeq="+ data.list[i].productSeq+ "'>"+ data.list[i].productName+ "</a></td>";
+											html += "<td>"+ data.list[i].productPrice
 																			+ "</td>";
 																	html += "<td>"
 																			+ data.list[i].sellerAddress
@@ -149,6 +143,7 @@ td {
 																	html += "<td>"
 																			+ data.list[i].productRegDate
 																			+ "</td>";
+																	html += "<td><img stlye='width: 200px; height: 200px;' src='${pageContext.request.contextPath}/resources"+data.list[i].productImg+"'></td>";
 																	html += "<td>"
 																			+ data.list[i].userId
 																			+ "</td>";
