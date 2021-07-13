@@ -191,7 +191,7 @@ $(document).ready(function() {
 			if(validAll == true && grecaptcha.getResponse()!=""){ 
 				// 유효성 모두 통과
 				alert('당근팜 회원이 되어 주셔서 감사합니다. 아이디로 로그인 해주세요'); 
-				location.href="login.jsp";
+				location.href="loginform.do";
 			} else if(grecaptcha.getResponse() == null) { 
 				alert('로봇인지 아닌지 확인해 주세요.');
 				return false;
