@@ -40,6 +40,7 @@ public class CommentController {
 			retVal.put("code" , "OK");
 			retVal.put("commentNoSeq" , paramMap.get("commentNoSeq"));
 			retVal.put("groupNo" , paramMap.get("groupNo"));
+			retVal.put("replyRegDate", paramMap.get("replyRegDate"));
 			retVal.put("message" , "등록성공");
 		} else {
 			retVal.put("code" , "FAIL");
@@ -63,7 +64,7 @@ public class CommentController {
 			retVal.put("code", "OK");
 		} else {
 			retVal.put("code", "FAIL");
-			retVal.put("message", "삭제에 실패했습니다. 패스워드를 확인해주세요");
+			retVal.put("message", "다른 회원의 글은 삭제하실 수 없습니다.");
 		}
 		return retVal;
 	}
