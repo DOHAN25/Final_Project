@@ -10,7 +10,7 @@
   
   <!-- 회원가입 -->
   <insert id="regist" parameterType="userDto">
-  	INSERT INTO USERS VALUES(USERSEQ.NEXTVAL, #{userid}, #{password}, #{useremail}, #{userphone}, #{useroaddress}, #{useraddress}, #{userdetailaddress}, 'user', #{username}, #{userbirthday})
+  	INSERT INTO USERS VALUES(USERSEQ.NEXTVAL, #{userid}, #{password}, #{useremail}, #{userphone}, #{useroaddress}, #{useraddress}, #{userdetailaddress}, 'user', #{username}, #{userbirthday}, #{userImg}, #{userProfileImg})
   </insert>
   
   <!-- 아이디 중복 체크 -->

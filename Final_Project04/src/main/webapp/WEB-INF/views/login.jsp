@@ -53,6 +53,9 @@ header {
 	background-color: #E9E9E9;
 	border: 1px solid #CFCECE;
 }
+#Carousel-left{
+	margin-top: 140px;
+}
 </style>
 
 <script type="text/javascript"
@@ -60,6 +63,7 @@ header {
 
 
 <script type="text/javascript">
+
 $(function() {
 	$("#loginChk").hide();
 });
@@ -243,14 +247,51 @@ function kakaoLogin() {
 <body>
 
 
-	<div class="container ">
+	<div class="container">
 	<div class="row">
-
-		<div class="col-md-5 col-md-offset-7 text-center" id="body">
+	
+		<div class="col-md-5 col-md-offset-1" id="Carousel-left">
+                <div class="row">
+                <div id="carousel-example-generic"
+                    class="carousel slide" data-ride="carousel"
+                    style="float: left;">
+    
+                    <!-- Wrapper for slides -->
+                    <div class="carousel-inner" role="listbox">
+                        <div class="item active"  data-bs-interval="2000">
+                            <div class="col-md-12">
+                                <img src="resources/image/1.jpg" alt="당근팜"
+                                    style=" height: 600px; width: 460px;">
+                            </div>
+    
+                        </div>
+                        <div class="item"  data-bs-interval="2000">
+                            <div class="col-md-12">
+                                <!--왜 이러케 이미지가 길어~~ style="max-height: 400px;" 요거해도 거지같이나옴,.,.-->
+                                <img src="resources/image/2.jpg" alt="당근팜"
+                                    style=" height: 600px; width: 460px;">
+                            </div>
+                        </div>
+    
+                        <div class="item"  data-bs-interval="2000">
+                            <div class="col-md-12">
+                                <img src="resources/image/3.jpg" alt="당근팜"
+                                    style=" height: 600px; width: 460px;">
+                            </div>
+                        </div>
+                    </div>
+                
+            </div>
+        </div>
+            </div>
+		<!-- 로그인시작 -->
+		<div class="col-md-5 text-center" id="body">
 			<div class="row">
-				<div class="col-md-8 col-md-offset-2 ">
-					<img src="resources/image/logo-banner.png" class="img-responsive"
-						alt="Responsive image">
+				 <div class="col-md-8 col-md-offset-2">
+				 <img src="resources/image/logo-banner.png" class="img-responsive"
+						alt="Responsive image" style=" text-align: center;"></div>
+				<div class="col-md-12 ">
+					
 
 
 					<div class="form-group">
@@ -285,25 +326,29 @@ function kakaoLogin() {
 								class="btn btn-link">아이디 찾기</button></a> <a href="findpwform.do"><button
 								type="button" class="btn btn-link">비밀번호 찾기</button></a> <br> <br>
 						<div class="loginform" style="align-content: center;">
+							<!-- 카카오로그인 -->
 							<a href="javascript:kakaoLogin();"><img
 								src="resources/image/kakaolog.png" alt="Kakao image"
-								style="height: inherit; width: inherit; margin-right: 10px;"></a>
+								style="height: 36px; width: 118px;"></a>
 							<br>
+							<!-- 네이버로그인 -->
 							<form class="form-horizontal" action="naverlogin.do">
 								<a href="${naverUrl }"><img
 									src="resources/image/naverlog.png" alt="Naver image"
-									style="height: 35%; width: 30%; margin-right: 10px;"></a>
+									style="height: 38px; width: 118px; "></a>
 							</form>
-							<div id="googleBtn" class="g-signin2" data-onsuccess="onSignIn"></div>
+							<!-- 구글로그인  -->
+							<div style="padding-left:160px;"><div id="googleBtn" class="g-signin2" data-onsuccess="onSignIn"></div></div>
 						</div>
 					</div>
 
 				</div>
 			</div>
-		</div>
-	</div>
+		</div><!--로그인창 -->
+	
 
-</div>
+</div><!-- 로우 닫기 -->
+</div><!-- 컨테이너 닫기 -->
 
 </body>
 </html>

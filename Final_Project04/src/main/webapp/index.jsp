@@ -73,7 +73,7 @@ body {
 						class="icon-bar"></span> <span class="icon-bar"></span> <span
 						class="icon-bar"></span>
 				</button>
-				<a class="navbar-brand" href="index.jsp"> <img src="img/logo.jpg"
+				<a class="navbar-brand" href="index.jsp"> <img src="resources/image/logo-banner.png"
 					alt="당근팜">
 				</a>
 				<p class="navbar-text">
