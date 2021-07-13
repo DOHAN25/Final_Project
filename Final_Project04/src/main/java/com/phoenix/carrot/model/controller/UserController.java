@@ -263,6 +263,8 @@ public class UserController {
 		dto.setUserdetailaddress("null");
 		dto.setUseroaddress("null");
 		dto.setUserphone("null");
+		dto.setUserProfileImg("null");
+		dto.setUserImg("null");
 		if (res == null) {
 			int regresult = biz.regist(dto);
 			if (regresult > 0) {
@@ -295,22 +297,27 @@ public class UserController {
 		logger.info("[Controller] : kakaologincallback.do");
 		
 		UserDto res = biz.login(dto);
+		
 		String username = null;
+		
 		dto.setPassword("null");
 		dto.setUseraddress("null");
 		dto.setUserbirthday("null");
 		dto.setUserdetailaddress("null");
+		dto.setUserrole("user");
 		dto.setUseroaddress("null");
 		dto.setUserphone("null");
+		dto.setUserProfileImg("null");
+		dto.setUserImg("null");
 		
-		if(res.getUserid() == null) {
+		if(res == null) {
 			int regresult = biz.regist(dto);
 			if (regresult > 0) {
-				System.out.println("ȸ�����Լ���");
+				System.out.println("회원가입성공");
 				username = dto.getUsername();
 				session.setAttribute("login", dto);
 			} else {
-				System.out.println("ȸ�����Խ���");
+				System.out.println("회원가입실패");
 			}
 		} else {
 			username = dto.getUsername();

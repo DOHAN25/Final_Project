@@ -64,8 +64,9 @@ header {
 
 <script type="text/javascript">
 
-$(function() {
+$(document).ready(function() {
 	$("#loginChk").hide();
+	
 });
 
 function login() {
@@ -104,6 +105,7 @@ function login() {
 	}
 
 }
+/*
 function kakaoLogin() {
 	Kakao.Auth.login({
 		success : function(response) {
@@ -122,7 +124,7 @@ function kakaoLogin() {
 		},
 	})
 }
-
+*/
 function onSignIn(googleUser) {
 	var profile = googleUser.getBasicProfile();
 	console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
@@ -180,66 +182,6 @@ function logOut() {
 	      })
 	      Kakao.Auth.setAccessToken(undefined)
 	    }
-}
-
-
-
-Kakao.init('1e4c72d72b9614055f4d89bb5623539d');
-Kakao.isInitialized();
-
-//카카오 로그인 부분
-function kakaoLogin() {
-	Kakao.Auth.login({
-	      success: function (response) {
-	        Kakao.API.request({
-	          url: '/v2/user/me',
-	          success: function (response) {
-	        	  console.log(response);
-	        	  var userid = response.id;
-	        	  var useremail = response.kakao_account.email;
-	        	  var username = response.properties.nickname;
-	        	  
-	        	  var kakaologinVal = {
-	        			"userid" : userid,
-	        			"useremail" : useremail,
-	        			"username" : username
-	        	  };
-	        	  
-	        	  if(userid == null || userid == "") {
-	        		  alert("아이디 비밀번호를 확인해 주세요.");
-	        	  } else {
-	        	  $.ajax({
-	        		type:"post",
-	        		url:"kakaologincallback.do",
-	        		data:JSON.stringify(kakaologinVal),
-	        		contentType:"application/json",
-	        		dataType:"json",
-	        		success:function(msg) {
-	        			if(msg.username != null) {
-	        				alert(msg.username+"님 환영합니다.");
-	        				location.href="index.jsp";
-	        			} else {
-	        				alert("로그인에 실패하였습니다.");
-	        				return false;
-	        			}
-	        		},
-	        		error : function() {
-	        			alert("통신 실패");
-	        			return false;
-	        		}
-	        	  });
-	        	 }
-	        	  
-	          },
-	          fail: function (error) {
-	            console.log(error)
-	          },
-	        })
-	      },
-	      fail: function (error) {
-	        console.log(error)
-	      },
-	    })
 }
 
 </script>
@@ -349,7 +291,66 @@ function kakaoLogin() {
 
 </div><!-- 로우 닫기 -->
 </div><!-- 컨테이너 닫기 -->
+<script type="text/javascript">
+Kakao.init('1e4c72d72b9614055f4d89bb5623539d');
+Kakao.isInitialized();
+//카카오 로그인 부분
+function kakaoLogin() {
+	Kakao.Auth.login({
+	      success: function (response) {
+	        Kakao.API.request({
+	          url: '/v2/user/me',
+	          success: function (response) {
+	        	  console.log(response);
+	        	  var userid = response.id;
+	        	  var useremail = response.kakao_account.email;
+	        	  var username = response.properties.nickname;
+	        	  
+	        	  var kakaologinVal = {
+	        			"userid" : userid,
+	        			"useremail" : useremail,
+	        			"username" : username
+	        	  };
+	        	  
+	        	  if(userid == null || userid == "") {
+	        		  alert("아이디 비밀번호를 확인해 주세요.");
+	        	  } else {
+	        	  $.ajax({
+	        		type:"post",
+	        		url:"kakaologincallback.do",
+	        		data:JSON.stringify(kakaologinVal),
+	        		contentType:"application/json",
+	        		dataType:"json",
+	        		success:function(msg) {
+	        			if(msg.username != null) {
+	        				alert(msg.username+"님 환영합니다.");
+	        				location.href="index.jsp";
+	        			} else {
+	        				alert("로그인에 실패하였습니다.");
+	        				return false;
+	        			}
+	        		},
+	        		error : function() {
+	        			alert("통신 실패");
+	        			return false;
+	        		}
+	        	  });
+	        	 }
+	        	  
+	          },
+	          fail: function (error) {
+	            console.log(error)
+	          },
+	        })
+	      },
+	      fail: function (error) {
+	        console.log(error)
+	      },
+	    })
+}
 
+
+</script>
 </body>
 </html>
 

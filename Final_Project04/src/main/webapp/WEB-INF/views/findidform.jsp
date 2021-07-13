@@ -62,15 +62,35 @@
 </script>
 <body>
 	<%@include file="/WEB-INF/views/1header.jsp"%>
-	<h2>아이디 찾기</h2>
-	
-		<label>Email</label>
-		<input type="text" id="useremail" placeholder="이메일을 입력해 주세요 ex)1235@xxxx.xxx" style="width: 300px;">
-		<div id="findidresult"></div>
-		<br>
-		<input type="button" value="찾기" onclick="findid();">
-		<button type="button" id="cancelBtn" onclick="history.go(-1)">취소</button>
-		<%@include file="/WEB-INF/views/1footer.jsp"%>
+	 <!-- 페이지 상단  -->
+	<div class="container" style="width: 100%;">
+		<div class="row" >
+            
+                
+            </div>
+            <div class="col-sm-4 col-md-offset-4">
+                <h3 style="padding-top:200px ;">아이디 찾기</h3>
+                <div class="form-group">
+                    <label for="mem_email">이메일 주소</label> <input type="email"
+                        class="form-control" id="useremail" name="useremail"
+                        placeholder="이메일을 입력해주세요 ex)phoenix@carrot.com" style="margin-top:10px ;">
+                    <div id="findidresult"></div>
+                    <div class="row" style="padding-top:20px ;">
+                        <div class="col-md-6">
+                            <button type="button" class="btn btn-warning btn-block" onclick="findid();">찾기</button>
+                        </div>
+                        <div class="col-md-6">
+                            <button type="button" class="btn btn-default btn-block" id="cancelBtn" onclick="history.go(-1)">취소</button>
+                        </div>
+                    </div>
+                </div>
+            
+      
+    
+	       
+	    </div>
+	</div>
+	<%@include file="/WEB-INF/views/1footer.jsp"%>
 </body>
 </html>
 
