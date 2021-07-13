@@ -341,7 +341,7 @@ public class UserController {
 		} else {
 			i = 3;
 			//msg = "���Ե� �̸��Ϸ� �ӽ� ��й�ȣ�� �����Ͽ����ϴ�. ������ Ȯ�����ּ���.";
-			biz.findPw(dto);
+			biz.findPw(selectOneById);
 		}
 	
 		return i;
