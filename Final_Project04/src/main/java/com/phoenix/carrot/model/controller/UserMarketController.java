@@ -37,13 +37,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+
 
 import com.google.gson.JsonObject;
 import com.phoenix.carrot.chat.biz.ChatRoomBiz;
@@ -151,23 +146,24 @@ public class UserMarketController {
 		list = biz.selectlistLatLong();
 
 		JSONObject obj = new JSONObject();
+		
 		JSONArray jArray = new JSONArray();
 		JSONObject sObject = new JSONObject();
-/*
+
 		for (int i = 0; i < list.size(); i++) {
 			sObject.put("title", list.get(i).getProductName());
 			sObject.put("lat", list.get(i).getUserLatitude());
 			sObject.put("lng", list.get(i).getUserLongitude());
 			jArray.put(sObject);
 		}
-*/
+/*
 		for(ProductDto dto2 : list) { 
 		 sObject.put("title", dto2.getProductName());
 		 sObject.put("lat", dto2.getUserLatitude()); 
 		 sObject.put("lng", dto2.getUserLongitude()); 
 		 jArray.put(sObject); 
 		 }
-
+*/
 		obj.put("positions", jArray);
 
 		model.addAttribute("data", obj);

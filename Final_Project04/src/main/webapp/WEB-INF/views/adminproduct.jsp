@@ -95,7 +95,7 @@
         <body>
         
         <%@include file="/WEB-INF/views/1header.jsp" %>
-            <div class="container" style="width: 100%;">
+            <div class="container" style="width: 100%; padding-top:80px;">
                 <div class="col-md-8 col-md-offset-2 ">
 
                     <div class="col-md-2 position-fixed">
@@ -126,11 +126,12 @@
                         </div>
                         <hr>
                         <div>
+                        <c:if test="${login.userrole == 'admin' }">
                             <input type="button" class="btn btn-warning btn-block" value="상품등록"
                                 onclick="location.href='adminproductinsert.do'">
                             <input type="button" class="btn btn-default btn-block" value="메인"
                                 onclick="location.href='/carrot'">
-
+					    </c:if>
                         </div>
                     </div>
 
