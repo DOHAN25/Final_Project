@@ -116,10 +116,27 @@ table {
 					</tbody>
 				</table>
 			</div>
-			<!--오른쪽 사이드-->
-			<div class="col-sm-3 col-md-3 "></div>
+			
 		</div>
 	</div>
+	 <div class="row" style="text-align: center;">
+                        <nav>
+                            <ul class="pagination">
+                                <li>
+                                    <a href="#" aria-label="Previous">
+                                        <span aria-hidden="true">&laquo;</span>
+                                    </a>
+                                </li>
+                                <li><a href="#">1</a></li>
+                                <li><a href="#">2</a></li>
+                                <li>
+                                    <a href="#" aria-label="Next">
+                                        <span aria-hidden="true">&raquo;</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </nav>
+                    </div>
 
 <%@include file="/WEB-INF/views/1footer.jsp"%>
 </body>
