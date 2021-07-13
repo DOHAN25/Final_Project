@@ -5,29 +5,20 @@
 <head>
 <meta charset="UTF-8">
 <title>로컬마켓 상품 등록</title>
-<script type="text/javascript"
-	src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
-
-<!-- 합쳐지고 최소화된 최신 CSS -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
-<!--jquery (부트스트랩의 자바스트립트 플러그인을 위해 필요합니다.)-->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-
-<!-- 부가적인 테마 -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
-<!-- 합쳐지고 최소화된 최신 자바스크립트 -->
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
-
-<!-- 썸머노트 경로 -->
+<!-- 썸머노트 경로 
 <script src="${pageContext.request.contextPath}/resources/js/summernote/summernote-lite.js"></script>
 <script src="${pageContext.request.contextPath}/resources/js/summernote/lang/summernote-ko-KR.js"></script>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/summernote/summernote-lite.css">
-<!-- include libraries(jQuery, bootstrap) 
+-->
+<!--  include libraries(jQuery, bootstrap) --> 
 <link href="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.css" rel="stylesheet"> 
 <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script> 
 <script src="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.js"></script>
--->
+
+<!-- include summernote css/js -->
+<link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
 <!-- style -->
 <style>
 	#image_container img{
@@ -94,6 +85,7 @@
 	         };
 
 	        $('#summernote').summernote(setting);
+	        
 	        });
 	
     		function uploadSummernoteImageFile(file, el) {
@@ -130,7 +122,7 @@
 </script>
 </head>
 <body>
-<%@include file="/WEB-INF/views/1header.jsp"%>
+
 	<h1>당근마켓등록</h1>
 
 	<form action="userproductinsertres.do" method="post" enctype="multipart/form-data">
@@ -149,8 +141,8 @@
                     </tr>
                     <tr>
                      	<th style="vertical-align: middle;">상품이미지</th>
-                        	<td><img src="https://via.placeholder.com/300x300" class="img-responsive" alt="Responsive image">
-                            	<input type="file" name="file" accept="image/*1" id="boardImg" onchange="setThumbnail(event);" class="form-control custom-file-input" id="customFile" >
+                        	<td><img src="https://via.placeholder.com/300x300" class="img-responsive" alt="Responsive image" id="preview-image" style="height:400px; width:400px;">
+                            	<input type="file" name="file" accept="image/*1" id="boardImg" onchange="setThumbnail(event);" class="form-control custom-file-input" id="customFile" />
                         	</td>
                     </tr>
                     <tr>
