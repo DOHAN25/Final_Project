@@ -41,7 +41,6 @@
                       <li><a href="loginform.do">씨앗,도구 구매</a></li>
                       <li><a href="loginform.do">모두의 당근</a></li>
                       <li><a href="loginform.do">꿀팁</a></li>
-                      <li><a href="loginform.do">날씨/미세먼지</a></li>
                       <li><a href="loginform.do">공지사항</a></li>
                      </c:if>
                      
@@ -50,7 +49,6 @@
                       <li><a href="adminproduct.do">씨앗,도구 구매</a></li>
                       <li><a href="mian.do">모두의 당근</a></li>
                       <li><a href="honeytip.do">꿀팁</a></li>
-                      <li><a href="weather.do">날씨/미세먼지</a></li>
                       <li><a href="noticeboardlist.do">공지사항</a></li>
                      </c:if>
                     </ul>
