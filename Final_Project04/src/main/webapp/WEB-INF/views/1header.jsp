@@ -15,10 +15,16 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
     <!-- 합쳐지고 최소화된 최신 자바스크립트 -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+    <style>
+    .container{
+    z-index : 3;
+    
+    </style>
 </head>
 <body>
 <!--navbar-->
-    <div class="container" style="width:100%;" >
+<header >
+    <div class="container" style="width:100%;  position: fixed; " >
         <div class="row">
             <nav class="navbar navbar-default">
                 <div class="container-fluid">
@@ -71,5 +77,6 @@
               </nav>
         </div>
     </div>
+</header>
 </body>
 </html>

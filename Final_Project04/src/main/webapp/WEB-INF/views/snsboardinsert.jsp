@@ -79,18 +79,20 @@
 </head>
 <body>
 	<%@include file="/WEB-INF/views/1header.jsp"%>
-
+	
+	
 	    <div class="container" style="width: 100%;">
-        <div class="row" style="padding-top:50px;">
+        <div class="row" style="padding-top:70px;">
 <!--왼쪽 사이드-->
             <div class="col-sm-2 col-md-2 " id="left_side_bar" style="border-right:1px solid rgb(214, 214, 214); height: 100%;  ">
              <!--로고이미지-->
                 <div class="row">
-                <img src="https://via.placeholder.com/300x200" class="img-responsive"  alt="당근팜 로고" style="padding-bottom: 20px;" >
+                <img src="resources/image/logo.png" class="img-responsive"  alt="당근팜 로고" style="padding-bottom: 20px; height: 200px; width: 300px;" >
                 </div>
                 <!--프로필사진,id-->
                 <div class="row">
-                    <div class="col-md-4"><img src="./resources/image/userdefaultimg.png" class="img-responsive img-circle"  alt="프로필 이미지" style="margin:20px 10px 20px 10px" ></div>
+                    <div class="col-md-4"><img src="./resources/image/userdefaultimg.png" class="img-responsive img-circle"  alt="프로필 이미지" style="margin:20px 10px 20px 10px; " ></div>
+                    
                     <div class="col-md-8" >
                         <button type="button" class="btn btn-link" style="padding-top:15%;">${login.userid }</button>
                         <p>${login.useremail }</p>
@@ -103,17 +105,17 @@
                         <!--홈으로 이동 버튼 -->
                         <li id="navbar-style" role="presentation" ><a href="index.jsp" id="li-color"><span class="glyphicon glyphicon-home" aria-hidden="true"></span><span style="margin-left:20px" style="color: black;">home</span></a></li>
                         <!--나의 피드보기 이동 버튼 -->
-                        <li id="navbar-style" role="presentation" ><a href="snsBoardUserFeed.do?userId=${login.userid }" id="li-color"><span class="glyphicon glyphicon-user" aria-hidden="true"></span><span style="margin-left:20px" style="color: black;">나의 피드 보기</span></a></li>
+                        <li id="navbar-style" role="presentation" ><a href="snsBoardUserFeed.do?userId=${login.userid }" id="li-color"><span class="glyphicon glyphicon-th" aria-hidden="true"></span><span style="margin-left:20px" style="color: black;">나의 피드 보기</span></a></li>
                         <!--글작성 이동 버튼 -->
-                        <li id="navbar-style" role="presentation" ><a href="snsBoardInsertForm.do" id="li-color"><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span><span style="margin-left:20px" style="color: black;">글작성</span></a></li>
+                        <li id="navbar-style" role="presentation" ><a href="snsBoardInsertForm.do" id="li-color"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span><span style="margin-left:20px" style="color: black;">글작성</span></a></li>
                         <!--마이페이지로 이동 버튼 -->
-                        <li id="navbar-style" role="presentation" ><a href="#" id="li-color"><span class="glyphicon glyphicon-search" aria-hidden="true"></span><span style="margin-left:20px" style="color: black;">마이페이지</span></a></li>
+                        <li id="navbar-style" role="presentation" ><a href="#" id="li-color"><span class="glyphicon glyphicon-user" aria-hidden="true"></span><span style="margin-left:20px" style="color: black;">마이페이지</span></a></li>
                          <!-- 타임라인 -->
-                        <li id="navbar-style" role="presentation" ><a href="main.do" id="li-color"><span class="glyphicon glyphicon-search" aria-hidden="true"></span><span style="margin-left:20px" style="color: black;">타임라인</span></a></li>
+                        <li id="navbar-style" role="presentation" ><a href="main.do" id="li-color"><span class="glyphicon glyphicon-time" aria-hidden="true"></span><span style="margin-left:20px" style="color: black;">타임라인</span></a></li>
                         <!--채팅-->
-                        <li id="navbar-style" role="presentation" ><a href="#" id="li-color"><span class="glyphicon glyphicon-search" aria-hidden="true"></span><span style="margin-left:20px" style="color: black;">채팅</span></a></li>
+                        <li id="navbar-style" role="presentation" ><a href="#" id="li-color"><span class="glyphicon glyphicon-comment" aria-hidden="true"></span><span style="margin-left:20px" style="color: black;">채팅</span></a></li>
                         <!--로컬마켓 가기-->
-                        <li id="navbar-style" role="presentation" ><a href="usermarketplace.do" id="li-color"><span class="glyphicon glyphicon-search" aria-hidden="true"></span><span style="margin-left:20px" style="color: black;">로컬마켓 가기</span></a></li>
+                        <li id="navbar-style" role="presentation" ><a href="usermarketplace.do" id="li-color"><span class="glyphicon glyphicon-gift" aria-hidden="true"></span><span style="margin-left:20px" style="color: black;">로컬마켓 가기</span></a></li>
                         
                       </ul>
                         
@@ -182,7 +184,7 @@
                         <div class="form-group">
                             <label for="button" class="col-sm-2 control-label"></label>
                             <div class="col-sm-2 col-sm-offset-8">
-                                <button type="submit" class="btn btn-warning btn-block"  >글작성 </button>
+                                <button type="submit" class="btn btn-warning btn-block" style="margin-bottom:100px;"  >글작성 </button>
                             </div>
                             
                           </div>
@@ -191,15 +193,10 @@
             </div>
 <!--오른쪽 사이드-->
             <div class="col-sm-2 col-md-2 "  id="right_side_bar" style=" border-left:1px solid rgb(214, 214, 214); padding:0px 5px; ">
-            	                <div class="col-md-12"><p><b>유저 검색</b></p></div>
-                <div class="col-md-10" style="padding-right:0px; padding-bottom:20px;">
-                    <!--검색창-->
-                    <input type="text" class="form-control" placeholder="ID를 입력하세요" >
-                </div>
-                <div class="col-md-2" style="padding-left:0px;">
-                    <!--검색버튼-->
-                    <button type="button" class="btn btn-default" ><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
-                </div>
+            	                <div class="col-md-12">
+            	                	<a href="snsUserSearch.do"><button type="button" class="btn btn-warning btn-block" style="margin-bottom:20px;">유저 검색</button></a>
+								</div>
+                
                 <div class="col-md-12" style="padding:0px 0px 0px 0px;">
                     <!--팔로우 추천 리스트-->
                     <div class="list-group" >
@@ -224,6 +221,7 @@
             </div>
         </div>
     </div>    
+    
 		
 	<script>
 	
@@ -324,9 +322,11 @@
 		*/
 		
 	</script>
+	
 
 <%@include file="/WEB-INF/views/1footer.jsp"%>
 </body>
+
 </html>
 
 

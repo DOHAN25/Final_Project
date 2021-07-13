@@ -124,14 +124,15 @@ $(document).ready(function(){
 	
 </script>
 <body>
+<%@include file="/WEB-INF/views/1header.jsp"%>
 
     <div class="container" style="width: 100%;">
-        <div class="row" style="padding-top:50px;">
+        <div class="row" style="padding-top:80px;">
 <!--왼쪽 사이드-->
             <div class="col-sm-2 col-md-2 " id="left_side_bar" style="border-right:1px solid rgb(214, 214, 214); height: 100%;  ">
             	 <!--로고이미지-->
                 <div class="row">
-                <img src="https://via.placeholder.com/300x200" class="img-responsive"  alt="당근팜 로고" style="padding-bottom: 20px;" >
+                <img src="resources/image/logo.png" class="img-responsive"  alt="당근팜 로고" style="padding-bottom: 20px; height: 200px; width: 300px;" >
                 </div>
                 <!--프로필사진,id-->
                 <div class="row">
@@ -208,15 +209,7 @@ $(document).ready(function(){
             
 <!--오른쪽 사이드-->
             <div class="col-sm-2 col-md-2 "  id="right_side_bar" style=" border-left:1px solid rgb(214, 214, 214); padding:0px 5px; ">
-            	                <div class="col-md-12"><p><b>유저 검색</b></p></div>
-                <div class="col-md-10" style="padding-right:0px; padding-bottom:20px;">
-                    <!--검색창-->
-                    <input type="text" class="form-control" placeholder="ID를 입력하세요" >
-                </div>
-                <div class="col-md-2" style="padding-left:0px;">
-                    <!--검색버튼-->
-                    <button type="button" class="btn btn-default" ><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
-                </div>
+            	                
                 <div class="col-md-12" style="padding:0px 0px 0px 0px;">
                     <!--팔로우 추천 리스트-->
                     <div class="list-group" >

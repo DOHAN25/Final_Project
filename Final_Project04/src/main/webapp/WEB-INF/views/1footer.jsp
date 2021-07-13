@@ -6,6 +6,12 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<style>
+	footer{
+		bottom:0;
+	}
+	
+</style>
 </head>
 <body>
  
