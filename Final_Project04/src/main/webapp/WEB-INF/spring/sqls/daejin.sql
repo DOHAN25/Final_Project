@@ -16,7 +16,7 @@ INSERT INTO weekendFarm
 VALUES (farmSeq.NEXTVAL, '대진이네 농장', '경기도 고양시', '01097954578');
 
 SELECT * FROM WEEKENDFARM;
-
+SELECT * FROM USERS;
 ----------------------boardtable--------------------------------
 
 DROP SEQUENCE entireBoardSeq;

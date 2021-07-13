@@ -155,7 +155,6 @@ public class UserMarketController {
 		JSONObject sObject = new JSONObject();
 /*
 		for (int i = 0; i < list.size(); i++) {
-
 			sObject.put("title", list.get(i).getProductName());
 			sObject.put("lat", list.get(i).getUserLatitude());
 			sObject.put("lng", list.get(i).getUserLongitude());
