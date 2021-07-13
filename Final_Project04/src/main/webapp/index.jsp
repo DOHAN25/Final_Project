@@ -88,7 +88,6 @@ body {
 						<li><a href="#section1">로컬마켓</a></li>
 						<li><a href="#section2">씨앗마켓</a></li>
 						<li><a href="#section4">꿀팁</a></li>
-						<li><a href="#section5">날씨/미세먼지</a></li>
 						<li><a href="#section6">공지사항</a></li>
 						
 						
@@ -98,7 +97,6 @@ body {
 						<li><a href="#section2">씨앗,도구 구매</a></li>
 						<li><a href="#section3">모두의 당근</a></li>
 						<li><a href="#section4">꿀팁</a></li>
-						<li><a href="#section5">날씨/미세먼지</a></li>
 						<li><a href="#section6">공지사항</a></li>
 						
 					</c:if>
@@ -159,16 +157,6 @@ body {
 				</div></a>
 		</div>
 
-		<div class="container-fluid" id="section5">
-			<a href="weather.do"><div class="col-md-12" id="text">
-					<img src="resources/image/날씨확인_main1.jpg" alt="당근팜"
-						style="width: 100%;">
-					<div class="text">
-						<p id="img_title">날씨/미세먼지</p>
-						<p id="img_content">오늘의 날씨와 미세먼지농도를 손쉽게 확인해 보세요.</p>
-					</div>
-				</div></a>
-		</div>
 
 		<div class="container-fluid" id="section6">
 			<a href="noticeboardlist.do"><div class="col-md-12" id="text">
@@ -219,16 +207,6 @@ body {
 				</div></a>
 		</div>
 
-		<div class="container-fluid" id="section5">
-			<a href="loginform.do"><div class="col-md-12" id="text">
-					<img src="resources/image/날씨확인_main1.jpg" alt="당근팜"
-						style="width: 100%;">
-					<div class="text">
-						<p id="img_title">날씨/미세먼지</p>
-						<p id="img_content">오늘의 날씨와 미세먼지농도를 손쉽게 확인해 보세요.</p>
-					</div>
-				</div></a>
-		</div>
 
 		<div class="container-fluid" id="section6">
 			<a href="loginform.do"><div class="col-md-12" id="text">
