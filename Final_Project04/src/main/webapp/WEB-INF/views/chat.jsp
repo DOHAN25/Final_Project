@@ -152,7 +152,7 @@
 </head>
 <body>
 <%@include file="/WEB-INF/views/1header.jsp"%>
-	<div class="container">
+	<div class="container" style="padding-top:60px;">
 		<h3 class=" text-center" id="title">제품명:${productName }</h3>
 		<p id="title-id">
 			<small>상대방 아이디:${sellerId }</small>
