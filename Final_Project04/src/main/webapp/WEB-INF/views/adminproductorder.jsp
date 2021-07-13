@@ -53,6 +53,27 @@
 					opacity: 1 !important;
 				}
 			</style>
+			
+			<script type="text/javascript">
+			//주소팝업
+            function goPopup() {
+                //주소 검색을 수행할 팝업 페이지를 호출
+                //호출된 페이지 (jusopopup.jsp) 에서 실제 주소검색 URL(https://www.juso.go.kr/addrlink/addrLinkUrl.do)를 호출하게 됩니다.
+                var pop = window.open("jusoPopup.do", "pop",
+                    "width=570,height=420, scrollbars=yes, resizable=yes");
+            }
+            //원하는 페이지 영역에 주소값을 입력해줌 
+            var jusoCallBack = function (roadFullAddr, roadAddrPart1, addrDetail,
+                roadAddrPart2, engAddr, jibunAddr, zipNo) {
+                document.getElementById("receiverRaddress").value = roadAddrPart1;
+                document.getElementById("receiverDetailaddress").value = addrDetail;
+                
+                self.close();
+            }
+			</script>
+            
+            
+            
 		</head>
 
 <body>
@@ -68,7 +89,7 @@
 		 <input	type="hidden" name="userId" id="userId" value="${login.userid }">
 		 
 
-		<div class="container" style="width: 100%;" >
+		<div class="container" style="width: 100%; padding-top:100px">
 			<div style="text-align: center;">
 				<h1>씨앗마켓 상품 주문 페이지</h1>
 			</div>
@@ -103,7 +124,6 @@
 
 
 
-					<!--수정버튼누르면 회원정보수정 페이지로가게 하면 될거같아영~~~-->
 					<div class="row">
 					
  						
@@ -138,10 +158,19 @@
 								<tr>
 									<th>주소</th>
 									<td>
+									  <div class="col-md-10">
 										<input class="form-control" type="text" name="receiverRaddress"id="receiverRaddress"
 										value="${login.useraddress }" placeholder="주소를 입력해주세요">
+										</div>
+										<!-- 주소검색버튼 -->
+                                        <div class="col-md-2">
+                                            <button type="button" class="btn btn-warning btn-block"
+                                                onClick="goPopup();"><span class="glyphicon glyphicon-search"
+                                                    aria-hidden="true"></span></button>
+                                        </div>
 									</td>
 								</tr>
+								
 								<tr>
 									<th>상세주소</th>
 									<td>
@@ -164,7 +193,7 @@
 	<div class="col-md-3"></div>
 
 		<div class="col-md-3">
-			<button id="requestPay" class="btn btn-primary btn-block">결제</button>
+			<button id="requestPay" class="btn btn-warning btn-block">결제</button>
 		</div>
 		<div class="col-md-3">
 			<input type="button" class="btn btn-default btn-block"
