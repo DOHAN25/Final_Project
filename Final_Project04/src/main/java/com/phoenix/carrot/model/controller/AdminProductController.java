@@ -139,7 +139,7 @@ public class AdminProductController {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return "adminproductorder";
+		return str;
 	};
 //
 //	@RequestMapping(value = "/adminproductorderpay.do", method = RequestMethod.POST)

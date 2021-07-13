@@ -168,20 +168,21 @@
 						</div>
 						<div class="col-md-4"></div>
 					</div>
-					<div class="row">
-						<div class="col-md-4">
-							<button id="requestPay" class="btn btn-primary btn-block">결제</button>
-						</div>
-						<div class="col-md-4">
-							<input type="button" class="btn btn-default btn-block"
-								onclick="location.href='adminproductdetail.do?productSeq=${dto.productSeq }'"
-								value="취소">
-						</div>
-					</div>
+					
 				</div>
 			</div>
 		</div>
 	</form>
+	<div class="row">
+		<div class="col-md-4">
+			<button id="requestPay" class="btn btn-primary btn-block">결제</button>
+		</div>
+		<div class="col-md-4">
+			<input type="button" class="btn btn-default btn-block"
+				onclick="location.href='adminproductdetail.do?productSeq=${dto.productSeq }'"
+				value="취소">
+		</div>
+	</div>
 
 <script>
 		
@@ -247,6 +248,8 @@
 						} else {
 							//[3] 아직 제대로 결제가 되지 않았습니다.
 							//[4] 결제된 금액이 요청한 금액과 달라 결제를 자동취소처리하였습니다.
+							msg='결제 저장 실패';
+							alert(msg);
 						}
 					})
 					//성공시 이동할 페이지
@@ -263,6 +266,5 @@
 		
 	</script>
 				<%@include file="/WEB-INF/views/1footer.jsp" %>
-		</body>
-
-		</html>
+	</body>
+</html>
