@@ -126,11 +126,12 @@
                         </div>
                         <hr>
                         <div>
+                        <c:if test="${login.userrole == 'admin' }">
                             <input type="button" class="btn btn-warning btn-block" value="상품등록"
                                 onclick="location.href='adminproductinsert.do'">
                             <input type="button" class="btn btn-default btn-block" value="메인"
                                 onclick="location.href='/carrot'">
-
+					    </c:if>
                         </div>
                     </div>
 
