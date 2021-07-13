@@ -25,10 +25,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta http-equiv="X-UA-Compatible" content="ie=edge">
 <title>부트스트랩 테이블</title>
-<link rel="stylesheet"
-	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-	integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
-	crossorigin="anonymous">
+
 
 </head>
 <style>
@@ -52,71 +49,12 @@ polyline {
 <body>
 	<%@include file="/WEB-INF/views/1header.jsp"%>
 
-	<div class="container" style="width: 100%;">
-
-		<!--바디 (사이드바 포함 )-->
-		<div class="row" style="padding-top: 50px;">
-			<!--왼쪽 사이드-->
-			<div class="col-sm-2 col-md-2"></div>
-			<!--본문-->
-			<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-				integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-				crossorigin="anonymous"></script>
-			<script
-				src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
-				integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
-				crossorigin="anonymous"></script>
-			<script
-				src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
-				integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
-				crossorigin="anonymous"></script>
-			<div class="container"></div>
-
-			<div class="col-sm-8 col-md-8">
-				<div class="col-sm-12 col-md-12">
-					<h3 style="color: rgb(216, 141, 21); text-decoration: blink;">[*햇빛
-						광량에 따른 추천작물*]</h3>
-					<table class="table">
-						<!--<table class="table table-striped table-hover">-->
-						<thead>
-							<tr>
-								<th>?</th>
-								<th>궁금해요</th>
-								<th>HoneyTip</th>
-								<th>날짜</th>
-								<th>조회수</th>
-							</tr>
-						</thead>
-						<tbody>
-							<tr>
-								<td>34</td>
-								<td>가장 햇빛에 영향을 많이 받는 작물은?</td>
-								<td>당근팜 농장주</td>
-								<td>2021.07.05</td>
-								<td>98</td>
-							</tr>
-							<tr>
-								<td>44</td>
-								<td>채광량이 정말 식물에 중요할까요?</td>
-								<td>텃 밭 왕</td>
-								<td>2021.07.04</td>
-								<td>56</td>
-							</tr>
-							<tr>
-								<td>29</td>
-								<td>베란다에서 키우기에 좋은 추천작물을 소개합니다.</td>
-								<td>베란다 농부</td>
-								<td>2021.07.02</td>
-								<td>33</td>
-							</tr>
-							<tr>
-						</tbody>
-					</table>
-				</div>
-				<div class="row" style="height: 500px;">
-					<div class="col-sm-12 col-md-12"></div>
-					<!--div박스 안에 차트 넣으면 됩니다.-->
-					<div id="chart" class="col-sm-12 col-md-12" style="height: 800px;">
+	<div class="container" style="width:100%">
+        <div class="row">
+        	<!-- 차트시작 -->
+        	<!-- d3 -->
+                <div class="col-sm-12 col-md-12" style="height: 450px; padding-top:70px; ">
+                    <div id="chart" class="col-sm-12 col-md-12" style="height: 450px; width:100%">
 						<script src="https://d3js.org/d3.v3.min.js"></script>
 						<script>
 
@@ -330,14 +268,56 @@ function change(data) {
     });
 </script>
 
-					</div>
-					<div></div>
-					<!--div박스 안에 차트 넣으면 됩니다.-->
-				</div>
-
-				<br>
-				<div class="col-sm-12 col-md-12 ">
-					<!-- 날씨.미먼 -->
+					</div><!-- 차트끝 -->
+					
+                </div>
+            <div class="col-md-2"></div>
+            <div class="col-md-8">
+                <!--추천작물 테이블 -->
+                <div class="col-sm-12 col-md-12">
+                    <h3 style="color: rgb(216, 141, 21); text-decoration: blink;">[*햇빛
+						광량에 따른 추천작물*]</h3>
+					<table class="table">
+						<!--<table class="table table-striped table-hover">-->
+						<thead>
+							<tr>
+								<th>?</th>
+								<th>궁금해요</th>
+								<th>관리자</th>
+								<th>날짜</th>
+								<th>조회수</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>34</td>
+								<td>가장 햇빛에 영향을 많이 받는 작물은?</td>
+								<td>관리자</td>
+								<td>2021.07.05</td>
+								<td>98</td>
+							</tr>
+							<tr>
+								<td>44</td>
+								<td>채광량이 정말 식물에 중요할까요?</td>
+								<td>관리자</td>
+								<td>2021.07.04</td>
+								<td>56</td>
+							</tr>
+							<tr>
+								<td>29</td>
+								<td>베란다에서 키우기에 좋은 추천작물을 소개합니다.</td>
+								<td>관리자</td>
+								<td>2021.07.02</td>
+								<td>33</td>
+							</tr>
+							
+						</tbody>
+					</table>
+                </div>
+                
+                <!-- 날씨  -->
+                <div class="col-sm-12 col-md-12">
+                    <!-- 날씨.미먼 -->
 					<h4>농작물에 가장 중요한</h4>
 					<h2>[오늘의 날씨]</h2>
 					<br>
@@ -354,6 +334,7 @@ function change(data) {
 
 					<h2>**미세먼지**</h2>
 					<br>
+					<!-- 프로그래스바 시작 -->
 					<div class="progress">
 						<div
 							class="progress-bar progress-bar-success progress-bar-striped"
@@ -370,6 +351,7 @@ function change(data) {
 						</div>
 					</div>
 					<div class="progress">
+					
 						<div
 							class="progress-bar progress-bar-warning progress-bar-striped"
 							role="progressbar" aria-valuenow="60" aria-valuemin="0"
@@ -384,6 +366,7 @@ function change(data) {
 							<span class="sr-only">80% Complete (danger)</span>
 						</div>
 					</div>
+					<!-- 프로그래스 바 끝 -->
 					<br>
 					<h4 class="grade">[ 미세먼지 수치 등급 : 1- 좋음, 2- 보통, 3-나쁨, 4-매우나쁨 ]</h4>
 					<br>
@@ -396,49 +379,62 @@ function change(data) {
 						<h5 class="pm25Grade">초미세먼지 수치 : ${dto.pm25Grade } (1시간 이내)</h5>
 					</c:forEach>
 
-				</div>
-
-
+				</div><!-- 날씨 미세먼지 프로그래스 바 끝 -->
+                </div>
+                <!-- 프로그래스바-->
+                <div class="col-sm-12 col-md-12"></div>
+                <!-- 미세먼지 -->
+                <div class="col-sm-12 col-md-12"></div>
+                <!-- 꿀팁영상 -->
+                <div class="col-sm-12 col-md-12">
+                    <!-- 영상부분 -->
+				<!-- 10 -->
 				<div class="row">
-					<div class="col-sm-12 col-md-12 ">
-						<h2 style="color: gray; text-decoration: inherit;">[당근팜 추천!]
-							꿀팁 영상</h2>
-					</div>
-					<div class="col-sm-4 col-md-4">
-						<!-- 16:9 aspect ratio -->
-						<div class="embed-responsive embed-responsive-16by9">
-							<iframe width="560" height="315"
-								src="https://www.youtube.com/embed/O2PF8FmEKbg"
-								title="YouTube video player" frameborder="0"
-								allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-								allowfullscreen></iframe>
-						</div>
-
-					</div>
-					<div class="col-sm-4 col-md-4">
-						<!-- 16:9 aspect ratio -->
-						<div class="embed-responsive embed-responsive-16by9">
-							<iframe width="560" height="315"
-								src="https://www.youtube.com/embed/vq29w5g5_8s"
-								title="YouTube video player" frameborder="0"
-								allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-								allowfullscreen></iframe>
-						</div>
-
-					</div>
-					<div class="col-sm-4 col-md-4">
-						<!-- 16:9 aspect ratio -->
-						<div class="embed-responsive embed-responsive-16by9">
-							<iframe width="560" height="315"
-								src="https://www.youtube.com/embed/Q9jGHZKmq-g"
-								title="YouTube video player" frameborder="0"
-								allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-								allowfullscreen></iframe>
-						</div>
-
-					</div>
-				</div>
-			</div>
+                    <!-- 11 -->
+                        <div class="col-sm-12 col-md-12 ">
+                            <h2 style="color: gray; text-decoration: inherit;">[당근팜 추천!]
+                                꿀팁 영상</h2>
+                        
+                        <div class="col-sm-4 col-md-4">
+                            <!-- 16:9 aspect ratio -->
+                            
+                            <div class="embed-responsive embed-responsive-16by9">
+                                <iframe width="560" height="315"
+                                    src="https://www.youtube.com/embed/O2PF8FmEKbg"
+                                    title="YouTube video player" frameborder="0"
+                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                    allowfullscreen></iframe>
+                            </div>
+    
+                        </div>
+                        <div class="col-sm-4 col-md-4">
+                            <!-- 16:9 aspect ratio -->
+                            <div class="embed-responsive embed-responsive-16by9">
+                                <iframe width="560" height="315"
+                                    src="https://www.youtube.com/embed/vq29w5g5_8s"
+                                    title="YouTube video player" frameborder="0"
+                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                    allowfullscreen></iframe>
+                            </div>
+    
+                        </div>
+                        <div class="col-sm-4 col-md-4">
+                            <!-- 16:9 aspect ratio -->
+                            <div class="embed-responsive embed-responsive-16by9">
+                                <iframe width="560" height="315"
+                                    src="https://www.youtube.com/embed/Q9jGHZKmq-g"
+                                    title="YouTube video player" frameborder="0"
+                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                    allowfullscreen></iframe>
+                            </div>
+    
+                        </div>
+                    </div><!-- 영상끝 -->
+                </div>
+            </div>
+            <div class="col-md-2"></div>
+        </div>
+    </div>
 
 			<%@include file="/WEB-INF/views/1footer.jsp"%>
 </body>
