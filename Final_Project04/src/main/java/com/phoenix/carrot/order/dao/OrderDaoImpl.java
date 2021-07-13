@@ -15,11 +15,11 @@ public class OrderDaoImpl implements OrderDao {
 	private SqlSessionTemplate sqlSession;
 	
 	@Override
-	public int productorderInsert(OrderDto params) {
+	public int productorderInsert(HashMap<String, Object> param) {
 		int res = 0;
-		System.out.println("daoimpl params:"+params);
+		System.out.println("daoimpl params:"+param);
 		try {
-			res = sqlSession.insert(NAMESPACE + "productorderInsert", params);
+			res = sqlSession.insert(NAMESPACE + "productorderInsert", param);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

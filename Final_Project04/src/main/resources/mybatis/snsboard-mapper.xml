@@ -16,7 +16,7 @@
   	</resultMap>
 
 	<select id="snsBoardList" resultType="entireBoardDto">
-		SELECT *
+		SELECT entireBoardSeq, boardKind, boardDate, boardTitle, boardContents, userId, userSeq, boardImg, boardThumbImg, likeCount
 		FROM entireBoard
 		WHERE boardKind = 1
 		ORDER BY boardDate DESC
@@ -28,7 +28,7 @@
 	</insert>
 	
 	<select id="snsBoardOne" resultMap="entireBoardMap">
-		SELECT *
+		SELECT entireBoardSeq, boardKind, boardDate, boardTitle, boardContents, userId, userSeq, boardImg, boardThumbImg, likeCount
 		FROM entireBoard
 		WHERE entireBoardSeq = #{entireBoardSeq}
 	</select>

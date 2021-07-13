@@ -15,8 +15,8 @@ public class OrderBizImpl implements OrderBiz {
 	private OrderDao orderdao;
 	
 	@Override
-	public int productorderInsert(OrderDto params) {
-		return orderdao.productorderInsert(params);
+	public int productorderInsert(HashMap<String, Object> param) {
+		return orderdao.productorderInsert(param);
 	}
 
 	@Override

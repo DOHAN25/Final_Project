@@ -134,7 +134,6 @@ $(document).ready(function(){
 			</c:when>
 			<c:otherwise>
 				<c:forEach items="${userProductList }" var="dto">
-				
 					<tr>
 						<td><img src="${pageContext.request.contextPath}/resources${dto.productThumb }"></td>
 						<td>${dto.productRegDate }</td>
@@ -143,7 +142,6 @@ $(document).ready(function(){
 						<td>${dto.productPrice }</td>
 						<td>${dto.sellerAddress }</td>
 					</tr>
-				
 				</c:forEach>
 			</c:otherwise>
 		</c:choose>

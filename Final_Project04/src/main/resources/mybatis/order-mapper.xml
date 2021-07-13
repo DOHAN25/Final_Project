@@ -3,20 +3,41 @@
 <mapper namespace="Order">
 
 
-<insert id="productorderInsert" parameterType="orderDto">
-			
+<insert id="productorderInsert" parameterType="hashMap">
 		INSERT INTO PRODUCTORDER(
-		ORDERSEQ, PRODUCTSEQ, PRODUCTNAME, PRODUCTPRICE, QUANTITY, ORDERAMOUNT, 
-		PAYMETHOD, USERSEQ, USERID, 
-		RECEIVENAME, RECEIVERPHONE, 
-		RECEIVEROADDRESS, 
-		RECEIVERRADDRESS, RECEIVERDETAILADDRESS, ORDERDATE)
-		VALUES(ORDERSEQ.NEXTVAL, #{productSeq, jdbcType=NUMBER}, #{productName, jdbcType=VARCHAR2},  
-		#{productPrice, jdbcType=NUMBER}, #{quantity, jdbcType=NUMBER}, #{orderAmount, jdbcType=NUMBER},
-		#{paymethod, jdbcType=NUMBER}, #{userSeq, jdbcType=NUMBER}, #{userId, jdbcType=VARCHAR2}, 
-		#{receiveName, jdbcType=VARCHAR2}, #{receiverPhone, jdbcType=VARCHAR2},
-		#{receiverOaddress, jdbcType=VARCHAR2},
-		#{receiverRaddress, jdbcType=VARCHAR2}, #{receiverDetailaddress, jdbcType=VARCHAR2}, SYSDATE)
+			ORDERSEQ,
+			PRODUCTSEQ, 
+			PRODUCTNAME, 
+			PRODUCTPRICE, 
+			QUANTITY, 
+			ORDERAMOUNT, 
+			PAYMETHOD, 
+			USERSEQ, 
+			USERID, 
+			RECEIVENAME, 
+			RECEIVERPHONE, 
+			RECEIVEROADDRESS, 
+			RECEIVERRADDRESS, 
+			RECEIVERDETAILADDRESS, 
+			ORDERDATE
+		)
+		VALUES(
+			ORDERSEQ.NEXTVAL, 
+			#{productSeq}, 
+			#{productName},  
+			#{productPrice},
+			#{quantity}, 
+			#{orderAmount},
+			#{paymethod}, 
+			#{userSeq}, 
+			#{userId}, 
+			#{receiveName}, 
+			#{receiverPhone},
+			#{receiverOaddress},
+			#{receiverRaddress}, 
+			#{receiverDetailaddress}, 
+			SYSDATE
+		)
 	</insert>
 	
 		
