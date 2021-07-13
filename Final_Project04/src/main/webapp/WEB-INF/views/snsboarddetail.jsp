@@ -83,7 +83,6 @@
 		console.log(objParams);
 		
 		var commentNoSeq;
-
 		
 		//ajax호출
 		$.ajax({
@@ -112,16 +111,18 @@
 		
 		var reply =
             '<tr reply_type="main">'+
-            '    <td width="820px">'+
-            replyContent+
-            '    </td>'+
-            '    <td width="100px">'+
-            $("#userId").val()+   //${login.userid}
+            '	 <td id="td">'+
+            '	 <img src="https://via.placeholder.com/30" class="img-circle"  alt="게시글 이미지" style="margin-right: 0px;"  >'+
+            '	 <a href="snsBoardUserFeed.do?userId='+$("#userId").val()+'" style="color: black; padding-left: 10px;">'+
+            $("#userId").val()+
+            '	 </a>'+
+            '	 </td>'+
+            '    <td id="td">'+
+            '<span>'+replyContent+'</span>'+
             '    </td>'+
             '    <td align="center">'+
-            '       <button name="reply_reply" reply_id = "'+commentNoSeq+'">댓글</button>'+
-            '       <button name="reply_modify" r_type = "main" parent_id = "0" reply_id = "'+commentNoSeq+'">수정</button>      '+
-            '       <button name="reply_del" r_type = "main" reply_id = "'+commentNoSeq+'">삭제</button>      '+
+            '	 	<button name="reply_reply" parent_id = "'+userId+'" reply_id = "'+commentNoSeq+'" type="button" class="btn btn-warning btn-xs" data-toggle="modal" data-target="#myModal"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></button>'+
+            '		<button type="button" class="btn btn-danger btn-xs" name="reply_del" r_type = "main" reply_id = "'+commentNoSeq+'"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></button>'+
             '    </td>'+
             '</tr>';
  
@@ -198,6 +199,7 @@
 		//댓글수정 취소
 		//댓글수정 저장
         //대댓글 입력창
+        
         $(document).on("click","button[name='reply_reply']",function(){ //동적 이벤트
             		
             if(status){
@@ -216,15 +218,15 @@
             	//입력받는 창 등록
             	var replyEditor = 
             		'<tr id="reply_add" class="reply_reply">'+
-	            	'	<td width="820px">'+
-	            	'		<textarea name="reply_reply_content" rows="3" cols="50"></textarea>'+
+	            	'	<td>'+
+	            	'		<input type="hidden" name="userId" readonly value="'+'${login.userid }'+'">'+
 	            	'	</td>'+
-	            	'	<td width="100px">'+
-	            	'		<textarea name="userId" style="width:100%;" maxlength="10" readonly="readonly">'+'${login.userid}'+'</textarea>'+
+	            	'	<td >'+
+					'		<input type="text" class="form-control" name="reply_reply_content" placeholder="Text input">'+
 	            	'	</td>'+
 	            	'	<td align="center">'+
-	            	'		<button name="reply_reply_save" parent_id='+commentNoSeq+'>등록</button>'+
-	            	'		<button name="reply_reply_cancel">취소</button>'+
+	            	'		<button type="button" class="btn btn-warning btn-xs" name="reply_reply_save" parent_id='+commentNoSeq+'>등록</button>'+
+	            	'		<button type="button" class="btn btn-warning btn-xs" name="reply_reply_cancel">취소</button>'+
 	            	'	</td>'+
 	            	'</tr>';
 	            		
@@ -254,11 +256,12 @@
 	            }
             		
             });
+		
         	//대댓글 등록
         	$(document).on("click","button[name='reply_reply_save']",function(){
         		
-        		var userId = $("textarea[name='userId']");
-        		var reply_reply_content = $("textarea[name='reply_reply_content']");
+        		var userId = $("input[name='userId']");
+        		var reply_reply_content = $("input[name='reply_reply_content']");
         		var replyContent = reply_reply_content.val().replace("\n", "<br>"); //개행처리
         		console.log("userId : ", userId)
         		//널검사 
@@ -303,16 +306,20 @@
         			}
         		});
         		var reply =
-                    '<tr reply_type="sub">'+
-                    '    <td width="820px"> → '+
-                    replyContent+
-                    '    </td>'+
-                    '    <td width="100px">'+
+                    '<tr id="td reply_type="sub" style="padding-left: 40px;">'+
+                    '    <td id="td">  →'+
+                    '	 <img src="https://via.placeholder.com/30" class="img-circle"  alt="게시글 이미지" style="margin-right: 0px;"  > '+
+                    '	 <a href="snsBoardUserFeed.do?userId='+$("#userId").val()+'" style="color: black; padding-left: 10px;">'+
                     userId.val()+
+                    '	 </a>'+
                     '    </td>'+
-                    '    <td align="center">'+
-                    '       <button name="reply_modify" r_type = "sub" parent_id = "'+groupNo+'" reply_id = "'+commentNoSeq+'">수정</button>'+
-                    '       <button name="reply_del" r_type = "sub" reply_id = "'+commentNoSeq+'">삭제</button>'+
+                    '    <td id="td"> '+
+                    '	 <span>'+
+                    replyContent+
+                    '	 </span>'+
+                    '    </td>'+
+                    '    <td id="td">'+
+                    '       <button name="reply_del" r_type = "sub" reply_id = "'+commentNoSeq+'" type="button" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></button>'+
                     '    </td>'+
                     '</tr>';
                     
@@ -320,16 +327,16 @@
                     
                     prevTr.after(reply);
                     $("#reply_add").remove();
-                    
                     status = false;
         	});
+	
         	//대댓글입력창취소
         	$(document).on("click", "button[name='reply_reply_cancel']", function(){
         		$("#reply_add").remove();
         		
         		status = false;
         	});
-        	
+   
   
 	});
 		
@@ -392,11 +399,13 @@
 <!--본문-->
             
                     <div class="col-sm-8 col-md-8 col-md-offset-2 " style="border:1px solid rgb(228, 228, 228);">
-                        
-                        <div class="col-md-6">
+                        <div class="row">
+                        <div class="col-md-8 col-md-offset-3">
                             <img src="${pageContext.request.contextPath}/resources${dto.boardImg }" alt="상품이미지" style="height: 500px; width: 500px;">
                         </div>
-                        <div class="col-md-6">
+                        </div>
+                        <div class="row">
+                        <div class="col-md-12">
                             <div class="row">
                                 <div class="col-md-12" style="margin-top: 20px;"  >
                                     <!--작성자 프로필 이미지-->
@@ -439,90 +448,67 @@
     							</span>
     								</c:otherwise>
     							</c:choose>
-    							<span style="font-size:30px;">${dto.likeCount }</span>
+    								<span style="font-size:30px;" id="heart${dto.entireBoardSeq }">${dto.likeCount }</span>
                                 </div>
                                 
                                 <!--댓글 대댓글 여기에 들어있습니다. -->
                                 <div class="col-md-12">
                                     <table class="table" id="reply_area">
                                         <!--댓글-->
-                                    <tr>
-                                        
+                                  <c:forEach var="replyList" items="${replyList}" varStatus="status">      
+                                    <tr reply_type="<c:if test="${replyList.groupDepth == 0}">main</c:if><c:if test="${replyList.groupDepth == 1}">sub</c:if>"><!-- 댓글의 depth 표시 -->
+                                        <td id="td">
+                          					<c:if test="${replyList.groupDepth == 1}"> → </c:if>
+                      					</td>
                                         <td id="td">
                                             <!--작성자 프로필 이미지-->
                                             <img src="https://via.placeholder.com/30" class="img-circle"  alt="게시글 이미지" style="margin-right: 0px;"  > 
                                             <!--작성자 아이디 -->
-                                            <a href="#" style="color: black; padding-left: 10px;">아이디 입력</a>
+                                            <a href="snsBoardUserFeed.do?userId=${replyList.userId }" style="color: black; padding-left: 10px;">${replyList.userId}</a>
                                         </td>
-                                        <td id="td"><span>네네</span></td>
-                                        <td id="td">등록시간</td>
+										
                                         <td id="td">
+                                        	<span>${replyList.replyContent}</span>
+                                        </td>
+                                        
+                                        <td id="td">
+                                        	
                                             <!--대댓글 모달 입니다 답글달기 모달나오는 버튼-->
-                                            <button type="button" class="btn btn-warning btn-xs" data-toggle="modal" data-target="#myModal"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></button>
-                                            <!-- Modal -->
-                                            <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                                                <div class="modal-dialog">
-                                                <div class="modal-content">
-                                                    <div class="modal-header">
-                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                                    <h4 class="modal-title" id="myModalLabel">댓글</h4>
-                                                    </div>
-                                                    <div class="modal-body">
-                                                        <!--대댓글 모달 인풋 박스 -->
-                                                        <input type="text" class="form-control" placeholder="댓글을 입력해주세요" >
-                                                    </div>
-                                                    <div class="modal-footer">
-                                                    <button type="button" class="btn btn-default" data-dismiss="modal"><span class="glyphicon glyphicon-remove " aria-hidden="true"></span></button>
-                                                    <button type="button" class="btn btn-warning"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></button>
-                                                                                           
-                                                    </div>
-                                                </div>
-                                                </div>
-                                            </div>
-                                            <!--모달끝-->
-                                            <button type="button" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></button>
+                                         
+                                            <c:if test="${replyList.groupDepth != 1 }">
+                                            	<button name="reply_reply" parent_id = "${replyList.userId}" reply_id = "${replyList.commentNoSeq}" type="button" class="btn btn-warning btn-xs" data-toggle="modal" data-target="#myModal"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></button>
+                                            </c:if>
+                                            
+                                            <button type="button" class="btn btn-danger btn-xs"name="reply_del" r_type = "<c:if test="${replyList.groupDepth == 0}">main</c:if><c:if test="${replyList.groupDepth == 1}">sub</c:if>" reply_id = "${replyList.commentNoSeq}"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></button>
 
                                         </td>
                                     </tr>
-                                    
-                                    
-                                            
-                                        
-                                        
-                                        
-                                    <!--대댓글-->
-                                    <tr >
-                                        <td id="td" style="padding-left: 40px;">
-                                            <!--작성자 프로필 이미지-->
-                                            <img src="https://via.placeholder.com/30" class="img-circle"  alt="게시글 이미지" style="margin-right: 0px;"  > 
-                                            <!--작성자 아이디 -->
-                                            <a href="#" style="color: black; padding-left: 10px;">아이디 입력</a>
-                                        </td>
-                                        <td id="td"><span>안녕하세요</span></td>
-                                        <td id="td">등록시간</td>
-                                        <td id="td">
-                                            <button type="button" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></button>
-                                        </td>
-                                    </tr>
+                                   </c:forEach>
+                                   
                                 </table>
                                 </div>
                                 
                                 <!--댓글 입력창 -->
                                 
                                 <div class="col-md-10" >
-                                	<input type="hidden" readonly value="${login.userid} ">
-                                    <input type="text" class="form-control" placeholder="댓글을 입력해주세요">
+                                	<input type="hidden" id="userId" name="userId" readonly value="${login.userid}">
+                                    <input type="text" class="form-control" placeholder="댓글을 입력해주세요" id="replyContent" name="replyContent">
                                 </div>
-                                <div class="col-md-2"><button type="button" class="btn btn-warning"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></button></div>
+                                <div class="col-md-2"><button type="button" class="btn btn-warning" id="reply_save" name="reply_save"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></button></div>
 
                                 
                             </div>
                         </div>
                         <div class="col-md-2 col-md-offset-10">
-                            <button type="button" class="btn btn-danger btn-sm" style="margin-right: 10px; margin-left: 15px; margin-top:10px"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></button>
-                            <button type="button" class="btn btn-default btn-sm" style="margin-top:10px">목록으로</button>
+                        <c:if test="${dto.userId==login.userid}">	
+                            <button type="button" class="btn btn-danger btn-sm" style="margin-right: 10px; margin-left: 15px; margin-top:10px" onclick="location.href='snsBoardDelete.do?entireBoardSeq=${dto.entireBoardSeq}'"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></button>
+                        </c:if>
+                            <button type="button" class="btn btn-default btn-sm" style="margin-top:10px" onclick="location.href='main.do'">목록으로</button>
+                        </div>
                         </div>
                     </div>
+                    
+                    
                
 <!--오른쪽 사이드-->
             <div class="col-sm-2 col-md-2 "  id="right_side_bar" style=" border-left:1px solid rgb(214, 214, 214); padding:0px 5px; ">
