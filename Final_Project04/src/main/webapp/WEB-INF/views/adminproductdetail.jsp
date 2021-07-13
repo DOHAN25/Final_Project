@@ -34,10 +34,13 @@
       </div>
 
       <div class="col-md-6 col-md-offset-1">
-        <h4><!-- 상품명: -->${dto.productName }</h4>
-        <h4><!-- 가격 -->${dto.productPrice }</h4>
+      	<!-- 상품명: -->
+        <h4>${dto.productName }</h4>
+        <!-- 가격 -->
+        <h4>${dto.productPrice }</h4>
         <hr>
-        <p><!-- 상품정보 -->${dto.productInfo }</p>
+        <!-- 상품정보 -->
+        <p>${dto.productInfo }</p>
         <span><b>구매혜택 </b></span><span>당근씨앗 드립니다</span><br>
         <span><b>배송 방법 </b></span><span>택배</span><br>
         <span><b>배송비 </b></span><span> 3,000</span>

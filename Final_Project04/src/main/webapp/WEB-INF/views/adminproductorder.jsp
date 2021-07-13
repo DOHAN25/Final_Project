@@ -164,7 +164,7 @@
 	<div class="col-md-3"></div>
 
 		<div class="col-md-3">
-			<button id="requestPay" class="btn btn-primary btn-block">결제</button>
+			<button id="requestPay" class="btn btn-warning btn-block">결제</button>
 		</div>
 		<div class="col-md-3">
 			<input type="button" class="btn btn-default btn-block"
