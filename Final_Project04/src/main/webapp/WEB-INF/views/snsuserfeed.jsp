@@ -114,7 +114,8 @@
                                 <a href="#">${snsUserSelectOne.userid} </a>
 
                             </div>
-                           <c:if test="${snsUserSelectOne.userid == login.userid}">
+                            
+                            <c:if test="${snsUserSelectOne.userid == login.userid }">
                             <div class="col-md-3" >
                                 <!-- 글쓰기 버튼 클릭시 글작성 화면으로 이동  -->
                         <button type="button" class="btn btn-warning btn-sm btn-block"  style="margin-top: 20px;" onclick="location.href='snsBoardInsertForm.do'">
