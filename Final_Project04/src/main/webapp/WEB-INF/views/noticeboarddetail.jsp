@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -21,6 +22,7 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 </head>
 <body>
+
 <%@include file="/WEB-INF/views/1header.jsp"%>
 	 <div class="container">
         <div class="row">
@@ -42,7 +44,7 @@
                     </tr>
                     <tr>
                         <th>내용</th>
-                        <td><textarea class="form-control" rows="20" readonly value="${dto.boardContents }"></textarea></td>
+                        <td><textarea class="form-control" rows="25" readonly>${dto.boardContents }</textarea></td>
                     </tr>
 
                 </table>
