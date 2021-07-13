@@ -109,8 +109,7 @@
 									<th>이름</th>
 									<td>
 										<input type="text" name="receiveName" id="receiveName"
-										value="${login.username }" readonly="readonly"
-										autofocus="autofocus">
+										value="${login.username }" autofocus="autofocus">
 									</td>
 									<td>
 										<a href="#">
@@ -238,6 +237,9 @@
 					}).done(function(data) {
 						//[2] 서버에서 REST API로 결제정보확인 및 서비스루틴이 정상적인 경우
 						if (everythings_fine) {
+							
+							console.log(data);
+							
 							msg = '결제가 완료되었습니다.';
 							msg += '\n고유ID : ' + rsp.imp_uid;
 							msg += '\n상점 거래ID : ' + rsp.merchant_uid;
