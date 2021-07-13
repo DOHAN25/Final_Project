@@ -130,16 +130,17 @@ public class AdminProductController {
 	public String adminproductorderPay(@RequestParam HashMap<String,Object> param){
 		logger.info("[Controller] : adminproductorderpay.do");
 		int result = 0;
-		String str = "";
+		//String str = "";
 
 		ObjectMapper mapper = new ObjectMapper();
 		try {
 			result = orderbiz.productorderInsert(param);
-			str = mapper.writeValueAsString(result);// java object -> json문자열로 변환
+			//str = mapper.writeValueAsString(result);// java object -> json문자열로 변환
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return str;
+		//return str;
+		return "adminproductorderPay";
 	};
 //
 //	@RequestMapping(value = "/adminproductorderpay.do", method = RequestMethod.POST)
