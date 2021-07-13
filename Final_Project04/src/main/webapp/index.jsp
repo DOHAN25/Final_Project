@@ -94,7 +94,7 @@ body {
 					</c:if>
 					<c:if test="${login != null }">
 						<li><a href="#section1">로컬마켓</a></li>
-						<li><a href="#section2">씨앗,도구 구매</a></li>
+						<li><a href="#section2">씨앗마켓</a></li>
 						<li><a href="#section3">모두의 당근</a></li>
 						<li><a href="#section4">꿀팁</a></li>
 						<li><a href="#section6">공지사항</a></li>
