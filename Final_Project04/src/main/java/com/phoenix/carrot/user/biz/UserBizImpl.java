@@ -105,7 +105,7 @@ public class UserBizImpl implements UserBiz {
 
 	// ��й�ȣã��
 	@Override
-	public void findPw(UserDto dto) throws Exception {
+	public String findPw(UserDto dto) throws Exception {
 
 		// �ӽ� ��й�ȣ ����
 		String pw = "";
@@ -121,5 +121,12 @@ public class UserBizImpl implements UserBiz {
 		// ��й�ȣ ���� ���� �߼�
 		sendEmail(dto);
 
+		return pw;
+	}
+
+	@Override
+	public int updatePw(UserDto dto) {
+		// TODO Auto-generated method stub
+		return dao.updatePw(dto);
 	}
 }
