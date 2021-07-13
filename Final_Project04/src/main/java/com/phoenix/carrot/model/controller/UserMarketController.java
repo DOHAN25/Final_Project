@@ -52,48 +52,48 @@ import com.phoenix.carrot.product.biz.UserProductBiz;
 import com.phoenix.carrot.product.dto.ProductDto;
 import com.phoenix.carrot.utils.UploadFileUtils;
 
-
-
 @Controller
 public class UserMarketController {
 
 	private Logger logger = LoggerFactory.getLogger(UserMarketController.class);
-	
-	@Resource(name="uploadPath")
+
+	@Resource(name = "uploadPath")
 	private String uploadPath;
-	
+
 	@Autowired
 	private UserProductBiz biz;
 
 	@Autowired
 	private ChatRoomBiz cbiz;
 
-	@RequestMapping(value="/uploadSummernoteImageFile.do",  method=RequestMethod.POST, produces = "application/json; charset=utf8")
+	@RequestMapping(value = "/uploadSummernoteImageFile.do", method = RequestMethod.POST, produces = "application/json; charset=utf8")
 	@ResponseBody
-	public String uploadSummernoteImageFile(@RequestParam("file") MultipartFile multipartFile, HttpServletRequest request )  {
+	public String uploadSummernoteImageFile(@RequestParam("file") MultipartFile multipartFile,
+			HttpServletRequest request) {
 		JsonObject jsonObject = new JsonObject();
-		
-        /*
+
+		/*
 		 * String fileRoot = "C:\\summernote_image\\"; // �쇅遺�寃쎈줈濡� ���옣�쓣 �씗留앺븷�븣.
 		 */
-		
+
 		// �궡遺�寃쎈줈濡� ���옣
 		String contextRoot = new HttpServletRequestWrapper(request).getRealPath("/");
-		String fileRoot = contextRoot+"resources/fileupload/";
-		
-		String originalFileName = multipartFile.getOriginalFilename();	//�삤由ъ��궇 �뙆�씪紐�
-		String extension = originalFileName.substring(originalFileName.lastIndexOf("."));	//�뙆�씪 �솗�옣�옄
-		String savedFileName = UUID.randomUUID() + extension;	//���옣�맆 �뙆�씪 紐�
-		
-		File targetFile = new File(fileRoot + savedFileName);	
+		String fileRoot = contextRoot + "resources/fileupload/";
+
+		String originalFileName = multipartFile.getOriginalFilename(); // �삤由ъ��궇 �뙆�씪紐�
+		String extension = originalFileName.substring(originalFileName.lastIndexOf(".")); // �뙆�씪 �솗�옣�옄
+		String savedFileName = UUID.randomUUID() + extension; // ���옣�맆 �뙆�씪 紐�
+
+		File targetFile = new File(fileRoot + savedFileName);
 		try {
 			InputStream fileStream = multipartFile.getInputStream();
-			FileUtils.copyInputStreamToFile(fileStream, targetFile);	//�뙆�씪 ���옣
-			jsonObject.addProperty("url", "/carrot/resources/fileupload/"+savedFileName); // contextroot + resources + ���옣�븷 �궡遺� �뤃�뜑紐�
+			FileUtils.copyInputStreamToFile(fileStream, targetFile); // �뙆�씪 ���옣
+			jsonObject.addProperty("url", "/carrot/resources/fileupload/" + savedFileName); // contextroot + resources +
+																							// ���옣�븷 �궡遺� �뤃�뜑紐�
 			jsonObject.addProperty("responseCode", "success");
-				
+
 		} catch (IOException e) {
-			FileUtils.deleteQuietly(targetFile);	//���옣�맂 �뙆�씪 �궘�젣
+			FileUtils.deleteQuietly(targetFile); // ���옣�맂 �뙆�씪 �궘�젣
 			jsonObject.addProperty("responseCode", "error");
 			e.printStackTrace();
 		}
@@ -126,89 +126,94 @@ public class UserMarketController {
 		String imgUploadPath = uploadPath + File.separator + "upload";
 		String ymdPath = UploadFileUtils.calcPath(imgUploadPath);
 		String fileName = null;
-		
+
 		if (file != null) {
 			fileName = UploadFileUtils.fileUpload(imgUploadPath, file.getOriginalFilename(), file.getBytes(), ymdPath);
 		} else {
-			fileName = uploadPath + File.separator + "image" + File.separator +"none.png";
+			fileName = uploadPath + File.separator + "image" + File.separator + "none.png";
 		}
-		
+
 		dto.setProductImg(File.separator + "upload" + ymdPath + File.separator + fileName);
-		dto.setProductThumb(File.separator + "upload" + ymdPath + File.separator + "s" + File.separator + "s_" + fileName);
-		
+		dto.setProductThumb(
+				File.separator + "upload" + ymdPath + File.separator + "s" + File.separator + "s_" + fileName);
+
 		biz.userProductInsert(dto);
-		
+
 		return "redirect:usermarketplace.do";
 	}
 
 	@RequestMapping("/userproductdetail.do")
-	public String productDetail(Model model,@RequestParam("productSeq") int productSeq, HttpServletRequest request) {
+	public String productDetail(Model model, @RequestParam("productSeq") int productSeq, HttpServletRequest request) {
 		logger.info("[Controller] : userproductdetail.do");
 
-				
 		List<ProductDto> list = new ArrayList<ProductDto>();
 
 		list = biz.selectlistLatLong();
-	
-		
+
 		JSONObject obj = new JSONObject();
 		JSONArray jArray = new JSONArray();
 		JSONObject sObject = new JSONObject();
-
+/*
 		for (int i = 0; i < list.size(); i++) {
-			
+
 			sObject.put("title", list.get(i).getProductName());
 			sObject.put("lat", list.get(i).getUserLatitude());
 			sObject.put("lng", list.get(i).getUserLongitude());
 			jArray.put(sObject);
 		}
-		
+*/
+		for(ProductDto dto2 : list) { 
+		 sObject.put("title", dto2.getProductName());
+		 sObject.put("lat", dto2.getUserLatitude()); 
+		 sObject.put("lng", dto2.getUserLongitude()); 
+		 jArray.put(sObject); 
+		 }
+
 		obj.put("positions", jArray);
-		
+
 		model.addAttribute("data", obj);
-		
+
 		model.addAttribute("dto", biz.userProductOne(productSeq));
-		
+
 		return "userproductdetail";
 	}
-	
-	@RequestMapping("/markerdetail.do")
-	public String markerDetail(HttpServletRequest request, Model model) {
-		String productName = request.getParameter("productName");
-		System.out.println(productName);
-		
-		logger.info("[Controller] : marekrdetail.do");
-		
-		ProductDto dto = biz.selectOneByName(productName);
-		
-		List<ProductDto> list = new ArrayList<ProductDto>();
 
-		list = biz.selectlistLatLong();
-	
-		
-		JSONObject obj = new JSONObject();
-		JSONArray jArray = new JSONArray();
-		JSONObject sObject = new JSONObject();
-
-		for (int i = 0; i < list.size(); i++) {
-			
-			sObject.put("title", list.get(i).getProductName());
-			sObject.put("lat", list.get(i).getUserLatitude());
-			sObject.put("lng", list.get(i).getUserLongitude());
-			jArray.put(sObject);
-		}
-		
-		obj.put("positions", jArray);
-
-		model.addAttribute("data", obj);
-		
-		
-		model.addAttribute("dto", biz.userProductOne(dto.getProductSeq()));
-		
-		
-		return "userproductdetail";
-	}
-	
-	
+	/*
+	 * @RequestMapping("/markerdetail.do") public String
+	 * markerDetail(HttpServletRequest request, Model model) { String productName =
+	 * request.getParameter("productName"); System.out.println(productName);
+	 * 
+	 * logger.info("[Controller] : marekrdetail.do");
+	 * 
+	 * ProductDto dto = biz.selectOneByName(productName);
+	 * 
+	 * List<ProductDto> list = new ArrayList<ProductDto>();
+	 * 
+	 * list = biz.selectlistLatLong();
+	 * 
+	 * JSONObject obj = new JSONObject(); JSONArray jArray = new JSONArray();
+	 * JSONObject sObject = new JSONObject();
+	 * 
+	 * for (int i = 0; i < list.size(); i++) {
+	 * 
+	 * sObject.put("title", list.get(i).getProductName()); sObject.put("lat",
+	 * list.get(i).getUserLatitude()); sObject.put("lng",
+	 * list.get(i).getUserLongitude()); jArray.put(sObject); }
+	 * 
+	 * 
+	 * for(ProductDto dto2 : list) { sObject.put("title", dto2.getProductName());
+	 * sObject.put("lat", dto2.getUserLatitude()); sObject.put("lng",
+	 * dto2.getUserLongitude()); jArray.put(sObject); }
+	 * 
+	 * obj.put("positions", jArray);
+	 * 
+	 * model.addAttribute("data", obj);
+	 * 
+	 * 
+	 * model.addAttribute("dto", biz.userProductOne(dto.getProductSeq()));
+	 * 
+	 * 
+	 * return "userproductdetail"; }
+	 */
 
 }
