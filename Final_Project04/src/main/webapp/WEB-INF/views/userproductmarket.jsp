@@ -43,6 +43,7 @@ $(document).ready(function(){
 				var html = "<tr>";
 					for(var i = 0; i < data.list.length; i++) {
 						html += "<td>"+data.list[i].productRegDate+"</td>";
+						html += "<td><img src="+${pageContext.request.contextPath}+"/resources"+${dto.productThumb }+"></td>";
 						html += "<td>"+data.list[i].userId+"</td>";
 						html += "<td><a href='userproductdetail.do?productSeq="+data.list[i].productSeq+"'>"+data.list[i].productName+"</a></td>";
 						html += "<td>"+data.list[i].productPrice+"</td>";
@@ -69,10 +70,11 @@ $(document).ready(function(){
 				success:function(data) {
 				//console.log(data.list.length);
 				//console.log(data.list[0].productName);
-			
+
 				var html = "<tr>";
 					for(var i = 0; i < data.list.length; i++) {
 						html += "<td>"+data.list[i].productRegDate+"</td>";
+						html += "<td><img src="+${pageContext.request.contextPath}+"/resources"+${dto.productThumb }+"></td>";
 						html += "<td>"+data.list[i].userId+"</td>";
 						html += "<td><a href='userproductdetail.do?productSeq="+data.list[i].productSeq+"'>"+data.list[i].productName+"</a></td>";
 						html += "<td>"+data.list[i].productPrice+"</td>";
