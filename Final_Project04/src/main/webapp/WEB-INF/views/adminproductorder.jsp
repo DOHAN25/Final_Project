@@ -57,8 +57,7 @@
 
 <body>
 	<%@include file="/WEB-INF/views/1header.jsp" %>
-	<h1>씨앗마켓 상품 주문 페이지</h1>
-				
+	
 				
 	<!-- 주문정보를 form형태로 Adminproductcontroller로 보내준다. -->
 	<!--  action="adminproductorderpay.do" -->
@@ -67,8 +66,12 @@
 		<input type="hidden" name="productSeq" id="productSeq" value="${dto.productSeq }">
 		 <input	type="hidden" name="paymethod" id="paymethod" value="CARD"> 
 		 <input	type="hidden" name="userId" id="userId" value="${login.userid }">
+		 
 
-		<div class="container" style="width: 100%;">
+		<div class="container" style="width: 100%;" >
+			<div style="text-align: center;">
+				<h1>씨앗마켓 상품 주문 페이지</h1>
+			</div>
 			<div class="row">
 				<div class="col-md-8 col-md-offset-2">
 					<h2>주문/결제</h2>
@@ -101,86 +104,75 @@
 
 
 					<!--수정버튼누르면 회원정보수정 페이지로가게 하면 될거같아영~~~-->
-					<h2>주문자 정보</h2>
 					<div class="row">
-						<div class="col-md-8">
+					
+ 						
+							<h2>주문자 정보</h2>
+						
+					</div>
+					
+					<div class="row">
+					
+						<div class="col-md-12">
 							<table class="table" style="margin-top: 40px;">
 								<tr>
 									<th>이름</th>
 									<td>
-										<input type="text" name="receiveName" id="receiveName"
+										<input class="form-control" type="text" name="receiveName" id="receiveName"
 										value="${login.username }" autofocus="autofocus">
-									</td>
-									<td>
-										<a href="#">
-											<button type="button" class="btn btn-default btn-sm">수정</button>
-										</a>
 									</td>
 								</tr>
 								<tr>
 									<th>휴대폰</th>
 									<td>
-										<input type="text" name="receiverPhone" id="receiverPhone"
+										<input class="form-control" type="text" name="receiverPhone" id="receiverPhone"
 										value="${login.userphone }" placeholder="연락처를 입력해주세요">
-									</td>
-									<td>
-										<a href="#">
-											<button type="button" class="btn btn-default btn-sm">수정</button>
-										</a>
 									</td>
 								</tr>
 								<tr>
 									<th>우편번호</th>
 									<td>
-										<input type="text" name="receiverOaddress"id="receiverOaddress"
+										<input class="form-control" type="text" name="receiverOaddress"id="receiverOaddress"
 										value="${login.useroaddress }" placeholder="우편번호를 입력해주세요"></td>
-									<td>
-										<a href="#">
-										<button type="button" class="btn btn-default btn-sm">수정</button>
-										</a>
-									</td>
 								</tr>
 								<tr>
 									<th>주소</th>
 									<td>
-										<input type="text" name="receiverRaddress"id="receiverRaddress"
+										<input class="form-control" type="text" name="receiverRaddress"id="receiverRaddress"
 										value="${login.useraddress }" placeholder="주소를 입력해주세요">
-									</td>
-									<td>
-										<a href="#">
-										<button type="button" class="btn btn-default btn-sm">수정</button></a>
 									</td>
 								</tr>
 								<tr>
 									<th>상세주소</th>
 									<td>
-										<input type="text" name="receiverDetailaddress"id="receiverDetailaddress"
+										<input class="form-control" type="text" name="receiverDetailaddress"id="receiverDetailaddress"
 										value="${login.userdetailaddress }" placeholder="상세주소를 입력해주세요">
-									</td>
-									<td>
-										<a href="#"><button type="button" class="btn btn-default btn-sm">수정</button>
-										</a>
 									</td>
 								</tr>
 
 							</table>
 						</div>
-						<div class="col-md-4"></div>
+						
 					</div>
 					
 				</div>
 			</div>
 		</div>
 	</form>
+	
 	<div class="row">
-		<div class="col-md-4">
+	<div class="col-md-3"></div>
+
+		<div class="col-md-3">
 			<button id="requestPay" class="btn btn-primary btn-block">결제</button>
 		</div>
-		<div class="col-md-4">
+		<div class="col-md-3">
 			<input type="button" class="btn btn-default btn-block"
 				onclick="location.href='adminproductdetail.do?productSeq=${dto.productSeq }'"
 				value="취소">
 		</div>
+		<div class="col-md-3"></div>
+		
 	</div>
 
 <script>
@@ -260,7 +252,7 @@
 					msg = '결제에 실패하였습니다.';
 					msg += '에러내용 : ' + rsp.error_msg;
 					//실패시 이동할 페이지
-					location.href = "${path}/adminproductorderPayERR.do";
+					location.href = "${path}/adminproduct.do";
 					alert(msg);
 				}
 			});
