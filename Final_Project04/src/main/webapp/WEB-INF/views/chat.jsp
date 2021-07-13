@@ -25,11 +25,7 @@
 <!-- Core theme CSS (includes Bootstrap)-->
 <link href="css/styles.css" rel="stylesheet" />
 <style>
-.container {
-	max-width: 1170px;
-	margin: auto;
-	height: 1000px;
-}
+
 
 .inbox_people {
 	background: #f8f8f8 none repeat scroll 0 0;
@@ -193,9 +189,7 @@
 							</p>
 							<div class="received_msg">
 								<div class="received_withd_msg">
-									<p>
-										${messageDto.message_content }
-									</p>
+									
 									<!--  <span class="time_date">${messageDto.message_regdate }</span>-->
 								</div>
 							</div>
@@ -231,11 +225,13 @@
 					</div>
 				</div>
 			</div>
+			<button class="btn btn-warning" onclick="closeChatRoom();">채팅방 나가기</button>
+			<!--https://bootsnipp.com/snippets/1ea0N : bootstrap template원본 -->
+			<!-- 웹소켓 연결 하는 부분 -->
 		</div>
+		
 	</div>
-	<button onclick="closeChatRoom();">채팅방 나가기</button>
-	<!--https://bootsnipp.com/snippets/1ea0N : bootstrap template원본 -->
-	<!-- 웹소켓 연결 하는 부분 -->
+	
 
 	
 <script type="text/javascript">
