@@ -24,7 +24,7 @@ ALTER TABLE USERS ADD UNIQUE (USERID);
 
 SELECT * FROM USERS;
 
-DELETE FROM USERS WHERE USERSEQ = 81;
+DELETE FROM USERS WHERE USERSEQ = 104;
 
 
 
@@ -108,7 +108,7 @@ DELETE FROM Product WHERE productPrice = 1800;
 SELECT userLatitude, userLongitude FROM Product;
 DELETE FROM Product 
 
-
+SELECT productName, userLatitude, userLongitude FROM Product WHERE userRole = 'USER' AND userLatitude IS NOT NULL AND userLongitude IS NOT NULL
 
 
 

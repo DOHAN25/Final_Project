@@ -93,13 +93,13 @@
 								// 지도의 확대 레벨 
 								};
 
-								var map = new kakao.maps.Map(mapContainer,
-										mapOption); // 지도를 생성합니다
+								var map = new kakao.maps.Map(mapContainer,mapOption); // 지도를 생성합니다
 
 								// 마커 이미지의 이미지 주소입니다
 								var imageSrc = "https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerStar.png";
 
 								var data = JSON.parse('${data}');
+								console.log(data);
 
 								for (var i = 0; i < data.positions.length; i++) {
 

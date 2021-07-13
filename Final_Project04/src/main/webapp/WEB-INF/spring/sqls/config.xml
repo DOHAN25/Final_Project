@@ -16,7 +16,6 @@
 	</typeAliases>
 	
 	<mappers>
-		<mapper resource="/mybatis/weekendfarm-mapper.xml"/>
 		<mapper resource="/mybatis/snsboard-mapper.xml"/>
 		<mapper resource="/mybatis/user-mapper.xml"/>
 		<mapper resource="/mybatis/admproduct-mapper.xml"/>
