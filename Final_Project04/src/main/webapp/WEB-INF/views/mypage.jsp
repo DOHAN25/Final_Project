@@ -61,7 +61,7 @@
 
                             <div class="row">
                                 <div class="col-md-3"><img id="profileimg"
-                                        src="https://images.unsplash.com/photo-1580489944761-15a19d654956?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTI2fHxwZXJzb258ZW58MHx8MHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=60	"
+                                        src="https://image.flaticon.com/icons/png/512/1177/1177568.png"
                                         alt="프로필 이미지" class="img-circle img-responsive mx-auto d-block img-fluid"></div>
                                 <div class="col-md-9">
                                     <span id="id">${login.userid } </span>
