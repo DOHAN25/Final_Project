@@ -53,7 +53,7 @@
                      <c:if test="${login != null }">
                       <li><a href="usermarketplace.do">로컬마켓</a></li>
                       <li><a href="adminproduct.do">씨앗마켓</a></li>
-                      <li><a href="mian.do">모두의 당근</a></li>
+                      <li><a href="main.do">모두의 당근</a></li>
                       <li><a href="honeytip.do">꿀팁</a></li>
                       <li><a href="noticeboardlist.do">공지사항</a></li>
                      </c:if>
@@ -61,13 +61,11 @@
                     <ul class="nav navbar-nav navbar-right">
                     	<c:if test="${login != null }">
                         <li><a href="logOut.do" title="로그아웃" style="color:rgb(116,116,116)"><span class="glyphicon glyphicon-log-out" aria-hidden="true"></span></a></li>
-                        <li><a href="registform.do"title="회원가입" style="color:rgb(116, 116, 116)"><span class="glyphicon glyphicon-registration-mark" aria-hidden="true"></span></span></a></li>
                         <li><a href="mypage.do" title="마이페이지" style="color:rgb(116,116,116)"><span class="glyphicon glyphicon-user" aria-hidden="true"></span></a></li>
                         </c:if>
                         <c:if test="${login == null }">
                         <li><a href="loginform.do"title="로그인" style="color:rgb(116, 116, 116)"><span class="glyphicon glyphicon-log-in" aria-hidden="true"></span></span></a></li>
                         <li><a href="registform.do"title="회원가입" style="color:rgb(116, 116, 116)"><span class="glyphicon glyphicon-registration-mark" aria-hidden="true"></span></span></a></li>
-                        <li><a href="loginform.do" title="마이페이지" style="color:rgb(116,116,116)"><span class="glyphicon glyphicon-user" aria-hidden="true"></span></a></li>
                         </c:if>
                     </ul>
                   </div><!-- /.navbar-collapse -->
